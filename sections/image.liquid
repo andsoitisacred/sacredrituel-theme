@@ -1,0 +1,110 @@
+{%- if section.settings.title != blank -%}
+  <div class="section-header grid-item push-left-one-tenth lap--push-left-none">
+    <{{ section.settings.seo_h_tag }} class="section-header__title h4">{{ section.settings.title | escape }}</{{ section.settings.seo_h_tag }}>
+  </div>
+{%- endif -%}
+
+<div class="ten-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+
+  {%- if section.settings.link != blank -%}
+    <a href="{{ section.settings.link }}">
+  {%- endif -%}
+
+  {%- liquid
+    if section.index == 1
+      assign preload = true
+    else
+      assign preload = false
+    endif
+  -%}
+
+  {%- assign sizes = 'sizes="(max-width: 1023px) calc(100vw - 60px), 84vw"' -%}
+
+  <div {% if section.settings.image_mobile %} class="lap--hide" {% endif %}>
+    {%- unless section.settings.image == blank -%}
+      {%- render 'lazy-image', image: section.settings.image, alt: section.settings.heading, sizes: sizes, preload: preload -%}
+    {%- else -%}
+      <span class="onboarding-svg section--image-text--item__image onboarding-background">
+        {{ 'image' | placeholder_svg_tag }}
+      </span>
+    {%- endunless -%}
+  </div>
+  {%- if section.settings.image_mobile -%}
+    <div class="hide lap--show-block">
+      {%- render 'lazy-image', image: section.settings.image_mobile, alt: section.settings.heading, sizes: sizes, preload: preload -%}
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.link != blank -%}
+    </a>
+  {%- endif -%}
+
+</div>
+
+{% schema %}
+  {
+    "name": "t:sections.image.name",
+    "class": "section-w-margin section-w-mobile-padding",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "t:sections.featured-collection.settings.title.label",
+        "default": "Full width image"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "t:sections.image.name"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_mobile",
+        "label": "t:sections.highlight-extra-words.mobile_image.label"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "t:sections.image-with-text.blocks.image.settings.url.label"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.refactor_words.seo.name"
+      },
+      {
+        "type": "select",
+        "id": "seo_h_tag",
+        "label": "t:sections.refactor_words.seo.label",
+        "info": "t:sections.refactor_words.seo.info",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          }
+        ],
+        "default": "h2"
+      }
+    ], 
+    "presets": [
+      {
+        "name": "t:sections.image.name"
+      }
+    ]
+  }
+{% endschema %}

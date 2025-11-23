@@ -1,0 +1,90 @@
+
+{%- liquid
+
+	assign no_crop = true
+
+	if image.alt == blank
+		assign image_alt = alt
+	else
+		assign image_alt = image.alt
+	endif
+
+	if ratio == blank or ratio == 'natural'
+		assign ratio = image.aspect_ratio
+	else
+		assign divide_ratio = 1 | divided_by: ratio
+	  assign height_260 = 260 | times: divide_ratio | round
+		assign height_320 = 320 | times: divide_ratio | round
+		assign height_360 = 360 | times: divide_ratio | round
+		assign height_420 = 420 | times: divide_ratio | round
+		assign height_480 = 480 | times: divide_ratio | round
+		assign height_640 = 640 | times: divide_ratio | round
+		assign height_840 = 840 | times: divide_ratio | round
+		assign height_1080 = 1080 | times: divide_ratio | round
+		assign height_1280 = 1280 | times: divide_ratio | round
+		assign height_1540 = 1540 | times: divide_ratio | round
+		assign height_1860 = 1860 | times: divide_ratio | round
+		assign height_2100 = 2100 | times: divide_ratio | round
+		assign no_crop = false
+	endif
+
+-%}
+
+{% if no_crop %}	
+	{%- capture srcset -%} 
+		srcset="
+			{%- if image.width >= 260 -%}{{ image | image_url: width: 260 }} 260w{%- endif -%} 
+			{%- if image.width >= 320 -%},{{ image | image_url: width: 320 }} 320w{%- endif -%} 
+			{%- if image.width >= 360 -%},{{ image | image_url: width: 360 }} 360w{%- endif -%} 
+			{%- if image.width >= 420 -%},{{ image | image_url: width: 420 }} 420w{%- endif -%} 
+			{%- if image.width >= 480 -%},{{ image | image_url: width: 480 }} 480w{%- endif -%} 
+			{%- if image.width >= 640 -%},{{ image | image_url: width: 640 }} 640w{%- endif -%} 
+			{%- if image.width >= 840 -%},{{ image | image_url: width: 840 }} 840w{%- endif -%} 
+			{%- if image.width >= 1080 -%},{{ image | image_url: width: 1080 }} 1080w{%- endif -%} 
+			{%- if image.width >= 1280 -%},{{ image | image_url: width: 1280 }} 1280w{%- endif -%} 
+			{%- if image.width >= 1540 -%},{{ image | image_url: width: 1540 }} 1540w{%- endif -%} 
+			{%- if image.width >= 1860 -%},{{ image | image_url: width: 1860 }} 1860w{%- endif -%} 
+			{%- if image.width >= 2100 -%},{{ image | image_url: width: 2100 }} 2100w{%- endif -%}
+		" 
+	{%- endcapture -%}
+{% else %}
+	{%- capture srcset -%} 
+		srcset="
+			{%- if image.width >= 260 -%}{{ image | image_url: width: 260, height: height_260, crop: 'center' }} 260w{%- endif -%}
+			{%- if image.width >= 320 -%},{{ image | image_url: width: 320, height: height_320, crop: 'center' }} 320w{%- endif -%}
+			{%- if image.width >= 360 -%},{{ image | image_url: width: 360, height: height_360, crop: 'center' }} 360w{%- endif -%}
+			{%- if image.width >= 420 -%},{{ image | image_url: width: 420, height: height_420, crop: 'center' }} 420w{%- endif -%}
+			{%- if image.width >= 480 -%},{{ image | image_url: width: 480, height: height_480, crop: 'center' }} 480w{%- endif -%}
+			{%- if image.width >= 640 -%},{{ image | image_url: width: 640, height: height_640, crop: 'center' }} 640w{%- endif -%}
+			{%- if image.width >= 840 -%},{{ image | image_url: width: 840, height: height_840, crop: 'center' }} 840w{%- endif -%}
+			{%- if image.width >= 1080 -%},{{ image | image_url: width: 1080, height: height_1080, crop: 'center' }} 1080w{%- endif -%}
+			{%- if image.width >= 1280 -%},{{ image | image_url: width: 1280, height: height_1280, crop: 'center' }} 1280w{%- endif -%}
+			{%- if image.width >= 1540 -%},{{ image | image_url: width: 1540, height: height_1540, crop: 'center' }} 1540w{%- endif -%}
+			{%- if image.width >= 1860 -%},{{ image | image_url: width: 1860, height: height_1860, crop: 'center' }} 1860w{%- endif -%}
+			{%- if image.width >= 2100 -%},{{ image | image_url: width: 2100, height: height_2100, crop: 'center' }} 2100w{%- endif -%}
+		" 
+	{%- endcapture -%}
+{% endif %}
+
+<{% if type == 'background' %}span{% else%}figure{% endif %} data-crop="{{ no_crop }}" class="lazy-image animation {% if type == 'background' %} lazy-image--background {% endif %} {% if image.src contains 'png' %} lazy-image--transparent {% endif %}" {% unless ratio == blank %} data-ratio="{{ ratio }}" style="padding-top: {{ 100 | divided_by: ratio }}%" {% endunless %}>
+
+	<img
+	  class="img lazy"
+	  width="{{ image.width }}" height="{{ image.height }}"
+	  {% if alignment %} style="object-position: {{ image.presentation.focal_point }}" {% endif %}
+	  src="{{ image | image_url: width: 480 }}" alt="{{ image_alt | strip_html | escape }}"
+	  {{ srcset }}
+	  {{ sizes }}
+	  {% unless preload %} loading="lazy" {% endunless %}
+		onload="this.classList.add('lazyloaded')"
+ 	/>
+
+	{%- if zoom -%}
+		<product-image-zoom class="product__image-zoom" data-image="{{ image | image_url }}" aria-hidden="true" tabindex="-1">
+			<svg aria-hidden="true" focusable="false" role="presentation" class="svg symbol symbol--zoom-in" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.2 19.2a8.96 8.96 0 0 1-9-9 8.96 8.96 0 0 1 9-9 8.96 8.96 0 0 1 9 9 8.96 8.96 0 0 1-9 9zm0-16c-3.9 0-7 3.1-7 7s3.1 7 7 7 7-3.1 7-7c0-3.8-3.1-7-7-7z"/><path d="M15.65 17.1l1.414-1.414 5.657 5.657-1.414 1.414zM14.3 9.3h-3v-3h-2v3h-3v2h3v3h2v-3h3z"/></svg>
+		</product-image-zoom>
+	{%- endif -%}
+
+</{% if type == 'background' %}span{% else%}figure{% endif %}>
+
+{%- assign ratio = blank -%}

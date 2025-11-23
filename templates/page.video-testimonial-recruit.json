@@ -1,0 +1,174 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "721a4b39-ce29-4dbf-baa7-36162440107b": {
+      "type": "heading",
+      "disabled": true,
+      "settings": {
+        "title": "{{ page.title }}",
+        "content": "<p>{{ page.metafields.custom.hero_title.value }}</p>",
+        "button_label": "",
+        "button_link": "",
+        "text_alignment": "left",
+        "text_size": "large",
+        "seo_h_tag": "span"
+      }
+    },
+    "1678228888147c22b5": {
+      "type": "apps",
+      "blocks": {
+        "f69392d8-04a4-419e-9d49-28db0c0ca0d8": {
+          "type": "shopify://apps/tolstoy-shoppable-video-quiz/blocks/carousel-block/06fa8282-42ff-403e-b67c-1936776aed11",
+          "settings": {
+            "publishId": "4cc6hq9qsluic"
+          }
+        }
+      },
+      "block_order": [
+        "f69392d8-04a4-419e-9d49-28db0c0ca0d8"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "no_margins": true,
+        "reduced_margins": true
+      }
+    },
+    "custom_liquid_DXwjCz": {
+      "type": "custom-liquid",
+      "custom_css": [],
+      "name": "t:sections.refactor_words.custom_code.name",
+      "settings": {
+        "custom_liquid": "<div role=\"separator\" aria-label=\"or\"\n     style=\"display:flex;align-items:center;gap:1rem;margin:3rem 0;\">\n  <div aria-hidden=\"true\" style=\"flex:1;height:1px;background:#ccc;\"></div>\n  <span>OR</span>\n  <div aria-hidden=\"true\" style=\"flex:1;height:1px;background:#ccc;\"></div>\n</div>",
+        "full_width": false
+      }
+    },
+    "rich_text_GNDQXk": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Uh7xFP": {
+          "type": "heading",
+          "settings": {
+            "heading": "Share a 30% OFF code",
+            "heading_size": "h3"
+          }
+        },
+        "text_wUAPpN": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Whether you’ve spoken about Sacred Rituel before or are sharing it now for the first time—thank you. <strong>Your glow, and your trust, mean everything to us.</strong> This is <strong>an invitation to pass on</strong> what has fed your skin and your self-trust.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_Uh7xFP",
+        "text_wUAPpN"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "text_alignment": "left"
+      }
+    },
+    "17574432297803c0a2": {
+      "type": "apps",
+      "blocks": {
+        "okendo_referral_widget_qzHBJY": {
+          "type": "shopify://apps/okendo/blocks/referral-widget/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "okendo_referral_widget_qzHBJY"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "custom_liquid_mYEKE9": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "custom_css": [
+        ".ytvideo {display: block;}"
+      ],
+      "settings": {
+        "custom_liquid": "<iframe class=\"ytvideo\" width=\"315\" height=\"560\"\nsrc=\"https://www.youtube.com/embed/sBdKdssnM8A\"\ntitle=\"YouTube video player\"\nframeborder=\"0\"\nallow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\"\nallowfullscreen></iframe>",
+        "full_width": false
+      }
+    },
+    "rich_text_BNAUP6": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_FFHm83": {
+          "type": "heading",
+          "settings": {
+            "heading": "☝️ Check Out Alexandria's Video!",
+            "heading_size": "h3"
+          }
+        },
+        "text_BxRBzW": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Alexandria has been using Sacred Rituel since 2020! She recorded this in her beautiful living room in Colorado and she spent the most time just getting ready to record.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FFHm83",
+        "text_BxRBzW"
+      ],
+      "disabled": true,
+      "settings": {
+        "text_alignment": "left"
+      }
+    },
+    "77bc595f-7a3c-4a25-b2e8-c935c4ec43d0": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Receive A Complimentary Bottle!",
+        "caption": "Just tell your story and hit record!",
+        "collection": "full-size-products",
+        "show_view_all": true,
+        "layout": "asymmetrical",
+        "products_number": 6,
+        "show_promotional_block": false,
+        "promotional_block_title": "Write a short, captivating paragraph about your products.",
+        "promotional_block_button_label": "",
+        "promotional_block_button_link": "",
+        "seo_h_tag": "h2"
+      }
+    },
+    "1632125507a926bace": {
+      "type": "video-popup",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "video": "https://www.youtube.com/watch?v=WU90UnyjmfI",
+        "seo_h_tag": "h2"
+      }
+    }
+  },
+  "order": [
+    "721a4b39-ce29-4dbf-baa7-36162440107b",
+    "1678228888147c22b5",
+    "main",
+    "custom_liquid_DXwjCz",
+    "rich_text_GNDQXk",
+    "17574432297803c0a2",
+    "custom_liquid_mYEKE9",
+    "rich_text_BNAUP6",
+    "77bc595f-7a3c-4a25-b2e8-c935c4ec43d0",
+    "1632125507a926bace"
+  ]
+}

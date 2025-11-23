@@ -1,0 +1,89 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "blocks": {
+        "3876c602-e210-4842-bd87-560d47211669": {
+          "type": "collection",
+          "settings": {
+            "collection": "most-popular-picks"
+          }
+        },
+        "e6693b54-e4fd-47bf-ab4a-201f7af23750": {
+          "type": "collection",
+          "settings": {
+            "collection": "featured-staff-picks"
+          }
+        },
+        "b2b38c46-22bd-4766-be66-8d5af8704950": {
+          "type": "collection",
+          "settings": {
+            "collection": "glowing-skin-bundles"
+          }
+        },
+        "40927a66-f9f0-4ae3-bd6f-f8cbb11db8fb": {
+          "type": "collection",
+          "settings": {
+            "collection": "travel-size-products"
+          }
+        }
+      },
+      "block_order": [
+        "3876c602-e210-4842-bd87-560d47211669",
+        "e6693b54-e4fd-47bf-ab4a-201f7af23750",
+        "b2b38c46-22bd-4766-be66-8d5af8704950",
+        "40927a66-f9f0-4ae3-bd6f-f8cbb11db8fb"
+      ],
+      "settings": {
+        "text_alignment": "horizontal-left vertical-bottom",
+        "color_text": "#f7f3ed",
+        "color_bg": "#141f22",
+        "show_button": true,
+        "display_type": "selected",
+        "sort": "alphabetical"
+      }
+    },
+    "0a026a71-beb8-4788-891a-83523cf3efa6": {
+      "type": "blog-posts",
+      "blocks": {
+        "template--19226212499759__0a026a71-beb8-4788-891a-83523cf3efa6-16860603345f58a089-0": {
+          "type": "info",
+          "settings": {
+            "show_date": true,
+            "show_author": false
+          }
+        },
+        "template--19226212499759__0a026a71-beb8-4788-891a-83523cf3efa6-16860603345f58a089-1": {
+          "type": "title",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "template--19226212499759__0a026a71-beb8-4788-891a-83523cf3efa6-16860603345f58a089-0",
+        "template--19226212499759__0a026a71-beb8-4788-891a-83523cf3efa6-16860603345f58a089-1"
+      ],
+      "custom_css": [],
+      "settings": {
+        "title": "Plant Medicine & Wellness",
+        "blog": "glowing-skin",
+        "post_limit": 4,
+        "blog_show_image": true,
+        "show_view_all": true,
+        "seo_h_tag": "h2"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "0a026a71-beb8-4788-891a-83523cf3efa6"
+  ]
+}

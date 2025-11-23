@@ -1,0 +1,128 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1632816263c7346a69": {
+      "type": "heading",
+      "settings": {
+        "title": "{{ page.title }}",
+        "content": "<p>{{ page.metafields.custom.hero_title.value }}</p>",
+        "button_label": "",
+        "button_link": "",
+        "text_alignment": "center",
+        "text_size": "large"
+      }
+    },
+    "1632125386ececde1e": {
+      "type": "image",
+      "settings": {
+        "title": "",
+        "image": "{{ page.metafields.custom.hero_image.value }}",
+        "link": ""
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "no_margins": true,
+        "reduced_margins": true
+      }
+    },
+    "1632125416e67e4991": {
+      "type": "image-with-text",
+      "disabled": true,
+      "blocks": {
+        "1632125416e67e4991-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Write your story",
+            "heading_size": "h1"
+          }
+        },
+        "1632125416e67e4991-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Write some information about your brand, products or story.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "1632125416e67e4991-0",
+        "1632125416e67e4991-1"
+      ],
+      "settings": {
+        "layout": "right-alignment"
+      }
+    },
+    "1632125433ea11c45b": {
+      "type": "image-with-text",
+      "disabled": true,
+      "blocks": {
+        "1632125433ea11c45b-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Write your story",
+            "heading_size": "h1"
+          }
+        },
+        "1632125433ea11c45b-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Write some information about your brand, products or story.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "1632125433ea11c45b-0",
+        "1632125433ea11c45b-1"
+      ],
+      "settings": {
+        "layout": "left-alignment"
+      }
+    },
+    "16328164825c13132e": {
+      "type": "heading",
+      "settings": {
+        "title": "",
+        "content": "<p>You have 30 days to try our products.  Return for a full refund if you are not 100% satisfied with your purchase.</p>",
+        "button_label": "Our 30 day guarantee",
+        "button_link": "shopify://policies/refund-policy",
+        "text_alignment": "center",
+        "text_size": "large"
+      }
+    },
+    "1632125507a926bace": {
+      "type": "video-popup",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "video": "https://www.youtube.com/watch?v=WU90UnyjmfI"
+      }
+    },
+    "1632125485cfaa5f96": {
+      "type": "products-slider",
+      "settings": {
+        "title": "",
+        "collection": "frontpage",
+        "products_number": 6
+      }
+    }
+  },
+  "order": [
+    "1632816263c7346a69",
+    "1632125386ececde1e",
+    "main",
+    "1632125416e67e4991",
+    "1632125433ea11c45b",
+    "16328164825c13132e",
+    "1632125507a926bace",
+    "1632125485cfaa5f96"
+  ]
+}

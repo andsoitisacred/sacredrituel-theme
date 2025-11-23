@@ -1,0 +1,265 @@
+{{ "section-images-with-text-overlay.css" | asset_url | stylesheet_tag }}
+
+<div class="section-header five-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+  <h1 class="section-header__title h1">{{ 'collections.title' | t }}</h1>
+</div>
+
+{%- liquid
+	assign collection_count = 0
+	assign isEmpty = true
+
+	if section.settings.display_type == 'all'
+	  case section.settings.sort
+	    when 'products_high' or 'products_low'
+	      assign list_collections = collections | sort: 'all_products_count'
+	    when 'date' or 'date_reversed'
+	      assign list_collections = collections | sort: 'published_at'
+	    else
+	      assign list_collections = collections
+	  endcase
+	  for collection in list_collections
+	    unless collection.handle == 'frontpage'
+	      assign collection_count = collection_count | plus: 1
+	    endunless
+	  endfor
+	else
+	  assign collection_count = section.blocks.size
+	endif
+
+	if collection_count > 0
+	  assign isEmpty = false
+	endif
+-%}
+
+<div class="image-with-text-overlay-holder image-with-text-overlay-holder--regular grid">
+
+	{%- liquid
+
+	  if section.settings.display_type == 'all'
+
+	    if section.settings.sort == 'products_low' or section.settings.sort == 'date' or section.settings.sort == 'alphabetical'
+
+	      if isEmpty
+	        echo '<p class="no-content-message text-size--largest push-left-one-tenth lap--push-left-none" style="color:var(--color-text)!impotant">'
+	        	echo 'collections.no_collections' | t
+	        echo '</p>'
+	      else
+	      	assign custom_index = -1
+	        for collection in list_collections
+	          if collection.handle == 'frontpage'
+	            continue
+	          else 
+	          	assign custom_index = custom_index | plus: 1
+	          endif
+	          render 'collection-item', collection: collection, text_alignment: section.settings.text_alignment, index: custom_index, size: forloop.length, show_button: section.settings.show_button
+	        endfor
+	      endif
+
+	    else
+
+	      if isEmpty
+	        echo '<p class="no-content-message text-size--largest push-left-one-tenth lap--push-left-none">'
+	        	echo 'collections.no_collections' | t
+	        echo '</p>'
+	      else
+	      	assign custom_index = -1
+	        for collection in list_collections reversed
+	          if collection.handle == 'frontpage'
+	            continue
+	          else 
+	          	assign custom_index = custom_index | plus: 1
+	          endif
+	          render 'collection-item', collection: collection, text_alignment: section.settings.text_alignment, index: custom_index, size: forloop.length, show_button: section.settings.show_button
+	        endfor
+	      endif
+
+	    endif
+
+	  else
+
+	    if section.blocks == empty
+
+	    else
+	      for block in section.blocks
+	        render 'collection-item', collection: collections[block.settings.collection], text_alignment: section.settings.text_alignment, image: block.settings.image, index: forloop.index0, size: section.blocks.size, shopify_attributes: block.shopify_attributes, show_button: section.settings.show_button
+	      endfor
+	    endif
+
+	  endif
+
+	-%}
+
+</div>
+
+{%- if section.settings.color_text != 'rgba(0,0,0,0)' -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} .image-with-text-overlay-holder,
+    #shopify-section-{{ section.id }} .image-with-text-overlay__wrap,
+    #shopify-section-{{ section.id }} .image-with-text-overlay-holder .button {
+      color: {{ section.settings.color_text }};
+    }
+    #shopify-section-{{ section.id }} .image-with-text-overlay-holder .button {
+      border-color: {{ section.settings.color_text }};
+    }
+    #shopify-section-{{ section.id }} .image-with-text-overlay-holder .button svg rect, 
+    #shopify-section-{{ section.id }} .image-with-text-overlay-holder .button svg path {
+      fill: {{ section.settings.color_text }};
+    }
+    #shopify-section-{{ section.id }} a .image-with-text-overlay__heading span {
+      background-image: linear-gradient(to right, {{ section.settings.color_text }}, {{ section.settings.color_text }});
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{%- if section.settings.color_bg != 'rgba(0,0,0,0)' -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} .image-with-text-overlay__background:after {
+      background: {{ section.settings.color_bg }}
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{% schema %}
+	{	  
+		"name": "Collections list",
+		"class": "section-w-mobile-padding section-w-margin",
+		"settings": [
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "t:sections.image-with-text.settings.text_alignment.label",
+        "options": [
+          {
+            "value": "horizontal-left vertical-top",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__1.label"
+          },
+          {
+            "value": "horizontal-center vertical-top",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__2.label"
+          },
+          {
+            "value": "horizontal-right vertical-top",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__3.label"
+          },
+          {
+            "value": "horizontal-left vertical-middle",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__4.label"
+          },
+          {
+            "value": "horizontal-center vertical-middle",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__5.label"
+          },
+          {
+            "value": "horizontal-right vertical-middle",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__6.label"
+          },
+          {
+            "value": "horizontal-left vertical-bottom",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__7.label"
+          },
+          {
+            "value": "horizontal-center vertical-bottom",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__8.label"
+          },
+          {
+            "value": "horizontal-right vertical-bottom",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__9.label"
+          }
+        ],
+        "default": "horizontal-left vertical-bottom"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "t:sections.custom-colors.text.label"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "t:sections.custom-colors.overlay.label"
+      },
+			{
+        "id": "show_button",
+        "type": "checkbox",
+        "default": true,
+        "label": "t:sections.highlight-extra-words.show_button"
+      },
+      {
+				"type": "header",
+				"content": "t:sections.main-list-collections.settings.header.content"
+      },
+		  {
+		    "type": "paragraph",
+	      "content": "t:sections.main-list-collections.settings.paragraph.content"
+		  },
+		  {
+		    "type": "radio",
+		    "id": "display_type",
+	      "label": "t:sections.main-list-collections.settings.display_type.label",
+		    "default": "all",
+		    "options": [
+		      {
+		        "value": "all",
+	          "label": "t:sections.main-list-collections.settings.display_type.options__1.label"
+		      },
+		      {
+		        "value": "selected",
+	          "label": "t:sections.main-list-collections.settings.display_type.options__2.label"
+		      }
+		    ]
+		  },
+		  {
+	      "type": "select",
+	      "id": "sort",
+	      "label": "t:sections.main-list-collections.settings.sort.label",
+	      "info": "t:sections.main-list-collections.settings.sort.info",
+	      "default": "alphabetical",
+	      "options": [
+	        {
+	          "value": "alphabetical",
+	          "label": "t:sections.main-list-collections.settings.sort.options__1.label"
+	        },
+	        {
+	          "value": "alphabetical_reversed",
+	          "label": "t:sections.main-list-collections.settings.sort.options__2.label"
+	        },
+	        {
+	          "value": "date_reversed",
+	          "label": "t:sections.main-list-collections.settings.sort.options__3.label"
+	        },
+	        {
+	          "value": "date",
+	          "label": "t:sections.main-list-collections.settings.sort.options__4.label"
+	        },
+	        {
+	          "value": "products_high",
+	          "label": "t:sections.main-list-collections.settings.sort.options__5.label"
+	        },
+	        {
+	          "value": "products_low",
+	          "label": "t:sections.main-list-collections.settings.sort.options__6.label"
+	        }
+	      ]
+	    }
+		],
+		"blocks": [
+		  {
+		    "type": "collection",
+	      "name": "t:sections.main-list-collections.blocks.collection.name",
+		    "settings": [
+	        {
+	          "type": "collection",
+	          "id": "collection",
+	          "label": "t:sections.main-list-collections.blocks.collection.settings.collection.label"
+	        },
+	        {
+	          "type": "image_picker",
+	          "id": "image",
+	          "label": "t:sections.main-list-collections.blocks.collection.settings.image.label",
+	          "info": "t:sections.main-list-collections.blocks.collection.settings.image.info"
+	        }
+		    ]
+		  }
+		]
+	}
+{% endschema %}

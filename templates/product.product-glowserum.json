@@ -1,0 +1,389 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "show_vendor": false,
+            "show_reviews": true,
+            "show_tax_info": false,
+            "show_sku": false,
+            "show_barcode": false,
+            "stick_product_header_on_mobile": false
+          }
+        },
+        "custom_liquid_Pq6J6x": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% if product.metafields.custom.product_value_tagline %}<p class=\"text-size--larger\">{{product.metafields.custom.product_value_tagline}}</p>{% endif %}",
+            "position": "right"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "variants_style": "radio",
+            "show_color_swatches": true,
+            "show_quantities": "no"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_preorder_label": false,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "pickup_avaiability": {
+          "type": "pickup_avaiability",
+          "disabled": true,
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "b55c1a64-c8e6-44ea-827d-dee6e2917e82": {
+          "type": "toggles-with-icons",
+          "settings": {
+            "title": "Frequently Asked Questions",
+            "feature1_title": "{{ product.metafields.custom.primary_feature_title.value }}",
+            "feature1_text": "<p>{{ product.metafields.custom.primary_feature_description | metafield_tag }}</p>",
+            "feature2_title": "{{ product.metafields.custom.secondary_feature_title.value }}",
+            "feature2_text": "<p>{{ product.metafields.custom.secondary_feature_description | metafield_tag }}</p>",
+            "feature3_title": "{{ product.metafields.custom.tertiary_feature_title.value }}",
+            "feature3_text": "<p>{{ product.metafields.custom.tertiary_feature_description | metafield_tag }}</p>",
+            "feature4_title": "{{ product.metafields.custom.fourth_feature_title.value }}",
+            "feature4_text": "<p>{{ product.metafields.custom.fourth_feature_description | metafield_tag }}</p>",
+            "feature5_title": "{{ product.metafields.custom.fifth_feature_title.value }}",
+            "feature5_text": "<p>{{ product.metafields.custom.fifth_feature_description | metafield_tag }}</p>",
+            "feature6_title": "{{ product.metafields.custom.sixth_feature_title.value }}",
+            "feature6_text": "<p>{{ product.metafields.custom.sixth_feature_description | metafield_tag }}</p>",
+            "seo_h_tag": "h2"
+          }
+        },
+        "6f85182a-f9a4-4657-ac3a-86b59e7241e8": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "{{ product.metafields.custom.product_overview_title.value }}",
+            "content": "<p>{{ product.metafields.custom.product_overview_details | metafield_tag }}</p>",
+            "page": "",
+            "hide_block_if": false
+          }
+        },
+        "8bc3a0a0-ced3-488a-994d-bdeb17bd3196": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "{{ product.metafields.custom.source_ingredients_title.value }}",
+            "content": "<p>{{ product.metafields.custom.source_ingredients_details | metafield_tag }}</p>",
+            "page": "",
+            "hide_block_if": false
+          }
+        }
+      },
+      "block_order": [
+        "header",
+        "custom_liquid_Pq6J6x",
+        "variant_picker",
+        "buy_buttons",
+        "pickup_avaiability",
+        "share",
+        "description",
+        "b55c1a64-c8e6-44ea-827d-dee6e2917e82",
+        "6f85182a-f9a4-4657-ac3a-86b59e7241e8",
+        "8bc3a0a0-ced3-488a-994d-bdeb17bd3196"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 1023px) {.product__title {margin-bottom: 0.4em; } .set-mobile-position {margin-top: calc(var(--grid-width) / 12 * 0.1); } .product-variant__name {margin-bottom: 0.5em; } .product-variants-block {margin-top: 0.2em; } product-form:not(:first-child) {margin-top: 1em; }}",
+        "product-variants:not(:first-child),product-form:not(:first-child) {margin-top: 1em;}",
+        ".skio-details,.product-variant__name {display: none;}"
+      ],
+      "settings": {
+        "media_aspect": "natural",
+        "enable_zoom": true,
+        "enable_video_looping": true
+      }
+    },
+    "d54180d6-dd7a-49de-8783-7b91c9a28ca0": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--16972859834671__d54180d6-dd7a-49de-8783-7b91c9a28ca0-1668832227e8398569-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "30% OFF all Orders over $75",
+            "heading_size": "h1"
+          }
+        },
+        "template--16972859834671__d54180d6-dd7a-49de-8783-7b91c9a28ca0-1668832227e8398569-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>With gratitude we THANK YOU for supporting our shared mission of potent organic skincare that delivers a radiant GLOW!</p><p>30% discount applied at checkout to all orders over $75.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--16972859834671__d54180d6-dd7a-49de-8783-7b91c9a28ca0-1668832227e8398569-0",
+        "template--16972859834671__d54180d6-dd7a-49de-8783-7b91c9a28ca0-1668832227e8398569-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/ezgif.com-gif-maker_8.gif",
+        "layout": "right-alignment"
+      }
+    },
+    "rich_text_AHWXPy": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_eyR9p4": {
+          "type": "heading",
+          "settings": {
+            "heading": "Why Did We Create Another Face Oil?",
+            "heading_size": "h3"
+          }
+        },
+        "text_RFA9Ub": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We listened to you, our amazing customers, over the past four-plus years & worked to create an anti-aging elixir that is complementary to Sacred Serum & accessible to everyone!</p>"
+          }
+        },
+        "heading_YHRfri": {
+          "type": "heading",
+          "settings": {
+            "heading": "Skin is Uniquely Different",
+            "heading_size": "h3"
+          }
+        },
+        "text_UtfMHX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>On this journey of serving tens of thousands of customers we know that everyone's skin is different & unique. From our geographical climates, to what we eat and what's in our water, no two people have the same exact skin. </p><p>Leveraging your feedback, Sacred Glow Serum compliments <a href=\"/products/face-oil\" title=\"SACRED SERUM\">Sacred Serum</a> and serves a plethora of additional skin tones, types and conditions!</p>"
+          }
+        },
+        "heading_AAyEXD": {
+          "type": "heading",
+          "settings": {
+            "heading": "Deeply moisturizing Superfood nutrients",
+            "heading_size": "h3"
+          }
+        },
+        "text_WfXfVH": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Created with the deeply hydrating, anti-aging, nutritive and beautifying superfood oils of Pomegranate, Goji, Rosehip, Cranberry, Cherry, Camelia, Marula, Moringa, Amla and more. Applying it feels like the most soothing, delicate and deeply healing moisture your skin desires leaving no greasy residue or shine with no tint or color.</p>"
+          }
+        },
+        "heading_CmgF4J": {
+          "type": "heading",
+          "settings": {
+            "heading": "Daily Nutrition & Nightly Recovery",
+            "heading_size": "h3"
+          }
+        },
+        "text_iq7EFg": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Enjoy all day skin elasticity while boosting collagen production and protecting against free radical damage and environmental toxins.  By using this face oil every day you will reduce pore size, resolve dryness, eczema, psoriasis and reduce wrinkles and fine lines. Using it every night your providing your skin deeply nourishing phytonutrients to boost your skins recovery with healthy new cells</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_eyR9p4",
+        "text_RFA9Ub",
+        "heading_YHRfri",
+        "text_UtfMHX",
+        "heading_AAyEXD",
+        "text_WfXfVH",
+        "heading_CmgF4J",
+        "text_iq7EFg"
+      ],
+      "settings": {
+        "text_alignment": "left"
+      }
+    },
+    "167814941028e2dd5b": {
+      "type": "apps",
+      "blocks": {
+        "172c80bf-489f-4854-9890-7466157f55e8": {
+          "type": "shopify://apps/tolstoy-shoppable-video-quiz/blocks/carousel-block/06fa8282-42ff-403e-b67c-1936776aed11",
+          "disabled": true,
+          "settings": {
+            "publishId": "4cc6hq9qsluic"
+          }
+        }
+      },
+      "block_order": [
+        "172c80bf-489f-4854-9890-7466157f55e8"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "replo_brand_glow_vs_sacred_JQxHAj": {
+      "type": "replo-brand-glow_vs_sacred",
+      "settings": {}
+    },
+    "image_with_text_6JyXwc": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_8Mbzc9": {
+          "type": "heading",
+          "settings": {
+            "heading": "Limited Time... Complimentary Ultra Hydrating Rose Mist Toner",
+            "heading_size": "h1"
+          }
+        },
+        "text_RQf6WJ": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Now is the time to awaken your skin with  illuminating deep moisture! <br/><br/>Organic, cold-pressed & vitamin-rich ingredients provide moonlit, dew-like moisture & overnight renewal for even the most sensitive skin. This duo is just what your winter skin is craving!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_8Mbzc9",
+        "text_RQf6WJ"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/sacredglow_free_rosemisttoner-abbyelipse-ezgif.com-optimize.gif",
+        "layout": "right-alignment"
+      }
+    },
+    "custom_liquid_VVpeBb": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<a href=\"https://www.sacredrituel.com/cart/47113517564207:1,46675287900463:1\"><button type=\"button\" class=\"shopify-payment-button__button shopify-payment-button__button--unbranded\">GET GLOW + FREE ROSE MIST</button></a>",
+        "full_width": false
+      }
+    },
+    "1698006103a8bdefb2": {
+      "type": "apps",
+      "blocks": {
+        "okendo_reviews_widget_DdpGa4": {
+          "type": "shopify://apps/okendo/blocks/reviews-widget/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {
+            "product": "{{product}}",
+            "widget_type": "reviews_widget"
+          }
+        }
+      },
+      "block_order": [
+        "okendo_reviews_widget_DdpGa4"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "85bb7a87-2593-464c-9ced-f001de178bad": {
+      "type": "images-with-text-slider",
+      "blocks": {
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/sacredrituel_thais_sacredrose_1x1_1280-52.jpg",
+            "heading": "1. Spray Rose Toner",
+            "description": "<p>Starting with a clean, dry face, generously spray our Sacred Rose Mist to your face and neck.</p>"
+          }
+        },
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/sacredrituel_thais_sacredglow_1x1_1280-69.jpg",
+            "heading": "2. Apply the Serum",
+            "description": "<p>Using the dropper vial, apply Sacred Glow to your open palm or directly to your skin.</p>"
+          }
+        },
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/sacredrituel_thais_sacredglow_1x1_1280-62.jpg",
+            "heading": "3. Massage into Skin",
+            "description": "<p>Massage and distribute by patting and lightly spreading the serum gently onto your face being sure to apply evenly to allow maximum absorption. </p>"
+          }
+        },
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/sacredrituel_thais_sacredrose_1x1_1280-59.jpg",
+            "heading": "4. Radiate your Love",
+            "description": "<p>Let the LOVE you feel INSIDE radiate OUT!  Spreading kindness and love is what makes life special... Enjoy it!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-0",
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-1",
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-2",
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-3"
+      ],
+      "settings": {
+        "title": "How to Apply",
+        "gallery_aspect": "1",
+        "seo_h_tag": "h2"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "products_number": 3
+      }
+    },
+    "2b8297f5-c2ef-43d6-a0eb-3b24e9670133": {
+      "type": "rich-text",
+      "blocks": {
+        "template--18783081595183__2b8297f5-c2ef-43d6-a0eb-3b24e9670133-16832195372d8dabd5-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ product.metafields.custom.product_seo_qa.value }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--18783081595183__2b8297f5-c2ef-43d6-a0eb-3b24e9670133-16832195372d8dabd5-1"
+      ],
+      "settings": {
+        "text_alignment": "left"
+      }
+    },
+    "replo_product_table_sacredserum_PC4Egy": {
+      "type": "replo-product-table_sacredserum",
+      "custom_css": [
+        ":not(#\\20):not(#\\20).r-10jz9ue {display: none;}"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "d54180d6-dd7a-49de-8783-7b91c9a28ca0",
+    "rich_text_AHWXPy",
+    "167814941028e2dd5b",
+    "replo_brand_glow_vs_sacred_JQxHAj",
+    "image_with_text_6JyXwc",
+    "custom_liquid_VVpeBb",
+    "1698006103a8bdefb2",
+    "85bb7a87-2593-464c-9ced-f001de178bad",
+    "product-recommendations",
+    "2b8297f5-c2ef-43d6-a0eb-3b24e9670133",
+    "replo_product_table_sacredserum_PC4Egy"
+  ]
+}

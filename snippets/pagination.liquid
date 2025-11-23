@@ -1,0 +1,27 @@
+<ul class="pagination section-w-margin">
+	
+	{{ "component-pagination.css" | asset_url | stylesheet_tag }}
+
+	<li class="arrow {% unless paginate.previous %} disabled {% endunless %}"><a class="prev" href="{{ paginate.previous.url }}" title="{{ paginate.previous.title }}">
+		<span class="visually-hidden">{{ 'general.accessibility_labels.previous' | t }}</span>
+		<span aria-hidden="true">{%- render 'theme-symbols', icon: 'arrow-chevron-left' -%}</span>
+	</a></li>
+
+	{%- for part in paginate.parts -%}
+		{%- if part.is_link -%}
+			<li><a href="{{ part.url }}{% if comments %}#comments{% endif %}" title="">{{ part.title }}</a></li>
+		{%- else -%}
+			{%- if part.title == paginate.current_page %}
+				<li class="active"><span>{{ part.title }}</span></li>
+			{%- else -%}
+				<li><span>{{ part.title }}</span></li>
+			{%- endif -%}
+		{%- endif -%}
+	{%- endfor -%}
+
+	<li class="arrow {% unless paginate.next %} disabled {% endunless %}"><a class="next" href="{{ paginate.next.url }}" title="{{ paginate.next.title }}">
+		<span class="visually-hidden">{{ 'general.accessibility_labels.next' | t }}</span>
+		<span aria-hidden="true">{%- render 'theme-symbols', icon: 'arrow-chevron-right' -%}</span>
+	</a></li>
+
+</ul>

@@ -1,0 +1,170 @@
+@media screen and (min-width: 1365px) {
+  .sidebar__menu.sidebar--primary,
+  .sidebar__submenu.sidebar--primary {
+    font-size: calc(34px / 18 * var(--base-body-size) + 0px);
+    line-height: 1;
+  }
+}
+@media screen and (min-width: 1023px) and (max-width: 1365px) {
+  .sidebar__menu.sidebar--primary,
+  .sidebar__submenu.sidebar--primary {
+    font-size: calc(34px / 18 * var(--base-body-size) + 0px);
+    line-height: 1;
+  }
+}
+@media screen and (min-width: 599px) and (max-width: 1023px) {
+  .sidebar__menu.sidebar--primary,
+  .sidebar__submenu.sidebar--primary {
+    font-size: calc(34px / 18 * var(--base-body-size) + 0px);
+    line-height: 1;
+  }
+}
+@media screen and (max-width: 599px) {
+  .sidebar__menu.sidebar--primary,
+  .sidebar__submenu.sidebar--primary {
+    font-size: calc(30px / 18 * var(--base-body-size) + 0px);
+    line-height: 1;
+  }
+}
+.sidebar__menu.sidebar--primary a,
+.sidebar__submenu.sidebar--primary a {
+  padding: 0.35em 0;
+}
+.sidebar__menu.sidebar--secondary, .sidebar__menu.sidebar--accounts,
+.sidebar__submenu.sidebar--secondary,
+.sidebar__submenu.sidebar--accounts {
+  font-size: calc(18px / 18 * var(--base-body-size) + 0px);
+  line-height: 1;
+  margin-top: 2em;
+}
+.sidebar__menu.sidebar--secondary a, .sidebar__menu.sidebar--accounts a,
+.sidebar__submenu.sidebar--secondary a,
+.sidebar__submenu.sidebar--accounts a {
+  padding: 0.5em 0;
+}
+
+.sidebar__menus {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin-top: 0;
+}
+.sidebar__menus ul {
+  list-style: none;
+  margin: 0;
+}
+
+.sidebar__menu a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-text);
+}
+.sidebar__menu a > span, .sidebar__menu a > svg {
+  pointer-events: none;
+}
+.sidebar__menu svg {
+  position: relative;
+  transition: all 100ms linear;
+}
+html[dir=rtl] .sidebar__menu svg {
+  left: 0;
+}
+html[dir=ltr] .sidebar__menu svg {
+  right: 0;
+}
+.sidebar__menu svg path {
+  fill: var(--color-text);
+}
+.sidebar__menu a.selected svg path {
+  fill: var(--color-accent);
+}
+html[dir=rtl] .no-touchevents .sidebar__menu a:hover svg {
+  left: -5px;
+}
+html[dir=ltr] .no-touchevents .sidebar__menu a:hover svg {
+  right: -5px;
+}
+.no-touchevents .sidebar__menu a:hover svg path {
+  fill: var(--color-accent);
+}
+
+.sidebar__submenu {
+  display: none;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.sidebar__back path {
+  fill: var(--color-text) !important;
+}
+
+.sidebar__menus {
+  flex: 1 0 auto;
+}
+.sidebar__menus ul.opened {
+  margin-top: 0;
+}
+.sidebar__menus ul.opened .sidebar--secondary {
+  margin-top: 0;
+}
+.sidebar__menus ul.opened > li:not(.opened) {
+  display: none;
+}
+.sidebar__menus li.opened > a {
+  display: none;
+}
+.sidebar__menus li.opened > div.sidebar__submenu {
+  display: block;
+  animation: fade-in-from-none 0.2s linear forwards;
+}
+.sidebar__menus.opened nav:not(.opened), .sidebar__menus.opened .sidebar--accounts, .sidebar__menus.opened + .sidebar__footer {
+  display: none;
+}
+html[dir=rtl] .sidebar__menus svg {
+  transform: scale(-1);
+}
+
+.sidebar__container {
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar__container .localization-form-holder .localization-form {
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+.sidebar__container .localization-form-holder .localization-form__item {
+  margin-bottom: 0;
+  margin-top: 1em;
+}
+.sidebar__container .social-icons {
+  margin-top: 2em;
+}
+
+.sidebar__content {
+  min-height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__footer {
+  flex-shrink: 0;
+}
+
+@keyframes fade-in-from-none {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+    opacity: 0;
+  }
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}

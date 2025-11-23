@@ -1,0 +1,94 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "t:sections.refactor_words.labels.header_group",
+  "sections": {
+    "custom_liquid_UTh7NC": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "settings": {
+        "custom_liquid": "",
+        "full_width": false
+      }
+    },
+    "announcement": {
+      "type": "announcement-bar",
+      "blocks": {
+        "content_TfVaH8": {
+          "type": "content",
+          "settings": {
+            "text": "✨Site Wide Sale 30% OFF ✨",
+            "link": "/pages/natural-skincare-best-sellers",
+            "target": false
+          }
+        },
+        "content_ig8yLn": {
+          "type": "content",
+          "disabled": true,
+          "settings": {
+            "text": "⚡️ FREE Shipping on Orders over $90",
+            "link": "",
+            "target": false
+          }
+        },
+        "content_Xyrce9": {
+          "type": "content",
+          "disabled": true,
+          "settings": {
+            "text": "💸 Save on Bundles & Gifts",
+            "link": "/pages/natural-skincare-best-sellers#save-on-bundles",
+            "target": false
+          }
+        }
+      },
+      "block_order": [
+        "content_TfVaH8",
+        "content_ig8yLn",
+        "content_Xyrce9"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 599px) {.announcement {font-size: calc(11px / 18 * var(--base-body-size) + 4px); line-height: 1.1; }}",
+        "@media screen and (min-width: 599px) and (max-width: 1365px) {.announcement {font-size: calc(12px / 18 * var(--base-body-size) + 2px); line-height: 1.1; }}"
+      ],
+      "settings": {
+        "visibility": "all",
+        "show_locale_selector": true,
+        "show_country_selector": true,
+        "show_social_icons": true,
+        "bar_bgcolor": "#111111",
+        "bar_txtcolor": "#fafafa",
+        "border_color": "rgba(0,0,0,0)"
+      }
+    },
+    "header": {
+      "type": "header",
+      "custom_css": [],
+      "settings": {
+        "logo_src": "shopify://shop_images/sacred-rituel-beauty-shadow_90_brand-logo-shopify-512_copy.png",
+        "logo_height": 77,
+        "show_search": true,
+        "show_icon_labels": true,
+        "menu_sticky": "sticky--scroll",
+        "sticky_background": false,
+        "menu_primary": "main-menu",
+        "menu_secondary": "",
+        "show_social_icons": false,
+        "show_locale_selector": true,
+        "show_country_selector": true
+      }
+    }
+  },
+  "order": [
+    "custom_liquid_UTh7NC",
+    "announcement",
+    "header"
+  ]
+}

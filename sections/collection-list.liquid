@@ -1,0 +1,162 @@
+{%- if section.settings.title != blank -%}
+  <div class="section-header grid-item push-left-one-tenth lap--push-left-none">
+  <{{ section.settings.seo_h_tag }} class="section-header__title h4 {% if section.settings.layout == "horizontal" %}text-align--center--on-desktop {% endif %}">{{ section.settings.title | escape }}</{{ section.settings.seo_h_tag }}>
+  </div>
+{%- endif -%}
+
+{%- if section.blocks.size > 0 -%}
+
+  {{ "section-collection-list.css" | asset_url | stylesheet_tag }}
+
+  <div class="collection-list collection-list--layout-{{ section.settings.layout }} grid-item push-left-one-tenth lap--push-left-none">
+
+    {%- for block in section.blocks -%}
+
+      {%- assign collection = collections[block.settings.collection] -%}
+
+      <collection-list-item class="collection-list-item" {{ block.shopify_attributes }}>
+        <a href="{{ collection.url | escape }}" title="{{ collection.title | escape }}">
+
+          <span class="collection-list-item-title h1"><span>
+            {%- liquid  
+              if collection.title != blank
+                echo collection.title | escape
+              else
+                echo 'general.onboarding.collection_title' | t
+              endif
+            -%}
+          </span></span>
+
+          <div class="collection-list-item-image three-tenths">
+
+            {%- liquid
+
+              if block.settings.image != blank
+                assign collection_image = block.settings.image
+              else
+                assign collection_image = collection.featured_image
+              endif
+
+              assign sizes = 'sizes="(max-width: 599px) 30vw, (max-width: 1023px) 21vw, 25vw"'
+
+              if collection_image != blank
+                render 'lazy-image', image: collection_image, alt: collection.title, sizes: sizes
+              else
+                echo '<span class="onboarding-svg">'
+                  assign index = forloop.index | modulo: 6 | plus: 1
+                  echo 'collection-X' | replace: 'X', index | placeholder_svg_tag
+                echo '</span>'
+              endif
+
+            -%}
+
+          </div>
+
+        </a>
+      </collection-list-item>
+
+    {%- endfor -%}
+
+  </div>
+
+{%- endif -%}
+
+<script src="{{ 'section-collection-list.js' | asset_url }}" defer></script>
+
+{% schema %}
+  {
+    "name": "t:sections.collection-list.name",
+    "class": "mount-collection-list section-w-mobile-padding no-overflow",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "t:sections.blog-posts.settings.title.label",
+        "default": "Collection list"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "t:sections.refactor_words.before_after.layout.label",
+        "options": [
+          {
+            "label": "t:sections.refactor_words.before_after.layout.option__1",
+            "value": "horizontal"
+          },
+          {
+            "label": "t:sections.refactor_words.before_after.layout.option__2",
+            "value": "vertical"
+          }
+        ],
+        "default": "vertical"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.refactor_words.seo.name"
+      },
+      {
+        "type": "select",
+        "id": "seo_h_tag",
+        "label": "t:sections.refactor_words.seo.label",
+        "info": "t:sections.refactor_words.seo.info",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          }
+        ],
+        "default": "h2"
+      }
+    ],
+    "blocks": [
+       {
+        "type": "collection",
+        "name": "t:sections.main-list-collections.blocks.collection.name",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "t:sections.main-list-collections.blocks.collection.settings.collection.label"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "t:sections.main-list-collections.blocks.collection.settings.image.label",
+            "info": "t:sections.main-list-collections.blocks.collection.settings.image.info"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "t:sections.collection-list.presets.name",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }],
+    "disabled_on": {
+      "groups": ["header"],
+      "templates": ["password"]
+    }
+  }
+{% endschema %}

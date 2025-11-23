@@ -1,0 +1,219 @@
+{{ "section-rich-text.css" | asset_url | stylesheet_tag }}
+
+<div class="rich-text 
+  rich-text--{{ section.settings.text_alignment }}-align 
+  rich-text--{{ section.settings.text_size }}-size
+  {% if section.settings.title != blank %} rich-text--has-title {% endif %}
+  {% if section.settings.button_label != blank %} rich-text--has-button {% endif %}
+  {% if section.blocks.size > 0 %} rich-text--has-images {% endif %}
+">
+
+  <div class="
+    {% if section.settings.text_size == 'large' %}
+      eight-tenths lap--nine-tenths smaller-lap--full-width
+    {% else %}
+      ten-tenths
+    {% endif %}
+    push-left-one-tenth push-right-one-tenth lap--push-left-none lap--push-right-none
+  ">
+
+    <div
+      {% if section.blocks.size > 0 %} 
+        data-scroll-parent="shopify-section-{{ section.id }}" 
+        data-scroll data-scroll-resistance data-scroll-mobile
+        data-scroll-speed="1"
+      {% endif %}
+    >
+
+      {%- if section.settings.title != blank -%}
+        <div class="section-header">
+          <{{ section.settings.seo_h_tag }} class="section-header__title h4">{{ section.settings.title | escape }}</{{ section.settings.seo_h_tag }}>
+        </div>
+      {%- endif -%}
+
+      <div class="rich-text__content rte">{{ section.settings.content }}</div>
+
+      {%- if section.settings.button_label != blank -%}
+        <a class="button button--underline" href="{{ section.settings.button_link }}" title="{{ section.settings.button_label | escape }}">
+          {{ section.settings.button_label | escape }}
+          <span class="svg svg__arrow" aria-hidden="true">{% render 'theme-symbols', icon: 'arrow-right' %}</span>
+        </a>
+      {%- endif -%}
+
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+
+      <div class="rich-text__images
+        {% if section.settings.text_alignment == 'left' %}
+          push-left-two-tenths smaller-lap--push-left-none
+        {% elsif section.settings.text_alignment == 'right' %}
+          pull-left-three-tenths smaller-lap--pull-left-five-tenths
+        {% else %}
+          {% if section.settings.text_size == 'extra' %}
+            pull-left-one-tenth
+          {% endif %}
+          smaller-lap--pull-left-one-tenth
+        {% endif %}
+      " aria-hidden="true">
+        {%- for block in section.blocks -%}
+          <div
+            {% if forloop.index == 1 and section.settings.text_alignment == 'center' %}
+              class="pull-right-one-tenth"
+            {% elsif forloop.index == 2 %}
+              {% unless section.settings.text_alignment == 'center' %}
+                class="push-right-four-tenths"
+              {% else %}
+                class="push-right-five-tenths lap--push-right-seven-tenths"
+              {% endunless %}
+            {% else %}
+              class="push-right-two-tenths"
+            {% endif %}
+          >
+            {%- unless block.settings.image == blank -%}
+              <div class="
+                {% if block.settings.image.aspect_ratio > 1 %}
+                  two-tenths lap--two-plus-tenths palm--three-plus-tenths
+                  {%- assign sizes = 'sizes="(max-width: 599px) 30vw, (max-width: 1023px) 21vw, 17vw"' -%}
+                {% else %}
+                  one-plus-tenth lap--two-tenths palm--three-tenths
+                  {%- assign sizes = 'sizes="(max-width: 599px) 25vw, (max-width: 1023px) 17vw, 13vw"' -%}
+                {% endif %}
+              ">
+                {%- render 'lazy-image', image: block.settings.image, sizes: sizes -%}
+              </div>
+            {%- else -%}
+              <div class="one-plus-tenth">
+                <span class="onboarding-svg one-plus-tenth">
+                  {{ 'image' | placeholder_svg_tag }}
+                </span>
+              </div>
+            {%- endunless -%}
+          </div>
+        {%- endfor -%}
+      </div>
+
+    {%- endif -%}
+
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "t:sections.heading.name",
+    "class": "mount-rich-text mount-parallax section-w-margin section-w-mobile-padding",
+    "max_blocks": 3,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "t:sections.highlight-extra-words.heading.label",
+        "default": "Heading"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "Content",
+        "default": "<p>Write some information about your brand, products or story.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "t:sections.image-with-text.blocks.image.settings.button_label.label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "t:sections.image-with-text.blocks.image.settings.url.label"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "t:sections.rich-text.settings.text_alignment.label",
+        "options": [
+          {
+            "value": "left",
+            "label": "t:sections.rich-text.settings.text_alignment.options__1.label"
+          },
+          {
+            "value": "center",
+            "label": "t:sections.rich-text.settings.text_alignment.options__2.label"
+          },
+          {
+            "value": "right",
+            "label": "t:sections.rich-text.settings.text_alignment.options__3.label"
+          }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "select",
+        "id": "text_size",
+        "label": "t:sections.footer.blocks.text.settings.text_size.label",
+        "options": [
+          {
+            "value": "large",
+            "label": "t:sections.rich-text.blocks.heading.settings.heading_size.options__2.label"
+          },
+          {
+            "value": "extra",
+            "label": "t:sections.rich-text.blocks.heading.settings.heading_size.options__3.label"
+          }
+        ],
+        "default": "large"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.refactor_words.seo.name"
+      },
+      {
+        "type": "select",
+        "id": "seo_h_tag",
+        "label": "t:sections.refactor_words.seo.label",
+        "info": "t:sections.refactor_words.seo.info",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          }
+        ],
+        "default": "span"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "t:sections.gallery.blocks.image.name"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "t:sections.heading.name"
+      }
+    ]
+  }
+{% endschema %}

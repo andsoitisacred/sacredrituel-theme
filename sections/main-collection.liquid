@@ -1,0 +1,190 @@
+{{ "section-main-collection.css" | asset_url | stylesheet_tag }}
+
+<div class="grid" id="section-collection-header"
+  {% unless section.settings.show_collection_image and collection.image %}
+    {% if section.settings.enable_sorting or section.settings.enable_filtering %}
+      data-pull-layout-a-bit-more
+    {% else %}
+      data-pull-layout-a-bit
+    {% endif %}
+  {% endunless %}
+  {% if section.settings.show_collection_image and collection.image and collection.description != blank and section.settings.show_collection_description %}
+    data-push-layout-a-bit
+  {% endif %}
+  data-layout-{{ section.settings.layout }}
+>
+
+  {%- if section.settings.show_collection_image and collection.image -%}
+
+    {%- assign collection_image = true -%}
+    <div class="collection__image five-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+      {%- assign sizes = 'sizes="(max-width: 1023px) calc(100vw - 60px, 42vw"' -%}
+      {%- render 'lazy-image', image: collection.image, alt: collection.title, sizes: sizes, preload: true -%}
+    </div>
+
+  {%- endif -%}
+
+  <div class="section-header {% if collection_image %} four-tenths {% else %} five-tenths {% endif %} lap--full-width push-left-one-tenth lap--push-left-none">
+
+    <h1 class="section-header__title h1
+      {% if section.settings.enable_sorting or section.settings.enable_filtering %}
+        with-extra-margin
+      {% elsif collection.description != blank and section.settings.show_collection_description %}
+        with-extra-margin
+      {% endif %}
+    ">{{ collection.title | escape }}</h1>
+
+    {%- if section.settings.show_collection_description and collection.description != blank -%}
+      <div class="rte">{{ collection.description }}</div>
+    {%- endif -%}
+
+    {%- liquid
+      render 'facets', results: collection, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting
+    -%}
+
+  </div>
+
+</div>
+
+<div id="CollectionProductGrid">
+
+  <div id="main-collection-product-grid" data-id="{{ section.id }}" data-count="{{ collection.products.size }}">
+
+    {%- liquid 
+
+      if collection.products.size > 0 
+
+        paginate collection.products by section.settings.products_number
+
+          if paginate.current_page == 1
+            render 'collection-layout', products: collection.products, collection: collection, limit: section.settings.products_number, layout: section.settings.layout, show_promotional_block: section.settings.show_promotional_block, promotional_block_title: section.settings.promotional_block_title, promotional_block_button_label: section.settings.promotional_block_button_label, promotional_block_button_link: section.settings.promotional_block_button_link
+          else 
+            render 'collection-layout', products: collection.products, limit: section.settings.products_number, layout: section.settings.layout, show_promotional_block: false
+          endif
+
+          if paginate.pages > 1
+            render 'pagination', paginate: paginate
+          endif
+
+        endpaginate
+
+      else
+        echo '<p class="no-content-message text-size--largest push-left-one-tenth lap--push-left-none" style="margin-top:2em">'
+          if collection.filters != empty
+            assign sort_by = collection.sort_by | default: collection.default_sort_by
+            assign terms = collection.terms | escape
+            if collection.current_vendor
+              assign terms = collection.current_vendor | escape
+            endif
+            assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+            echo 'collections.empty' | t
+            echo 'collections.use_fewer_filters_html' | t: link: results_url, class: "text-link" | prepend: '<br/><span class="text-size--regular" style="padding-top: 18px;display: block;">' | append: '</span>'
+          else
+            echo 'collections.no_products' | t
+          endif
+        echo '</p>'
+      endif
+
+    -%}
+
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "t:sections.highlight-extra-words.collection-page.name",
+    "class": "mount-collection mount-parallax mount-parallax-w-padding section-w-margin section-w-mobile-padding",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "t:sections.main-collection-banner.settings.paragraph.content"
+      },
+      {
+        "id": "show_collection_description",
+        "type": "checkbox",
+        "default": false,
+        "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+      },
+      {
+        "id": "show_collection_image",
+        "type": "checkbox",
+        "default": false,
+        "label": "t:sections.main-collection-banner.settings.show_collection_image.label"
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.product-grid.name"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "t:sections.highlight-extra-words.layout.label",
+        "options": [
+          {
+            "label": "t:sections.highlight-extra-words.layout.options__1.label",
+            "value": "asymmetrical"
+          },
+          {
+            "label": "t:sections.highlight-extra-words.layout.options__2.label",
+            "value": "regular"
+          }
+        ],
+        "default": "asymmetrical"
+      },
+      {
+        "type": "range",
+        "id": "products_number",
+        "label": "t:sections.main-collection-product-grid.settings.products_per_page.label",
+        "min": 12,
+        "max": 48,
+        "step": 4,
+        "default": 24
+      },
+      {
+        "type": "header",
+        "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+      },
+      {
+        "id": "enable_filtering",
+        "type": "checkbox",
+        "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+        "default": true,
+        "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+      },
+      {
+        "id": "enable_sorting",
+        "type": "checkbox",
+        "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "t:sections.highlight-extra-words.promotional-block.header"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_promotional_block",
+        "label": "t:sections.highlight-extra-words.promotional-block.settings.show.label",
+        "info": "t:sections.highlight-extra-words.promotional-block.settings.show.info",
+        "default": false
+      },
+      {
+        "type": "inline_richtext",
+        "id": "promotional_block_title",
+        "label": "t:sections.highlight-extra-words.promotional-block.settings.content.label",
+        "default": "Write a short, captivating paragraph about your products."
+      },
+      {
+        "type": "text",
+        "id": "promotional_block_button_label",
+        "label": "t:sections.highlight-extra-words.promotional-block.settings.button_label.label"
+      },
+      {
+        "type": "url",
+        "id": "promotional_block_button_link",
+        "label": "t:sections.highlight-extra-words.promotional-block.settings.button_link.label"
+      }
+    ]
+  }
+{% endschema %}

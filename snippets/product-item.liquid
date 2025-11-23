@@ -1,0 +1,223 @@
+{%- liquid
+  unless settings.grid_aspect == 'natural'
+    assign aspect_ratio = settings.grid_aspect
+  endunless
+
+  if settings.within_filter_enabled and product_collection
+    assign product_url = product.url | within: product_collection
+  else
+    assign product_url = product.url
+  endif
+-%}
+{% unless product.tags contains 'hidden' %}
+  <div
+    class="product-item {{ css_class }} {{ settings.product_animation }}"
+    {% if scroll_speed != '0' %}
+      data-scroll-speed="{{ scroll_speed }}"
+      data-scroll-disable-on-lap
+    {% endif %}
+    {% if index %}
+      data-index="{{ index }}"
+    {% endif %}
+    data-js-product-item
+  >
+    {%- unless product.available -%}
+      <div class="product-badge text-size--small sold">
+        <span>{{ 'collections.product_badges.sold_out' | t }}</span>
+      </div>
+    {%- elsif badges -%}
+      {%- if product.metafields.unique_feature.title != blank or product.metafields.unique_feature.icon != blank -%}
+        <div class="product-badge text-size--small badge">
+          {%- if product.metafields.unique_feature.icon != blank -%}
+            <span class="product-badge__icon" role="img" aria-hidden="true">
+              <img
+                src="{{ product.metafields.unique_feature.icon | image_url: width: 24, height: 24, crop: 'center' }}"
+                srcset="{{ product.metafields.unique_feature.icon | image_url: width: 24, height: 24, crop: 'center' }} 24w, {{ product.metafields.unique_feature.icon | image_url: width: 48, height: 48, crop: 'center' }} 48w, {{ product.metafields.unique_feature.icon | image_url: width: 72, height: 72, crop: 'center' }} 72w"
+                alt="{{ product.metafields.unique_feature.icon.alt }}"
+                width="24"
+                height="24"
+                sizes="24px"
+                loading="lazy"
+              >
+            </span>
+          {%- endif -%}
+          <span class="product-badge__title">{{ product.metafields.unique_feature.title | escape }}</span>
+        </div>
+      {%- endif -%}
+    {%- endunless -%}
+
+    <a class="product-item__link" href="{{ product_url }}">
+      <div class="product-item__image {% if settings.product_show_secondary and product.images.size >= 2 %} product-item__image--show-secondary {% endif %}">
+        {%- unless product.media.size == 0 -%}
+          {%- render 'lazy-image',
+            image: product.featured_media,
+            alt: product.title,
+            ratio: aspect_ratio,
+            sizes: sizes,
+            preload: preload
+          -%}
+        {%- else -%}
+          <span class="onboarding-svg">
+            {{ 'image' | placeholder_svg_tag }}
+          </span>
+        {%- endunless -%}
+
+        {%- if settings.product_show_secondary and product.images.size >= 2 -%}
+          {%- render 'lazy-image', image: product.media[1], alt: product.title, ratio: aspect_ratio, sizes: sizes -%}
+        {%- endif -%}
+
+        {%- if settings.enable_quick_buy and product.available -%}
+          {%- if product.has_only_default_variant -%}
+            <quick-add-to-cart class="quick-add-to-cart">
+              <product-form
+                {% if settings.cart_action == 'overlay' %}
+                  data-ajax-cart
+                {% endif %}
+              >
+                <div class="quick-add-to-cart-button">
+                  {%- form 'product', product -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    <button
+                      type="submit"
+                      name="add"
+                      class="product__add-to-cart button button--solid button--wide text-size--smaller"
+                      data-js-product-add-to-cart
+                    >
+                      <span class="add-to-cart__text lap--hide">
+                        {{ 'products.grid.quick_buy' | t }}
+                      </span>
+                      <span class="add-to-cart__text hide lap--show-block">
+                        {%- render 'theme-symbols', icon: 'cart-plus' -%}
+                      </span>
+                    </button>
+                  {%- endform -%}
+                </div>
+              </product-form>
+            </quick-add-to-cart>
+          {%- else -%}
+            <quick-view-product class="quick-add-to-cart">
+              <button
+                data-href="{{ product.url }}"
+                class="product__add-to-cart button button--solid button--wide text-size--smaller"
+                data-js-product-add-to-cart
+                data-id="{{ product.id }}"
+              >
+                <span class="add-to-cart__text lap--hide">{{ 'products.grid.quick_view' | t }}</span>
+                <span class="add-to-cart__text hide lap--show-block">
+                  {%- render 'theme-symbols', icon: 'cart-plus' -%}
+                </span>
+              </button>
+            </quick-view-product>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      <div class="product-item__caption">
+        <span class="product-item__title">
+          <span>{{ product.title | escape }}</span>
+        </span>
+
+        {%- assign variant = product.selected_or_first_available_variant -%}
+
+        <span class="product-item__price">
+          {%- liquid
+            assign price = product.price | money
+
+            if product.price_varies
+              assign price_min = product.price_min | money
+              assign from_price = 'collections.price_variation_html' | t: price: price_min
+
+              if product.compare_at_price > product.price
+                echo '<span>' | append: from_price | append: '</span>'
+                echo '<del>'
+                echo product.compare_at_price | money
+                echo '</del>'
+              else
+                echo from_price
+              endif
+
+            else
+              echo '<span class="visually-hidden">'
+              echo 'general.accessibility_labels.price.regular' | t
+              echo '</span>'
+
+              if product.compare_at_price > product.price
+                echo '<span>' | append: price | append: '</span>'
+
+                echo '<del>'
+                echo '<span class="visually-hidden">'
+                echo 'general.accessibility_labels.price.sale' | t
+                echo '</span>'
+                echo product.compare_at_price | money
+                echo '</del>'
+
+              else
+                echo price
+              endif
+            endif
+
+            if variant.unit_price_measurement
+              echo '<span class="unit-price text-size--small">'
+              echo variant.unit_price | money
+              echo ' / '
+              if variant.unit_price_measurement.reference_value != 1
+                echo variant.unit_price_measurement.reference_value
+              endif
+              echo variant.unit_price_measurement.reference_unit
+              echo '</span>'
+            endif
+          -%}
+        </span>
+      </div>
+    </a>
+
+    {%- liquid
+      if settings.show_variant_image
+        assign color_label = settings.color_swatches_labels | split: ','
+
+        for option in product.options_with_values
+          assign downcased_option = option.name | downcase
+          if color_label contains downcased_option
+            assign variant_option = 'option' | append: forloop.index
+            assign u_index = 0
+            echo '<product-item-variants class="product-item__variants" aria-hidden="true">'
+
+            for value in option.values
+              assign downcased_value = value | downcase
+              for variant in product.variants
+                if variant[variant_option] == value
+                  echo '<div class="product-item__variant" data-href="' | append: variant.url | append: '" data-id="' | append: u_index | append: '">'
+                  assign color_swatch_name = value | handle | append: '.png'
+                  assign color_swatch_image = images[color_swatch_name]
+                  if color_swatch_image != blank
+                    assign color_swatch_image = color_swatch_image | image_url: width: 44, height: 44
+                    echo '<span style="background-image:url(' | append: color_swatch_image | append: ')"></span>'
+                  else
+                    assign color_swatch_name = downcased_value | escape | replace: ' ', ''
+                    echo '<span style="background-color:' | append: color_swatch_name | append: '"></span>'
+                  endif
+                  if variant.featured_media
+                    echo '<div class="product-item__variant-image" style="display: none" data-id="' | append: u_index | append: '">'
+                    render 'lazy-image', image: variant.featured_media, alt: product.title, ratio: aspect_ratio, sizes: sizes
+                    echo '</div>'
+                  endif
+                  assign u_index = u_index | plus: 1
+                  echo '</div>'
+                  break
+                endif
+              endfor
+            endfor
+
+            echo '</product-item-variants>'
+          endif
+        endfor
+      endif
+    -%}
+
+    {%- liquid
+      if settings.show_reviews_badge
+        render 'product-rating', product: product, class: 'product-item__reviews'
+      endif
+    %}
+  </div>
+{% endunless %}

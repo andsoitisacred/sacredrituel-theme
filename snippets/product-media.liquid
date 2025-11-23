@@ -1,0 +1,48 @@
+<div 
+	id="FeaturedMedia-{{ media.id }}-wrapper" 
+	class="product-gallery__item five-tenths lap--six-tenths smaller-lap--smart-width smaller-lap--push-left-padding" 
+	data-index="{{ index }}" 
+	data-product-media-type="{{ media.media_type }}{% if media.media_type == 'external_video' %}-{{ media.host }}{% endif %}"
+  data-product-single-media-wrapper
+  data-media-id="{{ media.id }}"
+  tabindex="-1"
+>
+
+	{%- if media.media_type == 'image' -%}
+
+		{%- liquid 
+		  unless media_aspect == 'natural' 
+		    assign aspect_ratio = media_aspect 
+		  endunless 
+		  render 'lazy-image', image: media, type: 'image', zoom: enable_zoom, ratio: aspect_ratio, sizes: sizes, preload: preload
+		-%}
+
+	{%- else -%}
+
+		<div data-crop="true" class="lazy-image" {% unless media.aspect_ratio > 0 %} data-ratio="1" style="padding-top: 100%" {% else %} data-ratio="{{ media.aspect_ratio }}" style="padding-top: {{ 100 | divided_by: media.aspect_ratio }}%" {% endunless %}>
+
+			{%- liquid 
+				case media.media_type
+					when 'video'
+						echo media | media_tag: image_size: "2048x", autoplay: false, loop: loop, controls: true, preload: "none"
+					when 'external_video'
+            assign video_class = 'js-' | append: media.host
+		        if media.host == 'youtube'
+		          echo media | external_video_url: autoplay: false, loop: loop, playlist: media.external_id | external_video_tag: loading: "lazy", class: video_class
+		        else
+		          echo media | external_video_url: autoplay: false, loop: loop | external_video_tag: loading: "lazy", class: video_class
+		        endif
+		      when 'model'
+		      	echo '<product-model>'
+		        	echo media | media_tag: image_size: "2048x", toggleable: true
+		        echo '</product-model>'
+		    endcase
+			-%}
+
+		</div>
+
+	{%- endif -%}
+
+</div>
+
+<script src="{{ 'component-product-media.js' | asset_url }}" defer></script>

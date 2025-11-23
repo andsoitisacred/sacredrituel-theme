@@ -1,0 +1,267 @@
+{%- if section.settings.title != blank -%}
+  <div class="section-header grid-item push-left-one-tenth lap--push-left-padding">
+    <{{ section.settings.seo_h_tag }} class="section-header__title h4">{{ section.settings.title | escape }}</{{ section.settings.seo_h_tag }}>
+  </div>
+{%- endif -%}
+
+{%- if section.blocks.size > 0 -%}
+
+  {{ "section-toggles-with-icons.css" | asset_url | stylesheet_tag }}
+  
+  <div class="toggles ten-tenths lap--twelve-tenths push-left-one-tenth lap--push-left-padding">
+
+    {%- liquid
+      for block in section.blocks
+        render 'toggle-with-icon-content', select_icon: block.settings.select_icon, custom_icon: block.settings.custom_icon, id: block.id, title: block.settings.title, content: block.settings.body
+      endfor
+    -%}
+
+  </div>
+
+	<script src="{{ 'component-toggle.js' | asset_url }}" defer></script>
+
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "t:sections.highlight-extra-words.toggles-with-icons.name",
+    "class": "mount-toggles section-w-margin",
+    "tag": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "t:sections.faq.settings.title.label",
+        "default": "Toggles with icons"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.refactor_words.seo.name"
+      },
+      {
+        "type": "select",
+        "id": "seo_h_tag",
+        "label": "t:sections.refactor_words.seo.label",
+        "info": "t:sections.refactor_words.seo.info",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          }
+        ],
+        "default": "h2"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "t:sections.highlight-extra-words.toggles-with-icons.blocks.toggle.name",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "t:sections.faq.blocks.text.settings.title.label",
+            "default": "Question title"
+          },
+          {
+            "type": "richtext",
+            "id": "body",
+            "label": "t:sections.faq.blocks.text.settings.text.label",
+            "default": "<p>Write a complete answer to the most frequent questions that your customers might have, such as important product information, shipping policies, payment issues or returns.</p>"
+          },
+          {
+            "type": "select",
+            "id": "select_icon",
+            "label": "t:sections.text-columns-with-icons.blocks.icon.settings.icon.label",
+						"options": [
+							{
+								"value": "none",
+								"label": "None"
+							},
+							{
+								"value": "earth-globe",
+								"label": "Earth globe",
+								"group": "Business"
+							},
+							{
+								"value": "flag",
+								"label": "Flag",
+								"group": "Business"
+							},
+							{
+								"value": "helpline",
+								"label": "Helpline",
+								"group": "Business"
+							},
+							{
+								"value": "like-hand",
+								"label": "Like hand",
+								"group": "Business"
+							},
+							{
+								"value": "map-marker",
+								"label": "Map marker",
+								"group": "Business"
+							},
+							{
+								"value": "security-shield",
+								"label": "Security shield",
+								"group": "Business"
+							},
+							{
+								"value": "star",
+								"label": "Star",
+								"group": "Business"
+							},
+							{
+								"value": "appointment",
+								"label": "Appointment",
+								"group": "Commerce"
+							},
+							{
+								"value": "archive-box",
+								"label": "Archive box",
+								"group": "Commerce"
+							},
+							{
+								"value": "box",
+								"label": "Box",
+								"group": "Commerce"
+							},
+							{
+								"value": "checkout-cart",
+								"label": "Checkout cart",
+								"group": "Commerce"
+							},
+							{
+								"value": "currency",
+								"label": "Currency",
+								"group": "Commerce"
+							},
+							{
+								"value": "delivery",
+								"label": "Delivery",
+								"group": "Commerce"
+							},
+							{
+								"value": "delivery-time",
+								"label": "Delivery time",
+								"group": "Commerce"
+							},
+							{
+								"value": "giftbox",
+								"label": "Giftbox",
+								"group": "Commerce"
+							},
+							{
+								"value": "label",
+								"label": "Label",
+								"group": "Commerce"
+							},
+							{
+								"value": "open-24-hours",
+								"label": "Open 24 hurs",
+								"group": "Commerce"
+							},
+							{
+								"value": "open-box",
+								"label": "Open box",
+								"group": "Commerce"
+							},
+							{
+								"value": "paper-bag",
+								"label": "Paper bag",
+								"group": "Commerce"
+							},
+							{
+								"value": "shipping-truck",
+								"label": "Shipping truck",
+								"group": "Commerce"
+							},
+							{
+								"value": "store",
+								"label": "Store",
+								"group": "Commerce"
+							},
+							{
+								"value": "time",
+								"label": "Time",
+								"group": "Commerce"
+							},
+							{
+								"value": "time-limit",
+								"label": "Time limit",
+								"group": "Commerce"
+							},
+							{
+								"value": "wallet",
+								"label": "Wallet",
+								"group": "Commerce"
+							}
+						]
+          },
+          {
+            "type": "image_picker",
+            "id": "custom_icon",
+            "label": "t:sections.highlight-extra-words.custom-icon.label",
+            "info": "t:sections.highlight-extra-words.custom-icon.info"
+          },
+					{
+						"type": "paragraph",
+						"content": "t:sections.refactor_words.text.icons_info"
+					}
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "t:sections.highlight-extra-words.toggles-with-icons.name",
+        "blocks": [
+          {
+            "type": "text",
+            "settings": {
+              "title": "Shipping details",
+              "body": "<p>Write some useful information about your shipping details<\/p><p>Link to your <a href='#'>shipping policy</a>.<\/p>",
+              "select_icon": "open-box"
+            }
+          },
+          {
+            "type": "text",  
+            "settings": {
+              "title": "Delivery details",
+              "body": "<p>Let your customers know if you offer free delivery for certain types of orders<\/p><p>Link to your <a href='#'>offers page</a>.<\/p>",
+              "select_icon": "delivery"
+            }
+          },
+          {
+            "type": "text",  
+            "settings": {
+              "title": "Returns details",
+              "body": "<p>Show customers how much time they have for testing your products<\/p><p>Link to your <a href='#'>returns policy</a>.<\/p>",
+              "select_icon": "time-limit"
+            }
+          }
+        ]
+      }
+    ],
+    "disabled_on": {
+      "groups": ["header"]
+    }
+  }
+{% endschema %}

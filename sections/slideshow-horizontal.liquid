@@ -1,0 +1,192 @@
+{%- if section.settings.title != blank -%}
+  <div class="section-header grid-item push-left-one-tenth lap--push-left-padding">
+    <{{ section.settings.seo_h_tag }} class="section-header__title h4">{{ section.settings.title | escape }}</{{ section.settings.seo_h_tag }}>
+  </div>
+{%- endif -%}
+
+  {%- assign sizes = 'sizes="(max-width: 1023px) 100vw, 85vw"' -%}
+  {{ 'component-product-slider.css' | asset_url | stylesheet_tag }}
+  
+  <product-slider id="slideshow-{{ section.id }}" 
+    class="product-gallery" data-size="{{ section.blocks.size }}" style="display:block"
+    data-nav-class="ten-tenths lap--twelve-tenths push-left-one-tenth lap--push-left-padding"
+  >
+
+    <div class="product-gallery__viewport">
+
+      <div class="product-gallery__container eleven-tenths lap--full-width smaller-lap--twelve-tenths push-left-one-tenth push-right-one-tenth lap--push-left-padding lap--push-right-none smaller-lap--push-right-padding">
+
+        <div class="product-gallery__items" dir="ltr">
+
+          {%- for block in section.blocks -%}
+
+            {%- liquid
+              if section.index == 1 and forloop.index == 1
+                assign preload = true
+              else
+                assign preload = false
+              endif
+            -%}
+
+            <div class="product-gallery__item product-gallery__item--custom" {{ block.shopify_attributes }} data-index="{{ forloop.index0 }}">
+              <div>
+
+                {%- if block.settings.link != blank -%}
+                  <a href="{{ block.settings.link }}" {% if block.settings.target %} target="_blank" {% endif %}>
+                {%- endif -%}
+
+                  {%- if block.settings.slide_image == blank -%} 
+                    <span class="onboarding-svg with-background">
+                      {{ 'product-1' | placeholder_svg_tag }}
+                    </span>
+                  {%- else -%}
+                    {%- render 'lazy-image', image: block.settings.slide_image, type: 'background', ratio: 'natural', sizes: sizes, alignment: true, preload: preload -%}
+                  {%- endif -%}
+
+                {%- if block.settings.link != blank -%} </a> {%- endif -%}
+                
+              </div>
+            </div>
+
+          {%- endfor -%}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </product-slider>
+  
+  <script src="{{ 'component-product-slider.js' | asset_url }}" defer></script>
+          
+  <style>
+    @media only screen and (max-width: 835px) {
+      #slideshow-{{ section.id }} .product-gallery__items {
+        gap: var(--grid-padding);
+      }
+    }
+    #slideshow-{{ section.id }} .product-gallery__item {
+      width: 100%;
+      height: {{ section.settings.section_height }}vh;
+    }
+    @media only screen and (max-width: 835px) {
+      #slideshow-{{ section.id }} .product-gallery__item {
+        height: {{ section.settings.section_height_mobile }}vh;
+      }
+    }
+    {% if section.blocks.size <= 1 %}
+      #slideshow-{{ section.id }} .product-gallery__navigation {
+        display: none;
+      }
+    {% endif %}
+  </style>
+
+  <script src="{{ 'section-product-slider.js' | asset_url }}" defer></script>
+
+{% schema %}
+  {
+    "name": "t:sections.slider.slider_horizontal.name",
+    "class": "mount-product-slider section-w-margin no-overflow",
+    "max_blocks": 9,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "t:sections.highlight-extra-words.heading.label",
+        "default": "Slideshow (horizontal)"
+      },
+      {
+        "type": "range",
+        "id": "section_height",
+        "label": "t:sections.slider.settings.desktop_height.label",
+        "unit": "%",
+        "min": 40,
+        "max": 80,
+        "step": 5,
+        "default": 70
+      },
+      {
+        "type": "range",
+        "id": "section_height_mobile",
+        "label": "t:sections.slider.settings.mobile_height.label",
+        "unit": "%",
+        "min": 40,
+        "max": 80,
+        "step": 5,
+        "default": 70
+      },
+      {
+        "type": "header",
+        "content": "t:sections.refactor_words.seo.name"
+      },
+      {
+        "type": "select",
+        "id": "seo_h_tag",
+        "label": "t:sections.refactor_words.seo.label",
+        "info": "t:sections.refactor_words.seo.info",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          }
+        ],
+        "default": "h2"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "t:sections.slider.blocks.image.name",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "slide_image",
+            "label": "t:sections.highlight-extra-words.vertical-slider.settings.image.label"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "t:sections.local-extra-words.sections.announcement-bar.blocks.content.settings.link"
+          },
+          {
+            "type": "checkbox",
+            "id": "target",
+            "label": "t:sections.local-extra-words.sections.announcement-bar.blocks.content.settings.target",
+            "default": false
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "t:sections.slider.slider_horizontal.name",
+      "blocks": [
+          {
+          "type": "image"
+        },
+        {
+        "type": "image"
+        }
+      ]
+    }],
+    "disabled_on": {
+      "groups": ["header"]
+    }
+  }
+{% endschema %}

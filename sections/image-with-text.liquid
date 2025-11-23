@@ -1,0 +1,155 @@
+{{ "section-image-with-text.css" | asset_url | stylesheet_tag }}
+
+<div class="image-with-text image-with-text--{{ section.settings.layout }} grid">
+
+  <div class="image-with-text__image five-tenths lap--six-tenths palm--full-width push-left-one-tenth lap--push-left-none">
+    {%- unless section.settings.image == blank -%}
+      {%- liquid
+        if section.index == 1
+          assign preload = true
+        else
+          assign preload = false
+        endif
+        assign sizes = 'sizes="(max-width: 599px) calc(100vw - 40px), (max-width: 1023px) 50vw, 42vw"'
+        render 'lazy-image', image: section.settings.image, alt: section.settings.heading, sizes: sizes, preload: preload
+      -%}
+    {%- else -%}
+      <span class="onboarding-svg section--image-text--item__image onboarding-background">
+        {{ 'image' | placeholder_svg_tag }}
+      </span>
+    {%- endunless -%}
+  </div>
+
+  <div class="image-with-text__content four-tenths lap--five-tenths palm--full-width push-left-one-tenth lap--push-left-none">
+
+    {%- for block in section.blocks -%}
+
+      {%- case block.type -%}
+
+        {%- when 'heading' -%}
+          <h3 class="image-with-text__heading {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>{{ block.settings.heading | escape }}</h3>
+
+        {%- when 'text' -%}
+          <div class="image-with-text__description rte" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+
+        {%- when 'button' -%}
+          <a class="image-with-text__button button button--underline" href="{{ block.settings.button_link }}" title="{{ block.settings.button_label | escape }}" {{ block.shopify_attributes }}>
+            {{ block.settings.button_label | escape }}
+            <span class="svg svg__arrow" aria-hidden="true">{%- render 'theme-symbols', icon: 'arrow-right' -%}</span>
+          </a>
+
+      {%- endcase -%}
+
+    {%- endfor -%}
+
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "t:sections.image-with-text.name",
+    "class": "section-w-mobile-padding section-w-margin section-w-reduced-margin",
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "t:sections.rich-text.blocks.heading.name",
+        "limit": 1,
+        "settings": [
+           {
+            "type": "text",
+            "id": "heading",
+            "label": "t:sections.rich-text.blocks.heading.settings.heading.label",
+            "default": "Write your story"
+          }, 
+          {
+            "type": "select",
+            "id": "heading_size",
+            "label": "t:sections.rich-text.blocks.heading.settings.heading_size.label",
+            "options": [
+              {
+                "value": "h2",
+                "label": "t:sections.rich-text.blocks.heading.settings.heading_size.options__1.label"
+              },
+              {
+                "value": "h1",
+                "label": "t:sections.rich-text.blocks.heading.settings.heading_size.options__2.label"
+              }
+            ],
+            "default": "h1"
+          }
+        ]
+      },
+      { 
+        "type": "text",
+        "name": "t:sections.rich-text.blocks.text.name",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "t:sections.rich-text.blocks.text.settings.text.label",
+            "default": "<p>Write some information about your brand, products or story.</p>"
+          }
+        ]
+      },
+      {
+        "type": "button",
+        "name": "t:sections.rich-text.blocks.button.name",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "t:sections.rich-text.blocks.button.settings.button_label.label",
+            "default": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "t:sections.rich-text.blocks.button.settings.button_link.label"
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "t:sections.gallery.blocks.image.name"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "t:sections.rich-text.settings.image_position.label",
+        "options": [
+          {
+            "label": "t:sections.rich-text.settings.image_position.options__1.label",
+            "value": "right-alignment"
+          },
+          {
+            "label": "t:sections.rich-text.settings.image_position.options__2.label",
+            "value": "left-alignment"
+          }
+        ],
+        "default": "right-alignment"
+      }
+    ],
+    "presets": [
+      {
+        "name": "t:sections.image-with-text.name",
+        "blocks": [
+          {
+            "type": "heading"
+          },
+          {
+            "type": "text"
+          }
+        ]
+      }
+    ],
+    "disabled_on": {
+      "groups": ["header"]
+    }
+  }
+{% endschema %}

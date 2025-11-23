@@ -1,0 +1,22 @@
+{%- liquid
+  assign current_variant = variant | default: product.variants.last
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign discount_percent = sale.percent.value | default: 0
+  assign use_visual_discount = false
+
+  if sale.active.value and product.metafields.sale.included and discount_percent > 0
+    assign use_visual_discount = true
+  endif
+
+  if use_visual_discount
+    assign discount_amount = current_variant.price | times: discount_percent | divided_by: 100
+    assign sale_price = current_variant.price | minus: discount_amount
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  {{ sale_price | money }}
+  <span style="text-decoration: line-through;">{{ current_variant.price | money }}</span>
+{%- else -%}
+  {{ current_variant.price | money }}
+{%- endif -%}

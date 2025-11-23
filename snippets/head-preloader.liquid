@@ -1,0 +1,85 @@
+{%- if template contains 'product' and product.featured_media -%}
+
+	{%- assign image = product.featured_media -%}
+	{%- capture srcset -%} 
+		{%- if image.width >= 260 -%}{{ image | image_url: width: 260 }} 260w{%- endif -%} 
+		{%- if image.width >= 320 -%},{{ image | image_url: width: 320 }} 320w{%- endif -%} 
+		{%- if image.width >= 360 -%},{{ image | image_url: width: 360 }} 360w{%- endif -%} 
+		{%- if image.width >= 420 -%},{{ image | image_url: width: 420 }} 420w{%- endif -%} 
+		{%- if image.width >= 480 -%},{{ image | image_url: width: 480 }} 480w{%- endif -%} 
+		{%- if image.width >= 640 -%},{{ image | image_url: width: 640 }} 640w{%- endif -%} 
+		{%- if image.width >= 840 -%},{{ image | image_url: width: 840 }} 840w{%- endif -%} 
+		{%- if image.width >= 1080 -%},{{ image | image_url: width: 1080 }} 1080w{%- endif -%} 
+		{%- if image.width >= 1280 -%},{{ image | image_url: width: 1280 }} 1280w{%- endif -%} 
+		{%- if image.width >= 1540 -%},{{ image | image_url: width: 1540 }} 1540w{%- endif -%} 
+		{%- if image.width >= 1860 -%},{{ image | image_url: width: 1860 }} 1860w{%- endif -%} 
+		{%- if image.width >= 2100 -%},{{ image | image_url: width: 2100 }} 2100w{%- endif -%}
+	{%- endcapture -%}
+	
+	<link rel="preload" as="image" href="{{ image | image_url: width: 480 }}" imagesrcset="{{ srcset }}" imagesizes="(max-width: 835px) calc(100vw - 90px), (max-width: 1023px) 50vw, 42vw">
+
+{%- elsif template contains 'collection' -%}
+ 	{%- for product in collection.products limit: 3 -%}
+ 		{%- liquid 
+ 			if layout == 'asymmetrical'
+        if forloop.index0 == 0
+          assign media_sizes = '(max-width: 599px) 46vw, (max-width: 1023px) 55vw, 17vw'
+        elsif forloop.index0 == 1
+          assign media_sizes = '(max-width: 599px) 46vw, (max-width: 1023px) 38vw, 34vw'
+        elsif forloop.index0 == 3
+          assign media_sizes = '(max-width: 599px) 46vw, (max-width: 1023px) 55vw, 25vw'
+        endif
+      else
+      	assign media_sizes= '(max-width: 835px) calc(50vw - 50px), (max-width: 1023px) 33vw, 25vw'
+      endif
+ 			assign image = product.featured_media
+		-%}
+		{%- if settings.grid_aspect == 'natural' -%}
+			{%- capture srcset -%} 
+				{%- if image.width >= 260 -%}{{ image | image_url: width: 260 }} 260w{%- endif -%} 
+				{%- if image.width >= 320 -%},{{ image | image_url: width: 320 }} 320w{%- endif -%} 
+				{%- if image.width >= 360 -%},{{ image | image_url: width: 360 }} 360w{%- endif -%} 
+				{%- if image.width >= 420 -%},{{ image | image_url: width: 420 }} 420w{%- endif -%} 
+				{%- if image.width >= 480 -%},{{ image | image_url: width: 480 }} 480w{%- endif -%} 
+				{%- if image.width >= 640 -%},{{ image | image_url: width: 640 }} 640w{%- endif -%} 
+				{%- if image.width >= 840 -%},{{ image | image_url: width: 840 }} 840w{%- endif -%} 
+				{%- if image.width >= 1080 -%},{{ image | image_url: width: 1080 }} 1080w{%- endif -%} 
+				{%- if image.width >= 1280 -%},{{ image | image_url: width: 1280 }} 1280w{%- endif -%} 
+				{%- if image.width >= 1540 -%},{{ image | image_url: width: 1540 }} 1540w{%- endif -%} 
+				{%- if image.width >= 1860 -%},{{ image | image_url: width: 1860 }} 1860w{%- endif -%} 
+				{%- if image.width >= 2100 -%},{{ image | image_url: width: 2100 }} 2100w{%- endif -%}
+			{%- endcapture -%}
+		{%- else -%}
+			{%- liquid 
+				assign divide_ratio = 1 | divided_by: settings.grid_aspect
+			  assign height_260 = 260 | times: divide_ratio | round
+				assign height_320 = 320 | times: divide_ratio | round
+				assign height_360 = 360 | times: divide_ratio | round
+				assign height_420 = 420 | times: divide_ratio | round
+				assign height_480 = 480 | times: divide_ratio | round
+				assign height_640 = 640 | times: divide_ratio | round
+				assign height_840 = 840 | times: divide_ratio | round
+				assign height_1080 = 1080 | times: divide_ratio | round
+				assign height_1280 = 1280 | times: divide_ratio | round
+				assign height_1540 = 1540 | times: divide_ratio | round
+				assign height_1860 = 1860 | times: divide_ratio | round
+				assign height_2100 = 2100 | times: divide_ratio | round
+			%}
+			{%- capture srcset -%} 
+				{%- if image.width >= 260 -%}{{ image | image_url: width: 260, height: height_260, crop: 'center' }} 260w{%- endif -%}
+				{%- if image.width >= 320 -%},{{ image | image_url: width: 320, height: height_320, crop: 'center' }} 320w{%- endif -%}
+				{%- if image.width >= 360 -%},{{ image | image_url: width: 360, height: height_360, crop: 'center' }} 360w{%- endif -%}
+				{%- if image.width >= 420 -%},{{ image | image_url: width: 420, height: height_420, crop: 'center' }} 420w{%- endif -%}
+				{%- if image.width >= 480 -%},{{ image | image_url: width: 480, height: height_480, crop: 'center' }} 480w{%- endif -%}
+				{%- if image.width >= 640 -%},{{ image | image_url: width: 640, height: height_640, crop: 'center' }} 640w{%- endif -%}
+				{%- if image.width >= 840 -%},{{ image | image_url: width: 840, height: height_840, crop: 'center' }} 840w{%- endif -%}
+				{%- if image.width >= 1080 -%},{{ image | image_url: width: 1080, height: height_1080, crop: 'center' }} 1080w{%- endif -%}
+				{%- if image.width >= 1280 -%},{{ image | image_url: width: 1280, height: height_1280, crop: 'center' }} 1280w{%- endif -%}
+				{%- if image.width >= 1540 -%},{{ image | image_url: width: 1540, height: height_1540, crop: 'center' }} 1540w{%- endif -%}
+				{%- if image.width >= 1860 -%},{{ image | image_url: width: 1860, height: height_1860, crop: 'center' }} 1860w{%- endif -%}
+				{%- if image.width >= 2100 -%},{{ image | image_url: width: 2100, height: height_2100, crop: 'center' }} 2100w{%- endif -%}
+			{%- endcapture -%}
+		{%- endif -%}
+		<link rel="preload" as="image" href="{{ image | image_url: width: 480 }}" imagesrcset="{{ srcset }}" imagesizes="{{ media_sizes }}">
+ 	{%- endfor -%}
+{%- endif -%}

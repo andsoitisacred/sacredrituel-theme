@@ -1,0 +1,307 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1632816263c7346a69": {
+      "type": "heading",
+      "custom_css": [
+        "h2 {font-size: 30px;}"
+      ],
+      "settings": {
+        "title": "{{ page.title }}",
+        "content": "<p>{{ page.metafields.custom.hero_title.value }}</p>",
+        "button_label": "",
+        "button_link": "",
+        "text_alignment": "left",
+        "text_size": "large",
+        "seo_h_tag": "h2"
+      }
+    },
+    "1632125386ececde1e": {
+      "type": "image",
+      "settings": {
+        "title": "",
+        "image": "{{ page.metafields.custom.hero_image.value }}",
+        "link": "",
+        "seo_h_tag": "h2"
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "no_margins": true,
+        "reduced_margins": true
+      }
+    },
+    "1dbf6f6d-b1c4-40d9-b34a-0df5bba5e01d": {
+      "type": "toggles-with-icons",
+      "blocks": {
+        "template--16840114274607__1dbf6f6d-b1c4-40d9-b34a-0df5bba5e01d-166793837277eba94a-0": {
+          "type": "text",
+          "settings": {
+            "title": "SACRED SERUM INGREDIENTS",
+            "body": "<p>Our <a href=\"/products/sacred-serum-50-ml-1-7-oz\" title=\"SACRED SERUM\">SACRED SERUM</a> sells in the  <a href=\"/products/sacred-serum-50-ml-1-7-oz\" title=\"SACRED SERUM\">LARGE BOTTLE</a>, <a href=\"/products/sacred-beauty-serum-rose-mist-set\" title=\"SACRED SET    |    SERUM + ROSE TONER\">FULL SET</a>, <a href=\"/products/sacred-serum-mist-travel-pack\" title=\"SACRED TRAVEL SET\">TRAVEL SET</a> and <a href=\"/products/sacred-serum-roller\" title=\"SACRED SERUM ROLLER | LIMITED\">SERUM ROLLER</a> </p><p>organic Simmondsia chinensis ( Jojoba ) oil, organic Hippophae rhamnoides ( Sea buckthorn ) fruit oil, organic Rosa Canina ( Rose hip) seed oil, organic Hemp seed oil, organic Helianthus annuus ( Sunflower ) seed oil, organic Prunus armeniaca ( Apricot ) kernel oil, organic Prunus dulcis ( Sweet Almond ) seed oil, Organic Rubus Fruticosus ( Blackberry) seed oil, organic Camellia oleifera seed oil, Passiflora edulis ( Passionfruit ) seed oil, organic Moringa oleifera seed oil, organic Emblica officinalis ( Amla ) fruit oil, organic cannabis sativa ( organic hemp extract ) leaf extract, organic Punica granatum ( Pomegranate ) seed oil, organic Adansonia digitata ( Baobab ) fruit oil , Tocotrienol ( Vitamin E ) oil, organic Lavandula angustifolia flower, organic Helichrysum stoechas flower, organic Matricaria recutita ( Chamomile ) flower, organic Symphytum officinale ( Comfrey ) flower, organic Calendula officinalis flower, organic Rosa damascena flower, organic Arnica montana flower, organic Camellia sinensis ( Sencha Green Tea ) leaf, Rosa damascena Extract, Lavandula angustifolia Extract, Boswellia carterii ( Frankincense ) Extract, Pelargonium graveolens ( Geranium ) Extract</p><p>View SACRED SERUM <a href=\"/products/sacred-serum-50-ml-1-7-oz\" title=\"SACRED SERUM\">details</a></p>",
+            "select_icon": "none"
+          }
+        },
+        "template--16840114274607__1dbf6f6d-b1c4-40d9-b34a-0df5bba5e01d-166793837277eba94a-1": {
+          "type": "text",
+          "settings": {
+            "title": "SACRED ROSE MIST INGREDIENTS",
+            "body": "<p>Our ROSE MIST TONER sells in the  <a href=\"/products/sacred-rituel-rose-mist\" title=\"SACRED ROSE MIST TONER\">LARGE BOTTLE</a>, <a href=\"/products/sacred-beauty-serum-rose-mist-set\" title=\"SACRED SET    |    SERUM + ROSE TONER\">FULL SET</a> and the <a href=\"/products/sacred-serum-mist-travel-pack\" title=\"SACRED TRAVEL SET\">TRAVEL SET.</a></p><p>organic Rosa Damascena water, organic Rosa Damascena flower oil, purified water</p>",
+            "select_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "template--16840114274607__1dbf6f6d-b1c4-40d9-b34a-0df5bba5e01d-166793837277eba94a-0",
+        "template--16840114274607__1dbf6f6d-b1c4-40d9-b34a-0df5bba5e01d-166793837277eba94a-1"
+      ],
+      "custom_css": [
+        "h2 {font-size: 30px;}"
+      ],
+      "settings": {
+        "title": "Organic & Regeneratively Farmed Ingredients",
+        "seo_h_tag": "h2"
+      }
+    },
+    "e17e8257-8c49-467b-800e-a014bd2de76b": {
+      "type": "toggles-with-icons",
+      "blocks": {
+        "template--16840114274607__e17e8257-8c49-467b-800e-a014bd2de76b-16681007937a0db999-1": {
+          "type": "text",
+          "settings": {
+            "title": "Why does skin needs vitamins and nutrients?",
+            "body": "<p>It's no secret that a healthy diet leads to healthy skin. But what many people don't know is that the key to beautiful skin lies in vitamins and nutrients. </p><p>The role that vitamins and nutrients play in our skin's health often goes undervalued, but the truth is they are essential for maintaining a glowing complexion. Antioxidants like vitamin C and E work to neutralize harmful free radicals, protecting cells from damage and inflammation. Biotin, or vitamin B7, helps to improve cell turnover, promoting healthy hair and nails as well as a smooth complexion. And let's not forget about good old vitamin A, also known as retinol - this powerhouse ingredient stimulates collagen production and improves skin elasticity. They are foundational to promoting the overall health and vitality of your skin cells.</p>",
+            "select_icon": "none"
+          }
+        },
+        "template--16840114274607__e17e8257-8c49-467b-800e-a014bd2de76b-16681007937a0db999-2": {
+          "type": "text",
+          "settings": {
+            "title": "Why we only use organic ingredients?",
+            "body": "<p>Your body is a beautifully complex interrelated system.  Incorporating vitamins and nutrients into your skincare routine is important to protect the skin and provide it nutrition to manage and grow new skin cells. Thankfully , there are plenty of safe ways to feed your skin the nutrition it needs and that starts with choosing organic. </p><p>Vegetables are a great source of vitamins and nutrients, while non-organic vegetables often lack the quantity and quality compared to organic.  First, organic ingredients have more potent nutrients and they are free from chemicals and pesticides that enter your body.  Why would you put harmful chemicals on your body if you have a choice? That's why it's important to choose organic whenever possible. Not only will you be doing your skin a favor, but you'll also be doing your body a big favor! It's no secret that a healthy diet leads to healthy skin.  But what many people don't know is that the key to beautiful skin lies in vitamins and nutrients. </p>",
+            "select_icon": "none"
+          }
+        },
+        "bacb58ad-77ca-44a3-ad87-346b1ed45d01": {
+          "type": "text",
+          "settings": {
+            "title": "Why are antioxidants critical for healthy skin?",
+            "body": "<p>When we think about skincare, antioxidants often come to mind as key ingredients for preventing cell damage and promoting a youthful appearance. We often associate antioxidants with fruits and vegetables, but did you know that the same phytonutrients found in plant-based foods can also benefit our skin? These plant compounds, commonly referred to as phytonutrients, work by combating harmful free radicals and promoting cell regeneration. Phytonutrients also help skin retain its youthful firmness by increasing the stability of cellular membranes and improving blood flow through the skin. Our formulas contain phytonutrient-rich extracts such as Jojoba, Blackberry, Rose Hip, Seabuckthorn and green tea to boost antioxidants to combat the environmental stresses our skin was designed to protect us from.</p><p> Below are some of the best vitamins and nutrients for beautiful skin, along with tips on how to get them into your skincare routine.</p>",
+            "select_icon": "none"
+          }
+        },
+        "2220cd5c-7a8c-4860-88bf-cc97947e2998": {
+          "type": "text",
+          "settings": {
+            "title": "How do phytonutrients repair your skin?",
+            "body": "<p>Similar to overall body nutrition the well known plant pigments (aka phytonutrients) in your diet nourish your skin as well. Polyphenol Flavonoids, such as the anthocyanins found in the blue and purples hues of fruits like grapes and blueberries, supercharge circulatory health.</p><p>The flavonoids are a class of naturally occurring polyphenolic compounds that provide us with powerful antioxidants. Quercetin, found in many fruits and vegetables, is a plant-pigment and flavonoid found in berries, green tea leaf and moringa leaf all of which are ingredients in SACRED SERUM. It can be consumed orally as a supplement and applied topically through skincare products for its antioxidant and anti-inflammatory properties.</p><p>Carotenoids including beta-carotene, lutein, and lycopene protect against the harmful effects of UV radiation. Allicin and quercetin are two of the important phytonutrients due to their antibiotic and anti-inflammatory properties, these compounds help boost collagen production safely and naturally.</p>",
+            "select_icon": "none"
+          }
+        },
+        "84e6568c-7225-458d-9e8e-b6f7c517b48b": {
+          "type": "text",
+          "settings": {
+            "title": "Why use raw cold pressed seed oils?",
+            "body": "<p>You're likely already well-acquainted with clean, organic, and non-toxic beauty labels.  A product marked as  “organic” and “biodynamic” refers to how ingredients are grown and harvested, “cold-pressed” refers to how ingredients are processed from a plant or seed to an oil. When oils are cold-pressed, they are extracted from their source using mechanical methods rather than heat or solvents and undergoes very little processing which allows it to retain its important nutrients responsible for healing.</p><p>Cold-pressed oils have the upper hand on their heat or chemically processed counterparts in more ways than one. For starters, one study showed increased antioxidant capacity with cold pressing - and this means better protection for your skin! It also noted an increase of tocopherols which are natural preservatives meaning that cold-pressed oils have a naturally longer shelf life, and can often forgo fillers and synthetic preservatives. Cold pressing delivers a potent product that's highly effective AND safe because there aren't any additives whatsoever. It’s a win/win for your skin.</p>",
+            "select_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "template--16840114274607__e17e8257-8c49-467b-800e-a014bd2de76b-16681007937a0db999-1",
+        "template--16840114274607__e17e8257-8c49-467b-800e-a014bd2de76b-16681007937a0db999-2",
+        "bacb58ad-77ca-44a3-ad87-346b1ed45d01",
+        "2220cd5c-7a8c-4860-88bf-cc97947e2998",
+        "84e6568c-7225-458d-9e8e-b6f7c517b48b"
+      ],
+      "custom_css": [
+        "h2 {font-size: 30px;}"
+      ],
+      "settings": {
+        "title": "Skin Nutrition 101",
+        "seo_h_tag": "h2"
+      }
+    },
+    "e67e32ea-214d-4110-bc22-7700a8e6ce5d": {
+      "type": "toggles-with-icons",
+      "blocks": {
+        "template--14831431581750__c2d24e8d-16c7-4dc0-b4c5-70ee14688c6d-16669265284a72c737-0": {
+          "type": "text",
+          "settings": {
+            "title": "Artificial Colors & Dyes",
+            "body": "",
+            "select_icon": "like-hand",
+            "custom_icon": "shopify://shop_images/test-tube-128.png"
+          }
+        },
+        "template--14831431581750__c2d24e8d-16c7-4dc0-b4c5-70ee14688c6d-16669265284a72c737-1": {
+          "type": "text",
+          "settings": {
+            "title": "Preservatives ~ Parabens ~ Phthalates ~ etc.",
+            "body": "<p><strong>Preservatives</strong> may be used in cosmetics to prevent the growth of harmful bacteria and mold. Parabens and formaldehyde-releasing preservatives are commonly used preservatives in cosmetic and personal care products.</p><p><strong>Parabens</strong> are preservatives used in a wide variety of personal care products and foods to prevent the growth of microbes. These endocrine-disrupting chemicals can be absorbed through skin, blood and the digestive system.<a href=\"https://www.safecosmetics.org/chemicals/parabens/#end1\">[1]</a></p><p><strong>Phthalates</strong> Pronounced THAL-ates, these chemicals, which are linked to endocrine disruption, developmental and reproductive toxicity, and cancer, have been banned from cosmetics in the European Union, but still remain prevalent in U.S. products.</p><p><strong>Methylisothiazolinone (MIT)</strong> and <strong>Methylchloroisothiazolinone (CMIT) </strong>may be hard to pronounce, but they can be even harder on the body. These common preservatives are found in many liquid personal care products, and have been linked to lung toxicity,<a href=\"https://www.safecosmetics.org/chemicals/methylisothiazolinone/#end1\">[1]</a>allergic reactions, and possible neurotoxicity.</p><p>Link to your <a href=\"#\">offers page</a>.</p>",
+            "select_icon": "medical-research",
+            "custom_icon": "shopify://shop_images/medical-research-128.png"
+          }
+        },
+        "template--14831431581750__c2d24e8d-16c7-4dc0-b4c5-70ee14688c6d-16669265284a72c737-2": {
+          "type": "text",
+          "settings": {
+            "title": "Synthetic Fragrance",
+            "body": "<p>Many products list <strong>fragrance</strong> on the label, but very few name the specific ingredients that make up a <strong>fragrance</strong>. This lack of disclosure prevents consumers from knowing the full list of ingredients in their products.</p>",
+            "select_icon": "test-tube",
+            "custom_icon": "shopify://shop_images/strong-wind-128.png"
+          }
+        },
+        "8709f5be-bd33-45f7-a0a7-3236e751e362": {
+          "type": "text",
+          "settings": {
+            "title": "Fillers, Stabilizers & Binders",
+            "body": "<p><strong>Polyacrylamide</strong> is used as a stabilizer and binder in lotions and other products. Though it is not a concern in itself, it is made up of repeating molecules of acrylamide, which is a strongly suspected carcinogen and has been linked to mammary tumors.</p>",
+            "select_icon": "unlike",
+            "custom_icon": "shopify://shop_images/sulphites-free-128.png"
+          }
+        },
+        "5a6be8d3-732f-4de4-8403-7872d3fc5bd0": {
+          "type": "text",
+          "settings": {
+            "title": "Nanomaterial & Nanoparticles",
+            "body": "<p>Write a complete answer to the most frequent questions that your customers might have, such as important product information, shipping policies, payment issues or returns.</p>",
+            "select_icon": "shield-crossmark",
+            "custom_icon": "shopify://shop_images/water-droplet-128_8e8beb41-47b8-4394-9e63-1c50474effbb.png"
+          }
+        },
+        "6eb95e1c-0b88-4524-80fc-3f3f47a89d7a": {
+          "type": "text",
+          "settings": {
+            "title": "Retinol & Retinol Compounds",
+            "body": "<p>Retinol is the chemical name of the essential micronutrient vitamin A which can be harmful to your health when it’s added to cosmetic products in certain forms. Two derivatives – retinoic acid and retinyl palmitate – <a href=\"https://www.safecosmetics.org/chemicals/retinol-and-retinol-compounds/\" target=\"_blank\" title=\"https://www.safecosmetics.org/chemicals/retinol-and-retinol-compounds/\">should be avoided in cosmetics and personal care products </a>while retinol itself should not be used at high doses.</p>",
+            "select_icon": "hospital-sign",
+            "custom_icon": "shopify://shop_images/pill-128.png"
+          }
+        }
+      },
+      "block_order": [
+        "template--14831431581750__c2d24e8d-16c7-4dc0-b4c5-70ee14688c6d-16669265284a72c737-0",
+        "template--14831431581750__c2d24e8d-16c7-4dc0-b4c5-70ee14688c6d-16669265284a72c737-1",
+        "template--14831431581750__c2d24e8d-16c7-4dc0-b4c5-70ee14688c6d-16669265284a72c737-2",
+        "8709f5be-bd33-45f7-a0a7-3236e751e362",
+        "5a6be8d3-732f-4de4-8403-7872d3fc5bd0",
+        "6eb95e1c-0b88-4524-80fc-3f3f47a89d7a"
+      ],
+      "custom_css": [
+        "h2 {font-size: 30px;}"
+      ],
+      "settings": {
+        "title": "Made Without",
+        "seo_h_tag": "h2"
+      }
+    },
+    "1632125485cfaa5f96": {
+      "type": "products-slider",
+      "custom_css": [
+        "h2 {font-size: 30px;}"
+      ],
+      "settings": {
+        "title": "Most Popular GLOW Restoring Products",
+        "collection": "frontpage",
+        "products_number": 6
+      }
+    },
+    "1632125416e67e4991": {
+      "type": "image-with-text",
+      "disabled": true,
+      "blocks": {
+        "1632125416e67e4991-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Write your story",
+            "heading_size": "h1"
+          }
+        },
+        "1632125416e67e4991-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Write some information about your brand, products or story.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "1632125416e67e4991-0",
+        "1632125416e67e4991-1"
+      ],
+      "settings": {
+        "layout": "right-alignment"
+      }
+    },
+    "1632125433ea11c45b": {
+      "type": "image-with-text",
+      "disabled": true,
+      "blocks": {
+        "1632125433ea11c45b-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Write your story",
+            "heading_size": "h1"
+          }
+        },
+        "1632125433ea11c45b-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Write some information about your brand, products or story.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "1632125433ea11c45b-0",
+        "1632125433ea11c45b-1"
+      ],
+      "settings": {
+        "layout": "left-alignment"
+      }
+    },
+    "16328164825c13132e": {
+      "type": "heading",
+      "settings": {
+        "title": "",
+        "content": "<p>You have 30 days to try our products.  Return for a full refund if you are not 100% satisfied with your purchase.</p>",
+        "button_label": "Our 30 day guarantee",
+        "button_link": "shopify://policies/refund-policy",
+        "text_alignment": "center",
+        "text_size": "large",
+        "seo_h_tag": "span"
+      }
+    },
+    "1632125507a926bace": {
+      "type": "video-popup",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "video": "https://www.youtube.com/watch?v=WU90UnyjmfI",
+        "seo_h_tag": "h2"
+      }
+    }
+  },
+  "order": [
+    "1632816263c7346a69",
+    "1632125386ececde1e",
+    "main",
+    "1dbf6f6d-b1c4-40d9-b34a-0df5bba5e01d",
+    "e17e8257-8c49-467b-800e-a014bd2de76b",
+    "e67e32ea-214d-4110-bc22-7700a8e6ce5d",
+    "1632125485cfaa5f96",
+    "1632125416e67e4991",
+    "1632125433ea11c45b",
+    "16328164825c13132e",
+    "1632125507a926bace"
+  ]
+}

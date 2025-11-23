@@ -1,0 +1,33 @@
+<div {% unless section.settings.full_width %} class="ten-tenths lap--twelve-tenths push-left-one-tenth lap--push-left-padding" {% endunless %}>
+  {%- liquid
+    for block in section.blocks
+      render block
+    endfor
+  -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.apps.name",
+  "tag": "section",
+  "class": "section-w-margin",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "t:sections.highlight-extra-words.layout.full_width.label",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.apps.presets.name"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,301 @@
+{{ 'component-blog-item.css' | asset_url | stylesheet_tag }}
+
+{%- if section.settings.title != blank -%}
+  <div class="section-header grid-item push-left-one-tenth lap--push-left-padding">
+    <{{ section.settings.seo_h_tag }} class="section-header__title h4">{{ section.settings.title | escape }}</{{ section.settings.seo_h_tag }}>
+  </div>
+{%- endif -%}
+
+{%- assign date_format = 'general.date_format.month_day_year' | t -%}
+{%- assign post_limit = section.settings.post_limit -%}
+
+<css-slider id="css-slider-{{ section.id }}" 
+  class="css-slider css-slider--snapping blog-slider"
+  style="display:flex"
+>
+
+  {%- if blogs[section.settings.blog].articles.size > 0 or section.settings.blog == blank -%}
+
+    {%- if section.settings.blog_show_image -%}
+
+      {%- assign sizes = 'sizes="(max-width: 599px) calc(100vw - 90px), (max-width: 1023px) calc(50vw - 80px), 25vw"' -%}
+
+      <div class="blog-slider__images css-slides-container grid push-right-half-tenth lap--push-right-padding">
+
+          {%- unless section.settings.blog == blank -%}
+
+            {%- for article in blogs[section.settings.blog].articles limit: post_limit -%}
+              <a href="{{ article.url | escape }}"
+                class="blog-item__image css-slide
+                  three-tenths lap--smart-width palm--smart-width 
+                  {% if forloop.first %}
+                    push-left-one-tenth
+                  {% else %}
+                    push-left-half-tenth
+                  {% endif %} 
+                lap--push-left-padding
+              "> 
+                {%- if article.image -%}
+                  {%- liquid
+                    if section.index == 1 and forloop.index <= 3
+                      assign preload = true
+                    else
+                      assign preload = false
+                    endif
+                    render 'lazy-image', image: article.image, alt: article.title, ratio: 0.75, sizes: sizes, preload: preload
+                  -%}
+                {%- else -%}
+                  <span class="onboarding-svg section--image-text--item__image onboarding-background">
+                    {{ 'image' | placeholder_svg_tag }}
+                  </span>
+                {%- endif -%}
+              </a>
+            {%- endfor -%}
+
+          {%- else -%}
+
+            {%- for i in (1..post_limit) -%}
+              <div
+                class="blog-item__image css-slide
+                  three-tenths lap--smart-width palm--smart-width 
+                  {% if forloop.first %}
+                    push-left-one-tenth
+                  {% else %}
+                    push-left-half-tenth
+                  {% endif %} 
+                lap--push-left-padding
+              "> 
+                <span class="onboarding-svg section--image-text--item__image onboarding-background">
+                  {{ 'image' | placeholder_svg_tag }}
+                </span>
+              </div>
+            {%- endfor -%}
+
+          {%- endunless -%}
+
+      </div>  
+    {%- endif -%}
+
+    <div class="blog-slider__contents css-slides-container grid push-right-half-tenth lap--push-right-padding">
+
+      {%- unless section.settings.blog == blank -%}
+
+        {%- for article in blogs[section.settings.blog].articles limit: post_limit -%}
+          <div class="blog-item__content css-slide
+              three-tenths lap--smart-width palm--smart-width 
+              {% if forloop.first %}
+                push-left-one-tenth
+              {% else %}
+                push-left-half-tenth
+              {% endif %} 
+            lap--push-left-padding
+          " data-index="{{ forloop.index0 }}"> 
+
+            {%- for block in section.blocks -%}
+
+              {%- case block.type -%}
+
+                {%- when 'title' -%}
+                  <a class="blog-item__title-holder h4" href="{{ article.url | escape }}" title="{{ article.title }}">
+                    <span class="blog-item__title">{{ article.title }}</span>
+                  </a>
+
+                {%- when 'summary' -%}
+                  <span class="blog-item__excerpt">
+                    {%- liquid
+                      if article.excerpt.size > 0
+                        echo article.excerpt
+                      else
+                        echo article.content | strip_html | truncatewords: 15, "..."
+                      endif
+                    -%}
+                  </span>
+
+                {%- when 'info' -%}
+                  <div class="blog-item__meta">
+                    {%- if block.settings.show_author -%}
+                      <span class="blog-item__author">{{ article.author | escape }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.show_date -%}
+                      <span class="blog-item__date">{{ article.published_at | date: date_format }}</span>
+                    {%- endif -%}
+                  </div>
+
+                {%- when 'link' -%} 
+                  <div class="blog-item__more">
+                    <a href="{{ article.url | escape }}" title="{{ 'blog.grid.read_more_label' | t }}" class="button button--underline">
+                      {{ 'blog.grid.read_more_label' | t }}
+                      <span class="svg svg__arrow" aria-hidden="true">{% render 'theme-symbols', icon: 'arrow-right' %}</span>
+                    </a>
+                  </div>
+
+              {%- endcase -%}
+
+            {%- endfor -%}
+
+          </div>
+        {%- endfor -%}
+
+      {%- else -%}
+
+        {%- for i in (1..post_limit) -%}
+          <div class="blog-item__content css-slide
+            three-tenths lap--smart-width palm--smart-width 
+            {% if forloop.first %}
+              push-left-one-tenth
+            {% else %}
+              push-left-half-tenth
+            {% endif %} 
+          lap--push-left-padding
+          "> 
+            <a class="blog-item__title-holder h4">
+              <span class="blog-item__title">{{ 'general.onboarding.article_title' | t }}</span>
+            </a>
+            <div class="blog-item__meta">
+              <span class="blog-item__date">{{ 'Feb 25 2020' | date: date_format }}</span>
+            </div>
+          </div>
+        {%- endfor -%}
+
+      {%- endunless -%}
+
+    </div>
+
+  {%- else -%}
+  <span class="no-content-message text-size--larger push-left-one-tenth lap--push-left-padding">
+    {{ 'blog.grid.no_articles_text' | t }}
+  </span>
+  {%- endif -%}
+
+</css-slider>
+
+{%- if section.settings.show_view_all -%}
+  <div class="view-all h2 push-left-one-tenth lap--push-left-padding">
+    <a class="button button--underline" href="{{ blogs[section.settings.blog].url }}" title="{{ 'blog.view_all_articles' | t }}">
+      {{ 'blog.view_all_articles' | t }}
+      <span class="svg svg__arrow" aria-hidden="true">{%- render 'theme-symbols', icon: 'arrow-right' -%}</span>
+    </a>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "t:sections.blog-posts.name",
+    "class": "mount-css-slider no-overflow section-w-margin",
+    "blocks": [
+      {
+        "type": "title",
+        "name": "t:sections.blog-posts.blocks.title.name",
+        "limit": 1
+      },
+      {
+        "type": "info",
+        "name": "t:sections.blog-posts.blocks.info.name",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_date",
+            "label": "t:sections.blog-posts.blocks.info.settings.show_date.label",
+            "default": true
+          },
+          {
+            "type": "checkbox",
+            "id": "show_author",
+            "label": "t:sections.blog-posts.blocks.info.settings.show_author.label",
+            "default": false
+          }
+        ]
+      },
+      {
+        "type": "summary",
+        "name": "t:sections.blog-posts.blocks.summary.name",
+        "limit": 1
+      },
+      {
+        "type": "link",
+        "name": "t:sections.blog-posts.blocks.link.name",
+        "limit": 1
+      }
+    ],
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "t:sections.blog-posts.settings.title.label",
+        "default": "Latest Articles"
+      },
+      {
+        "type": "blog",
+        "id": "blog",
+        "label": "t:sections.blog-posts.settings.blog.label"
+      },
+      {
+        "type": "range",
+        "id": "post_limit",
+        "label": "t:sections.blog-posts.settings.post_limit.label",
+        "min": 3,
+        "max": 6,
+        "step": 1,
+        "default": 4
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_image",
+        "label": "t:sections.blog-posts.settings.show_image.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_view_all",
+        "label": "t:sections.blog-posts.settings.show_view_all.label",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "t:sections.refactor_words.seo.name"
+      },
+      {
+        "type": "select",
+        "id": "seo_h_tag",
+        "label": "t:sections.refactor_words.seo.label",
+        "info": "t:sections.refactor_words.seo.info",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          }
+        ],
+        "default": "h2"
+      }
+    ],    
+    "presets": [
+      {
+        "name": "t:sections.blog-posts.presets.name",
+        "blocks": [
+          {"type": "info"},
+          {"type": "title"}
+        ]
+      }
+    ],
+    "disabled_on": {
+      "groups": ["header"]
+    }
+  }
+{% endschema %}

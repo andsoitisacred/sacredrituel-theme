@@ -1,0 +1,15 @@
+<div class="images-with-text-slider__title css-slide 
+  three-tenths lap--smart-width palm--smart-width
+  {% if first %} 
+    push-left-one-tenth lap--push-left-padding
+  {% else %} 
+    push-left-half-tenth lap--push-left-padding
+  {% endif %}
+"
+  {{ shopify_attributes }}
+  data-index="{{ index }}"
+>
+  {%- if heading != blank -%}
+    <h3 class="{% unless heading_type == 'body' %} h3 {% endunless %}">{{ heading | escape }}</h3>
+  {%- endif -%}
+</div>

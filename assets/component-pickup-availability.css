@@ -1,0 +1,151 @@
+@media screen and (min-width: 1365px) {
+  .store-availabilities-modal__variant-title {
+    font-size: calc(16px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.1;
+  }
+}
+@media screen and (min-width: 1023px) and (max-width: 1365px) {
+  .store-availabilities-modal__variant-title {
+    font-size: calc(16px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.1;
+  }
+}
+@media screen and (min-width: 599px) and (max-width: 1023px) {
+  .store-availabilities-modal__variant-title {
+    font-size: calc(16px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.1;
+  }
+}
+@media screen and (max-width: 599px) {
+  .store-availabilities-modal__variant-title {
+    font-size: calc(14px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.1;
+  }
+}
+
+pickup-availability {
+  margin-top: 2.5em;
+  display: block;
+}
+product-form + pickup-availability {
+  margin-top: 1em;
+}
+pickup-availability:empty {
+  display: none;
+}
+pickup-availability-preview {
+  border: 1px solid rgba(var(--color-text-rgb), 0.12);
+  padding: 1.5em 1em;
+  display: block;
+}
+
+.store-availability-heading {
+  margin-top: 0;
+  border-bottom: 1px solid rgba(var(--color-text-rgb), 0.12);
+  padding-bottom: 32px;
+  margin-bottom: 32px;
+}
+.store-availability-heading .title {
+  margin-bottom: 0;
+  display: block;
+}
+.store-availability-information {
+  display: flex;
+  text-align: left;
+}
+.store-availability-information-container {
+  margin-inline-start: 5px;
+}
+.store-availability-information__title {
+  margin-bottom: 0.5em;
+}
+.store-availability-information__stock {
+  margin-bottom: 0.5em;
+}
+.store-availability-information__stores {
+  margin-top: 1em;
+  margin-bottom: 0;
+}
+.store-availability-information__stores a {
+  border-bottom: 1px solid;
+}
+.store-availability-information__link {
+  color: var(--color-text);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.store-availability-list__stock .icon {
+  margin: 6px 12px -1px 0 !important;
+}
+.store-availability-container .icon {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  margin: 7px 4px 0;
+}
+.store-availability-container .icon-in-stock path {
+  fill: #00730B;
+}
+.store-availability-container .icon-out-of-stock path {
+  fill: #DD2200;
+}
+
+#StoreAvailabilityModal .title {
+  line-height: 1.1;
+  font-weight: var(--font-weight-body-bold);
+}
+
+.store-availability-list__item {
+  padding-bottom: 16px;
+  list-style: none;
+}
+.store-availability-list__item:after {
+  content: "";
+  display: block;
+  margin: 32px 0 16px 0;
+  border-bottom: 1px solid rgba(var(--color-text-rgb), 0.12);
+}
+.store-availability-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5em;
+}
+.store-availability-list-header__location, .store-availability-list-header__distance {
+  margin-bottom: 0;
+}
+.store-availability-list__stock {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  display: block;
+}
+.store-availability-list__address, .store-availability-list__phone, .store-availability-list__invalid {
+  line-height: 1.5;
+  margin-inline-start: 25px;
+}
+.store-availability-list__address p {
+  margin-bottom: 0;
+}
+.store-availability-list__phone {
+  margin-bottom: 0;
+}
+.store-availability-list__invalid .icon {
+  width: 19px;
+  height: 19px;
+  position: relative;
+  top: 5px;
+}
+
+.store-availabilities-modal__variant-title {
+  color: rgba(var(--color-text-rgb), 0.66);
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+.store-availabilities-modal__variant-title span:not(:last-child):after {
+  content: " / ";
+}
+
+body[data-single-variant] .store-availabilities-modal__variant-title {
+  display: none;
+}

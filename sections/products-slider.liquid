@@ -1,0 +1,79 @@
+{%- if section.settings.title != blank -%}
+  <div class="section-header grid-item push-left-one-tenth lap--push-left-padding">
+    <h2 class="section-header__title h4">{{ section.settings.title | escape }}</h2>
+  </div>
+{%- endif -%}
+
+{%- liquid
+  echo '<css-slider class="css-slider css-slider--snapping products-slider" id="css-slider-' | append: section.id | append : '" data-navigation-class="ten-tenths lap--twelve-tenths push-left-one-tenth lap--push-left-padding">'
+    echo '<div class="css-slides-container grid">'
+      if collections[section.settings.collection].products.size > 0 
+        assign sizes = 'sizes="(max-width: 599px) calc(100vw - 90px), (max-width: 1023px) calc(50vw - 80px), 25vw"'
+        for product in collections[section.settings.collection].products limit: section.settings.products_number
+          assign css_class = 'css-slide three-tenths lap--smart-width palm--smart-width '
+          if forloop.first 
+            assign css_class = css_class | append: 'push-left-one-tenth lap--push-left-padding'
+          else 
+            assign css_class = css_class | append: 'push-left-half-tenth lap--push-left-padding'
+          endif
+          render 'product-item', product: product, css_class: css_class, index: forloop.index0, sizes: sizes
+        endfor
+      else
+        if section.settings.collection == blank
+          for i in (1..section.settings.products_number)
+            assign css_class = 'css-slide three-tenths lap--smart-width palm--smart-width '
+            if forloop.first 
+              assign css_class = css_class | append: 'push-left-one-tenth lap--push-left-padding'
+            else 
+              assign css_class = css_class | append: 'push-left-half-tenth lap--push-left-padding'
+            endif
+            assign image_index = forloop.index | modulo: 6 | plus: 1
+            render 'product-item-blank', css_class: css_class, index: forloop.index0, image_index: image_index
+          endfor
+        else 
+          echo '<p class="no-content-message text-size--larger push-left-one-tenth lap--push-left-padding">'
+            echo 'collections.no_products' | t
+          echo '</p>'
+        endif
+      endif
+    echo '</div>'
+  echo '</css-slider>'
+-%}
+
+{% schema %}
+  {
+    "name": "t:sections.highlight-extra-words.products-slider.name",
+    "class": "mount-css-slider mount-collection section-w-margin",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "t:sections.highlight-extra-words.heading.label",
+        "default": "Products slider"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "t:sections.main-list-collections.blocks.collection.settings.collection.label"
+      },
+      {
+        "type": "range",
+        "id": "products_number",
+        "label": "t:sections.featured-collection.settings.products_number.label",
+        "min": 3,
+        "max": 9,
+        "step": 1,
+        "default": 3
+      }
+    ],
+    "presets": [
+      {
+        "name": "t:sections.highlight-extra-words.products-slider.name"
+      }
+    ],
+    "disabled_on": {
+      "groups": ["header"],
+      "templates": ["password"]
+    }
+  }
+{% endschema %}

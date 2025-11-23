@@ -1,0 +1,65 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "no_margins": false,
+        "reduced_margins": false
+      }
+    },
+    "a1cde13a-da74-4cb9-b88f-ab814f814fe0": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<button class=\"button--solid klaviyo_form_trigger\">Join Early Access</button>\n<script type=\"text/javascript\">\n\tdocument.querySelector('.klaviyo_form_trigger').addEventListener('click', function (){\n\t\twindow._klOnsite = window._klOnsite || []; \n\t\twindow._klOnsite.push(['openForm', 'U4KLfh']);\n\t});\n</script>",
+        "full_width": false
+      }
+    },
+    "14cea9bc-b0c0-438a-9b7f-bd8ad3e4c744": {
+      "type": "rich-text",
+      "blocks": {
+        "template--21573285806383__14cea9bc-b0c0-438a-9b7f-bd8ad3e4c744-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "What you'll get by joining",
+            "heading_size": "h4"
+          }
+        },
+        "template--21573285806383__14cea9bc-b0c0-438a-9b7f-bd8ad3e4c744-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<ul><li><strong>Exclusive Discounts:</strong> As a member of our Let's Text community, you'll have early access to special discounts that are only available to our loyal customers. Save big on your favorite natural skincare products!</li><li><strong>Limited Offers & Giveaways:</strong> We often have limited-time offers that are only available to our community members. Don't miss out on these amazing deals!</li><li><strong>Gift Wrapped Bundles</strong>: Treat yourself or someone special with our beautifully gift wrapped bundles. These make the perfect gift for any occasion!</li><li><strong>Recipes and Wellness Tips</strong>: We believe that true beauty starts from within. That's why we'll share with you our favorite recipes and wellness tips to help you look and feel your best.</li><li><strong>Exclusive Content</strong>: Gain access to exclusive content created just for our community members. From skincare routines to self-care practices, we'll provide you with valuable information to enhance your skincare experience.</li></ul><p>Don't miss out on these incredible benefits! Join and be a part of something Sacred!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--21573285806383__14cea9bc-b0c0-438a-9b7f-bd8ad3e4c744-heading-1",
+        "template--21573285806383__14cea9bc-b0c0-438a-9b7f-bd8ad3e4c744-text-1"
+      ],
+      "settings": {
+        "text_alignment": "left"
+      }
+    },
+    "4f382e56-3894-4628-8fb2-19f3bb8c3b64": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<button class=\"button--solid klaviyo_form_trigger\">Join Early Access</button>\n<script type=\"text/javascript\">\n\tdocument.querySelector('.klaviyo_form_trigger').addEventListener('click', function (){\n\t\twindow._klOnsite = window._klOnsite || []; \n\t\twindow._klOnsite.push(['openForm', 'U4KLfh']);\n\t});\n</script>",
+        "full_width": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "a1cde13a-da74-4cb9-b88f-ab814f814fe0",
+    "14cea9bc-b0c0-438a-9b7f-bd8ad3e4c744",
+    "4f382e56-3894-4628-8fb2-19f3bb8c3b64"
+  ]
+}

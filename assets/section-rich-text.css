@@ -1,0 +1,160 @@
+.mount-rich-text .section-header__title.h4 {
+  margin-bottom: 0;
+}
+
+.rich-text {
+  display: flex;
+  flex-direction: column;
+}
+.rich-text > div {
+  position: relative;
+}
+.rich-text--left-align {
+  align-items: flex-start;
+}
+.rich-text--center-align {
+  align-items: center;
+  text-align: center;
+}
+.rich-text--center-align > div {
+  max-width: 960px;
+}
+.rich-text--right-align {
+  align-items: flex-end;
+}
+html[dir=rtl] .rich-text--right-align {
+  text-align: left;
+}
+html[dir=ltr] .rich-text--right-align {
+  text-align: right;
+}
+@media screen and (min-width: 1365px) {
+  .rich-text--regular-size .rich-text__content {
+    font-size: calc(28px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.3;
+  }
+}
+@media screen and (min-width: 1023px) and (max-width: 1365px) {
+  .rich-text--regular-size .rich-text__content {
+    font-size: calc(26px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.3;
+  }
+}
+@media screen and (min-width: 599px) and (max-width: 1023px) {
+  .rich-text--regular-size .rich-text__content {
+    font-size: calc(24px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.3;
+  }
+}
+@media screen and (max-width: 599px) {
+  .rich-text--regular-size .rich-text__content {
+    font-size: calc(22px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.3;
+  }
+}
+.rich-text--large-size .rich-text__content {
+  font-family: var(--font-stack-headings);
+  font-weight: var(--font-weight-headings);
+  font-style: var(--font-style-headings);
+}
+@media screen and (min-width: 1365px) {
+  .rich-text--large-size .rich-text__content {
+    font-size: calc(60px / 36 * var(--base-headings-size) + 0px);
+    line-height: 1.2;
+  }
+}
+@media screen and (min-width: 1023px) and (max-width: 1365px) {
+  .rich-text--large-size .rich-text__content {
+    font-size: calc(50px / 36 * var(--base-headings-size) + 0px);
+    line-height: 1.2;
+  }
+}
+@media screen and (min-width: 599px) and (max-width: 1023px) {
+  .rich-text--large-size .rich-text__content {
+    font-size: calc(38px / 36 * var(--base-headings-size) + 0px);
+    line-height: 1.2;
+  }
+}
+@media screen and (max-width: 599px) {
+  .rich-text--large-size .rich-text__content {
+    font-size: calc(30px / 36 * var(--base-headings-size) + 0px);
+    line-height: 1.2;
+  }
+}
+.rich-text--large-size .rich-text__content a {
+  border-bottom: 3px solid;
+}
+.rich-text--extra-size .rich-text__content {
+  font-family: var(--font-stack-headings);
+  font-weight: var(--font-weight-headings);
+  font-style: var(--font-style-headings);
+}
+@media screen and (min-width: 1365px) {
+  .rich-text--extra-size .rich-text__content {
+    font-size: calc(100px / 36 * var(--base-headings-size) + 0px);
+    line-height: 1.1;
+  }
+}
+@media screen and (min-width: 1023px) and (max-width: 1365px) {
+  .rich-text--extra-size .rich-text__content {
+    font-size: calc(80px / 36 * var(--base-headings-size) + 0px);
+    line-height: 1.1;
+  }
+}
+@media screen and (min-width: 599px) and (max-width: 1023px) {
+  .rich-text--extra-size .rich-text__content {
+    font-size: calc(60px / 36 * var(--base-headings-size) + 0px);
+    line-height: 1.1;
+  }
+}
+@media screen and (max-width: 599px) {
+  .rich-text--extra-size .rich-text__content {
+    font-size: calc(40px / 36 * var(--base-headings-size) + 0px);
+    line-height: 1.1;
+  }
+}
+.rich-text--extra-size .rich-text__content a {
+  border-bottom: 3px solid;
+}
+.rich-text--has-title .rich-text__content {
+  margin-top: 1em;
+}
+.rich-text--has-button .rich-text__content {
+  margin-bottom: 1em;
+}
+.rich-text__content {
+  overflow: visible !important;
+}
+.rich-text__images {
+  position: relative;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  max-height: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  opacity: 0.75;
+  pointer-events: none;
+}
+.rich-text__images:empty {
+  display: none;
+}
+@media screen and (max-width: 599px) {
+  .rich-text__images {
+    z-index: -1;
+  }
+}
+
+.rich-text-blocks > a:not(:last-child),
+.rich-text-blocks > div:not(:last-child) {
+  margin-bottom: 2em;
+}
+.rich-text-blocks > .h3:not(:last-child) {
+  margin-bottom: 1em;
+}
+.rich-text-blocks > .h4:not(:last-child) {
+  margin-bottom: 1.5em;
+}

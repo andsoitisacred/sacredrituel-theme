@@ -1,0 +1,119 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "t:sections.refactor_words.labels.footer_group",
+  "sections": {
+    "image_A8F6xA": {
+      "type": "image",
+      "name": "t:sections.image.name",
+      "settings": {
+        "title": "Radiance Is Personal. Let’s Reveal Yours...",
+        "image": "shopify://shop_images/sacred-rituel-skin-quiz-16x9-1080.jpg",
+        "image_mobile": "shopify://shop_images/sacred-rituel-skin-quiz.gif",
+        "link": "shopify://pages/skinquiz",
+        "seo_h_tag": "h2"
+      }
+    },
+    "67198159-8564-4fc1-84ea-319aad73721e": {
+      "type": "products-slider",
+      "settings": {
+        "title": "All Day Glow Essentials",
+        "collection": "just-dropped",
+        "products_number": 3
+      }
+    },
+    "text-columns-with-icons": {
+      "type": "text-columns-with-icons",
+      "blocks": {
+        "dc0e2351-9175-4503-9568-f4f102cbc798": {
+          "type": "text-icon",
+          "settings": {
+            "title": "Free Shipping on orders over $90",
+            "body": "<p>FREE Shipping on orders over $90 and $7 flat rate on all other orders (USA).</p><p>See our <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">shipping policy</a>.</p>",
+            "select_icon": "delivery-time"
+          }
+        },
+        "00665f2b-5814-4213-853b-3b6c73955a4a": {
+          "type": "text-icon",
+          "settings": {
+            "title": "Auto Delivery w/ a Subscription",
+            "body": "<p>Ensure you ALWAYS have a steady stream of SACRED RITUEL on hand!</p><p>Details in our <a href=\"/pages/subscription-auto-delivery\" title=\"SACRED RITUEL Subscriptions\">subscriptions page</a>. </p>",
+            "select_icon": "open-box"
+          }
+        },
+        "913a05c0-114a-4fb7-ba39-047df22f46cf": {
+          "type": "text-icon",
+          "settings": {
+            "title": "No Hassle 30-day Returns",
+            "body": "<p>Try SACRED RITUEL for 30 days and send it back for a full refund if it doesn't completely meet your expectations. </p><p>Details in our <a href=\"/policies/refund-policy\" title=\"Refund Policy\">return policy</a>.</p>",
+            "select_icon": "time-limit"
+          }
+        }
+      },
+      "block_order": [
+        "dc0e2351-9175-4503-9568-f4f102cbc798",
+        "00665f2b-5814-4213-853b-3b6c73955a4a",
+        "913a05c0-114a-4fb7-ba39-047df22f46cf"
+      ],
+      "settings": {}
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "83a51fca-3419-4673-9613-9505c11e0d29": {
+          "type": "text",
+          "settings": {
+            "title": "SACRED RITUEL is",
+            "content": "<p>High potency all organic skincare</p>"
+          }
+        },
+        "657d0481-8a40-4d4d-a64c-1a3264f6de2a": {
+          "type": "menus",
+          "settings": {
+            "title_1": "LINKS",
+            "menu_1": "footer",
+            "title_2": "Menu",
+            "menu_2": ""
+          }
+        },
+        "cb26e229-0f34-44da-a191-022d03cc56e4": {
+          "type": "newsletter",
+          "settings": {
+            "title": "Newsletter",
+            "text": "<p>Stay connected on wellness tips, exclusive sales and events! </p>"
+          }
+        }
+      },
+      "block_order": [
+        "83a51fca-3419-4673-9613-9505c11e0d29",
+        "657d0481-8a40-4d4d-a64c-1a3264f6de2a",
+        "cb26e229-0f34-44da-a191-022d03cc56e4"
+      ],
+      "custom_css": [
+        ".main-footer {padding-top: 16px; padding-bottom: 16px;}"
+      ],
+      "settings": {
+        "show_payment_icons": true,
+        "show_locale_selector": true,
+        "show_country_selector": true,
+        "enable_follow_on_shop": true,
+        "bgcolor": "{{ shop.brand.colors.primary[0].background }}",
+        "txtcolor": "#f7f3ed"
+      }
+    }
+  },
+  "order": [
+    "image_A8F6xA",
+    "67198159-8564-4fc1-84ea-319aad73721e",
+    "text-columns-with-icons",
+    "footer"
+  ]
+}

@@ -1,0 +1,70 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "no_margins": false,
+        "reduced_margins": false
+      }
+    },
+    "toggles_with_icons_TDmxwK": {
+      "type": "toggles-with-icons",
+      "blocks": {
+        "text_Ee3CFV": {
+          "type": "text",
+          "settings": {
+            "title": "Who is eligible for referral rewards?",
+            "body": "<p>Rewards are sent via email/text 5 days after a new customer places their first order using your link or email referral code.</p>",
+            "select_icon": "none"
+          }
+        },
+        "text_hhUhq3": {
+          "type": "text",
+          "settings": {
+            "title": "Can I send myself a referral?",
+            "body": "<p>In order to keep the program generous and sustainable for everyone—and focused on  sharing with friends and family we do not allow self-referral. <br/><br/><strong>What counts as a self-referral?</strong><br/>Any order using your own email, phone number, payment method, or shipping address.</p>",
+            "select_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "text_Ee3CFV",
+        "text_hhUhq3"
+      ],
+      "name": "t:sections.highlight-extra-words.toggles-with-icons.name",
+      "settings": {
+        "title": "Program Policy & Rules",
+        "seo_h_tag": "span"
+      }
+    },
+    "1757377734e61611de": {
+      "type": "apps",
+      "blocks": {
+        "okendo_referral_widget_HTfRWj": {
+          "type": "shopify://apps/okendo/blocks/referral-widget/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "okendo_referral_widget_HTfRWj"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "toggles_with_icons_TDmxwK",
+    "1757377734e61611de"
+  ]
+}

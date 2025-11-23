@@ -1,0 +1,20 @@
+<div class="css-slide 
+  three-tenths lap--smart-width palm--smart-width
+  {% if first %} 
+    push-left-one-tenth lap--push-left-padding
+  {% else %} 
+    push-left-half-tenth lap--push-left-padding
+  {% endif %}
+">
+  {%- if image -%}
+    {%- assign sizes = 'sizes="(max-width: 599px) calc(100vw - 90px), (max-width: 1023px) calc(50vw - 80px), 25vw"' -%}
+    {%- render 'lazy-image', image: image, ratio: aspect_ratio, sizes: sizes, preload: preload -%}
+  {%- elsif onboarding -%}
+    <span class="onboarding-svg" {% unless aspect_ratio == blank %} style="padding-top: {{ 100 | divided_by: aspect_ratio }}%" {% endunless %}>
+      {{ 'image' | placeholder_svg_tag }}
+    </span>
+  {%- endif -%}
+  {%- if caption -%}
+    <div class="images-with-text-slider__description rte">{{ caption }}</div>
+  {%- endif -%}
+</div>

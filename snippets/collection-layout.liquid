@@ -1,0 +1,310 @@
+{%- capture promotional_block -%}
+  <h3 class="product-item__text h3 collection-{{ layout }}--item__text rte">
+    {%- if promotional_block_title != blank -%}
+      <div class="rte" style="margin-bottom: 1.5em">{{ promotional_block_title }}</div>
+    {%- endif -%}
+    {%- if promotional_block_button_label != blank and promotional_block_button_link != blank -%}
+      <a class="button button--underline" href="{{ promotional_block_button_link }}" title="{{ promotional_block_button_label | escape }}">{{ promotional_block_button_label | escape }}<span aria-hidden="true" class="svg svg__arrow">{% render 'theme-symbols', icon: 'arrow-right' %}</span></a>
+    {%- endif -%}
+  </h3>
+{%- endcapture -%}
+
+{{ 'component-collection-layout.css' | asset_url | stylesheet_tag }}
+
+<div class="collection collection--{{ layout }}
+  {% if layout == 'regular' %} push-left-half-tenth {% endif %}
+" data-number="{{ products.size | at_most: limit | at_most: 3 }}">
+
+  {%- liquid 
+
+    if products != blank
+
+      for product in products limit: limit
+
+        assign scroll_speed = '0'
+
+        if layout == 'asymmetrical'
+
+          assign index = forloop.index0
+          if show_promotional_block and forloop.index0 > 3
+            assign index = forloop.index 
+          endif
+
+          assign item_number = index | modulo: 11
+          assign item_remaining = forloop.length | minus: forloop.index
+          
+          assign push_class = ''
+
+          if index == 0
+            if item_remaining > 1
+              assign push_class = 'push-top-two-tenths'
+            elsif item_remaining > 0 or item_number == 8
+              assign push_class = 'push-top-one-tenth'
+            endif
+          elsif index == 1
+            if item_remaining > 0 
+              assign push_class = 'push-top-one-tenth'
+            endif
+          elsif index == 2
+            assign push_class = 'push-top-half-tenth'
+          else
+            if item_number == 0
+              if item_remaining > 1
+                assign push_class = 'push-top-two-tenths'
+              elsif item_remaning > 0
+                assign push_class = 'push-top-one-plus-tenth'
+              else
+                assign push_class = 'push-top-one-tenth'
+              endif
+            elsif item_number == 1
+              if item_remaining > 0 
+                assign push_class = 'push-top-one-tenth'
+              endif
+            elsif item_number == 3
+              if item_remaining > 0 
+                assign push_class = 'push-top-one-tenth'
+              endif
+            elsif item_number == 5 or item_number == 8
+              if item_remaining > 1
+                assign push_class = 'push-top-two-tenths'
+              elsif item_remaining > 0
+                assign push_class = 'push-top-two-tenths'
+              else
+                assign push_class = 'push-top-two-tenth'
+              endif
+            elsif item_number == 6 
+              if item_remaining > 0 
+                assign push_class = 'push-top-one-tenth'
+              else
+                assign push_class = 'push-top-half-tenth'
+              endif
+            else item_number == 9 
+              if item_remaining > 1
+                assign push_class = 'push-top-two-tenths'
+              else
+                assign push_class = 'push-top-one-tenth'
+              endif
+            endif 
+          endif 
+          
+          if item_number == 0
+            assign css_class = 'product-item--0 two-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--six-plus-tenths lap--push-left-none lap--push-top-none'
+            assign sizes = 'sizes="(max-width: 599px) 46vw, (max-width: 1023px) 55vw, 17vw"'
+            assign scroll_speed = "-.35"
+          elsif item_number == 1
+            assign css_class = 'product-item--1 four-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--four-plus-tenths lap--push-top-one-tenth'
+            assign sizes = 'sizes="(max-width: 599px) 46vw, (max-width: 1023px) 38vw, 34vw"'
+          elsif item_number == 2
+            assign css_class = 'product-item--2 two-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--four-plus-tenths lap--push-left-none lap--push-top-one-tenth'
+            assign sizes = 'sizes="(max-width: 599px) 46vw, (max-width: 1023px) 38vw, 17vw"'
+            assign scroll_speed = ".35"
+          elsif item_number == 3
+            assign css_class = 'product-item--3 three-tenths push-left-two-tenths'
+            assign mobile_class = 'lap--six-plus-tenths lap--push-left-one-tenth lap--push-top-none'
+            assign sizes = 'sizes="(max-width: 599px) 46vw, (max-width: 1023px) 55vw, 25vw"'
+            if item_remaining > 1
+              assign scroll_speed = '-.2'
+            endif 
+          elsif item_number == 4
+            assign css_class = 'product-item--4 three-tenths push-left-two-tenths'
+            assign mobile_class = 'lap--seven-tenths'
+            assign sizes = 'sizes="(max-width: 599px) 46vw, (max-width: 1023px) 59vw, 25vw"'
+            if item_remaining == 0
+              assign scroll_speed = '.2'
+            endif 
+          elsif item_number == 5
+            assign css_class = 'product-item--5 two-tenths push-left-two-tenths'
+            assign mobile_class = 'lap--six-plus-tenths lap--push-left-none lap--push-top-none'
+            assign sizes = 'sizes="(max-width: 599px) 46vw, (max-width: 1023px) 55vw, 17vw"'
+            if item_remaining > 2
+              assign scroll_speed = "-.35"
+            endif
+          elsif item_number == 6
+            assign css_class = 'product-item--6 three-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--four-plus-tenths lap--push-top-one-tenth'
+            assign sizes = 'sizes="(max-width: 599px) 46vw, (max-width: 1023px) 38vw, 25vw"'
+            assign scroll_speed = ".15"
+          elsif item_number == 7
+            assign css_class = 'product-item--7 two-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--five-plus-tenths lap--push-left-none lap--push-top-one-tenth'
+            assign sizes = 'sizes="(max-width: 599px) 46vw, (max-width: 1023px) 46vw, 17vw"'
+            assign scroll_speed = ".35"
+          elsif item_number == 8
+            assign css_class = 'product-item--8 two-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--five-plus-tenths lap--push-top-none'
+            assign sizes = 'sizes="(max-width: 599px) 46vw, (max-width: 1023px) 46vw, 17vw"'
+            if item_remaining > 2
+              assign scroll_speed = "-.35"
+            endif
+          elsif item_number == 9
+            assign css_class ='product-item--9 three-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--six-plus-tenths lap--push-left-none lap--push-top-none'
+            assign sizes = 'sizes="(max-width: 599px) 46vw, (max-width: 1023px) 55vw, 25vw"'
+            if item_remaining == 0
+              assign scroll_speed = '.1'
+            endif 
+          elsif item_number == 10
+            assign css_class = 'product-item--10 two-tenths push-left-one-tenth'
+            assign mobile_class ='lap--four-plus-tenths lap--push-one-tenth lap--push-top-one-tenth'
+            assign sizes = 'sizes="(max-width: 599px) 46vw, (max-width: 1023px) 38vw, 17vw"'
+            assign scroll_speed = ".35"
+          endif
+
+          assign mobile_class = mobile_class | append: ' palm--five-plus-tenths'
+          assign item_number = forloop.index0 | modulo: 4
+          if item_number == 0 
+            assign mobile_class = mobile_class | append: ' palm--push-top-none palm--push-left-none'
+          elsif item_number == 1
+            assign mobile_class = mobile_class | append: ' palm--push-top-two-tenths palm--push-left-one-tenth'
+          elsif item_number == 2
+            assign mobile_class = mobile_class | append: ' palm--push-top-one-tenth palm--push-left-none'
+          elsif item_number == 3 
+            assign mobile_class = mobile_class | append: ' palm--push-top-none palm--push-left-one-tenth'
+          endif
+
+        else 
+
+          assign css_class = 'three-tenths product-tablet--five-plus-tenths push-left-half-tenth order-' | append: forloop.index
+          assign sizes = 'sizes="(max-width: 835px) calc(50vw - 50px), (max-width: 1023px) 33vw, 25vw"'
+
+        endif
+
+        if layout == 'asymmetrical' and forloop.index == 5 and show_promotional_block
+          echo '<div class="product-item product-promotional four-tenths lap--eight-tenths palm--full-width push-left-two-tenths palm--push-left-none">'
+          echo promotional_block
+          echo '</div>'
+        elsif layout == 'regular' and forloop.index == 4 and show_promotional_block
+          echo '<div class="product-item product-promotional three-tenths push-left-half-tenth" style="display:flex;align-items:center">'
+          echo promotional_block
+          echo '</div>'
+        endif
+
+        assign css_class = css_class | append: ' ' | append: push_class | append: ' ' | append: mobile_class
+
+        if template contains 'collection' or section.index == 1 
+          if forloop.index < 3
+            assign preload = true
+          else  
+            assign preload = false
+          endif
+        endif
+          render 'product-item', product: product, product_collection: collection, css_class: css_class, scroll_speed: scroll_speed, sizes: sizes, preload: preload, badges: true
+      
+      endfor 
+
+    else 
+
+      for i in (1..limit)
+
+        assign scroll_speed = '0'
+
+        if layout == 'asymmetrical'
+
+          assign index = forloop.index0
+          if show_promotional_block and forloop.index0 > 3
+            assign index = forloop.index 
+          endif
+
+          assign item_number = index | modulo: 11
+          assign item_remaining = forloop.length | minus: forloop.index
+          
+          assign push_class = ''
+          if item_number == 0 or item_number == 5 or item_number == 8
+            if item_remaining > 1
+              assign push_class = 'push-top-two-tenths'
+            elsif item_remaining > 0 or item_number == 8
+              assign push_class = 'push-top-one-tenth'
+            endif
+          elsif item_number == 1 or item_number == 3 or item_number == 6 or item_number == 9
+            if item_remaining > 0 
+              assign push_class = 'push-top-one-tenth'
+            endif
+          endif 
+
+          if item_number == 0
+            assign css_class = 'two-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--six-plus-tenths lap--push-left-none lap--push-top-none'
+            assign scroll_speed = "-.35"
+          elsif item_number == 1
+            assign css_class = 'four-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--four-plus-tenths lap--push-top-one-tenth'
+          elsif item_number == 2
+            assign css_class = 'two-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--four-plus-tenths lap--push-left-none lap--push-top-one-tenth'
+            assign scroll_speed = ".35"
+          elsif item_number == 3
+            assign css_class = 'three-tenths push-left-two-tenths'
+            assign mobile_class = 'lap--six-plus-tenths lap--push-left-one-tenth lap--push-top-none'
+            assign scroll_speed = '-.2'
+          elsif item_number == 4
+            assign css_class = 'three-tenths push-left-two-tenths'
+            assign mobile_class = 'lap--seven-tenths'
+          elsif item_number == 5
+            assign css_class = 'two-tenths push-left-two-tenths'
+            assign mobile_class = 'lap--six-plus-tenths lap--push-left-none lap--push-top-none'
+            assign scroll_speed = "-.35"
+          elsif item_number == 6
+            assign css_class = 'three-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--four-plus-tenths lap--push-top-one-tenth'
+          elsif item_number == 7
+            assign css_class = 'two-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--five-plus-tenths lap--push-left-none lap--push-top-one-tenth'
+            assign scroll_speed = ".35"
+          elsif item_number == 8
+            assign css_class = 'two-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--five-plus-tenths lap--push-top-none'
+            assign scroll_speed = "-.35"
+          elsif item_number == 9
+            assign css_class ='three-tenths push-left-one-tenth'
+            assign mobile_class = 'lap--six-plus-tenths lap--push-left-none lap--push-top-none'
+          elsif item_number == 10
+            assign css_class = 'two-tenths push-left-one-tenth'
+            assign mobile_class ='lap--four-plus-tenths lap--push-one-tenth lap--push-top-one-tenth'
+            assign scroll_speed = ".35"
+          endif
+
+          assign mobile_class = mobile_class | append: ' palm--five-plus-tenths'
+          assign item_number = forloop.index0 | modulo: 4
+          if item_number == 0 
+            assign mobile_class = mobile_class | append: ' palm--push-top-none palm--push-left-none'
+          elsif item_number == 1
+            assign mobile_class = mobile_class | append: ' palm--push-top-two-tenths palm--push-left-one-tenth'
+          elsif item_number == 2
+            assign mobile_class = mobile_class | append: ' palm--push-top-one-tenth palm--push-left-none'
+          elsif item_number == 3 
+            assign mobile_class = mobile_class | append: ' palm--push-top-none palm--push-left-one-tenth'
+          endif
+
+        else 
+
+          assign css_class = 'three-tenths product-tablet--five-plus-tenths push-left-half-tenth order-' | append: forloop.index
+
+        endif
+
+        if layout == 'asymmetrical' and forloop.index == 5 and show_promotional_block
+          echo '<div class="product-item product-promotional four-tenths lap--eight-tenths palm--full-width push-left-two-tenths palm--push-left-none">'
+          echo promotional_block
+          echo '</div>'
+        elsif layout == 'regular' and forloop.index == 4 and show_promotional_block
+          echo '<div class="product-item product-promotional three-tenths push-left-half-tenth" style="display:flex;align-items:center">'
+          echo promotional_block
+          echo '</div>'
+        endif
+
+        assign css_class = css_class | append: ' ' | append: push_class | append: ' ' | append: mobile_class
+        assign image_index = forloop.index | modulo: 6 | plus: 1
+        
+        unless product.tags contains 'hidden'    
+          render 'product-item-blank', css_class: css_class, scroll_speed: scroll_speed, image_index: image_index
+        endunless
+            
+      endfor
+
+    endif 
+
+  -%}
+
+</div>

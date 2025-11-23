@@ -1,0 +1,26 @@
+{{ 'component-cart.css' | asset_url | stylesheet_tag }}
+
+<div class="section-header five-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+  <h1 class="section-header__title h1">{{ 'cart.title' | t }}</h1>
+</div>
+
+<div class="grid five-tenths lap--full-width push-left-one-tenth lap--push-left-none" id="cart-page-form">
+  {%- if cart.item_count > 0 -%}
+    {%- render 'cart-form', type: 'page' -%}
+    {%- render 'cart-subtotal' -%}
+  {%- else -%}
+    <div class="rte">
+      <p>{{ 'cart.empty' | t }}</p>
+      <a href="/pages/natural-skincare-best-sellers" class="button button--solid button--align">
+        <span>{{ 'cart.continue_browsing' | t }}</span>
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.highlight-extra-words.cart-page.name",
+  "class": "section-w-margin section-w-mobile-padding"
+}
+{% endschema %}

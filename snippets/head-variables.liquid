@@ -1,0 +1,136 @@
+{%- assign headings_font = settings.headings_font -%}
+{%- assign body_font = settings.body_font -%}
+
+{%- unless headings_font.system? -%}
+  <link rel="preload" href="{{ headings_font | font_url }}" as="font" type="font/woff2" crossorigin>
+{%- endunless -%}
+
+{%- unless body_font.system? -%}
+  <link rel="preload" href="{{ body_font | font_url }}" as="font" type="font/woff2" crossorigin>
+{%- endunless -%}
+
+<style>
+
+  {%- liquid 
+
+    assign color_text = settings.color_text
+    assign color_text_red = color_text | color_extract: 'red'
+    assign color_text_red = 255 | minus: color_text_red
+    assign color_text_green = color_text | color_extract: 'green'
+    assign color_text_green = 255 | minus: color_text_green
+    assign color_text_blue = color_text | color_extract: 'blue'
+    assign color_text_blue = 255 | minus: color_text_blue
+
+    assign color_text_brightness = color_text | color_brightness 
+    if color_text_brightness > 150 
+      assign color_text_foreground = '#000' 
+    else 
+      assign color_text_foreground = '#fff' 
+    endif 
+
+    assign color_accent = settings.color_accent
+    assign color_accent_red = color_accent | color_extract: 'red'
+    assign color_accent_red = 255 | minus: color_accent_red
+    assign color_accent_green = color_accent | color_extract: 'green'
+    assign color_accent_green = 255 | minus: color_accent_green
+    assign color_accent_blue = color_accent | color_extract: 'blue'
+    assign color_accent_blue = 255 | minus: color_accent_blue
+
+    assign color_accent_brightness = color_accent | color_brightness 
+    if color_accent_brightness > 150 
+      assign color_accent_foreground = '#000' 
+    else 
+      assign color_accent_foreground = '#fff' 
+    endif 
+
+    assign color_background = settings.color_background
+    assign color_background_brightness = color_background | color_brightness 
+    if color_background_brightness > 150 
+      assign color_background_secondary = color_background | color_darken: 4
+    else
+      assign color_background_secondary = color_background | color_darken: 2
+    endif
+
+    if color_background_brightness < 250
+      assign borders_opacity = '.46'
+    else
+      assign borders_opacity = '.38'
+    endif
+
+    echo headings_font | font_face: font_display: 'swap'
+    assign headings_font_bold = headings_font | font_modify: 'weight', '+100' 
+
+    if headings_font_bold == blank 
+      assign headings_font_bold = headings_font | font_modify: 'weight', '700' 
+    endif 
+    echo headings_font_bold | font_face: font_display: 'swap'
+
+    echo body_font | font_face: font_display: 'swap'
+    assign body_font_bold = body_font | font_modify: 'weight', '+100' 
+
+    if body_font_bold == blank 
+      assign body_font_bold = body_font | font_modify: 'weight', '700' 
+    endif 
+    echo body_font_bold | font_face: font_display: 'swap' 
+
+  -%}
+
+  :root {
+
+    /* Color variables */
+
+    --color-text: {{ color_text }};
+    --color-text-rgb: {{ color_text | color_extract: 'red' }}, {{ color_text | color_extract: 'green' }}, {{ color_text | color_extract: 'blue' }};
+    --color-text-invert: {{ color_text | color_modify: 'red', color_text_red | color_modify: 'green', color_text_green | color_modify: 'blue', color_text_blue }};
+    --color-text-foreground: {{ color_text_foreground }};
+
+    --color-accent: {{ color_accent }};
+    --color-accent-invert: {{ color_accent | color_modify: 'red', color_accent_red | color_modify: 'green', color_accent_green | color_modify: 'blue', color_accent_blue }};
+    --color-accent-foreground: {{ color_accent_foreground }};
+
+    --color-background: {{ color_background }};
+    --color-background-secondary: {{ color_background_secondary }};
+    --color-background-rgb: {{ color_background | color_extract: 'red' }}, {{ color_background | color_extract: 'green' }}, {{ color_background | color_extract: 'blue' }};
+    --color-background-opacity: {{ color_background | color_modify: 'alpha', 0 }};
+    
+    --color-sales-price: {{ settings.color_sale_price }};
+
+    --color-borders-opacity: {{ borders_opacity }};
+
+    --color-body-text: {{ color_text }};
+    --color-body: {{ color_background }};
+    --color-bg: {{ color_background }};
+
+    /* Font variables */
+
+    --font-stack-headings: {{ headings_font.family }}, {{ headings_font.fallback_families }};
+    --font-weight-headings: {{ headings_font.weight }}; 
+    --font-weight-headings-bold: {% if headings_font_bold %} {{ headings_font_bold.weight }} {% else %} {{ headings_font.weight }} {% endif %}; 
+    --font-style-headings: {{ headings_font.style }};
+
+    --font-stack-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+    --font-weight-body: {{ body_font.weight }};
+    --font-weight-body-bold: {% if body_font_bold %} {{ body_font_bold.weight }} {% else %} {{ body_font.weight }} {% endif %}; 
+    --font-style-body: {{ body_font.style }};
+
+    --base-headings-size: {{ settings.headings_size }};
+    --base-body-size: {{ settings.body_size }};
+
+    /* Layout */
+    --margin-top-base: {{ settings.layout_top_space }}px;
+    --margin-sections-base: {{ settings.layout_section_space }}vh;
+
+  }
+
+  select, .regular-select-inner, .facets__summary {
+    background-image: url("data:image/svg+xml,%0A%3Csvg width='13' height='12' viewBox='0 0 13 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.5563 6.06934L6.66733 11.9583L0.77832 6.06934H7.20269H12.5563Z' fill='{{ color_text | url_encode }}'/%3E%3C/svg%3E%0A") !important;
+  }
+
+  .star-rating__stars {
+    background-image: url('data:image/svg+xml;utf8,<svg width="20" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m7 0 1.572 4.837h5.085l-4.114 2.99 1.572 4.836L7 9.673l-4.114 2.99 1.571-4.837-4.114-2.99h5.085L7 0Z" stroke="{{ color_text | url_encode }}" stroke-width="1"/></svg>');
+  }
+  .star-rating__stars-active {
+    background-image: url('data:image/svg+xml;utf8,<svg width="20" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m7 0 1.572 4.837h5.085l-4.114 2.99 1.572 4.836L7 9.673l-4.114 2.99 1.571-4.837-4.114-2.99h5.085L7 0Z" fill="{{ color_text | url_encode }}" stroke-width="0"/></svg>');
+  }
+
+</style>

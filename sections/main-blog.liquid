@@ -1,0 +1,258 @@
+{{ 'component-blog-item.css' | asset_url | stylesheet_tag }}
+
+<div class="section-header ten-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+  <h1 class="section-header__title h1">
+
+    <span class="five-tenths">
+      {{ blog.title | escape }}
+    </span>
+
+    {%- if section.settings.enable_tags and blog.all_tags.size > 0 -%}
+      <label for="tagged-with" class="visually-hidden">{{ 'blog.tags_dropdown.label' | t }}</label>
+      <select name="tagged-with" id="tagged-with">
+        <option value="{{ blog.url }}" {% if current_tags == blank %} selected {% endif %}>
+          {{ 'blog.tags_dropdown.show_all' | t }}
+        </option>
+        {%- for tag in blog.all_tags -%}
+          <option value="{{ blog.url }}/tagged/{{ tag.handle }}" {% if current_tags contains tag %} selected {% endif %}>
+            {{ tag | capitalize }}
+          </option>
+        {%- endfor -%}
+      </select>
+      <script>
+        document.getElementById('tagged-with').addEventListener('change', function(e){
+          document.location.href = e.target.value;
+        });
+      </script>
+    {%- endif -%}
+  </h1>
+
+</div>
+
+{%- if blog.articles.size == 0 -%}
+
+  <p class="no-content-message text-size--largest push-left-one-tenth lap--push-left-none">
+    {{ 'blog.grid.no_articles_text' | t }}
+  </p>
+
+{%- else -%}
+
+  {%- paginate blog.articles by section.settings.post_limit -%}
+
+    <div class="blog push-left-half-tenth lap--push-left-none">
+
+      {%- for article in blog.articles -%}
+
+        {%- liquid
+
+          assign date_format = 'general.date_format.month_day_year' | t
+
+          if forloop.first and section.settings.show_image
+            assign css_class = 'blog-item--featured ten-tenths push-left-half-tenth'
+            assign image_size = 'five-tenths lap--six-tenths palm--full-width'
+            assign content_size = 'four-tenths lap--five-tenths palm--full-width push-left-one-tenth palm--push-left-none'
+            assign sizes = 'sizes="(max-width: 599px) calc(100vw - 40px), (max-width: 1023px) 50vw, 42vw"'
+          else
+            assign css_class = 'three-tenths product-tablet--five-plus-tenths push-left-half-tenth lap--push-left-padding'
+            assign sizes = 'sizes="(max-width: 1023px) calc(50vw - 20px), 25vw"'
+            assign image_size = ''
+            assign content_size = ''
+          endif
+
+          if section.index == 1 and forloop.index <= 2
+            assign preload = true
+          else
+            assign preload = false
+          endif
+
+        -%}
+
+        <div class="blog-item {{ css_class }}">
+
+          {%- if section.settings.show_image -%}
+            <a class="blog-item__image {{ image_size }}" href="{{ article.url | escape }}">
+              {%- if article.image -%}
+                {%- render 'lazy-image', image: article.image, alt: article.title, ratio: 0.75, sizes: sizes, preload: preload -%}
+              {%- else -%}
+                <span class="onboarding-svg">{{ 'image' | placeholder_svg_tag }}</span>
+              {%- endif -%}
+            </a>
+          {%- endif -%}
+
+          <div class="blog-item__content {{ content_size }}">
+
+            {%- if forloop.first and section.settings.show_image -%}
+
+              {%- for block in section.blocks -%}
+
+                {%- case block.type -%}
+
+                  {%- when 'title' -%}
+                    <a class="blog-item__title-holder" href="{{ article.url | escape }}" title="{{ article.title | escape }}">
+                      <span class="blog-item__title">{{ article.title | escape }}</span>
+                    </a>
+
+                  {%- when 'summary' -%}
+                    <span class="blog-item__excerpt">
+                      {%- liquid
+                        if article.excerpt.size > 0
+                          echo article.excerpt
+                        else
+                          echo article.content | strip_html | truncatewords: 15, "..."
+                        endif
+                      -%}
+                    </span>
+
+                  {%- when 'info' -%}
+                    <div class="blog-item__meta">
+                      {%- if block.settings.show_author -%}
+                        <span class="blog-item__author">{{ 'general.prefixes.by' | t }} <span>{{ article.author | escape }}</span></span>
+                      {%- endif -%}
+                      {%- if block.settings.show_date -%}
+                        <span class="blog-item__date">{{ article.published_at | date: date_format }}</span>
+                      {%- endif -%}
+                    </div>
+
+                  {%- when 'link' -%} 
+                    <div class="blog-item__more">
+                      <a href="{{ article.url | escape }}" title="{{ 'blog.grid.read_more_label' | t }}" class="button button--underline">
+                        {{ 'blog.grid.read_more_label' | t }}
+                        <span class="svg svg__arrow" aria-hidden="true">{% render 'theme-symbols', icon: 'arrow-right' %}</span>
+                      </a>
+                    </div>
+
+                {%- endcase -%}
+
+              {%- endfor -%}
+
+            {%- else -%}
+
+              {%- for block in section.blocks -%}
+
+                {%- case block.type -%}
+
+                  {%- when 'title' -%}
+                    <a class="blog-item__title-holder h4" href="{{ article.url | escape }}" title="{{ article.title | escape }}">
+                      <span class="blog-item__title">{{ article.title | escape }}</span>
+                    </a>
+
+                  {%- when 'summary' -%}
+                    <span class="blog-item__excerpt">
+                      {%- liquid
+                        if article.excerpt.size > 0
+                          echo article.excerpt
+                        else
+                          echo article.content | strip_html | truncatewords: 15, "..."
+                        endif
+                      -%}
+                    </span>
+
+                  {%- when 'info' -%}
+                    <div class="blog-item__meta">
+                      {%- if block.settings.show_author -%}
+                        <span class="blog-item__author">{{ article.author | escape }}</span>
+                      {%- endif -%}
+                      {%- if block.settings.show_date -%}
+                        <span class="blog-item__date">{{ article.published_at | date: date_format }}</span>
+                      {%- endif -%}
+                    </div>
+
+                  {%- when 'link' -%}
+                    <div class="blog-item__more">
+                      <a href="{{ article.url | escape }}" title="{{ 'blog.grid.read_more_label' | t }}" class="button button--underline">
+                        {{ 'blog.grid.read_more_label' | t }}
+                        <span class="svg svg__arrow" aria-hidden="true">{% render 'theme-symbols', icon: 'arrow-right' %}</span>
+                      </a>
+                    </div>
+
+                {%- endcase -%}
+
+              {%- endfor -%}
+
+            {%- endif -%}
+
+          </div>
+
+        </div>
+
+      {%- endfor -%}
+      
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      {%- render 'pagination', paginate: paginate -%}
+    {%- endif -%}
+  {%- endpaginate -%}
+
+{%- endif -%}
+
+
+{% schema %}
+  {
+    "name": "t:sections.highlight-extra-words.blog-page.name",
+    "class": "section-w-margin section-w-mobile-padding",
+    "blocks": [
+      {
+        "type": "title",
+        "name": "t:sections.blog-posts.blocks.title.name",
+        "limit": 1
+      },
+      {
+        "type": "info",
+        "name": "t:sections.blog-posts.blocks.info.name",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_date",
+            "label": "t:sections.blog-posts.blocks.info.settings.show_date.label",
+            "default": true
+          },
+          {
+            "type": "checkbox",
+            "id": "show_author",
+            "label": "t:sections.blog-posts.blocks.info.settings.show_author.label",
+            "default": false
+          }
+        ]
+      },
+      {
+        "type": "summary",
+        "name": "t:sections.blog-posts.blocks.summary.name",
+        "limit": 1
+      },
+      {
+        "type": "link",
+        "name": "t:sections.blog-posts.blocks.link.name",
+        "limit": 1
+      }
+    ],
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_tags",
+        "label": "t:sections.main-blog.settings.enable_tags.label",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "post_limit",
+        "label": "t:sections.main-blog.settings.post_limit.label",
+        "min": 2,
+        "max": 24,
+        "step": 2,
+        "default": 8
+      },
+      {
+        "type": "header",
+        "content": "t:sections.main-blog.settings.header.content"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_image",
+        "label": "t:sections.blog-posts.settings.show_image.label",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

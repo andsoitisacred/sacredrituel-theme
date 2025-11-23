@@ -1,0 +1,363 @@
+{%- if section.settings.title != blank -%}
+  <div class="section-header grid-item push-left-one-tenth lap--push-left-none">
+    <{{ section.settings.seo_h_tag }} class="section-header__title h4">{{ section.settings.title | escape }}</{{ section.settings.seo_h_tag }}>
+  </div>
+{%- endif -%}
+
+{%- if section.blocks.size > 0 -%}
+
+  {{ "section-images-with-text-overlay.css" | asset_url | stylesheet_tag }}
+  
+  <div class="image-with-text-overlay-holder image-with-text-overlay-holder--{{ section.settings.layout }} grid">
+
+    {%- for block in section.blocks -%}
+
+      {%- liquid
+
+        if section.settings.layout == 'regular' 
+
+          assign css_class = ''
+
+          if section.blocks.size == 1 or forloop.index == 1 and section.blocks.size == 3 
+            assign css_class = 'text-large ten-tenths lap--full-width push-left-one-tenth lap--push-left-none'
+            assign sizes = 'sizes="(max-width: 727px) calc(100vw - 40px), (max-width: 1023px) calc(100vw - 40px), 84vw"'
+          elsif section.blocks.size == 3
+            assign css_class = 'text-medium four-plus-tenths lap--five-plus-tenths push-top-one-tenth push-left-one-tenth'
+            assign sizes = 'sizes="(max-width: 727px) calc(100vw - 40px), (max-width: 1023px) 46vw, 38vw"'
+            if forloop.index == 2
+              assign css_class = css_class | append: ' lap--push-left-none'
+            endif
+          elsif section.blocks.size == 4 or section.blocks.size == 2
+            assign css_class = 'text-medium four-plus-tenths lap--five-plus-tenths push-left-one-tenth'
+            assign sizes = 'sizes="(max-width: 727px) calc(100vw - 40px), (max-width: 1023px) 46vw, 38vw"'
+            if forloop.index == 1 or forloop.index == 3
+              assign css_class = css_class | append: ' lap--push-left-none'
+            endif
+          endif 
+
+          if section.blocks.size == 4 and forloop.index > 2
+            assign css_class = css_class | append: ' push-top-one-tenth'
+          endif
+
+        else
+
+          if forloop.index == 1
+
+            if section.blocks.size == 1
+              assign css_class = 'text-large eight-tenths lap--ten-tenths push-left-one-tenth lap--push-left-none'
+              assign sizes = 'sizes="(max-width: 727px) calc(100vw - 40px), (max-width: 1023px) 84vw, 67vw"'
+            elsif section.blocks.size == 2
+              assign css_class = 'text-large five-tenths lap--seven-tenths push-left-one-tenth lap--push-left-none'
+              assign sizes = 'sizes="(max-width: 727px) calc(100vw - 40px), (max-width: 1023px) 59w, 42vw"'
+            elsif section.blocks.size > 2
+              assign css_class = 'text-large six-tenths lap--seven-tenths push-left-one-tenth lap--push-left-none'
+              assign sizes = 'sizes="(max-width: 727px) calc(100vw - 40px), (max-width: 1023px) 59vw, 50vw"'
+            endif
+
+          elsif forloop.index == 2 or forloop.index == 4
+
+            if section.blocks.size == 2
+              assign css_class = 'text-medium four-tenths'
+              assign sizes = 'sizes="(max-width: 727px) calc(100vw - 40px), (max-width: 1023px) 42vw, 34vw"'
+            else
+              assign css_class = 'text-small three-tenths push-top-two-tenths'
+              assign sizes = 'sizes="(max-width: 727px) calc(100vw - 40px), (max-width: 1023px) 42vw, 25vw"'
+            endif
+            if forloop.index == 4
+              assign css_class = css_class | append: ' lap--five-tenths'
+            else
+              assign css_class = css_class | append: ' lap--four-tenths lap--push-top-three-tenths'
+            endif
+            assign css_class = css_class | append: ' push-left-one-tenth'
+
+          elsif forloop.index == 3
+
+            assign css_class = 'text-medium four-tenths lap--five-tenths palm--full-width'
+              assign sizes = 'sizes="(max-width: 727px) calc(100vw - 40px), (max-width: 1023px) 42vw, 34vw"'
+            if section.blocks.size == 4
+              assign css_class = css_class | append: ' push-left-two-tenths lap--push-left-none push-top-two-tenths lap--push-top-none'
+            else 
+              assign css_class = css_class | append: ' push-left-three-tenths lap--push-left-two-tenths push-top-one-tenth'
+            endif
+
+          endif
+
+        endif
+
+        if section.index == 1 and forloop.index < 3
+          assign preload = true
+        else  
+          assign preload = false
+        endif
+
+      -%}
+
+      <div class="image-with-text-overlay {{ css_class }}" {{ block.shopify_attributes }} 
+        {% unless section.settings.layout == 'regular' %}
+          {% if forloop.index == 2 %}
+            {% if section.blocks.size == 2 %}
+              data-scroll-speed=".3" 
+            {% else %}
+              data-scroll-speed="-.3" 
+            {% endif %}
+          {% elsif forloop.index == 3 and section.blocks.size == 4 %}
+            data-scroll-speed=".3" 
+          {% endif %}
+          data-scroll-disable-on-lap
+        {% endunless %}
+      >
+
+        {%- if block.settings.button_label == blank and block.settings.button_link != blank -%}
+          <a href="{{ block.settings.button_link }}" class="image-with-text-overlay__wrap">
+        {%- else -%}
+          <div class="image-with-text-overlay__wrap">
+        {%- endif -%}
+
+          <div class="image-with-text-overlay__background">
+            {%- unless block.settings.image == blank -%}
+              {%- render 'lazy-image', image: block.settings.image, alt: block.settings.heading, type: 'background', alignment: true, sizes: sizes, preload: preload -%}
+            {%- else -%}
+              <span class="onboarding-svg">
+                {{ 'image' | placeholder_svg_tag }}
+              </span>
+            {%- endunless -%}
+          </div>
+
+          <div class="image-with-text-overlay__content {{ section.settings.text_alignment }}">
+
+            <div>
+
+              {%- if block.settings.heading != blank -%}
+                <span class="image-with-text-overlay__heading"><span>{{ block.settings.heading | escape }}</span></span>
+              {%- endif -%}
+
+              {%- if block.settings.description != blank -%}
+                <div class="image-with-text-overlay__description rte">{{ block.settings.description }}</div>
+              {%- endif -%}
+
+              {%- if block.settings.button_label != blank -%}
+                <a class="image-with-text-overlay__button button button--underline" href="{{ block.settings.button_link }}" title="{{ block.settings.button_label | escape }}">
+                  {{ block.settings.button_label | escape }}
+                  <span class="svg svg__arrow" aria-hidden="true">{% render 'theme-symbols', icon: 'arrow-right' %}</span>
+                </a>
+              {%- endif -%}
+
+            </div>
+
+          </div>
+
+        {%- if block.settings.button_label == blank and block.settings.button_link != blank -%}
+          </a>
+        {%- else -%}
+          </div>
+        {%- endif -%}
+
+      </div>
+
+    {%- endfor -%}
+
+  </div>
+
+{%- endif -%}
+
+{%- if section.settings.color_text != 'rgba(0,0,0,0)' -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} .image-with-text-overlay-holder,
+    #shopify-section-{{ section.id }} .image-with-text-overlay__wrap,
+    #shopify-section-{{ section.id }} .image-with-text-overlay-holder .button {
+      color: {{ section.settings.color_text }};
+    }
+    #shopify-section-{{ section.id }} .image-with-text-overlay-holder .button {
+      border-color: {{ section.settings.color_text }};
+    }
+    #shopify-section-{{ section.id }} .image-with-text-overlay-holder .button svg rect, 
+    #shopify-section-{{ section.id }} .image-with-text-overlay-holder .button svg path {
+      fill: {{ section.settings.color_text }};
+    }
+    #shopify-section-{{ section.id }} a .image-with-text-overlay__heading span {
+      background-image: linear-gradient(to right, {{ section.settings.color_text }}, {{ section.settings.color_text }});
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{%- if section.settings.color_bg != 'rgba(0,0,0,0)' -%}
+  {%- style -%}
+    #shopify-section-{{ section.id }} .image-with-text-overlay__background:after {
+      background: {{ section.settings.color_bg }}
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "t:sections.highlight-extra-words.images-with-text-overlay.name",
+    "class": "mount-parallax section-w-mobile-padding section-w-margin",
+    "max_blocks": 4,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "t:sections.highlight-extra-words.heading.label",
+        "default": "Images with text overlay"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "t:sections.highlight-extra-words.layout.label",
+        "options": [
+          {
+            "label": "t:sections.highlight-extra-words.layout.options__1.label",
+            "value": "asymmetrical"
+          },
+          {
+            "label": "t:sections.highlight-extra-words.layout.options__2.label",
+            "value": "regular"
+          }
+        ],
+        "default": "asymmetrical"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "t:sections.image-with-text.settings.text_alignment.label",
+        "options": [
+          {
+            "value": "horizontal-left vertical-top",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__1.label"
+          },
+          {
+            "value": "horizontal-center vertical-top",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__2.label"
+          },
+          {
+            "value": "horizontal-right vertical-top",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__3.label"
+          },
+          {
+            "value": "horizontal-left vertical-middle",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__4.label"
+          },
+          {
+            "value": "horizontal-center vertical-middle",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__5.label"
+          },
+          {
+            "value": "horizontal-right vertical-middle",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__6.label"
+          },
+          {
+            "value": "horizontal-left vertical-bottom",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__7.label"
+          },
+          {
+            "value": "horizontal-center vertical-bottom",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__8.label"
+          },
+          {
+            "value": "horizontal-right vertical-bottom",
+            "label": "t:sections.image-with-text.settings.text_alignment.options__9.label"
+          }
+        ],
+        "default": "horizontal-left vertical-bottom"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "t:sections.custom-colors.text.label"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "t:sections.custom-colors.overlay.label"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.refactor_words.seo.name"
+      },
+      {
+        "type": "select",
+        "id": "seo_h_tag",
+        "label": "t:sections.refactor_words.seo.label",
+        "info": "t:sections.refactor_words.seo.info",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          }
+        ],
+        "default": "h2"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "t:sections.image.name",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "t:sections.image.name"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "t:sections.image-with-text.blocks.image.settings.title.label",
+            "default": "Write your Story"
+          },
+          {
+            "type": "richtext",
+            "id": "description",
+            "label": "t:sections.image-with-text.blocks.image.settings.body.label",
+            "default": "<p>Write some information about your brand, products or story.</p>"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "t:sections.image-with-text.blocks.image.settings.button_label.label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "t:sections.image-with-text.blocks.image.settings.url.label",
+            "info": "t:sections.image-with-text.blocks.image.settings.url.info"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "t:sections.highlight-extra-words.images-with-text-overlay.name",
+        "blocks": [
+          {
+            "type": "image"
+          },
+          {
+            "type": "image"
+          },
+          {
+            "type": "image"
+          }
+        ]
+      }
+    ],
+    "disabled_on": {
+      "groups": ["header"]
+    }
+  }
+{% endschema %}

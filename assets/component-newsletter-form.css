@@ -1,0 +1,59 @@
+.newsletter-input-holder {
+  position: relative;
+}
+.newsletter-input {
+  margin-bottom: 0;
+  padding-inline-end: 80px;
+}
+.popup .newsletter-input {
+  padding-inline-end: 20px;
+}
+.newsletter-submit:not(.button) {
+  position: absolute;
+  width: 45px;
+  height: 100%;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+html[dir=rtl] .newsletter-submit:not(.button) {
+  left: calc(var(--button-height) / 3);
+}
+html[dir=ltr] .newsletter-submit:not(.button) {
+  right: calc(var(--button-height) / 3);
+}
+.newsletter-submit:not(.button) svg {
+  position: absolute;
+  transition: all 150ms linear;
+}
+html[dir=rtl] .newsletter-submit:not(.button) svg {
+  right: 0;
+}
+html[dir=ltr] .newsletter-submit:not(.button) svg {
+  left: 0;
+}
+.newsletter-submit:not(.button) svg path, .newsletter-submit:not(.button) svg polygon, .newsletter-submit:not(.button) svg rect {
+  fill: var(--color-text);
+  transition: all 120ms linear;
+}
+@media screen and (max-width: 599px) {
+  .newsletter-submit:not(.button) svg {
+    width: 32px;
+  }
+}
+html[dir=rtl] .no-touchevents .newsletter-submit:not(.button):hover svg, html[dir=rtl] .newsletter-submit:not(.button):focus svg {
+  right: 0.25em;
+}
+html[dir=ltr] .no-touchevents .newsletter-submit:not(.button):hover svg, html[dir=ltr] .newsletter-submit:not(.button):focus svg {
+  left: 0.25em;
+}
+.newsletter-text {
+  color: rgba(var(--color-text-rgb), 0.66);
+}
+.newsletter-text:last-child {
+  margin-top: 1.25em;
+}
+.newsletter-text + .newsletter-form {
+  margin-top: 1.5em;
+}

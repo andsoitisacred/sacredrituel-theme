@@ -1,0 +1,180 @@
+@charset "UTF-8";
+@media screen and (min-width: 1365px) {
+  .footer-item__title {
+    font-size: calc(14px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.1;
+  }
+}
+@media screen and (min-width: 1023px) and (max-width: 1365px) {
+  .footer-item__title {
+    font-size: calc(14px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.1;
+  }
+}
+@media screen and (min-width: 599px) and (max-width: 1023px) {
+  .footer-item__title {
+    font-size: calc(14px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.1;
+  }
+}
+@media screen and (max-width: 599px) {
+  .footer-item__title {
+    font-size: calc(12px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.1;
+  }
+}
+
+.main-footer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+}
+.main-footer:after {
+  position: absolute;
+  top: 0;
+  left: calc(var(--grid-width) / 12 * -1);
+  width: calc(100% + var(--grid-width) / 12 * 2);
+  z-index: -1;
+  content: "";
+  height: 100%;
+}
+@media screen and (max-width: 1023px) {
+  .main-footer:after {
+    left: calc(var(--grid-padding) * -1);
+    width: calc(100% + (var(--grid-padding)));
+  }
+}
+.main-footer > footer {
+  margin-top: 0;
+}
+
+.footer-item {
+  margin-bottom: calc(var(--section-margin) / 3);
+}
+.footer-item .regular-select-inner {
+  background-image: none !important;
+}
+.footer-item .regular-select-inner:after {
+  content: "➤";
+  transform: rotate(90deg);
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  right: 12px;
+  position: absolute;
+  font-size: 10px;
+  top: 17px;
+}
+.footer-item__title {
+  font-family: var(--font-stack-body);
+  font-weight: var(--font-weight-body);
+  font-style: var(--font-style-body);
+  text-transform: uppercase;
+  color: rgba(var(--color-text-rgb), 0.66);
+  margin-bottom: 3em;
+}
+.footer-item--text .rte {
+  margin-bottom: 0;
+}
+@media screen and (min-width: 1365px) {
+  .footer-item--text .rte {
+    font-size: calc(36px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.28;
+  }
+}
+@media screen and (min-width: 1023px) and (max-width: 1365px) {
+  .footer-item--text .rte {
+    font-size: calc(36px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.28;
+  }
+}
+@media screen and (min-width: 599px) and (max-width: 1023px) {
+  .footer-item--text .rte {
+    font-size: calc(28px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.28;
+  }
+}
+@media screen and (max-width: 599px) {
+  .footer-item--text .rte {
+    font-size: calc(28px / 18 * var(--base-body-size) + 0px);
+    line-height: 1.28;
+  }
+}
+.footer-item--menus {
+  display: flex;
+}
+html[dir=rtl] .footer-item--menus > div {
+  padding-left: 2em;
+}
+html[dir=ltr] .footer-item--menus > div {
+  padding-right: 2em;
+}
+.footer-item--menus .footer-links {
+  margin-bottom: -0.75em;
+  line-height: 1.2;
+}
+.footer-item--menus .footer-links > span {
+  display: block;
+  margin: 0.75em 0;
+}
+.footer-item--info {
+  align-self: flex-end;
+}
+.footer-item--info .footer-icons {
+  margin-bottom: 1em;
+}
+.footer-item--copyright {
+  width: 100%;
+}
+@media screen and (max-width: 1023px) {
+  .footer-item__title {
+    margin-bottom: 2em;
+  }
+}
+@media screen and (max-width: 599px) {
+  .footer-item--menus {
+    flex-direction: column;
+  }
+  .footer-item--menus > div:last-child:not(:first-child) {
+    margin-inline-start: 0;
+    margin-top: calc(var(--section-margin) / 3);
+  }
+}
+
+.footer-links-body {
+  background-image: linear-gradient(to right, var(--color-accent), var(--color-accent));
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  display: inline;
+  padding-bottom: 3px;
+  transition: all 150ms linear;
+  background-position: 0 calc(1em + 3px);
+}
+html[dir=rtl] .footer-links-body {
+  background-position: right calc(1em + 4px);
+}
+html[dir=ltr] .footer-links-body {
+  background-position: left calc(1em + 4px);
+}
+@media screen and (min-width: 1024px) {
+  .no-touchevents a:hover .footer-links-body, a:focus .footer-links-body {
+    background-size: 100% 1px;
+    color: var(--color-accent);
+  }
+}
+a.selected .footer-links-body {
+  background-size: 100% 1px;
+  color: var(--color-accent);
+}
+@media screen and (max-width: 1023px) {
+  .footer-links-body {
+    border-bottom: 1px solid;
+    padding-bottom: 1px;
+  }
+}
+
+.no-touchevents .footer-copyright a:hover,
+.no-touchevents .footer-copyright a:focus {
+  color: var(--color-accent);
+}

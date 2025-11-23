@@ -1,0 +1,251 @@
+<main-header class="header-holder" 
+  data-sticky="{{ section.settings.menu_sticky }}" 
+  data-sticky-background="{{ section.settings.sticky_background }}"
+>
+
+  <div class="header wrapper {% unless section.settings.show_icon_labels %} header--wout-icon-labels {% endunless %}"
+    {% if section.settings.logo_src %} style="--header-logo: {{ section.settings.logo_height }}px;" {% endif %}
+  >
+
+    <div id="logo" class="logo" tabindex="-1">
+
+        {%- if section.settings.logo_src -%}
+
+          <style>
+            .mount-header.is-sticky:not(.is-sticky-always) .header .logo-img, 
+            .mount-header.is-sticky:not(.is-sticky-always) .header .logo-img img {
+              max-height: {{ section.settings.logo_height | at_most: 40 }}px !important;
+            } 
+            @media screen and (max-width: 1023px) {
+              .header .logo-img, 
+              .header .logo-img img {
+                max-height: {{ section.settings.logo_height | at_most: 40 }}px !important;
+              }
+            }
+          </style>
+
+          <a class="logo-img" title="{{ shop.name | escape }}" href="{{ routes.root_url }}" style="height:var(--header-logo);display:flex;align-items:center" tabindex="3">
+            <img src="{{ section.settings.logo_src | image_url }}" alt="{{ shop.name | escape }}" style="max-height:{{ section.settings.logo_height }}px" width="{{ section.settings.logo_src.width }}" height="{{ section.settings.logo_src.height }}" />
+          </a>
+
+        {% else %}
+
+          <a class="logo-txt" title="{{ shop.name | escape }}" href="{{ routes.root_url }}" tabindex="3">{{ shop.name | escape }}</a>
+
+        {% endif %}
+    
+    </div>
+
+    <button id="menu-open-button" class="menu-opener" tabindex="2" aria-expanded="false" aria-controls="site-menu-sidebar">
+      <span class="menu-opener__icon" aria-label="{{ 'general.menu.menu_title' | t }}" role="img">
+        <span class="line"></span><span class="line"></span><span class="line"></span>
+      </span>
+      <span class="menu-opener__text lap--hide menu-meta__text">{{ 'general.menu.menu_title' | t }}</span>
+    </button>
+
+    <div class="menu-meta">
+      <ul>
+        {%- if section.settings.show_search -%}
+          <li>
+            <a {% if template != 'search' %} id="search-open-button" aria-expanded="false" aria-controls="site-search-sidebar" {% endif %} class="menu-meta__link" href="{{ routes.search_url }}">
+              <span class="menu-meta__icon" aria-label="{{ 'general.menu.search_title' | t }}" role="img">
+                {%- render 'theme-symbols', icon: 'search' -%}
+              </span>
+              <span class="lap--hide menu-meta__text">{{ 'general.menu.search_title' | t }}</span>
+            </a>
+          </li>
+        {%- endif -%}
+        <li>
+          <a {% unless template == 'cart' or settings.cart_action == 'no-overlay' %} id="cart-open-button" aria-expanded="false" aria-controls="site-cart-sidebar" {% endunless %} class="menu-meta__link" href="{{ routes.cart_url }}">
+            <span class="menu-meta__icon" aria-label="{{ 'general.menu.cart_title' | t }}" style="margin-top: -1px;" role="img">
+              {%- render 'theme-symbols', icon: 'cart' -%}
+              <span class="menu-meta__count" data-header-cart-count>{{ cart.item_count }}</span>
+            </span>
+            <span class="lap--hide menu-meta__text">{{ 'general.menu.cart_title' | t }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="display:none" data-js-site-navigation-content>
+
+    <div class="sidebar__container">
+
+      <div class="sidebar__close">
+        <button class="close-sidebar" aria-label="{{ 'general.menu.close_button' | t }}">
+          <span class="aria-hidden">{%- render 'theme-symbols', icon: 'close' -%}</span>
+          <span class="close-sidebar__text">{{ 'general.menu.close_button' | t }}</span>
+        </button>
+        <button class="navigate-back" aria-label="{{ 'general.menu.back_button' | t }}" style="display:none">
+          <span class="aria-hidden" style="margin-inline-start:-7px">{%- render 'theme-symbols', icon: 'arrow-left' -%}</span>
+          <span class="close-sidebar__text">{{ 'general.menu.back_button' | t }}</span>
+        </button>
+      </div>
+
+      <div class="sidebar__content">
+
+        <div class="sidebar__menus">
+        
+          {%- unless section.settings.menu_primary == blank -%}
+            <nav class="primary-menu">
+              {% render 'sidebar-navigation', menu: section.settings.menu_primary, type: 'primary' %}
+            </nav>
+          {%- endunless -%}
+
+          {%- unless section.settings.menu_secondary == blank -%}
+            <nav class="secondary-menu">
+              {% render 'sidebar-navigation', menu: section.settings.menu_secondary, type: 'secondary' %}
+            </nav>
+          {%- endunless -%}
+
+          {%- if shop.customer_accounts_enabled -%}
+            <ul class="sidebar__menu sidebar--accounts">
+              <li>
+                {%- if customer -%}
+                  <a href="{{ routes.account_url }}">
+                    <span class="flex:1"><span class="underline-animation">{{ 'general.menu.logged_in' | t }}</span></span>
+                  </a>
+                {%- else -%}
+                  <a href="{{ routes.account_login_url }}">
+                    <span class="flex:1"><span class="underline-animation">{{ 'general.menu.logged_out' | t }}</span></span>
+                  </a>
+                {%- endif -%}
+              </li>
+            </ul>
+          {%- endif -%}
+
+        </div>
+
+        <div class="sidebar__footer">
+
+          <div class="localization-form-holder">
+            {%- render 'localization-form', location: 'sidebar', show_country_selector: section.settings.show_country_selector, show_locale_selector: section.settings.show_locale_selector -%}
+          </div>
+
+          {%- if section.settings.show_social_icons -%}
+            {%- render 'social-icons' -%}
+          {%- endif -%}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main-header>
+
+{%- unless section.settings.menu_sticky == 'sticky' and section.settings.sticky_background == true -%}
+  <style>
+    @media screen and (min-width: 1024px) {
+      .mount-header:not(.is-sticky-always-without-margin) { margin-top: 20px; }
+    }
+  </style>
+{%- endunless -%}
+
+{% schema %}
+  {
+    "name": "t:sections.highlight-extra-words.header.name",
+    "class": "mount-header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo_src",
+        "label": "t:sections.sidebar.settings.image.label"
+      },
+      {
+        "type": "range",
+        "id": "logo_height",
+        "label": "t:sections.highlight-extra-words.header.settings.logo_height",
+        "info": "t:sections.highlight-extra-words.main-page.settings.layout.info",
+        "unit": "px",
+        "min": 25,
+        "max": 100,
+        "step": 1,
+        "default": 40
+      },
+      {
+        "type": "checkbox",
+        "id": "show_search",
+        "label": "t:sections.sidebar.settings.search.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_icon_labels",
+        "label": "t:sections.highlight-extra-words.header.settings.show_icon_labels",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "menu_sticky",
+        "label": "t:sections.refactor_words.header.sticky.label",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:sections.refactor_words.header.sticky.option_1"
+          },
+          {
+            "value": "sticky",
+            "label": "t:sections.refactor_words.header.sticky.option_2"
+          },
+          {
+            "value": "sticky--scroll",
+            "label": "t:sections.refactor_words.header.sticky.option_3"
+          }
+        ],
+        "default": "sticky--scroll"
+      },
+      {
+        "type": "checkbox",
+        "id": "sticky_background",
+        "label": "t:sections.highlight-extra-words.sticky_header_background",
+        "default": false
+      },
+      {
+        "type": "link_list",
+        "id": "menu_primary",
+        "label": "t:sections.sidebar.settings.primary_navigation.label",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_secondary",
+        "label": "t:sections.sidebar.settings.secondary_navigation.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_social_icons",
+        "label": "t:sections.highlight-extra-words.header.settings.show_social_icons",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "t:sections.footer.settings.language_selector.content",
+        "info": "t:sections.footer.settings.language_selector.info"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_locale_selector",
+        "label": "t:sections.footer.settings.language_selector_show.label",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "t:sections.footer.settings.country_selector.content",
+        "info": "t:sections.footer.settings.country_selector.info"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_country_selector",
+        "label": "t:sections.footer.settings.country_selector_show.label",
+        "default": false
+      }
+    ],
+    "enabled_on": {
+      "groups": ["header"]
+    }
+  }
+{% endschema %}

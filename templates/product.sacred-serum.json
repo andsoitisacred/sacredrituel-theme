@@ -1,0 +1,446 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "show_vendor": false,
+            "show_reviews": true,
+            "show_tax_info": false,
+            "show_sku": false,
+            "show_barcode": false,
+            "stick_product_header_on_mobile": false
+          }
+        },
+        "custom_liquid_bxEgN3": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% if product.metafields.custom.product_value_tagline %}\n  <p class=\"text-size--largest\">{{product.metafields.custom.product_value_tagline}}</p>\n{% endif %}",
+            "position": "right"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "variants_style": "radio",
+            "show_color_swatches": true,
+            "show_quantities": "below"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_preorder_label": false,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "pickup_avaiability": {
+          "type": "pickup_avaiability",
+          "disabled": true,
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {}
+        },
+        "tolstoy_shoppable_video_ugc_carousel_block_pGengr": {
+          "type": "shopify://apps/tolstoy-shoppable-video-quiz/blocks/carousel-block/06fa8282-42ff-403e-b67c-1936776aed11",
+          "settings": {
+            "publishId": "4cc6hq9qsluic"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "b55c1a64-c8e6-44ea-827d-dee6e2917e82": {
+          "type": "toggles-with-icons",
+          "settings": {
+            "title": "",
+            "feature1_title": "{{ product.metafields.custom.primary_feature_title.value }}",
+            "feature1_text": "<p>{{ product.metafields.custom.primary_feature_description | metafield_tag }}</p>",
+            "feature2_title": "{{ product.metafields.custom.secondary_feature_title.value }}",
+            "feature2_text": "<p>{{ product.metafields.custom.secondary_feature_description | metafield_tag }}</p>",
+            "feature3_title": "{{ product.metafields.custom.tertiary_feature_title.value }}",
+            "feature3_text": "<p>{{ product.metafields.custom.tertiary_feature_description | metafield_tag }}</p>",
+            "feature4_title": "{{ product.metafields.custom.fourth_feature_title.value }}",
+            "feature4_text": "<p>{{ product.metafields.custom.fourth_feature_description | metafield_tag }}</p>",
+            "feature5_title": "{{ product.metafields.custom.fifth_feature_title.value }}",
+            "feature5_text": "<p>{{ product.metafields.custom.fifth_feature_description | metafield_tag }}</p>",
+            "feature6_title": "Is it Lab-Tested for Purity & Compliance?",
+            "feature6_text": "<p>At Sacred Rituel, transparency and quality are our top priorities. Our Sacred Serum face oil undergoes rigorous third-party lab testing to ensure it meets the highest purity standards and complies with the <strong>2018 Farm Bill (containing no more than 0.3% THC)</strong>. View our third-party lab test verifying the safety and potency of our hemp-derived ingredients: <a href=\"/pages/certificate-of-analysis-coa\" target=\"_blank\" title=\"Certificate of Analysis (COA)\">Certificate of Analysis</a></p>",
+            "seo_h_tag": "h2"
+          }
+        },
+        "collapsible_tab_H6BHFA": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Free Shipping on orders over $90 (USA)",
+            "content": "<h4><strong>When will I receive my order?</strong></h4><p>We fulfill domestic USA orders same day before noon (PST) and within 24 hours (M-F). International orders are fulfilled within 48 hours. </p><h4><strong>Do you offer free shipping?</strong></h4><ul><li>Orders over $90 get FREE Standard Shipping.</li><li>$7 Flat Rate Economy Shipping on all other orders.</li></ul><h4>Where do you sell your products?</h4><p>We ship to the USA, Canada, Australia, the United Kingdom, Sweden, France, Belgium, Germany and Italy.</p><h4>How will I know when my order has shipped?</h4><p>We want to keep you in the know. As soon as we assign a shipping label to your order, we’ll send you an email with tracking information.</p>",
+            "page": "",
+            "hide_block_if": false
+          }
+        },
+        "6f85182a-f9a4-4657-ac3a-86b59e7241e8": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "{{ product.metafields.custom.product_overview_title.value }}",
+            "content": "<p>{{ product.metafields.custom.product_overview_details | metafield_tag }}</p>",
+            "page": "",
+            "hide_block_if": false
+          }
+        },
+        "8bc3a0a0-ced3-488a-994d-bdeb17bd3196": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "{{ product.metafields.custom.source_ingredients_title.value }}",
+            "content": "<p>{{ product.metafields.custom.source_ingredients_details | metafield_tag }}</p>",
+            "page": "",
+            "hide_block_if": false
+          }
+        },
+        "complementary_CVEnJB": {
+          "type": "complementary",
+          "settings": {
+            "heading": "Pairs well with",
+            "products_number": 2
+          }
+        }
+      },
+      "block_order": [
+        "header",
+        "custom_liquid_bxEgN3",
+        "variant_picker",
+        "buy_buttons",
+        "pickup_avaiability",
+        "share",
+        "tolstoy_shoppable_video_ugc_carousel_block_pGengr",
+        "description",
+        "b55c1a64-c8e6-44ea-827d-dee6e2917e82",
+        "collapsible_tab_H6BHFA",
+        "6f85182a-f9a4-4657-ac3a-86b59e7241e8",
+        "8bc3a0a0-ced3-488a-994d-bdeb17bd3196",
+        "complementary_CVEnJB"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 1023px) {.product__title {margin-bottom: 0.4em; } .set-mobile-position {margin-top: calc(var(--grid-width) / 12 * 0.1); } .product-variant__name {margin-bottom: 0.5em; } .product-variants-block {margin-top: 0.2em; } product-form:not(:first-child) {margin-top: 1em; }}",
+        "product-variants:not(:first-child),product-form:not(:first-child) {margin-top: 1em;}",
+        ".skio-details,.product-variant__name {display: none;}"
+      ],
+      "settings": {
+        "media_aspect": "natural",
+        "enable_zoom": true,
+        "enable_video_looping": true
+      }
+    },
+    "replo_headline_icons_guarantee_w6Mpcd": {
+      "type": "replo-headline-icons_guarantee",
+      "settings": {}
+    },
+    "custom_liquid_NbtBJi": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "settings": {
+        "custom_liquid": "<div class=\"image-with-text image-with-text--right-alignment grid\">\n\n  <div class=\"image-with-text__image five-tenths lap--six-tenths palm--full-width push-left-one-tenth lap--push-left-none\">\n\n\n<figure data-crop=\"true\" class=\"lazy-image animation  \" data-ratio=\"1.0\" style=\"padding-top: 100.0%\">\n<a href=\"https://www.sacredrituel.com/cart/46576730046767:1,46675287900463:1?discount=BONUSTONER&storefront=true\">\n\t<img class=\"img lazy lazyloaded\" width=\"1080\" height=\"1080\" src=\"//www.sacredrituel.com/cdn/shop/files/sacredrituel-retargeting-bogo-toner-greece-2.jpg?v=1721254080&amp;width=480\" alt=\"\" srcset=\"//www.sacredrituel.com/cdn/shop/files/sacredrituel-retargeting-bogo-toner-greece-2.jpg?v=1721254080&amp;width=260 260w,//www.sacredrituel.com/cdn/shop/files/sacredrituel-retargeting-bogo-toner-greece-2.jpg?v=1721254080&amp;width=320 320w,//www.sacredrituel.com/cdn/shop/files/sacredrituel-retargeting-bogo-toner-greece-2.jpg?v=1721254080&amp;width=360 360w,//www.sacredrituel.com/cdn/shop/files/sacredrituel-retargeting-bogo-toner-greece-2.jpg?v=1721254080&amp;width=420 420w,//www.sacredrituel.com/cdn/shop/files/sacredrituel-retargeting-bogo-toner-greece-2.jpg?v=1721254080&amp;width=480 480w,//www.sacredrituel.com/cdn/shop/files/sacredrituel-retargeting-bogo-toner-greece-2.jpg?v=1721254080&amp;width=640 640w,//www.sacredrituel.com/cdn/shop/files/sacredrituel-retargeting-bogo-toner-greece-2.jpg?v=1721254080&amp;width=840 840w,//www.sacredrituel.com/cdn/shop/files/sacredrituel-retargeting-bogo-toner-greece-2.jpg?v=1721254080&amp;width=1080 1080w\" sizes=\"(max-width: 599px) calc(100vw - 40px), (max-width: 1023px) 50vw, 42vw\" loading=\"lazy\" onload=\"this.classList.add('lazyloaded')\"></a></figure></div>\n\n  <div class=\"image-with-text__content four-tenths lap--five-tenths palm--full-width push-left-one-tenth lap--push-left-none\"><h3 class=\"image-with-text__heading h2\">Healing + Hydration Limited Time Offer</h3><div class=\"image-with-text__description rte\"><p>Don't miss out on the healing hydration of our Rose Toner to seal in lasting moisture deep into your pores.  Use code BONUSTONER to get <a href=\"https://www.sacredrituel.com/cart/46576730046767:1,46675287900463:1?discount=BONUSTONER&amp;storefront=true\" title=\"https://www.sacredrituel.com/cart/46576730046767:1,46675287900463:1?discount=BONUSTONER&amp;storefront=true\">a Complimentary Travel Rose Toner</a>.</p></div>\n<a href=\"https://www.sacredrituel.com/cart/47113517564207:1,46675287900463:1\"><button type=\"button\" class=\"shopify-payment-button__button shopify-payment-button__button--unbranded\">BUY NOW | SERUM + ROSE TONER</button></a></div></div>",
+        "full_width": false
+      }
+    },
+    "scrolling_images_G9KB3Q": {
+      "type": "scrolling-images",
+      "blocks": {
+        "image_qnwKP7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/VOGUE_LOGO.svg",
+            "image_caption": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "image_9Xbpec": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/New_York_Magazine_Logo.svg",
+            "image_caption": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "image_qRf6tA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ELLE_Magazine_Logo.svg",
+            "image_caption": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "image_qnwKP7",
+        "image_9Xbpec",
+        "image_qRf6tA"
+      ],
+      "settings": {
+        "title": "As Seen In",
+        "scroll_direction": "ltr",
+        "speed": 100,
+        "pause_on_hover": true,
+        "image_alignment": "center",
+        "caption_alignment": "left",
+        "columns": "3",
+        "seo_h_tag": "h2"
+      }
+    },
+    "1698006103a8bdefb2": {
+      "type": "apps",
+      "blocks": {
+        "okendo_reviews_widget_KrcVGA": {
+          "type": "shopify://apps/okendo/blocks/reviews-widget/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {
+            "product": "{{product}}",
+            "widget_type": "reviews_widget"
+          }
+        }
+      },
+      "block_order": [
+        "okendo_reviews_widget_KrcVGA"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "replo_brand_sacredserum_expla_VDUmjF": {
+      "type": "replo-brand-sacredserum_expla",
+      "settings": {}
+    },
+    "17280709892804e91f": {
+      "type": "apps",
+      "blocks": {
+        "tolstoy_shoppable_video_ugc_tile_block_kMj8r9": {
+          "type": "shopify://apps/tolstoy-shoppable-video-quiz/blocks/tile-block/06fa8282-42ff-403e-b67c-1936776aed11",
+          "settings": {
+            "publishId": "o7jjvxyni1n1d"
+          }
+        }
+      },
+      "block_order": [
+        "tolstoy_shoppable_video_ugc_tile_block_kMj8r9"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "image_with_text_ic47tX": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_ahfQHr": {
+          "type": "heading",
+          "settings": {
+            "heading": "Healing + Hydration",
+            "heading_size": "h2"
+          }
+        },
+        "text_aWQdHD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Don't miss out on the healing hydration of our Rose Toner to seal in lasting moisture deep into your pores.  Use code BONUSTONER to get <a href=\"https://www.sacredrituel.com/cart/46576730046767:1,46675287900463:1?discount=BONUSTONER&storefront=true\" title=\"https://www.sacredrituel.com/cart/46576730046767:1,46675287900463:1?discount=BONUSTONER&storefront=true\">a Complimentary Travel Rose Toner</a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ahfQHr",
+        "text_aWQdHD"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/sacredrituel-retargeting-bogo-toner-greece-2.jpg",
+        "layout": "right-alignment"
+      }
+    },
+    "1741616900b47812b1": {
+      "type": "apps",
+      "settings": {
+        "full_width": false
+      }
+    },
+    "image_with_text_PdzEeg": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_arMwpJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "Surfing accident 30 Days later",
+            "heading_size": "h2"
+          }
+        },
+        "text_YJHd8F": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our customer Hilary suffered a bad surfing accident during an extended stay in Mexico where she had only access to her dermatologist by Zoom.  They decided her best course of action was to use the Sacred Serum every day to moisten, heal and protect the wound.  After 30 days of regular use her wound had healed with minimal scaring and three months later it completely disappeared.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_arMwpJ",
+        "text_YJHd8F"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/hilary-morse-portrait-IMG_8074_e0cc035a-6553-4535-bb2c-bfd563e7e987.jpg",
+        "layout": "right-alignment"
+      }
+    },
+    "before_after_mdtyha": {
+      "type": "before-after",
+      "blocks": {
+        "image_jWK7eY": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/6surfing-accident-before-4x5-websize.jpg",
+            "label": "Before"
+          }
+        },
+        "image_A8midi": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/6surfing-accident-after-1month-4x5-websize.jpg",
+            "label": "After 30 days"
+          }
+        }
+      },
+      "block_order": [
+        "image_jWK7eY",
+        "image_A8midi"
+      ],
+      "settings": {
+        "title": "",
+        "layout": "horizontal",
+        "invert_layout": false,
+        "desktop_height": "before-after--desktop-medium",
+        "mobile_height": "before-after--mobile-medium",
+        "color_style": "dark",
+        "seo_h_tag": "h2"
+      }
+    },
+    "video_popup_NRr7gy": {
+      "type": "video-popup",
+      "settings": {
+        "title": "Hear her recovery story",
+        "video": "https://www.youtube.com/watch?v=Gj28PB1HqrA",
+        "image": "shopify://shop_images/Hilary.heic",
+        "seo_h_tag": "h2"
+      }
+    },
+    "85bb7a87-2593-464c-9ced-f001de178bad": {
+      "type": "images-with-text-slider",
+      "blocks": {
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/howtoapply-129193.jpg",
+            "heading": "1. Spray Rose Toner",
+            "description": "<p>Starting with a clean, dry face, generously spray our Sacred Rose Mist to your face and neck.</p>"
+          }
+        },
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/howtoapply-129321.jpg",
+            "heading": "2. Apply the Serum",
+            "description": "<p>Using the dropper vial, apply Sacred Serum to your open palm or directly to your skin.</p>"
+          }
+        },
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/howtoapply-129132.jpg",
+            "heading": "3. Massage into Skin",
+            "description": "<p>Massage and distribute by patting and lightly spreading the serum gently onto your face being sure to apply evenly to allow maximum absorption. </p>"
+          }
+        },
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/howtoapply-1-129146.jpg",
+            "heading": "4. Radiate your Love",
+            "description": "<p>Let the LOVE you feel INSIDE radiate OUT!  Spreading kindness and love is what makes life special... Enjoy it!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-0",
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-1",
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-2",
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-3"
+      ],
+      "settings": {
+        "title": "How to Apply",
+        "gallery_aspect": "1",
+        "seo_h_tag": "h2"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "products_number": 3
+      }
+    },
+    "replo_product_table_sacredserum_ee3REz": {
+      "type": "replo-product-table_sacredserum",
+      "custom_css": [
+        ":not(#\\20):not(#\\20).r-10jz9ue {display: none;}"
+      ],
+      "settings": {}
+    },
+    "2b8297f5-c2ef-43d6-a0eb-3b24e9670133": {
+      "type": "rich-text",
+      "blocks": {
+        "template--18783081595183__2b8297f5-c2ef-43d6-a0eb-3b24e9670133-16832195372d8dabd5-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ product.metafields.custom.product_seo_qa.value }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--18783081595183__2b8297f5-c2ef-43d6-a0eb-3b24e9670133-16832195372d8dabd5-1"
+      ],
+      "settings": {
+        "text_alignment": "left"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "replo_headline_icons_guarantee_w6Mpcd",
+    "custom_liquid_NbtBJi",
+    "scrolling_images_G9KB3Q",
+    "1698006103a8bdefb2",
+    "replo_brand_sacredserum_expla_VDUmjF",
+    "17280709892804e91f",
+    "image_with_text_ic47tX",
+    "1741616900b47812b1",
+    "image_with_text_PdzEeg",
+    "before_after_mdtyha",
+    "video_popup_NRr7gy",
+    "85bb7a87-2593-464c-9ced-f001de178bad",
+    "product-recommendations",
+    "replo_product_table_sacredserum_ee3REz",
+    "2b8297f5-c2ef-43d6-a0eb-3b24e9670133"
+  ]
+}

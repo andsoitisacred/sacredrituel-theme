@@ -1,0 +1,257 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "9f2839b8-ed9e-4b55-89f9-2faf4962fe21": {
+      "type": "heading",
+      "settings": {
+        "title": "The HOW and WHY",
+        "content": "<p>ACHIEVE YOUR MOST <em>radiant & glowing</em> SKIN WITH SACRED RITUEL</p>",
+        "button_label": "BUY NOW",
+        "button_link": "",
+        "text_alignment": "left",
+        "text_size": "extra"
+      }
+    },
+    "147a3929-8356-4342-bb16-8e14d31bf2e7": {
+      "type": "slider-vertical",
+      "blocks": {
+        "template--17598702485807__147a3929-8356-4342-bb16-8e14d31bf2e7-167383933579287e6c-0": {
+          "type": "image",
+          "settings": {
+            "heading": "Nourishes and softens dry skin by penetrating deep into tissue.",
+            "caption": "Number One",
+            "button_label": "TESTIMONIALS",
+            "button_link": "shopify://pages/review-testimonials",
+            "image1": "shopify://shop_images/sacred_rituel_square_1920px_92ppi_127057.jpg",
+            "image1_caption": "<p>Caption is a lorem ipsum bladably blah blah</p>",
+            "image1_link": "",
+            "image2_caption": "",
+            "image2_link": "",
+            "image3_caption": "",
+            "image3_link": ""
+          }
+        },
+        "template--17598702485807__147a3929-8356-4342-bb16-8e14d31bf2e7-167383933579287e6c-1": {
+          "type": "image",
+          "settings": {
+            "heading": "Balances texture & reduces redness resulting in a healthy amber glow",
+            "caption": "Number Two",
+            "button_label": "BUY NOW",
+            "button_link": "",
+            "image1": "shopify://shop_images/serum-handtest-4x5-29sec.00_00_07_02.Still001.jpg",
+            "image1_caption": "",
+            "image1_link": "",
+            "image2_caption": "",
+            "image2_link": "",
+            "image3_caption": "",
+            "image3_link": ""
+          }
+        },
+        "template--17598702485807__147a3929-8356-4342-bb16-8e14d31bf2e7-167383933579287e6c-2": {
+          "type": "image",
+          "settings": {
+            "heading": "Formulated to adapt to all skin types with nourishing vitamins, minerals and antioxidants",
+            "caption": "Number Three",
+            "button_label": "INGREDIENTS",
+            "button_link": "shopify://pages/the-ingredients",
+            "image1": "shopify://shop_images/sacred_rituel_square_1920px_92ppi_126624.jpg",
+            "image1_caption": "",
+            "image1_link": "",
+            "image2_caption": "",
+            "image2_link": "",
+            "image3_caption": "",
+            "image3_link": ""
+          }
+        },
+        "b7006107-a12b-41f8-89bb-b6ceef6d8613": {
+          "type": "image",
+          "settings": {
+            "heading": "High potency organic ingredients packed with phytonutrients to retain firmness by increasing the stability of cellular membranes and improving blood flow.",
+            "caption": "Number Four",
+            "button_label": "BUY NOW",
+            "button_link": "shopify://products/face-oil",
+            "image1": "shopify://shop_images/ingredients-IMG_2774_2.00_00_05_14.Still001.jpg",
+            "image1_caption": "",
+            "image1_link": "",
+            "image2_caption": "",
+            "image2_link": "",
+            "image3_caption": "",
+            "image3_link": ""
+          }
+        },
+        "03195ca1-75e7-48e9-83f6-e7ca192683e7": {
+          "type": "image",
+          "settings": {
+            "heading": "Dermatologist approved and recommended skin healing & recovery solution.",
+            "caption": "Number Five",
+            "button_label": "YOUTUBE",
+            "button_link": "https://youtube.com/shorts/4PeK1A15lcs",
+            "image1": "shopify://shop_images/MG_8219-cropped-scaled.jpg",
+            "image1_caption": "",
+            "image1_link": "",
+            "image2_caption": "",
+            "image2_link": "",
+            "image3_caption": "",
+            "image3_link": ""
+          }
+        },
+        "27093d16-86f4-4588-ad29-0141607e9280": {
+          "type": "image",
+          "settings": {
+            "heading": "Regenerates, softens and corrects the appearance of skin by protecting from sun and daily environmental stressors.",
+            "caption": "Number Six",
+            "button_label": "",
+            "button_link": "",
+            "image1": "shopify://shop_images/rachel-hawaii-nourish.00_00_14_11.Still001.jpg",
+            "image1_caption": "",
+            "image1_link": "",
+            "image2_caption": "",
+            "image2_link": "",
+            "image3_caption": "",
+            "image3_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--17598702485807__147a3929-8356-4342-bb16-8e14d31bf2e7-167383933579287e6c-0",
+        "template--17598702485807__147a3929-8356-4342-bb16-8e14d31bf2e7-167383933579287e6c-1",
+        "template--17598702485807__147a3929-8356-4342-bb16-8e14d31bf2e7-167383933579287e6c-2",
+        "b7006107-a12b-41f8-89bb-b6ceef6d8613",
+        "03195ca1-75e7-48e9-83f6-e7ca192683e7",
+        "27093d16-86f4-4588-ad29-0141607e9280"
+      ],
+      "settings": {
+        "text_size": "regular",
+        "blending_modes": true
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "no_margins": true,
+        "reduced_margins": true
+      }
+    },
+    "68ca4a22-759f-4246-b75d-6785ef37d0fe": {
+      "type": "testimonials",
+      "blocks": {
+        "72b68f2a-c49f-4942-b926-c1689d2bfe2a": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"This is my 3rd time ordering and really have noticed a visible difference in my skins overall appearance. The smell is wonderful! So moisturizing for mature <em>dry skin</em>!\"</p>",
+            "quote_author": "Aimee B.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-0": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"My skin is smooth and radiant in a way I’ve never seen before, definitely eliminating dull and <em>dry patches</em> and fine lines.\"</p>",
+            "quote_author": "Leila J.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-1": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"Sacred Serum is seriously the best facial oil for  <em>dry skin</em>, for facial redness and for overall calm.\"</p>",
+            "quote_author": "Kimberly M",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "563132f3-875c-4715-9b21-dee2f1b1d4fd": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"I've tried other serums and none hydrate and smooth my  <em>dry, sensitive skin</em> like Rituel serum. Thanks for making a healthy serum for overly dry skin! I am a believer!\"</p>",
+            "quote_author": "Heather C.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "e93a8ac7-1413-4df2-aac7-86e2040cbd81": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"I tend to have <em>dry skin</em> and the Serum has provided wonderful hydration as well as giving a translucent quality to my face.\"</p>",
+            "quote_author": "Cynthia G",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "82d202db-4762-40fa-ade4-357cf5801832": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"This serum is wonderful. My skin drinks it in. I had such <em>dry skin</em> and nothing was working. It is now, after three weeks of daily use, glowing!!\"</p>",
+            "quote_author": "★★★★★",
+            "quote_caption": "Erin W."
+          }
+        }
+      },
+      "block_order": [
+        "72b68f2a-c49f-4942-b926-c1689d2bfe2a",
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-0",
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-1",
+        "563132f3-875c-4715-9b21-dee2f1b1d4fd",
+        "e93a8ac7-1413-4df2-aac7-86e2040cbd81",
+        "82d202db-4762-40fa-ade4-357cf5801832"
+      ],
+      "settings": {
+        "title": "Deeply nourishes dry skin!",
+        "text_alignment": "center"
+      }
+    },
+    "26fa0944-e39c-4336-9ece-7df5ee3ed4ad": {
+      "type": "products-slider",
+      "settings": {
+        "title": "Full Size Products",
+        "collection": "full-size-products",
+        "products_number": 3
+      }
+    },
+    "468990f2-e264-4c6b-b0f5-9c83d778fee8": {
+      "type": "products-slider",
+      "settings": {
+        "title": "Travel Size On-the-Go!",
+        "collection": "travel-size-products",
+        "products_number": 3
+      }
+    },
+    "1673977000c439e852": {
+      "type": "apps",
+      "blocks": {
+        "250b670c-fe3a-4f60-b4f6-8b4e9861f99b": {
+          "type": "shopify://apps/stamped-product-reviews-ugc/blocks/badge-double-image/a103faaf-2125-4b0e-89fa-de5149736723",
+          "settings": {
+            "api_key": "pubkey-1RJYhxw30e8WJR41sd8UoAp01xheoo",
+            "store_hash": "156431",
+            "label1": "",
+            "label2": "",
+            "width": "320",
+            "height": ""
+          }
+        }
+      },
+      "block_order": [
+        "250b670c-fe3a-4f60-b4f6-8b4e9861f99b"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    }
+  },
+  "order": [
+    "9f2839b8-ed9e-4b55-89f9-2faf4962fe21",
+    "147a3929-8356-4342-bb16-8e14d31bf2e7",
+    "main",
+    "68ca4a22-759f-4246-b75d-6785ef37d0fe",
+    "26fa0944-e39c-4336-9ece-7df5ee3ed4ad",
+    "468990f2-e264-4c6b-b0f5-9c83d778fee8",
+    "1673977000c439e852"
+  ]
+}

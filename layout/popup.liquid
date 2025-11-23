@@ -1,0 +1,193 @@
+<!doctype html>
+  {%- liquid
+  assign direction = 'ltr'
+  assign rtl_iso_codes = 'ar,he,ur,fa,pa,sd,ku' | split: ','
+  if rtl_iso_codes contains request.locale.iso_code
+    assign direction = 'rtl'
+  endif
+  -%}
+  <html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ direction }}">
+  <head>
+<link rel='preconnect dns-prefetch' href='https://api.config-security.com/' crossorigin />
+<link rel='preconnect dns-prefetch' href='https://conf.config-security.com/' crossorigin />
+<link rel='preconnect dns-prefetch' href='https://whale.camera/' crossorigin />
+<script>
+/* >> TriplePixel :: start*/
+window.TriplePixelData={TripleName:"rituel-serum.myshopify.com",ver:"2.11",plat:"SHOPIFY",isHeadless:false},function(W,H,A,L,E,_,B,N){function O(U,T,P,H,R){void 0===R&&(R=!1),H=new XMLHttpRequest,P?(H.open("POST",U,!0),H.setRequestHeader("Content-Type","application/json")):H.open("GET",U,!0),H.send(JSON.stringify(P||{})),H.onreadystatechange=function(){4===H.readyState&&200===H.status?(R=H.responseText,U.includes(".txt")?eval(R):P||(N[B]=R)):(299<H.status||H.status<200)&&T&&!R&&(R=!0,O(U,T-1,P))}}if(N=window,!N[H+"sn"]){N[H+"sn"]=1,L=function(){return Date.now().toString(36)+"_"+Math.random().toString(36)};try{A.setItem(H,1+(0|A.getItem(H)||0)),(E=JSON.parse(A.getItem(H+"U")||"[]")).push({u:location.href,r:document.referrer,t:Date.now(),id:L()}),A.setItem(H+"U",JSON.stringify(E))}catch(e){}var i,m,p;A.getItem('"!nC`')||(_=A,A=N,A[H]||(E=A[H]=function(t,e,a){return void 0===a&&(a=[]),"State"==t?E.s:(W=L(),(E._q=E._q||[]).push([W,t,e].concat(a)),W)},E.s="Installed",E._q=[],E.ch=W,B="configSecurityConfModel",N[B]=1,O("https://conf.config-security.com/model",5),i=L(),m=A[atob("c2NyZWVu")],_.setItem("di_pmt_wt",i),p={id:i,action:"profile",avatar:_.getItem("auth-security_rand_salt_"),time:m[atob("d2lkdGg=")]+":"+m[atob("aGVpZ2h0")],host:A.TriplePixelData.TripleName,plat:A.TriplePixelData.plat,url:window.location.href,ref:document.referrer,ver:A.TriplePixelData.ver},O("https://api.config-security.com/event",5,p),O("https://whale.camera/live/dot.txt",5)))}}("","TriplePixel",localStorage);
+/* << TriplePixel :: end*/
+</script>
+<link rel='preconnect dns-prefetch' href='https://triplewhale-pixel.web.app/' crossorigin />
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0">
+  
+    {%- if settings.favicon -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 32, height: 32 }}" type="image/png" />
+    {%- endif -%}
+   
+    {%- capture seo_title -%}
+      {%- if template contains 'search' -%}
+        {{ search.terms | replace: '*', '' | split: ' AND ' | last }} - {{ shop.name | escape }}
+      {%- else -%}
+        {{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name | escape }}{% endunless %}
+      {%- endif -%}
+    {%- endcapture -%}
+  
+    <title>{{ seo_title }}</title>
+  
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+  
+    <link rel="canonical" href="{{ canonical_url }}">
+  
+    {%- liquid
+      render 'open-graph'
+      unless settings.disable_microdata 
+        render 'microdata-schema'
+      endunless
+    -%}
+  
+    <link rel="preconnect" href="https://cdn.shopify.com">
+    {%- unless settings.headings_font.system? and settings.body_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+    
+    {%- render 'head-preloader' -%}
+    {%- render 'head-variables' -%}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+  
+    {{ content_for_header }}
+  
+    <script>
+  
+      const ProductHeaderHelper = productSelector => {
+        const originalHeader = document.querySelector(`${productSelector} .product__header`);
+        let duplicateHeader = document.createElement('div');
+        duplicateHeader.classList = 'product__header-mobile hide smaller-lap--show-block';
+        duplicateHeader.innerHTML = document.querySelector(`${productSelector} product-header`).innerHTML;
+        duplicateHeader.querySelector('.product__price').id = "";
+        document.querySelector(`${productSelector}`).prepend(duplicateHeader);
+        duplicateHeader = duplicateHeader.querySelector('.product__header');
+        const headerObserver = new MutationObserver(mutations=>{
+          for ( const mutation of mutations ) {
+            duplicateHeader.innerHTML = originalHeader.innerHTML;
+          }
+        });
+        headerObserver.observe(originalHeader,{ attributes: false, childList: true, subtree: true })
+      }
+  
+      function debounce(fn, wait) {
+        let t;
+        return (...args) => {
+          clearTimeout(t);
+          t = setTimeout(() => fn.apply(this, args), wait);
+        };
+      }
+      window.KEYCODES = {
+        TAB: 9,
+        ESC: 27,
+        DOWN: 40,
+        RIGHT: 39,
+        UP: 38,
+        LEFT: 37,
+        RETURN: 13
+      };
+  
+    </script>
+    
+    {%- if template == 'customers/addresses' -%}
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script>
+    {%- endif -%}
+  
+    <noscript>
+      {{ 'theme-noscript.css' | asset_url | stylesheet_tag }}
+    </noscript>
+  
+  </head>
+  
+  <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template.name }} template-{{ template | replace: '.', ' ' | handle }} no-touchevents image-reveal--{{ settings.image_reveal }}">
+
+    <script>
+      if ( 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch ) {
+        document.querySelector('body').classList.remove('no-touchevents');
+        document.querySelector('body').classList.add('touchevents');
+      } 
+    </script>
+  
+    <a href="#main" class="visually-hidden skip-to-content" tabindex="1">{{ 'general.accessibility_labels.skip_to_content' | t }}</a>
+  
+    <main id="main" class="page-content page-content--popup">
+      {{ content_for_layout }}
+    </main>
+  
+    <script>
+
+      window.prlxAnimation = () => {};
+  
+      KROWN = {
+        settings: {
+          shop_money_format: '{{ shop.money_format }}',
+          cart_action: "{{ settings.cart_action }}",
+          routes: {
+            cart_url: "{{ routes.cart_url }}",
+            cart_add_url: "{{ routes.cart_add_url }}",
+            cart_change_url: "{{ routes.cart_change_url }}",
+            predictive_search_url: "{{ routes.predictive_search_url }}"
+          },
+          locales: {
+            cart_add_error: `{{ 'cart.add_error' | t }}`,
+            cart_general_error: `{{ 'cart.general_error' | t }}`,
+            products_add_to_cart_button: `{{ 'products.page.add_to_cart_button' | t }}`,
+            products_preorder_button: `{{ 'products.page.preorder_button' | t }}`,
+            products_sold_out_variant: `{{ 'products.page.inventory.sold_out_variant' | t }}`,
+            products_unavailable_variant: `{{ 'products.page.inventory.unavailable_variant' | t }}`,
+            products_one_product: `{{ 'products.page.inventory.one_product' | t }}`,
+            products_few_products: `{{ 'products.page.inventory.few_products' | t }}`,
+            products_many_products: `{{ 'products.page.inventory.many_products' | t }}`,
+            products_no_products: `{{ 'products.page.inventory.no_products' | t }}`,
+            products_preorder: `{{ 'products.page.inventory.preorder' | t }}`,
+            products_enough_products: `{{ 'products.page.inventory.enough_products' | t }}`,
+            product_sku: `{{ 'products.page.sku' | t }}`,
+            product_barcode: `{{ 'products.page.barcode' | t }}`,
+            product_read_review: `{{ 'products.page.read_full_review' | t }}`,
+            next: `{{ 'general.accessibility_labels.next' | t }}`,
+            prev: `{{ 'general.accessibility_labels.previous' | t }}`
+          },
+          symbols: {
+            arrow: `{%- render 'theme-symbols', icon: 'arrow-right' -%}`,
+            zoom_out: `{%- render 'theme-symbols', icon: 'zoom-out' -%}`,
+            star: `{%- render 'theme-symbols', icon: 'star' -%}`,
+            plus: `{%- render 'theme-symbols', icon: 'plus' -%}`,
+            toggle_pack: `<svg aria-hidden="true" focusable="false" role="presentation" class="symbol symbol--minus" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.48511 7.00293H15.4852V9.13403H1.48511V7.00293Z" fill="#111111"/></svg><svg aria-hidden="true" focusable="false" role="presentation" class="symbol symbol--plus" width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.48517 7.48145H15.4852V9.61255H1.48517V7.48145Z" fill="#111111"/><path d="M9.48517 1.08789V16.0056H7.48517V1.08789H9.48517Z" fill="#111111"/></svg>`
+          },
+          predictive_search_enabled: "true",
+          predictive_search_placeholder: `<div class="search-item cart-item blank"><div><a class="thumbnail"><figure class="lazy-image" data-ratio style="padding-top:130%"></figure></a><div class="content"><span class="title"></span><span class="info"></span></div></div>`
+        }
+      };
+      
+    </script>
+  
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    <script src="{{ 'component-product-form.js' | asset_url }}" defer></script>
+    <script src="{{ 'component-css-slider.js' | asset_url }}" defer></script>
+  
+    {%- if request.design_mode -%}
+      <script src="{{ 'theme-editor.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-lightbox.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-facets.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-image-zoom.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-pickup-availability.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-product-slider.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-scrolling-text.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-toggle.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-video-background.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-video.js' | asset_url }}" defer></script>
+      <script src="{{ 'section-announcement-bar.js' | asset_url }}" defer></script>
+      <script src="{{ 'section-main-product.js' | asset_url }}" defer></script>
+      <script src="{{ 'section-collection-list.js' | asset_url }}" defer></script>
+    {%- endif -%}
+    
+  </body>
+  </html>

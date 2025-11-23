@@ -1,0 +1,71 @@
+{%- liquid
+  assign index = index | plus: 1
+  assign item_number = index | modulo: 2
+  
+  assign css_class = 'text-medium four-plus-tenths lap--five-plus-tenths push-left-one-tenth'
+  assign sizes = 'sizes="(max-width: 728px) calc(100vw - 60px), (max-width: 1023px) 46vw, 38vw"'
+  if item_number == 1
+    assign css_class = css_class | append: ' lap--push-left-none'
+  endif
+-%}
+
+<div class="image-with-text-overlay {{ css_class }}" {{ shopify_attributes }}>
+  
+  {%- if show_button == false -%}
+    <a  href="{{ collection.url | escape }}" title="{{ collection.title | escape }}">
+  {%- endif -%}
+
+  <div class="image-with-text-overlay__wrap">
+
+    <div class="image-with-text-overlay__background">
+
+      {%- liquid 
+        unless image == blank
+          assign collection_image = image
+        else 
+          assign collection_image = collection.featured_image
+        endunless
+      -%}
+
+      {%- unless collection_image == blank -%}
+        {% render 'lazy-image', image: collection_image, alt: collection.title, type: 'background', sizes: sizes %}
+      {%- else -%}
+        <span class="onboarding-svg">
+          {{ 'image' | placeholder_svg_tag }}
+        </span>
+      {%- endunless -%}
+
+    </div>
+
+    <div class="image-with-text-overlay__content {{ text_alignment }}">
+      
+      <div>
+
+        <h3 class="image-with-text-overlay__heading"><span>
+          {%- liquid
+            unless collection.title == blank
+              echo collection.title | escape
+            else 
+              echo 'general.onboarding.collection_title' | t
+            endunless
+          -%}
+        </span></h3>
+
+        {%- if show_button -%}
+          <a class="image-with-text-overlay__button button button--underline" href="{{ collection.url | escape }}" title="{{ collection.title | escape }}">
+            {{ 'collections.shop_now' | t }}
+            <span class="svg svg__arrow" aria-hidden="true">{% render 'theme-symbols', icon: 'arrow-right' %}</span>
+          </a>
+        {%- endif -%}
+
+      </div>
+
+    </div>
+
+  </div>
+
+  {%- if show_button == false -%}
+    </a>
+  {%- endif -%}
+
+</div>

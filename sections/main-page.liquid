@@ -1,0 +1,50 @@
+<div class="section-header ten-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+  <h1 class="section-header__title h1">{{ page.title | escape }}</h1>
+</div>
+{%- if page.content != blank -%}
+  <div class="ten-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+    <div class="rte">
+      {{ page.content }}
+    </div>
+  </div>
+{%- endif -%}
+
+{%- if section.settings.reduced_margins -%}
+  {% style %}
+    .section-w-margin {
+      margin-bottom: calc(var(--section-margin)/2);
+    }
+    .section-w-reduced-margin+.section-w-reduced-margin {
+      margin-top: 0;
+    }
+  {% endstyle %}
+{%- endif -%}
+{%- if section.settings.no_margins and page.content == blank -%}
+  {% style %}
+    #shopify-section-{{ section.id }} {
+      margin-bottom: 0 !important;
+    }
+  {% endstyle %}
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "t:sections.highlight-extra-words.main-page.name",
+    "class": "shopify-section section-w-margin section-w-mobile-padding",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "no_margins",
+        "label": "t:sections.highlight-extra-words.main-page.settings.no_margins.label",
+        "info": "t:sections.highlight-extra-words.main-page.settings.no_margins.info",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "reduced_margins",
+        "label": "t:sections.highlight-extra-words.main-page.settings.reduce_margins.label",
+        "default": false
+      }  
+    ]
+  }
+{% endschema %}

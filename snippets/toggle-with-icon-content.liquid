@@ -1,0 +1,17 @@
+<toggle-tab class="toggle {% if select_icon == "none" and custom_icon == blank %} toggle--no-icon {% endif %}" {{ shopify_attributes }}>
+  <span class="toggle__title" data-js-title tabindex="0" aria-expanded="false" aria-controls="toggle-{{ id }}"> 
+    {%- if custom_icon != blank -%}
+      <span class="icon-pack" aria-hidden="true" aria-label="{{ custom_icon.alt }}" role="img">
+        <img src="{{ custom_icon | image_url: width: 76, height: 76, crop: 'center' }}" alt="{{ custom_icon.alt }}" width="76" height="76" loading="lazy"  />
+      </span>
+    {%- elsif select_icon != "none" -%}
+      <span class="icon-pack" aria-hidden="true" aria-label="{{ select_icon }}" role="img">
+        {%- render 'icons-pack', icon: select_icon -%}
+      </span>
+    {%- endif -%}
+    {{ title | escape }}
+  </span>
+  <div id="toggle-{{ id }}" data-js-content class="toggle__content rte">
+    {{ content }}
+  </div>
+</toggle-tab>

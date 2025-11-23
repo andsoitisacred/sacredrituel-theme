@@ -1,0 +1,97 @@
+{%- if predictive_search.performed -%}
+
+  <div class="sidebar__search-container">
+    <div class="sidebar__search-results">
+
+			{%- if predictive_search.resources.queries.size > 0 or predictive_search.resources.collections.size > 0 -%}
+				{%- for query in predictive_search.resources.queries -%}
+					<div class="cart-item search-item article"><div class="content"><a href="{{ query.url }}" tabindex="-1"><span class="title">{{ query.styled_text }}</span></a></div></div>
+				{%- endfor -%}
+				{%- for collection in predictive_search.resources.collections -%}
+					<div class="cart-item search-item article"><div class="content"><a href="{{ collection.url }}" tabindex="-1"><span class="title">{{ collection.title }}</span></a></div></div>
+				{%- endfor -%}
+			{%- endif -%}
+
+			{%- if predictive_search.resources.products.size > 0 -%}
+				<span class="sidebar__caption">{{ 'search.form.product_results_title' | t }}</span>
+				{%- for product in predictive_search.resources.products -%}
+					<div class="cart-item search-item">
+						<div>
+							<a class="thumbnail" href="{{ product.url }}" title="{{ product.title }}" tabindex="-1">
+                {%- render 'lazy-image-small', image: product.featured_media -%}
+							</a>
+							<div class="content">
+								<a href="{{ product.url }}" tabindex="-1">
+									<span class="title">{{ product.title }}</span>
+								</a>
+								{%- assign variant = product.selected_or_first_available_variant -%}
+								<div class="price">
+									<div class="item__price-list">
+										<span class="item__price">
+											<span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+											{{ variant.price | money }}
+										</span>
+										{%- if variant.compare_at_price > variant.price -%}
+											<span class="item__price item__price--compare">
+												<span class="visually-hidden">{{ 'general.accessibility_labels.price.sale' | t }}</span>
+												{{ variant.compare_at_price | money }}
+											</span>
+										{%- endif -%}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{%- endfor -%}
+			{%- endif -%}
+
+			{%- if settings.predictive_search_include_articles and predictive_search.resources.articles.size > 0 -%}
+				{%- assign date_format = 'general.date_format.month_day_year' | t -%}
+				<span class="sidebar__caption">{{ 'search.form.article_results_title' | t }}</span>
+				{%- for article in predictive_search.resources.articles -%}
+					<div class="cart-item search-item {% unless article.featured_image %} article {% endunless %}">
+						<div>
+							{%- if article.featured_image -%}
+								<a class="thumbnail" href="{{ article.url }}" title="{{ article.title }}" tabindex="-1">
+									<figure data-ratio>
+										<img
+											src="{{ article.featured_image | image_url: width: 100, height: 130, crop: 'center' }}"
+											srcset="{{ article.featured_image | image_url: width: 100, height: 130, crop: 'center' }} 100w, {{ article.featured_image | image_url: width: 200, height: 260, crop: 'center' }} 200w"
+											sizes="100px"
+		                	alt="{{ article.featured_image.alt }}"
+		                	loading="lazy"
+		                	width="100" height="130" />
+		              </figure>
+		            </a>
+	            {%- endif -%}
+							<div class="content">
+								<a href="{{ article.url }}" tabindex="-1"><span class="title">{{ article.title }}</span></a>
+								<span class="info">{{ article.published_at | date: date_format }}</span>
+							</div>
+						</div>
+					</div>
+				{%- endfor -%}
+			{%- endif -%}
+
+			{%- if settings.predictive_search_include_pages and predictive_search.resources.pages.size > 0 -%}
+				<span class="sidebar__caption">{{ 'search.form.page_results_title' | t }}</span>
+				{%- for page in predictive_search.resources.pages -%}
+					<div class="cart-item search-item article">
+						<div class="content">
+							<a href="{{ page.url }}" tabindex="-1"><span class="title">{{ page.title }}</span></a>
+							{%- if page.body != blank -%}
+								<span class="info">{{ page.body | strip_html | truncatewords: 12, "..." }}</span>
+							{%- endif -%}
+						</div>
+					</div>
+				{%- endfor -%}
+			{%- endif -%}
+
+		</div>
+
+	</div>
+  <div class="sidebar__search-link">
+  	<a tabindex="-1" class="button button--solid button--wide button--align" href="{{ routes.search_url }}?q={{ predictive_search.terms }}">{{ 'search.form.search_for_html' | t: terms: predictive_search.terms }}</a>
+  </div>
+
+{%- endif -%}

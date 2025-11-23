@@ -1,0 +1,62 @@
+<product-recommendations class="product-recommendations" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_number }}">
+  {%- if recommendations.performed and recommendations.products_count > 0 -%}
+    <div class="section-w-margin">
+
+      {%- if section.settings.heading != blank -%}
+        <div class="section-header grid-item push-left-one-tenth lap--push-left-padding">
+          <span class="section-header__title h4">{{ section.settings.heading | escape }}</span>
+        </div>
+      {%- endif -%}
+
+      <css-slider id="css-slider-recommended-products" 
+        class="css-slider css-slider--snapping products-slider"
+        data-navigation-class="ten-tenths lap--twelve-tenths push-left-one-tenth lap--push-left-padding"
+      >
+        <div class="css-slides-container grid">
+          {%- liquid
+            assign sizes = 'sizes="(max-width: 599px) calc(100vw - 90px), (max-width: 1023px) calc(50vw - 80px), 25vw"'
+            for recommendation in recommendations.products
+              assign css_class = 'css-slide three-tenths lap--smart-width palm--smart-width '
+              if forloop.first 
+                assign css_class = css_class | append: 'push-left-one-tenth lap--push-left-padding'
+              else 
+                assign css_class = css_class | append: 'push-left-half-tenth lap--push-left-padding'
+              endif
+              render 'product-item', product: recommendation, css_class: css_class, index: forloop.index0, sizes: sizes
+            endfor
+          -%}
+        </div>
+      </css-slider>
+
+    </div>
+  {%- endif -%}
+</product-recommendations>
+
+{% schema %}
+  {
+    "name": "t:sections.product-recommendations.name",
+    "class": "shopify-section-product-recommendations",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:sections.product-recommendations.settings.header__1.content",
+        "info": "t:sections.product-recommendations.settings.header__1.info"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "t:sections.product-recommendations.settings.heading.label",
+        "default": "Recommended products"
+      },
+      {
+        "type": "range",
+        "id": "products_number",
+        "label": "t:sections.featured-collection.settings.products_number.label",
+        "min": 3,
+        "max": 6,
+        "step": 1,
+        "default": 3
+      }
+    ]
+  }
+{% endschema %}

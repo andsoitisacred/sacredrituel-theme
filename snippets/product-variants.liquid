@@ -1,0 +1,66 @@
+{%- if style == 'select' -%}
+
+	<div class="product-variants product-variants--select"
+		{% if product.has_only_default_variant %} style="display:none" {% endif %}
+	>
+		{%- for option in product.options_with_values -%}
+			<div class="product-variant" data-js-product-variant>
+				<label for="product-{{ option.name | escape | downcase | strip }}-{{ id }}">{{ 'products.page.select' | t }} {{ option.name }}</label>
+				<select class="product-variant-container" id="product-{{ option.name | escape | downcase | strip }}-{{ id }}" data-js-product-variant-container="select">
+					{%- for value in option.values -%}
+						<option class="product-variant-value" value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>
+							{{ value | escape }}
+						</option>
+					{%- endfor -%}
+				</select>
+			</div>
+		{%- endfor -%}
+	</div>
+
+{%- else -%}
+
+	{%- liquid 
+		assign color_label = settings.color_swatches_labels | split: ','
+		assign size_label = 'size,format,größe,talla,taille,dimension,mărime,dimensione,tamanho,寸法' | split: ','
+	-%}
+		
+	<div class="product__variants" {% if product.has_only_default_variant %} style="display:none;" {% endif %}>
+
+		{%- for option in product.options_with_values -%}
+			{%- assign downcased_option = option.name | downcase -%}
+
+			<div class="product-variant" data-name="product-{{ option.name | escape | downcase | strip }}" data-js-product-variant>
+
+				<span class="product-variant__name">{{ 'products.page.select' | t }} {{ option.name }}</span>
+
+				<div class="product-variant__container" data-js-product-variant-container="radio">
+					{%- for value in option.values -%}
+						<div class="product-variant__item 
+							{% if color_label contains downcased_option and color_swatches %} 
+								product-variant__item--color 
+							{% elsif size_label contains downcased_option %}
+								product-variant__item--size
+							{% endif %}
+						">
+							<input type="radio" name="product-{{ option.name | escape | downcase | strip }}" id="{{ product.handle }}-option-{{ option.name | escape | downcase | strip }}-{{ forloop.index }}-{{ id }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %} class="product-variant__input product-variant-value">
+							<label for="{{ product.handle }}-option-{{ option.name | escape | downcase | strip }}-{{ forloop.index }}-{{ id }}" class="product-variant__label">
+								{%- if color_label contains downcased_option and color_swatches -%}
+									{%- assign color_swatch_name = value | handle | append: '.png' -%}
+									{%- assign color_swatch_image = images[color_swatch_name] -%}
+									<span aria-hidden="true" style="{% if color_swatch_image != blank %} background-image: url({{ color_swatch_image | image_url: width: 44, height: 44 }} {% else %} background-color: {{ value | escape | replace: ' ', '' | downcase }} {% endif %}"></span>
+									{{ value }}
+								{%- else -%}
+									{{ value }}
+								{%- endif -%}
+							</label>
+						</div>
+					{%- endfor -%}
+				</div>
+
+			</div>
+
+		{%- endfor -%}
+
+	</div>
+
+{%- endif -%}

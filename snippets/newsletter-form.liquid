@@ -1,0 +1,27 @@
+{{ "component-newsletter-form.css" | asset_url | stylesheet_tag }}
+
+<div class="newsletter-form">
+	{%- form 'customer', id: id -%}
+    {%- render 'form-errors', form: form -%}
+	  {%- if form.posted_successfully? -%}	
+	  	{%- assign success_text = 'general.newsletter.confirmation' | t -%}
+	  	{%- if type == 'page' -%}
+	  		<div class="h2">{{ success_text }}</div>
+	  	{%- else -%}
+	  		{%- render 'form-success', text: success_text -%}
+	  	{%- endif -%}
+	  {%- else -%}
+	  	<div class="newsletter-input-holder">
+	      <label for="Email-{{ type }}" class="visually-hidden">{{ 'general.newsletter.email_label' | t }}</label>
+	      <input type="email" class="newsletter-input" value="{% if customer %}{{ customer.email }}{% endif %}" name="contact[email]" id="Email-{{ type }}" placeholder="{{ 'general.newsletter.email_label' | t }}" aria-label="{{ 'general.newsletter.email_label' | t }}" autocapitalize="off" required />
+	      <button type="submit" class="newsletter-submit {% if type == 'popup' %} button button--solid button--wide {% endif %}" id="Subscribe-{{ type }}">
+      		<span {% unless type == 'popup' %} class="visually-hidden" {% endunless %}>{{ 'general.newsletter.submit_label' | t }}</span>
+	      	{%- unless type == 'popup' -%}
+	      		{%- render 'theme-symbols', icon: 'arrow-right' -%}
+	      	{%- endunless -%}
+      	</button>
+	      <input type="hidden" name="contact[tags]" value="newsletter" />
+	    </div>
+	  {%- endif -%}
+	{%- endform -%}
+</div>

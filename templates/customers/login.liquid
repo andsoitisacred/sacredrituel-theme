@@ -1,0 +1,118 @@
+<div class="shopify-section section-w-margin section-w-mobile-padding" id="section-login">
+
+  <div class="section-header five-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+  	<h1 id="LoginRecoverTitle" class="section-header__title h1" data-password_recovery="{{ 'customers.login_page.password_reset.title' | t }}" data-login="{{ 'customers.login_page.title' | t }}">{{ 'customers.login_page.title' | t }}</h1>
+  </div>
+
+  <div class="grid five-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+
+		<div id="ResetSuccess" style="display:none;">
+	    {%- liquid
+        assign success_text = 'customers.login_page.password_reset.success_message' | t
+        render 'form-success', text: success_text
+	    -%}
+		</div>
+
+    <div id="CustomerLoginForm">
+
+      {%- form 'customer_login', class: 'simple-grid' -%}
+
+    		<div class="simple-grid-item one-whole">{%- render 'form-errors', form: form -%}</div>
+
+        <div class="simple-grid-item one-whole">
+          <label for="CustomerEmail" class="text-size--small">{{ 'customers.login_page.form_email_label' | t }}</label>
+          <input type="email" name="customer[email]" id="CustomerEmail" class="input-full{% if form.errors contains 'email' %} error{% endif %}" placeholder="{{ 'customers.login_page.form_email_label' | t }}" autocorrect="off" autocapitalize="off" autofocus>
+        </div>
+
+        <div class="simple-grid-item one-whole">
+          {%- if form.password_needed -%}
+            <label for="CustomerPassword" class="text-size--small">{{ 'customers.login_page.form_password_label' | t }}</label>
+            <input type="password" value="" name="customer[password]" id="CustomerPassword" class="input-full{% if form.errors contains 'password' %} error{% endif %}" placeholder="{{ 'customers.login_page.form_password_label' | t }}">
+          {%- endif -%}
+        </div>
+
+        <div class="simple-grid-item one-whole">
+
+          <input type="submit" class="button button--solid button--fit" value="{{ 'customers.login_page.form_login_button' | t }}" style="margin-inline-end: 25px;">
+
+          <div class="rte">
+            {%- if form.password_needed -%}
+              <p style="margin-bottom:.5em"><a href="#recover" id="RecoverPassword">{{ 'customers.login_page.forgot_password_check' | t }}</a></p>
+            {%- endif -%}
+            <p href="#">{{ 'customers.login_page.new_customer_button' | t | customer_register_link }}</p>
+          </div>
+
+        </div>
+
+      {%- endform -%}
+
+    </div>
+
+    <div id="RecoverPasswordForm" style="display: none;">
+
+      {%- form 'recover_customer_password', class: 'simple-grid' -%}
+
+        {%- if form.posted_successfully? -%}
+          {%- assign resetPassword = true -%}
+        {%- endif -%}
+
+        <p class="simple-grid-item one-whole h4" style="margin-bottom:2em">{{ 'customers.login_page.password_reset.subtitle' | t }}</p>
+
+    		<div class="simple-grid-item one-whole">{%- render 'form-errors', form: form -%}</div>
+
+        <div class="simple-grid-item one-whole">
+          <label for="RecoverEmail" class="text-size--small">{{ 'customers.login_page.password_reset.email_label' | t }}</label>
+          <input type="email" value="" name="email" id="RecoverEmail" class="input-full" placeholder="{{ 'customers.login_page.password_reset.email_label' | t }}" autocorrect="off" autocapitalize="off">
+        </div>
+
+        <div class="simple-grid-item one-whole">
+          <input type="submit" class="button button--solid button--fit" value="{{ 'customers.login_page.password_reset.submit_button' | t }}">
+        </div>
+
+        <div class="simple-grid-item one-whole push-a-bit">
+          <button style="border-bottom:1px solid" type="button button--solid button--fit" id="HideRecoverPasswordLink" class="text-link">{{ 'customers.login_page.password_reset.cancel_button' | t }}</button>
+        </div>
+
+      {%- endform -%}
+
+    </div>
+
+    {%- if shop.checkout.guest_login -%}
+
+      {%- form 'guest_login', class: 'simple-grid' -%}
+        <div class="simple-grid-item one-whole">
+        	<input type="submit" class="button button--solid button--fit" value="{{ 'customers.login_page.guest_check' | t }}">
+        </div>
+      {%- endform -%}
+
+    {%- endif -%}
+
+  </div>
+
+</div>
+
+{%- if resetPassword -%}
+  <style type="text/css">
+    #ResetSuccess { 
+      display: block !important;
+      margin-bottom: 1em;
+    }
+  </style>
+{%- endif -%}
+
+<script>
+  document.getElementById('RecoverPassword').addEventListener('click', (e)=>{
+    e.preventDefault();
+    document.getElementById('RecoverPasswordForm').style.display = 'block';
+  document.getElementById('CustomerLoginForm').style.display='none';                       
+  });
+  document.getElementById('HideRecoverPasswordLink').addEventListener('click', (e)=>{
+    e.preventDefault();
+  document.getElementById('RecoverPasswordForm').style.display = 'none';
+  document.getElementById('CustomerLoginForm').style.display = 'block';               
+  });
+  if (window.location.hash == '#recover') { 
+    document.getElementById('RecoverPasswordForm').style.display = 'block';
+  document.getElementById('CustomerLoginForm').style.display='none';    
+  }
+</script>

@@ -1,0 +1,113 @@
+<div class="product__header">
+
+  {%- liquid
+    if id == blank
+      assign id = section.id
+    endif
+
+    assign sale = metaobjects.global_sale.current_sale
+    assign discount_percent = sale.percent.value | default: 0
+  -%}
+
+  {%- assign use_visual_discount = false -%}
+  {%- if sale.active.value and product.metafields.sale.included and discount_percent > 0 -%}
+    {%- assign use_visual_discount = true -%}
+  {%- endif -%}
+
+  <{% if type == 'section' %}h3{% else %}h1{% endif %} class="product__title h2">{{ product.title | escape }}</{% if type == 'section' %}h3{% else %}h1{% endif %}>
+
+  {%- if show_vendor -%}
+    {%- capture vendor -%} {{ product.vendor | link_to_vendor }} {%- endcapture -%}
+    <p class="product__vendor text-size--small">{{ 'products.page.vendor_html' | t: vendor: vendor }}</p>
+  {%- endif -%}
+
+  <span class="product__price text-size--larger" id="product-price-{{ id }}">
+
+    <span class="product__price-container">
+
+      {% comment %} Original or Sale Price Display {% endcomment %}
+      <span class="product__price--original" data-js-product-price-original>
+        {%- if use_visual_discount -%}
+          {%- assign discount_amount = variant.price | times: discount_percent | divided_by: 100 -%}
+          {%- assign sale_price = variant.price | minus: discount_amount -%}
+          <span class="visually-hidden">{{ 'general.accessibility_labels.price.sale' | t }}</span>
+          {{ sale_price | money }}
+        {%- else -%}
+          <span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+          {{ variant.price | money }}
+        {%- endif -%}
+      </span>
+
+      {% comment %} Compare At Price (for original price strikethrough) {% endcomment %}
+      <span class="product__price--compare" data-js-product-price-compare>
+        {%- if use_visual_discount -%}
+          <span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+          {{ variant.price | money }}
+        {%- elsif variant.compare_at_price > variant.price -%}
+          <span class="visually-hidden">{{ 'general.accessibility_labels.price.regular' | t }}</span>
+          {{ variant.compare_at_price | money }}
+        {%- endif -%}
+      </span>
+
+      {% comment %} Sale Badge {% endcomment %}
+      {%- if use_visual_discount -%}
+        <span class="sale-badge">{{ discount_percent }}% OFF</span>
+      {%- endif -%}
+
+      {% comment %} Unit Price Display {% endcomment %}
+      <span class="product__price--unit text-size--smaller" data-js-product-price-unit>
+        {%- liquid
+          if variant.unit_price_measurement
+            echo variant.unit_price | money
+            echo '/'
+            if variant.unit_price_measurement.reference_value != 1
+              echo variant.unit_price_measurement.reference_value
+            endif
+            echo variant.unit_price_measurement.reference_unit
+          endif
+        -%}
+      </span>
+
+    </span>
+
+    {%- liquid
+      if show_reviews 
+        render 'product-rating', product: product, class: 'product__price-reviews text-size--regular' 
+      endif
+    -%}
+
+  </span>
+
+  <div class="product__extras text-size--smaller">
+
+    {%- if show_tax_info -%}
+      {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
+        <span class="product__policies" data-product-policies>
+          {% if shop.taxes_included %}
+            {{ 'products.page.include_taxes' | t }}
+          {%- endif -%}
+          {%- if shop.shipping_policy.body != blank -%}
+            {{ 'products.page.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+          {%- endif -%}
+        </span>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if show_sku -%}
+      <span class="product__sku" data-js-product-sku>
+        {%- if variant.sku != empty -%}
+          {{ 'products.page.sku' | t }}{{ variant.sku | escape }}
+        {%- endif -%}
+      </span>
+    {%- endif -%}
+    {%- if show_barcode -%}
+      <span class="product__barcode" data-js-product-barcode>
+        {%- if variant.barcode != empty -%}
+          {{ 'products.page.barcode' | t }}{{ variant.barcode | escape }}
+        {%- endif -%}
+      </span>
+    {%- endif -%}
+
+  </div>
+
+</div>

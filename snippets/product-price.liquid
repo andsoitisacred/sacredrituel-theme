@@ -1,0 +1,69 @@
+<div class="product-price">
+
+  {%- liquid
+    assign sale = metaobjects.global_sale.current_sale
+    assign discount_percent = sale.percent.value | default: 0
+    assign use_visual_discount = sale.active.value and product.metafields.sale.included and discount_percent > 0
+  -%}
+
+  {%- if product_price_varies -%}
+
+    <span class="product-price--original pps" data-js-product-price-original>
+      {%- liquid
+        assign price = target.price | money
+        if use_visual_discount
+          assign discount_amount = target.price | times: discount_percent | divided_by: 100
+          assign sale_price = target.price | minus: discount_amount | money
+          echo 'products.grid.on_sale_from_html' | t: price: sale_price
+        elsif target.compare_at_price > target.price
+          echo 'products.grid.on_sale_from_html' | t: price: price
+        else
+          echo 'products.grid.from_text_html' | t: price: price
+        endif
+      -%}
+    </span>
+
+    <del class="product-price--compare" data-js-product-price-compare>
+      {%- if use_visual_discount -%}
+        {{ target.price | money }}
+      {%- endif -%}
+    </del>
+
+  {%- else -%}
+
+    <span class="product-price--original pps {{ text_size_class }}" data-js-product-price-original>
+      {%- if use_visual_discount -%}
+        {%- assign discount_amount = target.price | times: discount_percent | divided_by: 100 -%}
+        {%- assign sale_price = target.price | minus: discount_amount -%}
+        {{ sale_price | money }}
+      {%- else -%}
+        {{ target.price | money }}
+      {%- endif -%}
+    </span>
+
+    <del class="product-price--compare" data-js-product-price-compare>
+      {%- liquid
+        if use_visual_discount
+          echo target.price | money | prepend: '<span>' | append: '</span>'
+        elsif target.compare_at_price > target.price
+          echo target.compare_at_price | money | prepend: '<span>' | append: '</span>'
+        endif
+      -%}
+    </del>
+
+  {%- endif -%}
+
+  <span class="product-price--unit pps text-size--regular" data-js-product-price-unit>
+    {%- liquid
+      if variant.unit_price_measurement
+        echo variant.unit_price | money
+        echo ' / '
+        if variant.unit_price_measurement.reference_value != 1
+          echo variant.unit_price_measurement.reference_value
+        endif
+        echo variant.unit_price_measurement.reference_unit
+      endif
+    -%}
+  </span>
+
+</div>

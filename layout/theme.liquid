@@ -1,0 +1,571 @@
+<!doctype html>
+{%- liquid
+  assign direction = 'ltr'
+  assign rtl_iso_codes = 'ar,he,ur,fa,pa,sd,ku' | split: ','
+  if rtl_iso_codes contains request.locale.iso_code
+    assign direction = 'rtl'
+  endif
+-%}
+<html
+  class="no-js"
+  lang="{{ request.locale.iso_code }}"
+  dir="{{ direction }}"
+>
+  <head>
+    {% render 'replo-head' %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0">
+
+    {%- if settings.favicon -%}
+      <link
+        rel="shortcut icon"
+        href="{{ settings.favicon | image_url: width: 32, height: 32 }}"
+        type="image/png"
+      >
+    {%- endif -%}
+
+    {%- capture seo_title -%}
+      {%- if template contains 'search' -%}
+        {{ search.terms | replace: '*', '' | split: ' AND ' | last }} - {{ shop.name | escape }}
+      {%- else -%}
+        {{ page_title }}{% if current_tags %}
+          {% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}
+        {% if current_page != 1 %}
+          &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}
+        {% unless page_title contains shop.name %}
+          &ndash; {{ shop.name | escape }}{% endunless %}
+      {%- endif -%}
+    {%- endcapture -%}
+
+    <title>{{ seo_title }}</title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- liquid
+      render 'open-graph'
+      unless settings.disable_microdata
+        render 'microdata-schema'
+      endunless
+    -%}
+
+    <link rel="preconnect" href="https://cdn.shopify.com">
+    {%- unless settings.headings_font.system? and settings.body_font.system? -%}
+      <link
+        rel="preconnect"
+        href="https://fonts.shopifycdn.com"
+        crossorigin
+      >
+    {%- endunless -%}
+
+    {%- render 'head-preloader' -%}
+    {%- render 'head-variables' -%}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    {{ content_for_header }}
+
+    <script>
+
+      const ProductHeaderHelper = productSelector => {
+        const originalHeader = document.querySelector(`${productSelector} .product__header`);
+        let duplicateHeader = document.createElement('div');
+        duplicateHeader.classList = 'product__header-mobile hide smaller-lap--show-block';
+        duplicateHeader.innerHTML = document.querySelector(`${productSelector} product-header`).innerHTML;
+        duplicateHeader.querySelector('.product__price').id = "";
+        document.querySelector(`${productSelector}`).prepend(duplicateHeader);
+        duplicateHeader = duplicateHeader.querySelector('.product__header');
+        const headerObserver = new MutationObserver(mutations => {
+          for (const mutation of mutations) {
+            duplicateHeader.innerHTML = originalHeader.innerHTML;
+          }
+        });
+        headerObserver.observe(originalHeader, {
+          attributes: false,
+          childList: true,
+          subtree: true
+        })
+      }
+
+      function debounce(fn, wait) {
+        let t;
+        return(...args) => {
+          clearTimeout(t);
+          t = setTimeout(() => fn.apply(this, args), wait);
+        };
+      }
+      window.KEYCODES = {
+        TAB: 9,
+        ESC: 27,
+        DOWN: 40,
+        RIGHT: 39,
+        UP: 38,
+        LEFT: 37,
+        RETURN: 13
+      };
+    </script>
+
+    {%- if template == 'customers/addresses' -%}
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script>
+    {%- endif -%}
+
+    <noscript>
+      {{ 'theme-noscript.css' | asset_url | stylesheet_tag }}
+    </noscript>
+
+    <!-- noindex and redirect 'hidden' products -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Sacred Rituel",
+        "alternateName": "Sacred Ritual",
+        "url": "https://www.sacredrituel.com",
+        "logo": "https://www.sacredrituel.com/cdn/shop/files/sacred-rituel-beauty-shadow_90_brand-logo-shopify-512_copy.png?v=1668125706",
+        "sameAs": [
+          "https://www.instagram.com/sacredrituel",
+          "https://www.facebook.com/sacredrituel",
+          "https://www.pinterest.com/sacredrituel",
+          "https://www.tiktok.com/sacredrituel",
+          "https://youtube.com/@sacredrituel"
+        ]
+      }
+    </script>
+
+    <!-- noindex and redirect 'hidden' products -->
+    {% if template contains 'product' and product.tags contains 'hidden' %}
+      <meta name="robots" content="noindex, nofollow">
+      <script>
+        window.location.href = '/collections/all';
+      </script>
+    {% endif %}
+
+    <!-- start third-party-scripts -->
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "fjfsmz6rsz");
+    </script>
+  </head>
+  <body
+    id="{{ page_title | handle }}"
+    class="{% if customer %}customer-logged-in {% endif %}template-{{ template.name }} template-{{ template | replace: '.', ' ' | handle }} no-touchevents image-reveal--{{ settings.image_reveal }}"
+  >
+    <script>
+      if ('ontouchstart' in window || (window.DocumentTouch && document instanceof DocumentTouch)) {
+        document.querySelector('body').classList.remove('no-touchevents');
+        document.querySelector('body').classList.add('touchevents');
+      }
+    </script>
+    <a
+      href="#main"
+      class="visually-hidden skip-to-content"
+      tabindex="1"
+    >
+      {{- 'general.accessibility_labels.skip_to_content' | t -}}
+    </a>
+
+    {%- sections 'header-group' -%}
+
+    <sidebar-drawer
+      id="site-menu-sidebar"
+      class="sidebar sidebar--left"
+      tabindex="-1"
+      role="dialog"
+      aria-modal="true"
+    ></sidebar-drawer>
+
+    {{ 'component-product-item.css' | asset_url | stylesheet_tag }}
+    <link
+      rel="stylesheet"
+      href="{{ 'component-cart.css' | asset_url }}"
+      media="print"
+      onload="this.media='all'"
+    >
+
+    <main id="main" class="page-content">
+      {%- render 'breadcrumb' -%}
+      {{ content_for_layout }}
+      {%- sections 'footer-group' -%}
+    </main>
+
+    {%- section 'popups' -%}
+
+    {%- if settings.cart_action == 'overlay' -%}
+      {%- unless template contains 'cart' -%}
+        <sidebar-drawer
+          id="site-cart-sidebar"
+          class="sidebar sidebar--right"
+          tabindex="-1"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div class="sidebar__container">
+            <div class="sidebar__close">
+              <button class="close-sidebar" aria-label="{{ 'general.menu.close_button' | t }}">
+                <span class="aria-hidden">{%- render 'theme-symbols', icon: 'close' -%}</span>
+                <span class="close-sidebar__text">{{ 'general.menu.close_button' | t }}</span>
+              </button>
+            </div>
+
+            {%- render 'cart-form', type: 'sidebar' -%}
+            {%- render 'cart-subtotal' -%}
+          </div>
+        </sidebar-drawer>
+      {%- endunless -%}
+    {%- endif -%}
+
+    <sidebar-drawer
+      id="site-search-sidebar"
+      class="sidebar sidebar--right"
+      tabindex="-1"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="sidebar__container">
+        <div class="sidebar__close">
+          <button class="close-sidebar" aria-label="{{ 'general.menu.close_button' | t }}">
+            <span class="aria-hidden">{%- render 'theme-symbols', icon: 'close' -%}</span>
+            <span class="close-sidebar__text">{{ 'general.menu.close_button' | t }}</span>
+          </button>
+        </div>
+
+        <div class="sidebar__content">
+          <search-form>
+            {{ 'component-search-form.css' | asset_url | stylesheet_tag }}
+            {%- render 'search-form' -%}
+            <div data-js-search-results></div>
+          </search-form>
+        </div>
+      </div>
+    </sidebar-drawer>
+
+    <div class="page-overlay"></div>
+
+    <script>
+
+      window.prlxElementsPusher = function(element) {
+        let elements = element.querySelectorAll('[data-scroll-speed]');
+        if (element.classList.contains('mount-parallax-w-padding')) {
+          let i = elements.length - 1;
+          while (i >= 0) {
+            if (Number(elements[i].getAttribute('data-scroll-speed')) < 0) {
+              elements[i].setAttribute('data-scroll-speed', '-.1');
+              break;
+            }
+            i--;
+          }
+        }
+        elements.forEach(function(element) {
+          window.prlxElements.push({
+            element: element,
+            factor: Number(element.getAttribute('data-scroll-speed')),
+            parent: document.getElementById(element.getAttribute('data-scroll-parent')),
+            mirror: element.hasAttribute('data-scroll-mirror'),
+            resistance: element.hasAttribute('data-scroll-resistance')
+          });
+        });
+      }
+
+      window.prlxElements = [];
+      window.prlxRaf = true;
+      document.querySelectorAll('.mount-parallax').forEach(function(element) {
+        window.prlxElementsPusher(element);
+      });
+
+      window.addEventListener('scroll', function() {
+        if (window.prlxRaf) {
+          window.prlxRaf = false;
+          requestAnimationFrame(window.prlxAnimation.bind(this));
+        }
+      }, {passive: true});
+
+      window.prlxAnimation = function() {
+        const windowHeight = document.documentElement.clientHeight;
+        const windowWidth = document.documentElement.clientWidth;
+        window.prlxElements.forEach(function(item, i) {
+          let elementY = item.element.getBoundingClientRect().y;
+          if (item.resistance) {
+            let parentY = item.parent.getBoundingClientRect().y - windowHeight;
+            if (parentY < 0 && Math.abs(parentY) < (item.parent.offsetHeight + windowHeight)) {
+              let prlx = Math.abs(parentY) * Math.min(windowHeight, windowWidth) / (item.parent.offsetHeight + windowHeight);
+              item.element.style.transform = 'translateY(' + (
+              prlx) + 'px)';
+            }
+          } else {
+            if (elementY < windowHeight * 2 && elementY > (item.element.offsetHeight + windowHeight) * -1) {
+              let prlx = 0;
+              if (item.parent) {
+                prlx = (item.parent.getBoundingClientRect().y -(windowHeight - item.parent.offsetHeight) / 2) * item.factor;
+                if (windowWidth < 600) {
+                  prlx /= 2;
+                }
+                if (item.mirror && prlx < 0) {
+                  prlx = 0;
+                }
+              } else {
+                prlx = Math.round(((window.scrollY + windowHeight) - (item.element.offsetTop)) * item.factor / -2);
+                if (item.padding) {
+                  if (prlx >= 0) {
+                    item
+                      .element
+                      .parentElement
+                      .style
+                      .paddingBottom = prlx + 'px';
+                  } else {
+                    item
+                      .element
+                      .parentElement
+                      .style
+                      .paddingBottom = '0px';
+                  }
+                }
+              }
+              if (Math.abs(prlx) < windowHeight) {
+                item.element.style.transform = 'translateY(' + (
+                prlx) + 'px)';
+              }
+            }
+          }
+        });
+        this.prlxRaf = true;
+      }
+
+      window.prlxAnimation();
+
+      window.addEventListener('resize', function() {
+        window.prlxAnimation();
+      });
+
+      KROWN = {
+        settings: {
+          shop_money_format: '{{ shop.money_format }}',
+          cart_action: "{{ settings.cart_action }}",
+          routes: {
+            cart_url: "{{ routes.cart_url }}",
+            cart_add_url: "{{ routes.cart_add_url }}",
+            cart_change_url: "{{ routes.cart_change_url }}",
+            predictive_search_url: "{{ routes.predictive_search_url }}"
+          },
+          locales: {
+            cart_add_error: `{{ 'cart.add_error' | t }}`,
+            cart_general_error: `{{ 'cart.general_error' | t }}`,
+            products_add_to_cart_button: `{{ 'products.page.add_to_cart_button' | t }}`,
+            products_preorder_button: `{{ 'products.page.preorder_button' | t }}`,
+            products_sold_out_variant: `{{ 'products.page.inventory.sold_out_variant' | t }}`,
+            products_unavailable_variant: `{{ 'products.page.inventory.unavailable_variant' | t }}`,
+            products_one_product: `{{ 'products.page.inventory.one_product' | t }}`,
+            products_few_products: `{{ 'products.page.inventory.few_products' | t }}`,
+            products_many_products: `{{ 'products.page.inventory.many_products' | t }}`,
+            products_no_products: `{{ 'products.page.inventory.no_products' | t }}`,
+            products_preorder: `{{ 'products.page.inventory.preorder' | t }}`,
+            products_enough_products: `{{ 'products.page.inventory.enough_products' | t }}`,
+            product_sku: `{{ 'products.page.sku' | t }}`,
+            product_barcode: `{{ 'products.page.barcode' | t }}`,
+            product_read_review: `{{ 'products.page.read_full_review' | t }}`,
+            next: `{{ 'general.accessibility_labels.next' | t }}`,
+            prev: `{{ 'general.accessibility_labels.previous' | t }}`
+          },
+          symbols: {
+            arrow: `{%- render 'theme-symbols', icon: 'arrow-right' -%}`,
+            zoom_out: `{%- render 'theme-symbols', icon: 'zoom-out' -%}`,
+            star: `{%- render 'theme-symbols', icon: 'star' -%}`,
+            plus: `{%- render 'theme-symbols', icon: 'plus' -%}`,
+            close: `{%- render 'theme-symbols', icon: 'close' -%}`,
+            toggle_pack: `<svg aria-hidden="true" focusable="false" role="presentation" class="symbol symbol--minus" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.48511 7.00293H15.4852V9.13403H1.48511V7.00293Z" fill="#111111"/></svg><svg aria-hidden="true" focusable="false" role="presentation" class="symbol symbol--plus" width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.48517 7.48145H15.4852V9.61255H1.48517V7.48145Z" fill="#111111"/><path d="M9.48517 1.08789V16.0056H7.48517V1.08789H9.48517Z" fill="#111111"/></svg>`
+          },
+          predictive_search_enabled: "true",
+          predictive_search_placeholder: `<div class="search-item cart-item blank"><div><a class="thumbnail"><figure class="lazy-image" data-ratio style="padding-top:130%"></figure></a><div class="content"><span class="title"></span><span class="info"></span></div></div>`
+        }
+      };
+    </script>
+
+    <script>
+      if (!JSON.parse(document.getElementById('shopify-features').text).predictiveSearch) {
+        KROWN.settings.predictive_search_enabled = "false";
+        document.getElementById('search-open-button').setAttribute('id', '');
+      } else {
+        const searchScript = document.createElement('script');
+        searchScript.async = true
+        searchScript.src = "{{ 'component-predictive-search.js' | asset_url }}";
+        document.head.appendChild(searchScript);
+      }
+    </script>
+
+    <script src="{{ 'section-header.js' | asset_url }}" defer></script>
+    <link
+      rel="stylesheet"
+      href="{{ 'component-sidebar.css' | asset_url }}"
+      media="print"
+      onload="this.media='all';"
+    >
+
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+
+    {%- if settings.enable_quick_buy -%}
+      <script src="{{ 'component-product-form.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-quick-buy.js' | asset_url }}" defer></script>
+      <link
+        rel="stylesheet"
+        href="{{ 'section-main-product.css' | asset_url }}"
+        media="print"
+        onload="this.media='all';"
+      >
+      <link
+        rel="stylesheet"
+        href="{{ "section-popup.css" | asset_url }}"
+        media="print"
+        onload="this.media='all';"
+      >
+    {%- endif -%}
+
+    {%- if settings.cart_action == 'overlay' or template.name contains 'cart' -%}
+      <script src="{{ 'component-cart.js' | asset_url }}" defer></script>
+    {%- endif -%}
+
+    <script src="{{ 'component-modal.js' | asset_url }}" defer></script>
+    <script src="{{ 'component-css-slider.js' | asset_url }}" defer></script>
+
+    {%- if settings.show_variant_image -%}
+      <script>
+        class ProductItemVariants extends HTMLElement {
+          constructor() {
+            super();
+            const productItemVariants = this.querySelectorAll('.product-item__variant');
+            const productLink = this.closest('.product-item').querySelector('.product-item__link');
+            let variantZIndex = 9;
+            setTimeout(() => {
+              productItemVariants.forEach(elm => {
+                if (this.querySelector('.product-item__variant-image') && productLink.querySelector('.product-item__image')) {
+                  productLink.querySelector('.product-item__image').appendChild(this.querySelector('.product-item__variant-image'));
+                }
+                elm.addEventListener('click', e => {
+                  productItemVariants.forEach(elm => {
+                    elm.classList.remove('active')
+                  });
+                  e.currentTarget.classList.add('active');
+                  productLink.setAttribute('href', e.currentTarget.dataset.href);
+                  const variantImage = productLink.querySelector(`.product-item__variant-image[data-id="${
+                    e.currentTarget.dataset.id
+                  }"]`);
+                  if (variantImage) {
+                    variantImage.classList.remove('active');
+                    variantImage.style.zIndex = ++ variantZIndex;
+                    setTimeout(() => {
+                      variantImage.classList.add('active');
+                    }, 10);
+                  }
+                })
+              })
+            }, 500);
+          }
+        }
+        customElements.define('product-item-variants', ProductItemVariants);
+      </script>
+    {%- endif -%}
+
+    {%- if template contains 'product' -%}
+      <script>
+        if (document.getElementById('shopify-product-reviews')) {
+          const lightboxScript = document.createElement('script');
+          lightboxScript.src = "{{ 'component-lightbox.js' | asset_url }}";
+          lightboxScript.defer = true;
+          document.head.appendChild(lightboxScript);
+          const reviewsScript = document.createElement('script');
+          reviewsScript.src = "{{ 'section-reviews.js' | asset_url }}";
+          reviewsScript.defer = true;
+          document.head.appendChild(reviewsScript);
+        }
+      </script>
+    {%- endif -%}
+
+    {%- if settings.show_gotop -%}
+      <span
+        id="go-top"
+        class="main-go-top"
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      >
+        <span class="visually-hidden">{{ 'general.accessibility_labels.go_to_top' | t }}</span>
+        <span
+          class="main-go-top__icon"
+          aria-hidden="true"
+          style="position:relative;top:2px"
+        >
+          {%- render 'theme-symbols', icon: 'arrow-chevron' -%}
+        </span>
+      </span>
+      <script>
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 500) {
+            document.getElementById('go-top').classList.add('show');
+          } else {
+            document.getElementById('go-top').classList.remove('show');
+          }
+        }, {passive: true});
+      </script>
+    {%- endif -%}
+
+    {%- if request.design_mode -%}
+      <script src="{{ 'theme-editor.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-lightbox.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-facets.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-image-zoom.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-pickup-availability.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-product-slider.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-image-hotspots.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-before-after.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-scrolling-text.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-toggle.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-video-background.js' | asset_url }}" defer></script>
+      <script src="{{ 'component-video.js' | asset_url }}" defer></script>
+      <script src="{{ 'section-announcement-bar.js' | asset_url }}" defer></script>
+      <script src="{{ 'section-main-product.js' | asset_url }}" defer></script>
+      <script src="{{ 'section-collection-list.js' | asset_url }}" defer></script>
+    {%- endif -%}
+    <!-- klaviyo back-in-stock start -->
+    <script src="https://a.klaviyo.com/media/js/onsite/onsite.js"></script>
+    <script>
+        var klaviyo = klaviyo || [];
+        klaviyo.init({
+          account: "NSzV8g",
+          list: "KDyrz4",
+          platform: "shopify"
+        });
+        klaviyo.enable("backinstock",{
+        trigger: {
+          product_page_text: "Notify Me When Available",
+          product_page_class: "button--border",
+          product_page_text_align: "middle center",
+          product_page_margin: "0px",
+          replace_anchor: false
+        },
+        modal: {
+         headline: "{product_name}",
+         body_content: "We're in production. Sign up to be notified when we restock.",
+         email_field_label: "Email",
+         button_label: "Notify me when available",
+         subscription_success_label: "You're in! We'll let you know when it's back.",
+         footer_content: "Proceed to be notified pior to inventory released to website",
+         additional_styles: "@import url('https://fonts.googleapis.com/css?family=Work+Sans');",
+         drop_background_color: "#000",
+         background_color: "#F7F3ED",
+         text_color: "#05171F",
+         button_text_color: "#F7F3ED",
+         button_background_color: "#7A6652",
+         close_button_color: "#ccc",
+         error_background_color: "#F7F3ED",
+         error_text_color: "#666B6C",
+         success_background_color: "#F7F3ED",
+         success_text_color: "#05171F"
+        }
+      });
+    </script>
+    <!-- klaviyo back-in-stock start -->
+  </body>
+</html>

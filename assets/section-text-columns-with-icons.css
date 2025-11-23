@@ -1,0 +1,44 @@
+.text-w-icon__icon {
+  width: 64px;
+  height: 64px;
+}
+.text-w-icon__icon svg {
+  width: 64px;
+  height: 64px;
+}
+.text-w-icon__icon svg path, .text-w-icon__icon svg polygon, .text-w-icon__icon svg rect, .text-w-icon__icon svg circle {
+  stroke: var(--color-text);
+  transition: all 120ms linear;
+}
+.text-w-icon__icon svg path {
+  stroke-width: 2px;
+}
+.text-w-icon__title {
+  margin: 1em 0;
+}
+.text-w-icon__rte {
+  color: rgba(var(--color-text-rgb), 0.66);
+  line-height: 1.4;
+}
+.text-w-icon__rte a {
+  color: var(--color-text);
+}
+.text-w-icon__container {
+  margin-bottom: calc(var(--section-margin) / 2);
+}
+
+.text-columns-with-icons {
+  margin-bottom: calc(var(--section-margin) / -2);
+}
+
+#shopify-section-text-columns-with-icons {
+  clear: both;
+}
+
+#shopify-section-text-columns-with-icons:empty {
+  display: none;
+}
+
+#shopify-section-text-columns-with-icons .text-columns-with-icons {
+  margin-top: 0;
+}

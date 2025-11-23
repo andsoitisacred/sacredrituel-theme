@@ -1,0 +1,159 @@
+{{ "component-search-form.css" | asset_url | stylesheet_tag }}
+{{ "component-blog-item.css" | asset_url | stylesheet_tag }}
+
+<div class="section-header five-tenths lap--nine-tenths smaller-lap--full-width push-left-one-tenth lap--push-left-none">
+  <h1 class="section-header__title h1">
+    {%- liquid
+      if search.performed and search.results_count > 0
+        echo 'search.page.results' | t
+        assign search_label = 'search.page.search_again_button_label' | t 
+      else 
+        echo 'search.page.title' | t
+        assign search_label = 'search.page.search_button_label' | t 
+      endif
+    -%}
+  </h1>
+  {%- render 'search-form', label: search_label -%}
+</div>
+
+{%- liquid
+  if search.performed and search.filters != empty
+    render 'facets', results: search, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting
+  endif
+-%}
+
+{%- paginate search.results by section.settings.products_number -%}
+
+  {%- liquid
+    if search.performed and search.results_count > 0  
+      assign offset = paginate.current_offset | plus: 1
+      assign page_size = paginate.current_offset | plus: paginate.page_size | at_most: paginate.items
+      assign products_results = search.results | where: 'object_type', 'product'
+      capture results_count 
+        echo 'search.page.results_count' | t: offset: offset, page_size: page_size, count: paginate.items
+      endcapture
+    endif
+  -%}
+
+  <div id="CollectionProductGrid">
+
+    <div id="main-collection-product-grid" data-id="{{ section.id }}" data-count="{{ collection.products.size }}">
+      {%- if products_results.size > 0 -%}
+        <div class="search-description ten-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+          <span class="search-description__found">{{ 'search.page.products_found' | t: terms: search.terms }}</span>
+          <span class="search-description__count">{{ results_count }}</span>
+        </div>
+        {%- render 'collection-layout', products: products_results, limit: section.settings.products_number, layout: 'regular', show_promotional_block: false -%}
+      {%- endif -%}
+    </div>
+
+    {%- if search.performed and search.results_count > 0 -%}
+
+      {%- if search.types contains 'page' or search.types contains 'article' -%}
+        {%- capture search_results_articles -%}
+          {%- for result in search.results -%}
+            {%- liquid 
+              if result.object_type == 'product'
+                continue
+              endif
+              assign date_format = 'general.date_format.month_day_year' | t
+            -%}
+            <div class="blog-item three-tenths product-tablet--five-plus-tenths push-left-half-tenth lap--push-left-padding">
+              <div class="blog-item__content">
+                <div class="blog-item__meta">
+                  <span class="blog-item__date">{{ result.published_at | date: date_format }}</span>
+                </div>
+                <a class="blog-item__title-holder h4" href="{{ result.url | escape }}" title="{{ result.title | escape }}">
+                  <span class="blog-item__title">{{ result.title | escape }}</span>
+                </a>
+                <span class="blog-item__excerpt">
+                  {%- liquid
+                    if result.excerpt.size > 0
+                      echo result.excerpt
+                    else
+                      echo result.content | strip_html | truncatewords: 15, "..."
+                    endif
+                  -%}
+                </span>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endcapture -%}
+      {%- endif -%}
+
+      {%- if search_results_articles != blank -%}
+
+        <div class="search-description ten-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+          <span class="search-description__found">{{ 'search.page.articles_and_pages_found' | t: terms: search.terms }}</span>
+        </div>
+
+        <div class="blog push-left-half-tenth lap--push-left-none">
+          {{ search_results_articles }}
+        </div>
+
+      {% endif %}
+
+      {%- if paginate.pages > 1 -%}
+        {%- render 'pagination', paginate: paginate -%}
+      {%- endif -%}
+
+    {%- elsif search.performed and search.results.size == 0 and search.filters != empty -%}
+
+      <div class="search-description ten-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+        {%- liquid
+          assign sort_by = search.sort_by | default: search.default_sort_by
+          assign terms = search.terms | escape
+          assign search_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+        -%}
+        <span class="search-description__found">
+          {{ 'collections.empty' | t }} <br/>
+          {{ 'collections.use_fewer_filters_html' | t: link: search_url, class: "text-link" }}
+        </span>
+      </div>
+
+    {%- elsif search.performed and search.results_count == 0 -%}
+    
+      <div class="search-description ten-tenths lap--full-width push-left-one-tenth lap--push-left-none">
+        <span class="search-description__found">{{ 'search.page.no_results' | t: terms: search.terms }}</span>
+      </div>
+
+    {%- endif -%}
+
+  </div>
+
+{%- endpaginate -%}
+
+{% schema %}
+  {
+    "name": "t:sections.main-search.name",
+    "class": "section-w-margin section-w-mobile-padding",
+    "settings": [
+      {
+        "type": "range",
+        "id": "products_number",
+        "label": "t:sections.main-search.settings.products_per_page.label",
+        "min": 12,
+        "max": 48,
+        "step": 4,
+        "default": 24
+      },
+      {
+        "type": "header",
+        "content": "t:sections.main-collection-product-grid.settings.header__1.content"
+      },
+      {
+        "id": "enable_filtering",
+        "type": "checkbox",
+        "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+        "default": false,
+        "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+      },
+      {
+        "id": "enable_sorting",
+        "type": "checkbox",
+        "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label",
+        "default": false
+      }
+    ]
+  }
+{% endschema %}

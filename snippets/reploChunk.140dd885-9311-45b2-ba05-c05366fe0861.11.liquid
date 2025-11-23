@@ -1,0 +1,1020 @@
+{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% capture reploVariantIdString %}51120563847471{% endcapture %}<!-- -->{% capture reploSellingPlanIdString %}null{% endcapture %}<!-- -->{% capture reploIdKey %}id{% endcapture %}<!-- -->{% capture reploPercentageKey %}percentage{% endcapture %}<!-- -->{% capture reploPriceKey %}price{% endcapture %}<!-- -->{% capture reploFixedAmountKey %}fixed_amount{% endcapture %}<!-- -->{% capture spKey %}selling_plan{% endcapture %}<!-- -->{%- liquid
+              assign reploVariantId = reploVariantIdString | times: 1
+              assign reploSelectedVariant = product.variants | where: reploIdKey, reploVariantId | first
+              if reploSelectedVariant == blank
+                assign reploSelectedVariant = product.selected_or_first_available_variant
+              endif
+              assign reploSelectedSellingPlanPrice = reploSelectedVariant.price
+              if product.selling_plan_groups[0]
+                assign reploAllSellingPlans = reploSelectedVariant.selling_plan_allocations | map: spKey
+                assign reploSortedSellingPlans = reploAllSellingPlans | sort: reploIdKey
+                if true
+                  assign reploSellingPlanId = reploSellingPlanIdString | times: 1
+                  assign reploSelectedSellingPlan = reploSortedSellingPlans | where: reploIdKey, reploSellingPlanId | first
+                  if reploSelectedSellingPlan.price_adjustments[0]
+                    assign adjustment = reploSelectedSellingPlan.price_adjustments[0]
+                    case adjustment.value_type
+                      when reploPercentageKey
+                        assign amountOff = 100 | minus: adjustment.value
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | times: amountOff | divided_by: 100
+                      when reploFixedAmountKey
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | minus: adjustment.value
+                      when reploPriceKey
+                        assign reploSelectedSellingPlanPrice = adjustment.value
+                    endcase
+                  endif
+                endif
+              endif
+            -%}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = 0 %}<!-- -->{% if reploSelectedVariant.compare_at_price != blank %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploSelectedVariant.compare_at_price | minus: reploSelectedVariant.price | at_least: 0 | times: 100.0 | divided_by: reploSelectedVariant.compare_at_price | round %}<!-- -->{% endif %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<div data-rid="3679b9b0-6fad-48aa-a861-38ef9fbee897" class="r-1h7cvl3" data-replo-product-container="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" data-replo-product-handle="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.handle}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"><product-form style="display:none"><form id="product-form-{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" method="post" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" encType="multipart/form-data" action="/cart/add" data-type="add-to-cart-form"><input type="hidden" name="id" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{reploSelectedVariant.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/><input type="hidden" name="quantity" value="1"/><input type="hidden" name="selling_plan" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{%- if reploSelectedSellingPlan != blank -%}{{reploSelectedSellingPlan.id}}{%- endif -%}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/></form></product-form><div data-rid="f4d88a95-b833-484b-bd46-9089421050ba" tabindex="0" role="button" class="r-95ylkz"><picture data-rid="180c543d-4445-43fc-bee5-3db2ee95dbbb" style="--replo-attributes-product-featured-image:{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-17nwva8"><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 820  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(max-width: 640px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1024  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1800  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-3qy2mw" loading="eager"/></picture><div data-rid="293727a4-557d-4c53-9dd5-16bfc88f66af" class="r-1bn6dyv"><div data-rid="4d24c077-6767-4454-b3cf-6946fd8924cd" class="r-jcrnmt"><div data-rid="e783bb0a-f75f-4a63-b6c6-61c93db3672b" class="r-13pikrv" data-alchemy-prerendered-component-id="e783bb0a-f75f-4a63-b6c6-61c93db3672b">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['spring-renewal-trio'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign global_discount_percent = sale.percent.value | default: 0
+  assign discount_percent = 0
+  assign use_visual_discount = false
+  assign sale_price = product.price
+  assign original_price = product.price
+
+  if sale.active.value and product.metafields.sale.included and global_discount_percent > 0
+    assign discount_percent = global_discount_percent
+    assign use_visual_discount = true
+    assign discount_amount = product.price | times: discount_percent | divided_by: 100
+    assign sale_price = product.price | minus: discount_amount
+  elsif product.compare_at_price > product.price
+    assign discount_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round
+    assign use_visual_discount = true
+    assign sale_price = product.price
+    assign original_price = product.compare_at_price
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="card-sale-text">{{ sale_price | money }}</span>
+  <span class="card-sale-strikethrough">{{ original_price | money }}</span>
+  <span class="card-sale-percent">{{ discount_percent }}% off</span>
+{%- else -%}
+  <span class="card-regular-text">{{ product.price | money }}</span>
+{%- endif -%}
+
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div><div data-rid="657fadc9-89be-43f4-9375-60127f7de2d4" class="r-1w0rgay"><div data-rid="7ad3a81d-b88f-4fb8-a2c4-d09518b2dbee" class="r-1yy08n9 alchemy-rte"><span style="width:100%">Includes:</span></div><div data-rid="31320700-8724-48aa-b6cf-104f32a18b3c" class="r-regd0"><div data-rid="a4af59d7-2c75-4a30-9bed-2adcd95190b4" class="r-939rcd"><picture data-rid="a24ea54e-b2bd-4b74-be2b-a9f2d1597dc3" class="r-d25u4y"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/966b4226-d5f2-4e19-9ae1-fbf021145740?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/966b4226-d5f2-4e19-9ae1-fbf021145740?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/966b4226-d5f2-4e19-9ae1-fbf021145740?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/966b4226-d5f2-4e19-9ae1-fbf021145740" class="r-10b2uw4" loading="eager"/></picture><div data-rid="0ba6c075-f0c3-4afa-8b8c-10e1065b4183" class="r-1u4khku"><div data-rid="9f74fbef-2085-44cd-b02a-a0c60ceef836" class="r-c3ks20"><div data-rid="933e723a-4fd5-4c47-a770-e280f6f3fd24" class="r-1a4ealg alchemy-rte"><span style="width:100%">Sacred Serum</span></div><div data-rid="1d0a3660-c5b2-4a43-aaa9-7e01af112722" class="r-2sgo0l alchemy-rte"><span style="width:100%">Full Size</span></div></div><div data-rid="4eddf139-27a5-49f6-bd61-aae963dd4238" class="r-1r1g4ge"><div data-rid="50f0a867-0589-436d-a0c2-5ea3a15317eb" class="r-s558wp"><div data-rid="2f56d0fd-3108-4886-b096-afa9b5b93890" class="r-yk9ues alchemy-rte"><span style="width:100%"><p>$98</p></span></div></div><div data-rid="bf90536e-2119-4033-8cf0-11cef72eb5b4" class="r-1x1cd5x"><div data-rid="0a99d6d7-505e-4fda-bb94-8b21b00693ff" class="r-1yxtu4y alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="d6777521-cbac-4f00-ab25-7929efc1ce94" class="r-1c3oe88"><picture data-rid="1cd26c7f-84a7-4074-a06c-2b6168229650" class="r-1qoscez"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2" class="r-z0qwxv" loading="eager"/></picture><div data-rid="97fa7ae1-dacc-406a-bdc1-04a4d931c06b" class="r-9hi9ah"><div data-rid="bff59b9f-35e4-4f86-ab2d-93aaa5d66259" class="r-1srt1x"><div data-rid="a899ed14-c724-45fa-9673-ebccea8cdf68" class="r-10wnxd5 alchemy-rte"><span style="width:100%">Rose Mist</span></div><div data-rid="312503ee-5598-4a25-b947-4e9a571ebf26" class="r-eux36y alchemy-rte"><span style="width:100%">Full Size</span></div></div><div data-rid="9c31bf9d-2247-421e-a8dc-862ee5b28d29" class="r-3eg7dr"><div data-rid="67a442d2-84b6-4c25-9afd-03398ede078d" class="r-1p5t7q2"><div data-rid="fb52c492-6f58-4024-84db-e0a06bd51538" class="r-vowesy alchemy-rte"><span style="width:100%"><p>$68</p></span></div></div><div data-rid="218ddbed-21b0-46d3-b499-4c68a31a25a2" class="r-tm5a2l"><div data-rid="88f66926-c811-4599-ab83-fd9bed9dcdbe" class="r-1gyxs7p alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="6ce652c3-00e9-4f05-85f4-e9df70e95175" class="r-augtjz"><picture data-rid="3a00ab79-cb9b-45f3-8505-e6df11bb46a2" class="r-1gty0ku"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39" class="r-esr5vz" loading="eager"/></picture><div data-rid="3017931f-4e9e-438f-a7da-7ed8679dbca0" class="r-1maxs92"><div data-rid="a60731b1-f3cb-4cfa-905b-e4b659e492db" class="r-1rzhav3"><div data-rid="00a3ab8f-f019-4cfc-a5da-7372e168fd9d" class="r-elbnb8 alchemy-rte"><span style="width:100%">Glow Serum</span></div><div data-rid="fa779ab0-fbed-4254-b46d-8dcbfe7ec64a" class="r-1bnmh25 alchemy-rte"><span style="width:100%">Full Size</span></div></div><div data-rid="075ca7d7-787f-47be-9031-c1b886165c23" class="r-1mgn383"><div data-rid="ed9f0d2c-8d8f-470e-85d7-35adb1bdd5d8" class="r-zixjgi"><div data-rid="baedd71f-e4c3-423a-b70c-e70a7f2b40b4" class="r-5boniy alchemy-rte"><span style="width:100%"><p>$98</p></span></div></div><div data-rid="844c77c5-143d-4348-9f04-580b6647ab2e" class="r-iwsyes"><div data-rid="73ace831-37cd-4dbb-a16c-b7f11ee52dc5" class="r-bfgfvx alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div></div></div><div data-rid="ffe192da-9b01-4c95-9ecc-5ab21a721770" tabindex="0" role="button" class="r-ws7g0r"><div data-rid="f4fcfff9-28c0-43f2-9836-f2f2d10826e9" class="r-1u3mgtk" data-alchemy-prerendered-component-id="f4fcfff9-28c0-43f2-9836-f2f2d10826e9">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['spring-renewal-trio'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign discount_percent = sale.percent.value | default: 0
+  assign highest_price_variant = product.variants | sort: 'price' | last
+
+  assign variant_price   = highest_price_variant.price
+  assign variant_compare = highest_price_variant.compare_at_price | default: 0
+
+  assign has_sitewide_sale   = sale.active.value and product.metafields.sale.included and discount_percent > 0
+  assign has_compare_discount = variant_compare > variant_price
+
+  assign use_visual_discount = false
+  assign sale_price   = variant_price
+  assign compare_price = nil
+
+  if has_sitewide_sale
+    # Sitewide: compare = base price, sale = base minus % off
+    assign compare_price   = variant_price
+    assign discount_amount = variant_price | times: discount_percent | divided_by: 100
+    assign sale_price      = variant_price | minus: discount_amount
+    assign use_visual_discount = true
+
+  elsif has_compare_discount
+    # Bundle/compare-at case: compare = compare_at_price, sale = actual variant price
+    assign compare_price = variant_compare
+    assign sale_price    = variant_price
+    assign use_visual_discount = true
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="button-sale-text">
+    On Sale – {{ sale_price | money }}
+    <span class="button-sale-strikethrough">{{ compare_price | money }}</span>
+  </span>
+{%- else -%}
+  <span class="button-regular-text">Shop Now – {{ variant_price | money }}</span>
+{%- endif -%}
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div></div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign product = reploOriginalProductR9qmr2 %}<!-- -->{% assign reploSelectedVariant = reploOriginalProductVariantR9qmr2 %}<!-- -->{% assign reploSortedSellingPlans = reploOriginalSPGR9qmr2 %}<!-- -->{% assign reploSelectedSellingPlan = reploOriginalSSPR9qmr2 %}<!-- -->{% assign reploSelectedSellingPlanPrice = reploOriginalSSPPriceR9qmr2 %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploOriginalComparePricePercentR9qmr2 %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign reploOriginalProductRaqmr2 = product %}<!-- -->{% capture productHandle %}day-night-glow-bundle{% endcapture %}<!-- -->{% assign product = all_products[productHandle] %}<!-- -->{% assign reploOriginalProductVariantRaqmr2 = reploSelectedVariant %}<!-- -->{% assign reploSelectedVariant = blank %}<!-- -->{% assign reploOriginalSPGRaqmr2 = reploSortedSellingPlans %}<!-- -->{% assign reploSortedSellingPlans = blank %}<!-- -->{% assign reploOriginalSSPRaqmr2 = reploSelectedSellingPlan %}<!-- -->{% assign reploSelectedSellingPlan = blank %}<!-- -->{% assign reploOriginalSSPPriceRaqmr2 = reploSelectedSellingPlanPrice %}<!-- -->{% assign reploSelectedSellingPlanPrice = blank %}<!-- -->{% assign reploOriginalComparePricePercentRaqmr2 = reploCompareAtPriceDifferencePercentage %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = blank %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<!-- -->{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% capture reploVariantIdString %}null{% endcapture %}<!-- -->{% capture reploSellingPlanIdString %}null{% endcapture %}<!-- -->{% capture reploIdKey %}id{% endcapture %}<!-- -->{% capture reploPercentageKey %}percentage{% endcapture %}<!-- -->{% capture reploPriceKey %}price{% endcapture %}<!-- -->{% capture reploFixedAmountKey %}fixed_amount{% endcapture %}<!-- -->{% capture spKey %}selling_plan{% endcapture %}<!-- -->{%- liquid
+              assign reploVariantId = reploVariantIdString | times: 1
+              assign reploSelectedVariant = product.variants | where: reploIdKey, reploVariantId | first
+              if reploSelectedVariant == blank
+                assign reploSelectedVariant = product.selected_or_first_available_variant
+              endif
+              assign reploSelectedSellingPlanPrice = reploSelectedVariant.price
+              if product.selling_plan_groups[0]
+                assign reploAllSellingPlans = reploSelectedVariant.selling_plan_allocations | map: spKey
+                assign reploSortedSellingPlans = reploAllSellingPlans | sort: reploIdKey
+                if true
+                  assign reploSellingPlanId = reploSellingPlanIdString | times: 1
+                  assign reploSelectedSellingPlan = reploSortedSellingPlans | where: reploIdKey, reploSellingPlanId | first
+                  if reploSelectedSellingPlan.price_adjustments[0]
+                    assign adjustment = reploSelectedSellingPlan.price_adjustments[0]
+                    case adjustment.value_type
+                      when reploPercentageKey
+                        assign amountOff = 100 | minus: adjustment.value
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | times: amountOff | divided_by: 100
+                      when reploFixedAmountKey
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | minus: adjustment.value
+                      when reploPriceKey
+                        assign reploSelectedSellingPlanPrice = adjustment.value
+                    endcase
+                  endif
+                endif
+              endif
+            -%}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = 0 %}<!-- -->{% if reploSelectedVariant.compare_at_price != blank %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploSelectedVariant.compare_at_price | minus: reploSelectedVariant.price | at_least: 0 | times: 100.0 | divided_by: reploSelectedVariant.compare_at_price | round %}<!-- -->{% endif %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<div data-rid="0c79f4bf-c1f4-45d0-ba80-32dd75376c1d" class="r-1kgznxo" data-replo-product-container="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" data-replo-product-handle="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.handle}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"><product-form style="display:none"><form id="product-form-{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" method="post" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" encType="multipart/form-data" action="/cart/add" data-type="add-to-cart-form"><input type="hidden" name="id" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{reploSelectedVariant.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/><input type="hidden" name="quantity" value="1"/><input type="hidden" name="selling_plan" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{%- if reploSelectedSellingPlan != blank -%}{{reploSelectedSellingPlan.id}}{%- endif -%}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/></form></product-form><div data-rid="175401f2-9670-41cd-baff-1a3e8f7addaf" tabindex="0" role="button" class="r-k870u2"><picture data-rid="85ddd463-70da-44a9-9f89-65f63ac120a3" style="--replo-attributes-product-featured-image:{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-802ir7"><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 820  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(max-width: 640px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1024  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1800  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-11e3wxz" loading="eager"/></picture><div data-rid="2d29ec66-a8b4-426e-8378-fcd37f89e846" class="r-1emm32j"><div data-rid="e8a633fb-b3bd-4034-8944-99de467ce846" class="r-dbmkj8"><div data-rid="13a4271a-dafb-4ba2-ba3c-6ef9420ee02c" class="r-1p1z2l9" data-alchemy-prerendered-component-id="13a4271a-dafb-4ba2-ba3c-6ef9420ee02c">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['day-night-glow-bundle'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign global_discount_percent = sale.percent.value | default: 0
+  assign discount_percent = 0
+  assign use_visual_discount = false
+  assign sale_price = product.price
+  assign original_price = product.price
+
+  if sale.active.value and product.metafields.sale.included and global_discount_percent > 0
+    assign discount_percent = global_discount_percent
+    assign use_visual_discount = true
+    assign discount_amount = product.price | times: discount_percent | divided_by: 100
+    assign sale_price = product.price | minus: discount_amount
+  elsif product.compare_at_price > product.price
+    assign discount_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round
+    assign use_visual_discount = true
+    assign sale_price = product.price
+    assign original_price = product.compare_at_price
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="card-sale-text">{{ sale_price | money }}</span>
+  <span class="card-sale-strikethrough">{{ original_price | money }}</span>
+  <span class="card-sale-percent">{{ discount_percent }}% off</span>
+{%- else -%}
+  <span class="card-regular-text">{{ product.price | money }}</span>
+{%- endif -%}
+
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div><div data-rid="4e9d5bd1-3a31-46bb-8fd5-e11da61b7634" class="r-1p6m03x"><div data-rid="367bbac1-5d90-45b4-83ec-d620cfd14fb1" class="r-s50mfd alchemy-rte"><span style="width:100%">Includes:</span></div><div data-rid="466460d3-58cf-484e-b78a-2ec0f030a03a" class="r-45wgx0"><div data-rid="bd8d78b1-f793-48cc-bb60-5e0ff1335759" class="r-1if36bo"><picture data-rid="dd9e942d-df67-4c0b-9c72-5a5e344c888a" class="r-efmeti"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/966b4226-d5f2-4e19-9ae1-fbf021145740?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/966b4226-d5f2-4e19-9ae1-fbf021145740?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/966b4226-d5f2-4e19-9ae1-fbf021145740?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/966b4226-d5f2-4e19-9ae1-fbf021145740" class="r-1o6z42w" loading="eager"/></picture><div data-rid="a9c76d6d-7ee4-4501-becf-e73180805e1a" class="r-y6bu5l"><div data-rid="51fa9192-9f64-4059-86b4-79dcbe032c50" class="r-1psym9w"><div data-rid="260e8a09-d24e-4f25-86f9-0d97e746b4cf" class="r-z6gcyx alchemy-rte"><span style="width:100%">Sacred Serum</span></div><div data-rid="a3624dd2-8191-4419-8eff-7bf24647afec" class="r-1bdzzfj alchemy-rte"><span style="width:100%">Full Size</span></div></div><div data-rid="34f077e5-c3ef-4fa9-bc1a-355186dc4bbe" class="r-1xio70g"><div data-rid="89f1fe6a-7384-4191-a57d-61889268a7ca" class="r-1mygvhc"><div data-rid="cd98f615-6ae0-4d37-a732-2fb6598df244" class="r-4e7ynt alchemy-rte"><span style="width:100%"><p>$98</p></span></div></div><div data-rid="919abc89-a8f5-4c03-825b-fc1cecb1368a" class="r-1g0pw85"><div data-rid="fe143818-693a-4e81-ab5a-916b98af961a" class="r-1vgt0sm alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="3325c106-fd1d-4b31-967a-937fa3cdb5e4" class="r-rkpq9l"><picture data-rid="9689f504-2c8f-4f4c-a9fe-bbf0d7e43c2a" class="r-gd857s"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39" class="r-7so0r" loading="eager"/></picture><div data-rid="13db40bf-8bd1-4d53-a888-0429afbae516" class="r-1596jth"><div data-rid="033420ff-9da6-41c2-92d0-05fe9540019a" class="r-kydgc"><div data-rid="947eea1d-688b-4dd3-8960-8da5a0c12202" class="r-1qksn7z alchemy-rte"><span style="width:100%">Glow Serum</span></div><div data-rid="57e60455-e475-4b74-b706-f7310d139c8b" class="r-hk8s8b alchemy-rte"><span style="width:100%">Full Size</span></div></div><div data-rid="259424a5-6dc7-4568-a866-2de186a31dca" class="r-zdsnbn"><div data-rid="9741f171-a28c-41a6-b114-4990f1d89816" class="r-1cfczc"><div data-rid="b282a795-2afb-4a67-aeba-a2a0d234470f" class="r-1na14mx alchemy-rte"><span style="width:100%"><p>$98</p></span></div></div><div data-rid="b2308f0e-122c-4291-8bc9-3eb37eb27317" class="r-oe2a2q"><div data-rid="aeede6ca-dcb2-44ea-b6ce-abaa79cb5569" class="r-7pdzz7 alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div></div></div><div data-rid="651e3c5d-ff96-4147-ba87-e3c47f5b71e1" tabindex="0" role="button" class="r-10ng3gs"><div data-rid="7513e58c-9769-4723-8a97-706a0c6d40aa" class="r-1luv6e6" data-alchemy-prerendered-component-id="7513e58c-9769-4723-8a97-706a0c6d40aa">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['day-night-glow-bundle'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign discount_percent = sale.percent.value | default: 0
+  assign highest_price_variant = product.variants | sort: 'price' | last
+
+  assign variant_price   = highest_price_variant.price
+  assign variant_compare = highest_price_variant.compare_at_price | default: 0
+
+  assign has_sitewide_sale   = sale.active.value and product.metafields.sale.included and discount_percent > 0
+  assign has_compare_discount = variant_compare > variant_price
+
+  assign use_visual_discount = false
+  assign sale_price   = variant_price
+  assign compare_price = nil
+
+  if has_sitewide_sale
+    # Sitewide: compare = base price, sale = base minus % off
+    assign compare_price   = variant_price
+    assign discount_amount = variant_price | times: discount_percent | divided_by: 100
+    assign sale_price      = variant_price | minus: discount_amount
+    assign use_visual_discount = true
+
+  elsif has_compare_discount
+    # Bundle/compare-at case: compare = compare_at_price, sale = actual variant price
+    assign compare_price = variant_compare
+    assign sale_price    = variant_price
+    assign use_visual_discount = true
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="button-sale-text">
+    On Sale – {{ sale_price | money }}
+    <span class="button-sale-strikethrough">{{ compare_price | money }}</span>
+  </span>
+{%- else -%}
+  <span class="button-regular-text">Shop Now – {{ variant_price | money }}</span>
+{%- endif -%}
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div></div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign product = reploOriginalProductRaqmr2 %}<!-- -->{% assign reploSelectedVariant = reploOriginalProductVariantRaqmr2 %}<!-- -->{% assign reploSortedSellingPlans = reploOriginalSPGRaqmr2 %}<!-- -->{% assign reploSelectedSellingPlan = reploOriginalSSPRaqmr2 %}<!-- -->{% assign reploSelectedSellingPlanPrice = reploOriginalSSPPriceRaqmr2 %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploOriginalComparePricePercentRaqmr2 %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign reploOriginalProductRbqmr2 = product %}<!-- -->{% capture productHandle %}sacred-serum-rose-toner-body-oil{% endcapture %}<!-- -->{% assign product = all_products[productHandle] %}<!-- -->{% assign reploOriginalProductVariantRbqmr2 = reploSelectedVariant %}<!-- -->{% assign reploSelectedVariant = blank %}<!-- -->{% assign reploOriginalSPGRbqmr2 = reploSortedSellingPlans %}<!-- -->{% assign reploSortedSellingPlans = blank %}<!-- -->{% assign reploOriginalSSPRbqmr2 = reploSelectedSellingPlan %}<!-- -->{% assign reploSelectedSellingPlan = blank %}<!-- -->{% assign reploOriginalSSPPriceRbqmr2 = reploSelectedSellingPlanPrice %}<!-- -->{% assign reploSelectedSellingPlanPrice = blank %}<!-- -->{% assign reploOriginalComparePricePercentRbqmr2 = reploCompareAtPriceDifferencePercentage %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = blank %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<!-- -->{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% capture reploVariantIdString %}null{% endcapture %}<!-- -->{% capture reploSellingPlanIdString %}null{% endcapture %}<!-- -->{% capture reploIdKey %}id{% endcapture %}<!-- -->{% capture reploPercentageKey %}percentage{% endcapture %}<!-- -->{% capture reploPriceKey %}price{% endcapture %}<!-- -->{% capture reploFixedAmountKey %}fixed_amount{% endcapture %}<!-- -->{% capture spKey %}selling_plan{% endcapture %}<!-- -->{%- liquid
+              assign reploVariantId = reploVariantIdString | times: 1
+              assign reploSelectedVariant = product.variants | where: reploIdKey, reploVariantId | first
+              if reploSelectedVariant == blank
+                assign reploSelectedVariant = product.selected_or_first_available_variant
+              endif
+              assign reploSelectedSellingPlanPrice = reploSelectedVariant.price
+              if product.selling_plan_groups[0]
+                assign reploAllSellingPlans = reploSelectedVariant.selling_plan_allocations | map: spKey
+                assign reploSortedSellingPlans = reploAllSellingPlans | sort: reploIdKey
+                if true
+                  assign reploSellingPlanId = reploSellingPlanIdString | times: 1
+                  assign reploSelectedSellingPlan = reploSortedSellingPlans | where: reploIdKey, reploSellingPlanId | first
+                  if reploSelectedSellingPlan.price_adjustments[0]
+                    assign adjustment = reploSelectedSellingPlan.price_adjustments[0]
+                    case adjustment.value_type
+                      when reploPercentageKey
+                        assign amountOff = 100 | minus: adjustment.value
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | times: amountOff | divided_by: 100
+                      when reploFixedAmountKey
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | minus: adjustment.value
+                      when reploPriceKey
+                        assign reploSelectedSellingPlanPrice = adjustment.value
+                    endcase
+                  endif
+                endif
+              endif
+            -%}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = 0 %}<!-- -->{% if reploSelectedVariant.compare_at_price != blank %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploSelectedVariant.compare_at_price | minus: reploSelectedVariant.price | at_least: 0 | times: 100.0 | divided_by: reploSelectedVariant.compare_at_price | round %}<!-- -->{% endif %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<div data-rid="6642db3c-10f7-42a1-ac39-668f623af1e4" class="r-2e05ou" data-replo-product-container="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" data-replo-product-handle="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.handle}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"><product-form style="display:none"><form id="product-form-{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" method="post" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" encType="multipart/form-data" action="/cart/add" data-type="add-to-cart-form"><input type="hidden" name="id" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{reploSelectedVariant.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/><input type="hidden" name="quantity" value="1"/><input type="hidden" name="selling_plan" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{%- if reploSelectedSellingPlan != blank -%}{{reploSelectedSellingPlan.id}}{%- endif -%}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/></form></product-form><div data-rid="5d0f2037-f65d-4442-97a4-25c194a6eff2" tabindex="0" role="button" class="r-13ap89e"><picture data-rid="b7a76d24-e792-4e8b-a978-fa826d6f45e0" style="--replo-attributes-product-featured-image:{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-3rsilc"><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 820  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(max-width: 640px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1024  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1800  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-jrposl" loading="eager"/></picture><div data-rid="c5afd852-0f5a-4abf-a283-4d76cb2f8423" class="r-13simf0"><div data-rid="0f560214-9a87-4347-abe3-22ed747ef6fc" class="r-yibukr"><div data-rid="3c632048-8936-4266-8507-93f3ec2b4062" class="r-xu0i8m alchemy-rte"><span style="width:100%">Sacred Trio</span></div><div data-rid="31a46219-5f88-4d6e-8bbf-c41dc9f4ea32" class="r-nno1vv"><div data-rid="ccbacae5-8ca7-41c4-af5b-76cb05788d9e" class="r-begvaf" data-alchemy-prerendered-component-id="ccbacae5-8ca7-41c4-af5b-76cb05788d9e">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['sacred-serum-rose-toner-body-oil'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign global_discount_percent = sale.percent.value | default: 0
+  assign discount_percent = 0
+  assign use_visual_discount = false
+  assign sale_price = product.price
+  assign original_price = product.price
+
+  if sale.active.value and product.metafields.sale.included and global_discount_percent > 0
+    assign discount_percent = global_discount_percent
+    assign use_visual_discount = true
+    assign discount_amount = product.price | times: discount_percent | divided_by: 100
+    assign sale_price = product.price | minus: discount_amount
+  elsif product.compare_at_price > product.price
+    assign discount_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round
+    assign use_visual_discount = true
+    assign sale_price = product.price
+    assign original_price = product.compare_at_price
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="card-sale-text">{{ sale_price | money }}</span>
+  <span class="card-sale-strikethrough">{{ original_price | money }}</span>
+  <span class="card-sale-percent">{{ discount_percent }}% off</span>
+{%- else -%}
+  <span class="card-regular-text">{{ product.price | money }}</span>
+{%- endif -%}
+
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div><div data-rid="6335bf6f-639b-4294-b2d3-0b1abfa906bc" class="r-bi8kpo"><div data-rid="0b26b069-4aab-41dd-be2b-3e04da9a2c11" class="r-1hjfcaj alchemy-rte"><span style="width:100%">Includes:</span></div><div data-rid="79d6a5c4-38b3-45d8-b051-c2df9329d2d5" class="r-7upcqy"><div data-rid="9e716c16-5532-43f8-90a8-b19aaf6a0f2c" class="r-1c1cu3u"><picture data-rid="415cd1e3-5f32-4f67-8573-f5f58a87700f" class="r-g1a5fm"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/966b4226-d5f2-4e19-9ae1-fbf021145740?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/966b4226-d5f2-4e19-9ae1-fbf021145740?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/966b4226-d5f2-4e19-9ae1-fbf021145740?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/966b4226-d5f2-4e19-9ae1-fbf021145740" class="r-xgkt94" loading="eager"/></picture><div data-rid="5a9f6131-8f31-4aaa-b2a0-faa7eac43612" class="r-9hls8a"><div data-rid="fb09ad04-fa10-4754-873a-a20d0295386f" class="r-fmm05u"><div data-rid="0e459550-06ef-4fbd-a52c-23ad3bfd23cb" class="r-hi8dku alchemy-rte"><span style="width:100%">Sacred Serum</span></div><div data-rid="5f291d67-6e45-49e4-80bb-d3bbd6d05219" class="r-1e450a5 alchemy-rte"><span style="width:100%">Full Size</span></div></div><div data-rid="b198b48e-ef3d-4440-8fef-1ecee10e653f" class="r-1fhvlrl"><div data-rid="deb66f22-af8c-46d8-ad15-189d2821d3af" class="r-1vqszkx"><div data-rid="e66a495a-90d0-47c9-8387-8fc45f065462" class="r-1qoi6q alchemy-rte"><span style="width:100%"><p>$98</p></span></div></div><div data-rid="4145547a-d73a-4f08-be74-03be019a5bd7" class="r-q6uuc4"><div data-rid="72e3390b-16f7-4d4b-99e6-028d1e027cab" class="r-nsqitg alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="0301769e-06cd-4745-98eb-69f4fa59534e" class="r-jpicku"><picture data-rid="d3237097-8249-4c38-96be-789eb7ee4393" class="r-16n1hw7"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2" class="r-7heiso" loading="eager"/></picture><div data-rid="6db7c53b-f800-4237-a77b-f7cfc1c2869d" class="r-12zdg10"><div data-rid="b9e8cdcc-0880-459b-84d9-febcc693147e" class="r-184w6ei"><div data-rid="de04f270-b285-4916-83e8-f5de9d592fd8" class="r-julii0 alchemy-rte"><span style="width:100%">Rose Mist</span></div><div data-rid="cde1139c-d6eb-4e90-b19f-bb8e37c64255" class="r-1fecd93 alchemy-rte"><span style="width:100%">Full Size</span></div></div><div data-rid="e2afc546-140e-4712-92f2-394e5bfa6955" class="r-196fok5"><div data-rid="4c667d4b-97b3-4854-920e-0027e9f85cca" class="r-umfn1l"><div data-rid="e51e616e-df2c-4faf-adea-532f4a86c515" class="r-1vp1vo alchemy-rte"><span style="width:100%"><p>$68</p></span></div></div><div data-rid="fb293ad2-e3d6-4803-ab5f-949e94a84ef2" class="r-i0vd7y"><div data-rid="b667b40d-5501-4e18-9fcd-e3acf9b8b0d8" class="r-kvc0v9 alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="58e091e8-c843-4ce0-8d12-27fc79998586" class="r-e1uoxm"><picture data-rid="36546277-8269-471e-9fd8-5d9a7470bd79" class="r-o1ar5r"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/bdedc035-7050-4fdb-acb9-33b8ca0c6681?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/bdedc035-7050-4fdb-acb9-33b8ca0c6681?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/bdedc035-7050-4fdb-acb9-33b8ca0c6681?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/bdedc035-7050-4fdb-acb9-33b8ca0c6681" alt="Black bottle with a pump and a gold label." class="r-813647" loading="eager"/></picture><div data-rid="36827954-8356-4a72-939d-e34dc6504b99" class="r-mcsorq"><div data-rid="21cd9cdf-5d84-4794-8494-393c821f3a1a" class="r-zy29i2"><div data-rid="5bfde36d-c8d9-4bf3-9b96-a4be373ca13d" class="r-1w39ed4 alchemy-rte"><span style="width:100%">Body Oil<br></span></div><div data-rid="a205ad47-363c-4f48-b758-4b9be5971efc" class="r-1y7o4ql alchemy-rte"><span style="width:100%">Full Size</span></div></div><div data-rid="81e51b74-8a50-40c4-a0c5-bf1ac27c9400" class="r-16jxhwz"><div data-rid="6cc04ce8-136a-4d35-a58d-a2dda1ba51a5" class="r-y18n8l"><div data-rid="d52eee54-d274-476e-99a2-bcf46016ad6f" class="r-1323kk alchemy-rte"><span style="width:100%"><p>$58</p></span></div></div><div data-rid="ee94951a-5896-4483-b04b-e987abe91c80" class="r-1kmne9j"><div data-rid="d0a0d994-a3fe-4a89-a233-3e19cb5a6d3d" class="r-1cdlq6p alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div></div></div><div data-rid="2413705a-45b2-4226-b0e3-82644a1f0f4e" tabindex="0" role="button" class="r-1k6y6j0"><div data-rid="022ff2d8-e855-4407-8af8-6c93879933ad" class="r-1intbmb" data-alchemy-prerendered-component-id="022ff2d8-e855-4407-8af8-6c93879933ad">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['sacred-serum-rose-toner-body-oil'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign discount_percent = sale.percent.value | default: 0
+  assign highest_price_variant = product.variants | sort: 'price' | last
+
+  assign variant_price   = highest_price_variant.price
+  assign variant_compare = highest_price_variant.compare_at_price | default: 0
+
+  assign has_sitewide_sale   = sale.active.value and product.metafields.sale.included and discount_percent > 0
+  assign has_compare_discount = variant_compare > variant_price
+
+  assign use_visual_discount = false
+  assign sale_price   = variant_price
+  assign compare_price = nil
+
+  if has_sitewide_sale
+    # Sitewide: compare = base price, sale = base minus % off
+    assign compare_price   = variant_price
+    assign discount_amount = variant_price | times: discount_percent | divided_by: 100
+    assign sale_price      = variant_price | minus: discount_amount
+    assign use_visual_discount = true
+
+  elsif has_compare_discount
+    # Bundle/compare-at case: compare = compare_at_price, sale = actual variant price
+    assign compare_price = variant_compare
+    assign sale_price    = variant_price
+    assign use_visual_discount = true
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="button-sale-text">
+    On Sale – {{ sale_price | money }}
+    <span class="button-sale-strikethrough">{{ compare_price | money }}</span>
+  </span>
+{%- else -%}
+  <span class="button-regular-text">Shop Now – {{ variant_price | money }}</span>
+{%- endif -%}
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div></div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign product = reploOriginalProductRbqmr2 %}<!-- -->{% assign reploSelectedVariant = reploOriginalProductVariantRbqmr2 %}<!-- -->{% assign reploSortedSellingPlans = reploOriginalSPGRbqmr2 %}<!-- -->{% assign reploSelectedSellingPlan = reploOriginalSSPRbqmr2 %}<!-- -->{% assign reploSelectedSellingPlanPrice = reploOriginalSSPPriceRbqmr2 %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploOriginalComparePricePercentRbqmr2 %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign reploOriginalProductRcqmr2 = product %}<!-- -->{% capture productHandle %}day-night-skincare-routine-30-day-trial-guarantee{% endcapture %}<!-- -->{% assign product = all_products[productHandle] %}<!-- -->{% assign reploOriginalProductVariantRcqmr2 = reploSelectedVariant %}<!-- -->{% assign reploSelectedVariant = blank %}<!-- -->{% assign reploOriginalSPGRcqmr2 = reploSortedSellingPlans %}<!-- -->{% assign reploSortedSellingPlans = blank %}<!-- -->{% assign reploOriginalSSPRcqmr2 = reploSelectedSellingPlan %}<!-- -->{% assign reploSelectedSellingPlan = blank %}<!-- -->{% assign reploOriginalSSPPriceRcqmr2 = reploSelectedSellingPlanPrice %}<!-- -->{% assign reploSelectedSellingPlanPrice = blank %}<!-- -->{% assign reploOriginalComparePricePercentRcqmr2 = reploCompareAtPriceDifferencePercentage %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = blank %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<!-- -->{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% capture reploVariantIdString %}null{% endcapture %}<!-- -->{% capture reploSellingPlanIdString %}null{% endcapture %}<!-- -->{% capture reploIdKey %}id{% endcapture %}<!-- -->{% capture reploPercentageKey %}percentage{% endcapture %}<!-- -->{% capture reploPriceKey %}price{% endcapture %}<!-- -->{% capture reploFixedAmountKey %}fixed_amount{% endcapture %}<!-- -->{% capture spKey %}selling_plan{% endcapture %}<!-- -->{%- liquid
+              assign reploVariantId = reploVariantIdString | times: 1
+              assign reploSelectedVariant = product.variants | where: reploIdKey, reploVariantId | first
+              if reploSelectedVariant == blank
+                assign reploSelectedVariant = product.selected_or_first_available_variant
+              endif
+              assign reploSelectedSellingPlanPrice = reploSelectedVariant.price
+              if product.selling_plan_groups[0]
+                assign reploAllSellingPlans = reploSelectedVariant.selling_plan_allocations | map: spKey
+                assign reploSortedSellingPlans = reploAllSellingPlans | sort: reploIdKey
+                if true
+                  assign reploSellingPlanId = reploSellingPlanIdString | times: 1
+                  assign reploSelectedSellingPlan = reploSortedSellingPlans | where: reploIdKey, reploSellingPlanId | first
+                  if reploSelectedSellingPlan.price_adjustments[0]
+                    assign adjustment = reploSelectedSellingPlan.price_adjustments[0]
+                    case adjustment.value_type
+                      when reploPercentageKey
+                        assign amountOff = 100 | minus: adjustment.value
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | times: amountOff | divided_by: 100
+                      when reploFixedAmountKey
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | minus: adjustment.value
+                      when reploPriceKey
+                        assign reploSelectedSellingPlanPrice = adjustment.value
+                    endcase
+                  endif
+                endif
+              endif
+            -%}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = 0 %}<!-- -->{% if reploSelectedVariant.compare_at_price != blank %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploSelectedVariant.compare_at_price | minus: reploSelectedVariant.price | at_least: 0 | times: 100.0 | divided_by: reploSelectedVariant.compare_at_price | round %}<!-- -->{% endif %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<div data-rid="da9d3eec-8b51-40df-aeb3-d5a588feef3a" class="r-1ryil8i" data-replo-product-container="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" data-replo-product-handle="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.handle}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"><product-form style="display:none"><form id="product-form-{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" method="post" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" encType="multipart/form-data" action="/cart/add" data-type="add-to-cart-form"><input type="hidden" name="id" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{reploSelectedVariant.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/><input type="hidden" name="quantity" value="1"/><input type="hidden" name="selling_plan" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{%- if reploSelectedSellingPlan != blank -%}{{reploSelectedSellingPlan.id}}{%- endif -%}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/></form></product-form><div data-rid="34c87286-b949-429c-bfba-985920363d70" tabindex="0" role="button" class="r-1pieez8"><picture data-rid="a0b7218d-f369-4e0d-a1ee-55790e2baa90" style="--replo-attributes-product-featured-image:{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-1te75wl"><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 820  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(max-width: 640px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1024  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1800  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-hjam2n" loading="eager"/></picture><div data-rid="48b42b28-6e94-41c7-8246-462cf6c68b68" class="r-15tivs1"><div data-rid="2bbfbef1-995f-4fb7-a80b-e564815cc423" class="r-1slmk1h"><div data-rid="318bf91e-ba39-4711-a58a-a37ea02c75f1" class="r-1pi7cgt alchemy-rte"><span style="width:100%">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.title }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</span></div><div data-rid="a6c84f7f-c2de-46fd-9a7a-ddd8e3fb45a6" class="r-1qbwmu8"><div data-rid="b2975788-3e3e-4488-93fc-4a0b6c013d97" class="r-1us43h4" data-alchemy-prerendered-component-id="b2975788-3e3e-4488-93fc-4a0b6c013d97">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['day-night-skincare-routine-30-day-trial-guarantee'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign global_discount_percent = sale.percent.value | default: 0
+  assign discount_percent = 0
+  assign use_visual_discount = false
+  assign sale_price = product.price
+  assign original_price = product.price
+
+  if sale.active.value and product.metafields.sale.included and global_discount_percent > 0
+    assign discount_percent = global_discount_percent
+    assign use_visual_discount = true
+    assign discount_amount = product.price | times: discount_percent | divided_by: 100
+    assign sale_price = product.price | minus: discount_amount
+  elsif product.compare_at_price > product.price
+    assign discount_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round
+    assign use_visual_discount = true
+    assign sale_price = product.price
+    assign original_price = product.compare_at_price
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="card-sale-text">{{ sale_price | money }}</span>
+  <span class="card-sale-strikethrough">{{ original_price | money }}</span>
+  <span class="card-sale-percent">{{ discount_percent }}% off</span>
+{%- else -%}
+  <span class="card-regular-text">{{ product.price | money }}</span>
+{%- endif -%}
+
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div><div data-rid="699d5597-418b-415a-a6b1-49905462ca57" class="r-1uwanhx"><div data-rid="154e40be-4ced-4624-a9db-adcb7d604984" class="r-h8tkn0 alchemy-rte"><span style="width:100%">Includes:</span></div><div data-rid="cbe71f31-fbc9-4d60-93c9-2287992ce162" class="r-yi4lx6"><div data-rid="03a33edc-2f81-4be0-b3c7-31a3b5f42dff" class="r-16vyy2e"><picture data-rid="2f863dd8-6711-445e-81ad-0b93305f3b1c" class="r-14xo35v"><img src="https://cdn.shopify.com/s/files/1/0171/2347/5510/files/sacred-glow-mini-1x1_360px.png?v=1757547447" class="r-lveapq" loading="eager"/></picture><div data-rid="7230abb1-981e-4ff7-bb17-feee430d231b" class="r-901fzt"><div data-rid="1ba57056-fe8c-4e7d-bd29-6e24c63eb1a2" class="r-5exy1t"><div data-rid="26342645-5a6d-456a-93bb-41c8613f302d" class="r-1018b9l alchemy-rte"><span style="width:100%">Sacred Glow Serum<br></span></div><div data-rid="3521f344-c527-4b08-b28c-8663359bd35f" class="r-2cfrd7 alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="974d24ed-5f58-4360-8d84-be4ecac7778b" class="r-1vsj4f1"><div data-rid="61912c9b-11fa-48bd-8865-65089922ac9c" class="r-1dmrc2m"><div data-rid="b15bdfb5-c335-4c6b-978e-257f90f82a68" class="r-v3z6at alchemy-rte"><span style="width:100%"><p>$27</p></span></div></div><div data-rid="ea6b64f6-dc1b-4f9f-bf21-bcfaaa4f309a" class="r-194aciy"><div data-rid="6db4afad-79ac-4457-b252-3c3ca330f47d" class="r-1c7lfsz alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="b5d6492f-8c45-405f-a670-257bfd08ec41" class="r-nvi073"><picture data-rid="14c114cb-057f-45cc-8566-392efb582b66" class="r-qq9nvx"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2" class="r-1jlmas2" loading="eager"/></picture><div data-rid="00064d52-3d92-445a-aaf3-3de65a0c72e9" class="r-1j3ewcz"><div data-rid="f7a23fa3-dce6-4c6f-8f29-f8e13e0ddd0a" class="r-1d23qwb"><div data-rid="70716b30-7715-4b12-a405-ca58c07c5f4d" class="r-1mnpzym alchemy-rte"><span style="width:100%">Rose Mist</span></div><div data-rid="3f5a23c3-370d-4f53-920e-9adce47b68d8" class="r-vpxqyo alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="98e870b5-965c-43bd-a382-fb2d8d05d979" class="r-guzzyq"><div data-rid="3e0232c4-eb62-475d-bc13-5a677df42f9b" class="r-88dju7"><div data-rid="49256693-0d7e-4083-afcb-0ef14d6f4add" class="r-lvx6ct alchemy-rte"><span style="width:100%"><p>$21</p></span></div></div><div data-rid="096f6432-f52c-4081-b304-08badbedfff2" class="r-7i22vh"><div data-rid="2b7571d6-5547-452d-9962-443387faa806" class="r-1qwibdu alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="b4517707-70ce-4052-b06a-2ff4692bfac4" class="r-1mkhex1"><picture data-rid="a4c7be15-0143-4a76-8b7d-444ea3ae2189" class="r-1nt8dyc"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070" class="r-dklm5m" loading="eager"/></picture><div data-rid="3d3393d8-eb21-4013-a4fa-be870d5f4c85" class="r-f6p37b"><div data-rid="58945198-15af-4231-b7ca-0cfd11d025cf" class="r-viw9mf"><div data-rid="9c3f13de-6ee8-494f-9e1b-ba555f843037" class="r-16389p alchemy-rte"><span style="width:100%">Sacred Serum<br></span></div><div data-rid="ef083c6b-5b74-414b-8a40-d69a189b8061" class="r-1bgtxp3 alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="77418c01-4f6f-4fb7-90ef-2174eb0f0af4" class="r-wh4m1f"><div data-rid="2d8b332e-010c-4b0b-9868-8f8bc4b274a5" class="r-huxi1s"><div data-rid="3ce5e1e8-9780-493e-ba10-09627627360c" class="r-rwfubi alchemy-rte"><span style="width:100%"><p>$27</p></span></div></div><div data-rid="afddc69a-004a-49ab-ad59-4862d98a6807" class="r-1t14m3"><div data-rid="91f93238-b46a-43bd-be18-4b4926ba76f5" class="r-9e56c4 alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div></div></div><div data-rid="725e5208-dac1-43ec-8872-204aa82acfec" tabindex="0" role="button" class="r-1o1rti"><div data-rid="ca3d64df-bd6d-43aa-b349-859060231134" class="r-8nwivy" data-alchemy-prerendered-component-id="ca3d64df-bd6d-43aa-b349-859060231134">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['day-night-skincare-routine-30-day-trial-guarantee'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign discount_percent = sale.percent.value | default: 0
+  assign highest_price_variant = product.variants | sort: 'price' | last
+
+  assign variant_price   = highest_price_variant.price
+  assign variant_compare = highest_price_variant.compare_at_price | default: 0
+
+  assign has_sitewide_sale   = sale.active.value and product.metafields.sale.included and discount_percent > 0
+  assign has_compare_discount = variant_compare > variant_price
+
+  assign use_visual_discount = false
+  assign sale_price   = variant_price
+  assign compare_price = nil
+
+  if has_sitewide_sale
+    # Sitewide: compare = base price, sale = base minus % off
+    assign compare_price   = variant_price
+    assign discount_amount = variant_price | times: discount_percent | divided_by: 100
+    assign sale_price      = variant_price | minus: discount_amount
+    assign use_visual_discount = true
+
+  elsif has_compare_discount
+    # Bundle/compare-at case: compare = compare_at_price, sale = actual variant price
+    assign compare_price = variant_compare
+    assign sale_price    = variant_price
+    assign use_visual_discount = true
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="button-sale-text">
+    On Sale – {{ sale_price | money }}
+    <span class="button-sale-strikethrough">{{ compare_price | money }}</span>
+  </span>
+{%- else -%}
+  <span class="button-regular-text">Shop Now – {{ variant_price | money }}</span>
+{%- endif -%}
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div></div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign product = reploOriginalProductRcqmr2 %}<!-- -->{% assign reploSelectedVariant = reploOriginalProductVariantRcqmr2 %}<!-- -->{% assign reploSortedSellingPlans = reploOriginalSPGRcqmr2 %}<!-- -->{% assign reploSelectedSellingPlan = reploOriginalSSPRcqmr2 %}<!-- -->{% assign reploSelectedSellingPlanPrice = reploOriginalSSPPriceRcqmr2 %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploOriginalComparePricePercentRcqmr2 %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign reploOriginalProductReqmr2 = product %}<!-- -->{% capture productHandle %}organic-face-oil-hydrosol-travel-size{% endcapture %}<!-- -->{% assign product = all_products[productHandle] %}<!-- -->{% assign reploOriginalProductVariantReqmr2 = reploSelectedVariant %}<!-- -->{% assign reploSelectedVariant = blank %}<!-- -->{% assign reploOriginalSPGReqmr2 = reploSortedSellingPlans %}<!-- -->{% assign reploSortedSellingPlans = blank %}<!-- -->{% assign reploOriginalSSPReqmr2 = reploSelectedSellingPlan %}<!-- -->{% assign reploSelectedSellingPlan = blank %}<!-- -->{% assign reploOriginalSSPPriceReqmr2 = reploSelectedSellingPlanPrice %}<!-- -->{% assign reploSelectedSellingPlanPrice = blank %}<!-- -->{% assign reploOriginalComparePricePercentReqmr2 = reploCompareAtPriceDifferencePercentage %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = blank %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<!-- -->{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% capture reploVariantIdString %}null{% endcapture %}<!-- -->{% capture reploSellingPlanIdString %}null{% endcapture %}<!-- -->{% capture reploIdKey %}id{% endcapture %}<!-- -->{% capture reploPercentageKey %}percentage{% endcapture %}<!-- -->{% capture reploPriceKey %}price{% endcapture %}<!-- -->{% capture reploFixedAmountKey %}fixed_amount{% endcapture %}<!-- -->{% capture spKey %}selling_plan{% endcapture %}<!-- -->{%- liquid
+              assign reploVariantId = reploVariantIdString | times: 1
+              assign reploSelectedVariant = product.variants | where: reploIdKey, reploVariantId | first
+              if reploSelectedVariant == blank
+                assign reploSelectedVariant = product.selected_or_first_available_variant
+              endif
+              assign reploSelectedSellingPlanPrice = reploSelectedVariant.price
+              if product.selling_plan_groups[0]
+                assign reploAllSellingPlans = reploSelectedVariant.selling_plan_allocations | map: spKey
+                assign reploSortedSellingPlans = reploAllSellingPlans | sort: reploIdKey
+                if true
+                  assign reploSellingPlanId = reploSellingPlanIdString | times: 1
+                  assign reploSelectedSellingPlan = reploSortedSellingPlans | where: reploIdKey, reploSellingPlanId | first
+                  if reploSelectedSellingPlan.price_adjustments[0]
+                    assign adjustment = reploSelectedSellingPlan.price_adjustments[0]
+                    case adjustment.value_type
+                      when reploPercentageKey
+                        assign amountOff = 100 | minus: adjustment.value
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | times: amountOff | divided_by: 100
+                      when reploFixedAmountKey
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | minus: adjustment.value
+                      when reploPriceKey
+                        assign reploSelectedSellingPlanPrice = adjustment.value
+                    endcase
+                  endif
+                endif
+              endif
+            -%}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = 0 %}<!-- -->{% if reploSelectedVariant.compare_at_price != blank %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploSelectedVariant.compare_at_price | minus: reploSelectedVariant.price | at_least: 0 | times: 100.0 | divided_by: reploSelectedVariant.compare_at_price | round %}<!-- -->{% endif %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<div data-rid="69bc1218-631b-434d-882b-7a1d5b62df77" class="r-1l7jvjd" data-replo-product-container="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" data-replo-product-handle="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.handle}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"><product-form style="display:none"><form id="product-form-{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" method="post" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" encType="multipart/form-data" action="/cart/add" data-type="add-to-cart-form"><input type="hidden" name="id" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{reploSelectedVariant.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/><input type="hidden" name="quantity" value="1"/><input type="hidden" name="selling_plan" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{%- if reploSelectedSellingPlan != blank -%}{{reploSelectedSellingPlan.id}}{%- endif -%}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/></form></product-form><div data-rid="7aeff909-76a5-4f60-acdc-ee1d7f9152a3" tabindex="0" role="button" class="r-1j7gb8x"><picture data-rid="2f7a12e5-542e-4e94-8107-b8c922cfaf09" style="--replo-attributes-product-featured-image:{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-yr39bk"><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 820  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(max-width: 640px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1024  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1800  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-4yaay6" loading="eager"/></picture><div data-rid="976127ef-235d-44cb-a9af-2eef9e3bb2a5" class="r-p2b2cl"><div data-rid="a752733e-bd35-460c-8ae9-e6ffa1e8d4b2" class="r-1dkxd31"><div data-rid="ad2a1b71-c534-4f1b-978d-28f9a5b7086f" class="r-17eyps7 alchemy-rte"><span style="width:100%"><p>Sacred Glow Travel Set</p></span></div><div data-rid="0b5767cc-7147-4265-9c03-eabf44505123" class="r-14hhhci"><div data-rid="01da218f-6f6d-4e0a-b33f-62a44274ea33" class="r-o5hhyd" data-alchemy-prerendered-component-id="01da218f-6f6d-4e0a-b33f-62a44274ea33">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['organic-face-oil-hydrosol-travel-size'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign global_discount_percent = sale.percent.value | default: 0
+  assign discount_percent = 0
+  assign use_visual_discount = false
+  assign sale_price = product.price
+  assign original_price = product.price
+
+  if sale.active.value and product.metafields.sale.included and global_discount_percent > 0
+    assign discount_percent = global_discount_percent
+    assign use_visual_discount = true
+    assign discount_amount = product.price | times: discount_percent | divided_by: 100
+    assign sale_price = product.price | minus: discount_amount
+  elsif product.compare_at_price > product.price
+    assign discount_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round
+    assign use_visual_discount = true
+    assign sale_price = product.price
+    assign original_price = product.compare_at_price
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="card-sale-text">{{ sale_price | money }}</span>
+  <span class="card-sale-strikethrough">{{ original_price | money }}</span>
+  <span class="card-sale-percent">{{ discount_percent }}% off</span>
+{%- else -%}
+  <span class="card-regular-text">{{ product.price | money }}</span>
+{%- endif -%}
+
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div><div data-rid="e8c7b384-df1b-43cd-98b7-ac045da9174b" class="r-1bnvboz"><div data-rid="d3370891-05e1-4c06-a462-d807a0e79672" class="r-3e752l alchemy-rte"><span style="width:100%">Includes:</span></div><div data-rid="e83495ce-7428-42b3-ac1c-71a1c4dff774" class="r-1bmzl1k"><div data-rid="1a77a98e-c18e-47fd-a617-2a136b63a1b1" class="r-g9r8mn"><picture data-rid="abbbde09-f7cc-41b2-b652-a9cf2f7a8783" class="r-q5nl61"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39" alt="A round bottle with yellow liquid and a dropper cap." class="r-1ohbav9" loading="eager"/></picture><div data-rid="124d1642-99df-441d-b677-88dabb134a58" class="r-5hvfre"><div data-rid="2eef38d7-791b-4cc5-bf5d-60ace0b304d2" class="r-43mjvj"><div data-rid="fc1f99d5-92f4-4a4f-8e6f-db30b9941dfe" class="r-1yte6rs alchemy-rte"><span style="width:100%">Sacred Glow Serum<br></span></div><div data-rid="ff59f2d2-a195-4464-89b9-d3d07d6ae147" class="r-3fl2k3 alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="25da3491-e0d9-40f8-b3c2-f89e75066574" class="r-1tb2r7n"><div data-rid="f1540749-b4ae-424d-9fd6-5cf951a3088e" class="r-pl4fr1"><div data-rid="7266cf89-3c05-4931-bebe-85d380bd6198" class="r-11465tr alchemy-rte"><span style="width:100%"><p>$27</p></span></div></div><div data-rid="26583599-fb14-4efc-bd29-405b38c83705" class="r-1qy02q9"><div data-rid="aeee8e88-8431-4160-8799-f9a8b91351aa" class="r-1cyqycx alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="70bb6b14-c746-4ffb-b434-79082d7004ea" class="r-zhx4bs"><picture data-rid="5b421555-37aa-498b-a2c1-488712d7e32b" class="r-1j7hges"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2" class="r-1yq1go" loading="eager"/></picture><div data-rid="5e46c3bb-ae61-46ba-9061-b0924ec6e492" class="r-1k93bo7"><div data-rid="b6538055-7506-4b35-908f-f757115f032d" class="r-1ry2dan"><div data-rid="176c4771-2c87-4bc8-b215-8d92fbb38a71" class="r-i672t9 alchemy-rte"><span style="width:100%">Rose Mist</span></div><div data-rid="e529ad62-825d-4900-ad63-4a7e4c97b401" class="r-1e6fjak alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="c2141ac4-4648-4024-866b-72d37937973f" class="r-g5fpoy"><div data-rid="7889f4ff-f0aa-49b0-b093-f441050d0d5d" class="r-raa2pc"><div data-rid="f0407b85-ac37-4c6c-82cf-b38554f98a6b" class="r-fpug98 alchemy-rte"><span style="width:100%"><p>$21</p></span></div></div><div data-rid="0673b5f6-b396-4993-91be-47c64e65ba60" class="r-ka73s3"><div data-rid="8aa3a72f-3594-4406-b9fd-e4beb950e5de" class="r-14iwhaz alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div></div></div><div data-rid="6219b41b-ad30-43c6-a36c-5dc46ec4a182" tabindex="0" role="button" class="r-sjtpi"><div data-rid="33676291-a8b8-452f-b3a3-1b3ac4c2ae8f" class="r-je6mp0" data-alchemy-prerendered-component-id="33676291-a8b8-452f-b3a3-1b3ac4c2ae8f">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['organic-face-oil-hydrosol-travel-size'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign discount_percent = sale.percent.value | default: 0
+  assign use_visual_discount = false
+  assign highest_price_variant = product.variants | sort: 'price' | last
+
+  if sale.active.value and product.metafields.sale.included and discount_percent > 0
+    assign use_visual_discount = true
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  {%- assign discount_amount = highest_price_variant.price | times: discount_percent | divided_by: 100 -%}
+  {%- assign sale_price = highest_price_variant.price | minus: discount_amount -%}
+  <span class="button-sale-text">
+    On Sale – {{ sale_price | money }}
+    <span class="button-sale-strikethrough">{{ highest_price_variant.price | money }}</span>
+  </span>
+{%- else -%}
+  <span class="button-regular-text">Shop Now – {{ highest_price_variant.price | money }}</span>
+{%- endif -%}
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div></div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign product = reploOriginalProductReqmr2 %}<!-- -->{% assign reploSelectedVariant = reploOriginalProductVariantReqmr2 %}<!-- -->{% assign reploSortedSellingPlans = reploOriginalSPGReqmr2 %}<!-- -->{% assign reploSelectedSellingPlan = reploOriginalSSPReqmr2 %}<!-- -->{% assign reploSelectedSellingPlanPrice = reploOriginalSSPPriceReqmr2 %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploOriginalComparePricePercentReqmr2 %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign reploOriginalProductRfqmr2 = product %}<!-- -->{% capture productHandle %}sacred-serum-mist-travel-pack{% endcapture %}<!-- -->{% assign product = all_products[productHandle] %}<!-- -->{% assign reploOriginalProductVariantRfqmr2 = reploSelectedVariant %}<!-- -->{% assign reploSelectedVariant = blank %}<!-- -->{% assign reploOriginalSPGRfqmr2 = reploSortedSellingPlans %}<!-- -->{% assign reploSortedSellingPlans = blank %}<!-- -->{% assign reploOriginalSSPRfqmr2 = reploSelectedSellingPlan %}<!-- -->{% assign reploSelectedSellingPlan = blank %}<!-- -->{% assign reploOriginalSSPPriceRfqmr2 = reploSelectedSellingPlanPrice %}<!-- -->{% assign reploSelectedSellingPlanPrice = blank %}<!-- -->{% assign reploOriginalComparePricePercentRfqmr2 = reploCompareAtPriceDifferencePercentage %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = blank %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<!-- -->{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% capture reploVariantIdString %}null{% endcapture %}<!-- -->{% capture reploSellingPlanIdString %}null{% endcapture %}<!-- -->{% capture reploIdKey %}id{% endcapture %}<!-- -->{% capture reploPercentageKey %}percentage{% endcapture %}<!-- -->{% capture reploPriceKey %}price{% endcapture %}<!-- -->{% capture reploFixedAmountKey %}fixed_amount{% endcapture %}<!-- -->{% capture spKey %}selling_plan{% endcapture %}<!-- -->{%- liquid
+              assign reploVariantId = reploVariantIdString | times: 1
+              assign reploSelectedVariant = product.variants | where: reploIdKey, reploVariantId | first
+              if reploSelectedVariant == blank
+                assign reploSelectedVariant = product.selected_or_first_available_variant
+              endif
+              assign reploSelectedSellingPlanPrice = reploSelectedVariant.price
+              if product.selling_plan_groups[0]
+                assign reploAllSellingPlans = reploSelectedVariant.selling_plan_allocations | map: spKey
+                assign reploSortedSellingPlans = reploAllSellingPlans | sort: reploIdKey
+                if true
+                  assign reploSellingPlanId = reploSellingPlanIdString | times: 1
+                  assign reploSelectedSellingPlan = reploSortedSellingPlans | where: reploIdKey, reploSellingPlanId | first
+                  if reploSelectedSellingPlan.price_adjustments[0]
+                    assign adjustment = reploSelectedSellingPlan.price_adjustments[0]
+                    case adjustment.value_type
+                      when reploPercentageKey
+                        assign amountOff = 100 | minus: adjustment.value
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | times: amountOff | divided_by: 100
+                      when reploFixedAmountKey
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | minus: adjustment.value
+                      when reploPriceKey
+                        assign reploSelectedSellingPlanPrice = adjustment.value
+                    endcase
+                  endif
+                endif
+              endif
+            -%}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = 0 %}<!-- -->{% if reploSelectedVariant.compare_at_price != blank %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploSelectedVariant.compare_at_price | minus: reploSelectedVariant.price | at_least: 0 | times: 100.0 | divided_by: reploSelectedVariant.compare_at_price | round %}<!-- -->{% endif %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<div data-rid="69a4f04c-3dfe-416e-9a1a-5b328ab0269d" class="r-1yvfkjh" data-replo-product-container="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" data-replo-product-handle="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.handle}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"><product-form style="display:none"><form id="product-form-{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" method="post" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" encType="multipart/form-data" action="/cart/add" data-type="add-to-cart-form"><input type="hidden" name="id" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{reploSelectedVariant.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/><input type="hidden" name="quantity" value="1"/><input type="hidden" name="selling_plan" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{%- if reploSelectedSellingPlan != blank -%}{{reploSelectedSellingPlan.id}}{%- endif -%}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/></form></product-form><div data-rid="6d187a93-0abe-4947-a68f-91e5ce041ef6" tabindex="0" role="button" class="r-1sls4ht"><picture data-rid="aa38dbcc-39e7-4510-869b-6e0da113245c" style="--replo-attributes-product-featured-image:{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-17ktd8x"><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 820  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(max-width: 640px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1024  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1800  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-8lbnkj" loading="eager"/></picture><div data-rid="a083aa85-287c-4f69-ad40-a7a4d9c38630" class="r-qpl4h"><div data-rid="8ce3bb2b-4f70-4ccc-9790-c1075b0a12ba" class="r-rsvgpj"><div data-rid="3e8dc795-0c50-4489-bdbd-f1d1a28f0277" class="r-1wjo4yx alchemy-rte"><span style="width:100%">Sacred Travel Set</span></div><div data-rid="95f9f63c-eba6-4a22-8545-1e77835488e5" class="r-7eukg"><div data-rid="81bc5b66-e249-4e5e-85e0-9d74af57b614" class="r-a5n1pw" data-alchemy-prerendered-component-id="81bc5b66-e249-4e5e-85e0-9d74af57b614">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['sacred-serum-mist-travel-pack'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign global_discount_percent = sale.percent.value | default: 0
+  assign discount_percent = 0
+  assign use_visual_discount = false
+  assign sale_price = product.price
+  assign original_price = product.price
+
+  if sale.active.value and product.metafields.sale.included and global_discount_percent > 0
+    assign discount_percent = global_discount_percent
+    assign use_visual_discount = true
+    assign discount_amount = product.price | times: discount_percent | divided_by: 100
+    assign sale_price = product.price | minus: discount_amount
+  elsif product.compare_at_price > product.price
+    assign discount_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round
+    assign use_visual_discount = true
+    assign sale_price = product.price
+    assign original_price = product.compare_at_price
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="card-sale-text">{{ sale_price | money }}</span>
+  <span class="card-sale-strikethrough">{{ original_price | money }}</span>
+  <span class="card-sale-percent">{{ discount_percent }}% off</span>
+{%- else -%}
+  <span class="card-regular-text">{{ product.price | money }}</span>
+{%- endif -%}
+
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div><div data-rid="55e66086-5855-4484-bf1e-52f834c714eb" class="r-7cw0e2"><div data-rid="d3ddcde9-60cd-40ea-a4ce-01292ef613de" class="r-1j9l030 alchemy-rte"><span style="width:100%">Includes:</span></div><div data-rid="a26045e0-9d02-4046-9c54-28a3040f0075" class="r-yosz63"><div data-rid="73b1c43a-6d34-4232-b128-2b2dbdaa8c56" class="r-8vt6ri"><picture data-rid="90617c18-cfe1-453d-bd6f-13804430d209" class="r-14pi0du"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070" class="r-146m75l" loading="eager"/></picture><div data-rid="b096f2c9-87da-4aab-81aa-b9171f99daec" class="r-uvz6p0"><div data-rid="891aa3fe-ac83-4e18-952f-2cf0ede81afb" class="r-1tk5klp"><div data-rid="ae9bb663-e536-4b4b-9ab8-ef8c8eb437ec" class="r-zd8mov alchemy-rte"><span style="width:100%">Sacred Serum<br></span></div><div data-rid="82a8bd8f-4a13-47d7-be9f-b4cf7f7151c5" class="r-1i4qg07 alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="4a26d2eb-1bc5-43d9-8ed9-dde981598620" class="r-1hi6wnf"><div data-rid="140f6723-6fde-4778-ad52-db7d2d934a26" class="r-1sx5vct"><div data-rid="f2dc9fb6-344f-4150-916b-b330cd144335" class="r-cs4k2k alchemy-rte"><span style="width:100%"><p>$27</p></span></div></div><div data-rid="4e86268c-b034-4dc0-91e8-f019a393a1ec" class="r-1t1h3f8"><div data-rid="9108c52e-2400-48fd-aa1b-504ad38e951d" class="r-8w8vht alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="525760f0-fb1e-47d0-9c21-746a5b6b0c3b" class="r-1d210uv"><picture data-rid="7c93d1bc-6df7-453b-abf1-ee28cc496388" class="r-y3jsf1"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2" class="r-1s02ys8" loading="eager"/></picture><div data-rid="138f71a2-8bee-4fd8-8ca3-061e2c2dc27c" class="r-1l68kpq"><div data-rid="49ce2799-883e-4581-abcc-37eebf88d517" class="r-kpwfsd"><div data-rid="c2a54522-0ac4-401d-abef-b31018f63507" class="r-b4q62g alchemy-rte"><span style="width:100%">Rose Mist</span></div><div data-rid="1a656335-3e28-4fd4-a21e-9c701f0830c8" class="r-1h3bisd alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="84adbde5-f154-4c24-af8b-d5f67d49fd5c" class="r-ystoo6"><div data-rid="656cb533-a459-4b59-a5f1-424cd84003e0" class="r-1likz56"><div data-rid="6aac3b75-e421-4421-9063-b38ee3f3f206" class="r-1qlcyap alchemy-rte"><span style="width:100%"><p>$21</p></span></div></div><div data-rid="42d2ed5d-8533-49e9-b0da-8491b87dcd88" class="r-1kydeqv"><div data-rid="70223955-4afa-4eed-91e4-a4787d74d965" class="r-1ad9teq alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div></div></div><div data-rid="0ee2fb9c-d352-43a5-8744-af644f4bda33" tabindex="0" role="button" class="r-bwn3x7"><div data-rid="2d820919-207c-4ef8-b182-ed017e93b4a4" class="r-19kbnyl" data-alchemy-prerendered-component-id="2d820919-207c-4ef8-b182-ed017e93b4a4">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['sacred-serum-mist-travel-pack'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign discount_percent = sale.percent.value | default: 0
+  assign use_visual_discount = false
+  if sale.active.value and product.metafields.sale.included and discount_percent > 0
+    assign use_visual_discount = true
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  {%- assign discount_amount = product.price | times: discount_percent | divided_by: 100 -%}
+  {%- assign sale_price = product.price | minus: discount_amount -%}
+  <span class="button-sale-text">
+    On Sale – {{ sale_price | money }} 
+    <span class="button-sale-strikethrough">{{ product.price | money }}</span>
+  </span>
+{%- else -%}
+  <span class="button-regular-text">Shop Now – {{ product.price | money }}</span>
+{%- endif -%}
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div></div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign product = reploOriginalProductRfqmr2 %}<!-- -->{% assign reploSelectedVariant = reploOriginalProductVariantRfqmr2 %}<!-- -->{% assign reploSortedSellingPlans = reploOriginalSPGRfqmr2 %}<!-- -->{% assign reploSelectedSellingPlan = reploOriginalSSPRfqmr2 %}<!-- -->{% assign reploSelectedSellingPlanPrice = reploOriginalSSPPriceRfqmr2 %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploOriginalComparePricePercentRfqmr2 %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div><div data-state="inactive" data-orientation="vertical" role="tabpanel" aria-labelledby="radix-:R6r2:-trigger-09672587-e16f-4cae-a51c-a3501f3ad3fc6" id="radix-:R6r2:-content-09672587-e16f-4cae-a51c-a3501f3ad3fc6" tabindex="0" style="display:none"><div data-rid="962eb176-94a4-40c4-9e3f-a6183d6e0bb4" class="r-iif93j">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign reploOriginalProductR1umr2 = product %}<!-- -->{% capture productHandle %}day-night-skincare-routine-30-day-trial-guarantee{% endcapture %}<!-- -->{% assign product = all_products[productHandle] %}<!-- -->{% assign reploOriginalProductVariantR1umr2 = reploSelectedVariant %}<!-- -->{% assign reploSelectedVariant = blank %}<!-- -->{% assign reploOriginalSPGR1umr2 = reploSortedSellingPlans %}<!-- -->{% assign reploSortedSellingPlans = blank %}<!-- -->{% assign reploOriginalSSPR1umr2 = reploSelectedSellingPlan %}<!-- -->{% assign reploSelectedSellingPlan = blank %}<!-- -->{% assign reploOriginalSSPPriceR1umr2 = reploSelectedSellingPlanPrice %}<!-- -->{% assign reploSelectedSellingPlanPrice = blank %}<!-- -->{% assign reploOriginalComparePricePercentR1umr2 = reploCompareAtPriceDifferencePercentage %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = blank %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<!-- -->{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% capture reploVariantIdString %}null{% endcapture %}<!-- -->{% capture reploSellingPlanIdString %}null{% endcapture %}<!-- -->{% capture reploIdKey %}id{% endcapture %}<!-- -->{% capture reploPercentageKey %}percentage{% endcapture %}<!-- -->{% capture reploPriceKey %}price{% endcapture %}<!-- -->{% capture reploFixedAmountKey %}fixed_amount{% endcapture %}<!-- -->{% capture spKey %}selling_plan{% endcapture %}<!-- -->{%- liquid
+              assign reploVariantId = reploVariantIdString | times: 1
+              assign reploSelectedVariant = product.variants | where: reploIdKey, reploVariantId | first
+              if reploSelectedVariant == blank
+                assign reploSelectedVariant = product.selected_or_first_available_variant
+              endif
+              assign reploSelectedSellingPlanPrice = reploSelectedVariant.price
+              if product.selling_plan_groups[0]
+                assign reploAllSellingPlans = reploSelectedVariant.selling_plan_allocations | map: spKey
+                assign reploSortedSellingPlans = reploAllSellingPlans | sort: reploIdKey
+                if true
+                  assign reploSellingPlanId = reploSellingPlanIdString | times: 1
+                  assign reploSelectedSellingPlan = reploSortedSellingPlans | where: reploIdKey, reploSellingPlanId | first
+                  if reploSelectedSellingPlan.price_adjustments[0]
+                    assign adjustment = reploSelectedSellingPlan.price_adjustments[0]
+                    case adjustment.value_type
+                      when reploPercentageKey
+                        assign amountOff = 100 | minus: adjustment.value
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | times: amountOff | divided_by: 100
+                      when reploFixedAmountKey
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | minus: adjustment.value
+                      when reploPriceKey
+                        assign reploSelectedSellingPlanPrice = adjustment.value
+                    endcase
+                  endif
+                endif
+              endif
+            -%}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = 0 %}<!-- -->{% if reploSelectedVariant.compare_at_price != blank %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploSelectedVariant.compare_at_price | minus: reploSelectedVariant.price | at_least: 0 | times: 100.0 | divided_by: reploSelectedVariant.compare_at_price | round %}<!-- -->{% endif %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<div data-rid="6f1e3e6a-9746-407d-a851-a25647114b7a" class="r-1lw2o03" data-replo-product-container="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" data-replo-product-handle="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.handle}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"><product-form style="display:none"><form id="product-form-{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" method="post" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" encType="multipart/form-data" action="/cart/add" data-type="add-to-cart-form"><input type="hidden" name="id" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{reploSelectedVariant.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/><input type="hidden" name="quantity" value="1"/><input type="hidden" name="selling_plan" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{%- if reploSelectedSellingPlan != blank -%}{{reploSelectedSellingPlan.id}}{%- endif -%}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/></form></product-form><div data-rid="932727f7-37af-48b4-9b49-63b052ecd1f0" tabindex="0" role="button" class="r-1rlaxy"><picture data-rid="a1cdf903-9ae6-4360-8ec8-a8892009d614" style="--replo-attributes-product-featured-image:{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-14rhs06"><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 820  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(max-width: 640px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1024  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1800  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-1b5cw24" loading="eager"/></picture><div data-rid="2840f9d2-c61d-4cbf-a017-4bb8bf47e1a7" class="r-p66lx8"><div data-rid="240abb23-fdf2-4568-84aa-9faabefabc99" class="r-15ov77n"><div data-rid="cda23ba2-8450-4bc2-9bc4-b65ccd6d994c" class="r-xu1rfb alchemy-rte"><span style="width:100%">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.title }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</span></div><div data-rid="b32b729c-11d0-411a-86f3-5be388897a79" class="r-1wafenk"><div data-rid="71b51e4d-6ebd-4efd-9a1d-86937f3ad8be" class="r-syuwf1" data-alchemy-prerendered-component-id="71b51e4d-6ebd-4efd-9a1d-86937f3ad8be">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['day-night-skincare-routine-30-day-trial-guarantee'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign global_discount_percent = sale.percent.value | default: 0
+  assign discount_percent = 0
+  assign use_visual_discount = false
+  assign sale_price = product.price
+  assign original_price = product.price
+
+  if sale.active.value and product.metafields.sale.included and global_discount_percent > 0
+    assign discount_percent = global_discount_percent
+    assign use_visual_discount = true
+    assign discount_amount = product.price | times: discount_percent | divided_by: 100
+    assign sale_price = product.price | minus: discount_amount
+  elsif product.compare_at_price > product.price
+    assign discount_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round
+    assign use_visual_discount = true
+    assign sale_price = product.price
+    assign original_price = product.compare_at_price
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="card-sale-text">{{ sale_price | money }}</span>
+  <span class="card-sale-strikethrough">{{ original_price | money }}</span>
+  <span class="card-sale-percent">{{ discount_percent }}% off</span>
+{%- else -%}
+  <span class="card-regular-text">{{ product.price | money }}</span>
+{%- endif -%}
+
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div><div data-rid="ab25aa7a-e24c-4050-ba6b-221c21209af9" class="r-1o6tfjq"><div data-rid="b2282333-92f3-48a1-bcad-4d8399f0e073" class="r-1hcdco6 alchemy-rte"><span style="width:100%">Includes:</span></div><div data-rid="5aad0cf4-326c-46cb-a2b7-99390af67afc" class="r-1awkak8"><div data-rid="f367f397-44eb-49bb-a4c6-17f649d32374" class="r-eenvgd"><picture data-rid="5b2ea2e0-6ede-4f33-a953-8de0909d3601" class="r-2dpu2s"><img src="https://cdn.shopify.com/s/files/1/0171/2347/5510/files/sacred-glow-mini-1x1_360px.png?v=1757547447" class="r-ukx75w" loading="eager"/></picture><div data-rid="de7fcee1-2006-48eb-8833-94e103b15860" class="r-19bg9ci"><div data-rid="c8c4c13d-50b0-4e4a-8c4b-7e933465a94d" class="r-1w3losx"><div data-rid="894386c5-a8e7-4fcd-b6f7-dc51b238a47d" class="r-1fdp8z5 alchemy-rte"><span style="width:100%">Sacred Glow Serum<br></span></div><div data-rid="c3840628-5ace-4d27-80cd-7cbfd841452c" class="r-t6xqvs alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="30e0f39b-a02b-4fbd-adf9-32c78b881ced" class="r-fjb8sv"><div data-rid="259b3a5e-ee6c-47d3-9a80-8791a9805899" class="r-z3pqm0"><div data-rid="a0845106-ce05-4f19-ab4f-89fc9cddb5d9" class="r-1nov2js alchemy-rte"><span style="width:100%"><p>$27</p></span></div></div><div data-rid="4e58acf7-4469-4fc7-8c71-68eceaf3dc8b" class="r-hyhew3"><div data-rid="ee2f9ec4-9df3-4236-9410-17187fbf3d00" class="r-1ab6p62 alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="75c0632b-2d63-4abf-a7f2-f5561aca9529" class="r-ljk7om"><picture data-rid="d9419e60-2250-453e-a682-b00ce6cbba17" class="r-1bcbnbm"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2" class="r-1hhpa0g" loading="eager"/></picture><div data-rid="63cccc4b-6ad9-4b60-9f31-d4f38b4a792a" class="r-kpklzc"><div data-rid="9df8bde4-12a7-4f07-b493-b392db52b0c8" class="r-17rc2nz"><div data-rid="6a2ea482-1988-4f60-b626-cddad1d1ba80" class="r-1eio5gf alchemy-rte"><span style="width:100%">Rose Mist</span></div><div data-rid="dc026f87-99d4-4285-8a04-0d4703e37010" class="r-f2lkg9 alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="1800983f-4930-4b64-b70d-92b198a1dbb3" class="r-1igte2r"><div data-rid="dd6d8f86-5311-4d66-892e-dd0c65647b74" class="r-fdq552"><div data-rid="d7c689b9-7d24-403c-b6d2-4cac2d94b7a1" class="r-15bhuze alchemy-rte"><span style="width:100%"><p>$21</p></span></div></div><div data-rid="85b13e85-b062-4776-8de2-288538992af9" class="r-1dggvkn"><div data-rid="9e6dac2e-7e89-45a2-a2ec-ad966a947418" class="r-1bwsoi0 alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="9a897354-3321-40c7-8590-bfca681f2f34" class="r-fp4s7a"><picture data-rid="5d92f2ad-95e9-4f10-995e-50c6ae440507" class="r-owvbiv"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070" class="r-siva8l" loading="eager"/></picture><div data-rid="37c454bc-6152-4261-85f2-84f5329735cb" class="r-19m8pfe"><div data-rid="688a5469-a59f-4f34-af23-d5a2f6347e59" class="r-1ii1yh5"><div data-rid="32564e4b-abf0-4495-84b5-c4d3e555e636" class="r-4hb3x7 alchemy-rte"><span style="width:100%">Sacred Serum<br></span></div><div data-rid="70cb6b50-a1b3-4ea7-a9ce-13056b3cae9b" class="r-yf9lnq alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="286b24d8-a483-47db-ae3f-d7015ba36537" class="r-1ydh6sd"><div data-rid="7cd74f5c-f0ae-4b65-a3f4-0ae8d2158483" class="r-2zhg55"><div data-rid="59fbaea0-3637-4e30-8cad-baff851abd6e" class="r-wtxhd alchemy-rte"><span style="width:100%"><p>$27</p></span></div></div><div data-rid="32e22885-e234-4f2d-b250-ffd6374f5c30" class="r-6uoox8"><div data-rid="74ec0383-db5b-48fa-b030-89a9918391f5" class="r-16ji7ys alchemy-rte"><span style="width:100%"><p>Included</p></span></div></div></div></div></div></div></div><div data-rid="084692e8-f01c-4b2f-95fa-d23c5676c00b" tabindex="0" role="button" class="r-1f6f5sx"><div data-rid="36fc2e3c-16f7-405c-9229-8c2cb3783203" class="r-133ohit" data-alchemy-prerendered-component-id="36fc2e3c-16f7-405c-9229-8c2cb3783203">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['day-night-skincare-routine-30-day-trial-guarantee'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign discount_percent = sale.percent.value | default: 0
+  assign highest_price_variant = product.variants | sort: 'price' | last
+
+  assign variant_price   = highest_price_variant.price
+  assign variant_compare = highest_price_variant.compare_at_price | default: 0
+
+  assign has_sitewide_sale   = sale.active.value and product.metafields.sale.included and discount_percent > 0
+  assign has_compare_discount = variant_compare > variant_price
+
+  assign use_visual_discount = false
+  assign sale_price   = variant_price
+  assign compare_price = nil
+
+  if has_sitewide_sale
+    # Sitewide: compare = base price, sale = base minus % off
+    assign compare_price   = variant_price
+    assign discount_amount = variant_price | times: discount_percent | divided_by: 100
+    assign sale_price      = variant_price | minus: discount_amount
+    assign use_visual_discount = true
+
+  elsif has_compare_discount
+    # Bundle/compare-at case: compare = compare_at_price, sale = actual variant price
+    assign compare_price = variant_compare
+    assign sale_price    = variant_price
+    assign use_visual_discount = true
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="button-sale-text">
+    On Sale – {{ sale_price | money }}
+    <span class="button-sale-strikethrough">{{ compare_price | money }}</span>
+  </span>
+{%- else -%}
+  <span class="button-regular-text">Shop Now – {{ variant_price | money }}</span>
+{%- endif -%}
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div></div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign product = reploOriginalProductR1umr2 %}<!-- -->{% assign reploSelectedVariant = reploOriginalProductVariantR1umr2 %}<!-- -->{% assign reploSortedSellingPlans = reploOriginalSPGR1umr2 %}<!-- -->{% assign reploSelectedSellingPlan = reploOriginalSSPR1umr2 %}<!-- -->{% assign reploSelectedSellingPlanPrice = reploOriginalSSPPriceR1umr2 %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploOriginalComparePricePercentR1umr2 %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign reploOriginalProductRcumr2 = product %}<!-- -->{% capture productHandle %}organic-face-oil-hydrosol-travel-size{% endcapture %}<!-- -->{% assign product = all_products[productHandle] %}<!-- -->{% assign reploOriginalProductVariantRcumr2 = reploSelectedVariant %}<!-- -->{% assign reploSelectedVariant = blank %}<!-- -->{% assign reploOriginalSPGRcumr2 = reploSortedSellingPlans %}<!-- -->{% assign reploSortedSellingPlans = blank %}<!-- -->{% assign reploOriginalSSPRcumr2 = reploSelectedSellingPlan %}<!-- -->{% assign reploSelectedSellingPlan = blank %}<!-- -->{% assign reploOriginalSSPPriceRcumr2 = reploSelectedSellingPlanPrice %}<!-- -->{% assign reploSelectedSellingPlanPrice = blank %}<!-- -->{% assign reploOriginalComparePricePercentRcumr2 = reploCompareAtPriceDifferencePercentage %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = blank %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<!-- -->{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% capture reploVariantIdString %}null{% endcapture %}<!-- -->{% capture reploSellingPlanIdString %}null{% endcapture %}<!-- -->{% capture reploIdKey %}id{% endcapture %}<!-- -->{% capture reploPercentageKey %}percentage{% endcapture %}<!-- -->{% capture reploPriceKey %}price{% endcapture %}<!-- -->{% capture reploFixedAmountKey %}fixed_amount{% endcapture %}<!-- -->{% capture spKey %}selling_plan{% endcapture %}<!-- -->{%- liquid
+              assign reploVariantId = reploVariantIdString | times: 1
+              assign reploSelectedVariant = product.variants | where: reploIdKey, reploVariantId | first
+              if reploSelectedVariant == blank
+                assign reploSelectedVariant = product.selected_or_first_available_variant
+              endif
+              assign reploSelectedSellingPlanPrice = reploSelectedVariant.price
+              if product.selling_plan_groups[0]
+                assign reploAllSellingPlans = reploSelectedVariant.selling_plan_allocations | map: spKey
+                assign reploSortedSellingPlans = reploAllSellingPlans | sort: reploIdKey
+                if true
+                  assign reploSellingPlanId = reploSellingPlanIdString | times: 1
+                  assign reploSelectedSellingPlan = reploSortedSellingPlans | where: reploIdKey, reploSellingPlanId | first
+                  if reploSelectedSellingPlan.price_adjustments[0]
+                    assign adjustment = reploSelectedSellingPlan.price_adjustments[0]
+                    case adjustment.value_type
+                      when reploPercentageKey
+                        assign amountOff = 100 | minus: adjustment.value
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | times: amountOff | divided_by: 100
+                      when reploFixedAmountKey
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | minus: adjustment.value
+                      when reploPriceKey
+                        assign reploSelectedSellingPlanPrice = adjustment.value
+                    endcase
+                  endif
+                endif
+              endif
+            -%}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = 0 %}<!-- -->{% if reploSelectedVariant.compare_at_price != blank %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploSelectedVariant.compare_at_price | minus: reploSelectedVariant.price | at_least: 0 | times: 100.0 | divided_by: reploSelectedVariant.compare_at_price | round %}<!-- -->{% endif %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<div data-rid="437338c6-5dc5-4154-8d86-74073970e526" class="r-11xzedf" data-replo-product-container="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" data-replo-product-handle="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.handle}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"><product-form style="display:none"><form id="product-form-{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" method="post" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" encType="multipart/form-data" action="/cart/add" data-type="add-to-cart-form"><input type="hidden" name="id" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{reploSelectedVariant.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/><input type="hidden" name="quantity" value="1"/><input type="hidden" name="selling_plan" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{%- if reploSelectedSellingPlan != blank -%}{{reploSelectedSellingPlan.id}}{%- endif -%}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/></form></product-form><div data-rid="72a5a344-9f46-485e-91e3-d2abbcefcbfd" tabindex="0" role="button" class="r-vere9p"><picture data-rid="4abbd71a-ea9d-404f-9bea-a3a4c5bb3607" style="--replo-attributes-product-featured-image:{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-1oatt5l"><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 820  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(max-width: 640px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1024  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1800  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-1ixmf5b" loading="eager"/></picture><div data-rid="c93e678a-e5fa-4dfc-8b0b-ea3ad34307e8" class="r-ay2lvx"><div data-rid="7234c074-dcaf-428c-a56a-ca695d6c4a67" class="r-h917te"><div data-rid="8bdfddec-f147-4678-9593-33b7f9280d18" class="r-1n6x3gc alchemy-rte"><span style="width:100%"><p>Sacred Glow Travel Set</p></span></div><div data-rid="e192966a-ae0c-480e-8c60-d52ca1fefb95" class="r-14trju6"><div data-rid="a71cf88c-c872-4c5c-b089-dbd2c7d7a403" class="r-1hfsu2w" data-alchemy-prerendered-component-id="a71cf88c-c872-4c5c-b089-dbd2c7d7a403">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['organic-face-oil-hydrosol-travel-size'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign global_discount_percent = sale.percent.value | default: 0
+  assign discount_percent = 0
+  assign use_visual_discount = false
+  assign sale_price = product.price
+  assign original_price = product.price
+
+  if sale.active.value and product.metafields.sale.included and global_discount_percent > 0
+    assign discount_percent = global_discount_percent
+    assign use_visual_discount = true
+    assign discount_amount = product.price | times: discount_percent | divided_by: 100
+    assign sale_price = product.price | minus: discount_amount
+  elsif product.compare_at_price > product.price
+    assign discount_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round
+    assign use_visual_discount = true
+    assign sale_price = product.price
+    assign original_price = product.compare_at_price
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="card-sale-text">{{ sale_price | money }}</span>
+  <span class="card-sale-strikethrough">{{ original_price | money }}</span>
+  <span class="card-sale-percent">{{ discount_percent }}% off</span>
+{%- else -%}
+  <span class="card-regular-text">{{ product.price | money }}</span>
+{%- endif -%}
+
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div><div data-rid="88752ed9-cd29-4001-bbe1-cf4d145a0f27" class="r-1ntm81j"><div data-rid="5b98c677-3d9e-4c31-b503-cb5f980c6c11" class="r-116pqju alchemy-rte"><span style="width:100%">Includes:</span></div><div data-rid="e2ee6e79-adf3-454d-b6a8-f7704cc88bc6" class="r-1qu0alt"><div data-rid="22a29687-c238-47a1-a6f0-805bc5bb904e" class="r-8dhjfh"><picture data-rid="6bd18865-bc54-46d1-8565-d811ff39a4cd" class="r-fxcz8"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/07285116-1f9a-4ed8-abb8-628e67380c39" alt="A round bottle with yellow liquid and a dropper cap." class="r-frcxna" loading="eager"/></picture><div data-rid="2abb3963-415e-4466-b84e-cdce8e96cfac" class="r-1clq3kb"><div data-rid="f2548c75-f923-4301-9919-021fdf6a913b" class="r-1yufb7p"><div data-rid="717e1461-1aaa-458b-8853-f19721016399" class="r-h0n5ax alchemy-rte"><span style="width:100%">Sacred Glow Serum<br></span></div><div data-rid="0c79c46f-8e86-44d2-b594-e5b55c475091" class="r-1eeydfj alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="b27593dd-4eb5-4122-876b-3d04050635bc" class="r-1hzx9ww"><div data-rid="14ad2303-5770-4fba-be0f-a630959a0217" class="r-1w6df6n"><div data-rid="0f08528e-0411-4ba8-833f-f700eb9321fd" class="r-1hcv1t4 alchemy-rte"><span style="width:100%"><p>$27</p></span></div></div><div data-rid="420833f1-0f80-4792-bd2f-26a0d34c81ae" class="r-khufn8"><div data-rid="75eb23b6-e680-4214-914d-feb2e19065a0" class="r-zfkxkg alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="5363ddce-6baa-4d84-9a85-c8d5daf52d91" class="r-14xxtry"><picture data-rid="846075e9-32e7-4cfd-92ff-094b121ef693" class="r-jps7gf"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2" class="r-i2a6wq" loading="eager"/></picture><div data-rid="5a7c2dba-33f3-45b7-be55-a4600e8932cd" class="r-1kxcivs"><div data-rid="c82646d1-b496-41b9-bd3f-c79e96989029" class="r-15sgvns"><div data-rid="15385e81-7fc8-4215-bc55-e3ea7fb80445" class="r-qle6mf alchemy-rte"><span style="width:100%">Rose Mist</span></div><div data-rid="d574c837-4a01-4a82-ad0e-a2fad2b8562b" class="r-1r32lhe alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="fa762386-66bb-42fc-9fb2-54239bafcaec" class="r-986tzf"><div data-rid="3939a9a0-65ef-409b-8669-8c30327cc741" class="r-rbcjbp"><div data-rid="bc10e4f3-d875-4991-9892-71cdc3bb1643" class="r-1gssbou alchemy-rte"><span style="width:100%"><p>$21</p></span></div></div><div data-rid="9e88d43a-9bc9-4950-ba2d-6ceb0690c0a4" class="r-1lkorix"><div data-rid="060189e1-4d12-4709-8772-76ca167a4de5" class="r-p7axws alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div></div></div><div data-rid="e223f577-748f-4b24-90c5-2f767c855ab6" tabindex="0" role="button" class="r-e2g24x"><div data-rid="169c41a1-394d-48b3-8746-df8d21bee1c3" class="r-1gf13nl" data-alchemy-prerendered-component-id="169c41a1-394d-48b3-8746-df8d21bee1c3">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['organic-face-oil-hydrosol-travel-size'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign discount_percent = sale.percent.value | default: 0
+  assign use_visual_discount = false
+  assign highest_price_variant = product.variants | sort: 'price' | last
+
+  if sale.active.value and product.metafields.sale.included and discount_percent > 0
+    assign use_visual_discount = true
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  {%- assign discount_amount = highest_price_variant.price | times: discount_percent | divided_by: 100 -%}
+  {%- assign sale_price = highest_price_variant.price | minus: discount_amount -%}
+  <span class="button-sale-text">
+    On Sale – {{ sale_price | money }}
+    <span class="button-sale-strikethrough">{{ highest_price_variant.price | money }}</span>
+  </span>
+{%- else -%}
+  <span class="button-regular-text">Shop Now – {{ highest_price_variant.price | money }}</span>
+{%- endif -%}
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div></div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign product = reploOriginalProductRcumr2 %}<!-- -->{% assign reploSelectedVariant = reploOriginalProductVariantRcumr2 %}<!-- -->{% assign reploSortedSellingPlans = reploOriginalSPGRcumr2 %}<!-- -->{% assign reploSelectedSellingPlan = reploOriginalSSPRcumr2 %}<!-- -->{% assign reploSelectedSellingPlanPrice = reploOriginalSSPPriceRcumr2 %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploOriginalComparePricePercentRcumr2 %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign reploOriginalProductRdumr2 = product %}<!-- -->{% capture productHandle %}sacred-serum-mist-travel-pack{% endcapture %}<!-- -->{% assign product = all_products[productHandle] %}<!-- -->{% assign reploOriginalProductVariantRdumr2 = reploSelectedVariant %}<!-- -->{% assign reploSelectedVariant = blank %}<!-- -->{% assign reploOriginalSPGRdumr2 = reploSortedSellingPlans %}<!-- -->{% assign reploSortedSellingPlans = blank %}<!-- -->{% assign reploOriginalSSPRdumr2 = reploSelectedSellingPlan %}<!-- -->{% assign reploSelectedSellingPlan = blank %}<!-- -->{% assign reploOriginalSSPPriceRdumr2 = reploSelectedSellingPlanPrice %}<!-- -->{% assign reploSelectedSellingPlanPrice = blank %}<!-- -->{% assign reploOriginalComparePricePercentRdumr2 = reploCompareAtPriceDifferencePercentage %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = blank %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<!-- -->{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% capture reploVariantIdString %}null{% endcapture %}<!-- -->{% capture reploSellingPlanIdString %}null{% endcapture %}<!-- -->{% capture reploIdKey %}id{% endcapture %}<!-- -->{% capture reploPercentageKey %}percentage{% endcapture %}<!-- -->{% capture reploPriceKey %}price{% endcapture %}<!-- -->{% capture reploFixedAmountKey %}fixed_amount{% endcapture %}<!-- -->{% capture spKey %}selling_plan{% endcapture %}<!-- -->{%- liquid
+              assign reploVariantId = reploVariantIdString | times: 1
+              assign reploSelectedVariant = product.variants | where: reploIdKey, reploVariantId | first
+              if reploSelectedVariant == blank
+                assign reploSelectedVariant = product.selected_or_first_available_variant
+              endif
+              assign reploSelectedSellingPlanPrice = reploSelectedVariant.price
+              if product.selling_plan_groups[0]
+                assign reploAllSellingPlans = reploSelectedVariant.selling_plan_allocations | map: spKey
+                assign reploSortedSellingPlans = reploAllSellingPlans | sort: reploIdKey
+                if true
+                  assign reploSellingPlanId = reploSellingPlanIdString | times: 1
+                  assign reploSelectedSellingPlan = reploSortedSellingPlans | where: reploIdKey, reploSellingPlanId | first
+                  if reploSelectedSellingPlan.price_adjustments[0]
+                    assign adjustment = reploSelectedSellingPlan.price_adjustments[0]
+                    case adjustment.value_type
+                      when reploPercentageKey
+                        assign amountOff = 100 | minus: adjustment.value
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | times: amountOff | divided_by: 100
+                      when reploFixedAmountKey
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | minus: adjustment.value
+                      when reploPriceKey
+                        assign reploSelectedSellingPlanPrice = adjustment.value
+                    endcase
+                  endif
+                endif
+              endif
+            -%}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = 0 %}<!-- -->{% if reploSelectedVariant.compare_at_price != blank %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploSelectedVariant.compare_at_price | minus: reploSelectedVariant.price | at_least: 0 | times: 100.0 | divided_by: reploSelectedVariant.compare_at_price | round %}<!-- -->{% endif %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<div data-rid="746731a1-f97e-4f03-a9cf-6b733627dc8e" class="r-olwlku" data-replo-product-container="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" data-replo-product-handle="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.handle}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"><product-form style="display:none"><form id="product-form-{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" method="post" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" encType="multipart/form-data" action="/cart/add" data-type="add-to-cart-form"><input type="hidden" name="id" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{reploSelectedVariant.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/><input type="hidden" name="quantity" value="1"/><input type="hidden" name="selling_plan" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{%- if reploSelectedSellingPlan != blank -%}{{reploSelectedSellingPlan.id}}{%- endif -%}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/></form></product-form><div data-rid="4e6999a2-b6b9-455a-a310-657bff06bd15" tabindex="0" role="button" class="r-1598lru"><picture data-rid="3d92d2a4-5234-43c1-9cac-d41848f77942" style="--replo-attributes-product-featured-image:{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-1v0ei8l"><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 820  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(max-width: 640px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1024  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1800  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-j9qe5h" loading="eager"/></picture><div data-rid="6fcd8433-adf7-4bef-982a-b5557f8f276b" class="r-motwc"><div data-rid="af09bb68-16b4-4cc2-9644-29c4d9e2ddb8" class="r-jxy0l4"><div data-rid="6fa6b9ef-a4a2-4584-bf14-0638c0bcea18" class="r-23bqlz alchemy-rte"><span style="width:100%">Sacred Travel Set</span></div><div data-rid="d4d3147f-113d-48fb-9dcc-302fd3bfbf2a" class="r-yne985"><div data-rid="973857e2-9162-4bd2-b119-0e55d8fd4013" class="r-193xnl9" data-alchemy-prerendered-component-id="973857e2-9162-4bd2-b119-0e55d8fd4013">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['sacred-serum-mist-travel-pack'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign global_discount_percent = sale.percent.value | default: 0
+  assign discount_percent = 0
+  assign use_visual_discount = false
+  assign sale_price = product.price
+  assign original_price = product.price
+
+  if sale.active.value and product.metafields.sale.included and global_discount_percent > 0
+    assign discount_percent = global_discount_percent
+    assign use_visual_discount = true
+    assign discount_amount = product.price | times: discount_percent | divided_by: 100
+    assign sale_price = product.price | minus: discount_amount
+  elsif product.compare_at_price > product.price
+    assign discount_percent = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round
+    assign use_visual_discount = true
+    assign sale_price = product.price
+    assign original_price = product.compare_at_price
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  <span class="card-sale-text">{{ sale_price | money }}</span>
+  <span class="card-sale-strikethrough">{{ original_price | money }}</span>
+  <span class="card-sale-percent">{{ discount_percent }}% off</span>
+{%- else -%}
+  <span class="card-regular-text">{{ product.price | money }}</span>
+{%- endif -%}
+
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div><div data-rid="04bff788-86ad-4455-b650-fc49a8828625" class="r-1hg53p8"><div data-rid="788c37f1-6654-4ef7-95b0-19736d0b64a7" class="r-chfr2o alchemy-rte"><span style="width:100%">Includes:</span></div><div data-rid="8ded849c-9015-48d8-919b-850eb556ec79" class="r-y9qw49"><div data-rid="b503b18b-ba17-414f-b4c8-9e8209d6004f" class="r-lqp50u"><picture data-rid="210c15f7-d37e-4ddc-8095-c3bc13d18a63" class="r-13yvbqw"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/8221d329-ea70-42e4-afc0-a2f37d666070" class="r-e6m0kf" loading="eager"/></picture><div data-rid="5f53c91f-d1fb-48fd-a16e-31113c526b74" class="r-102n9ai"><div data-rid="06f81af9-00be-42ee-abcb-2ad2cd0bebdd" class="r-hh7jtq"><div data-rid="db55f1c0-6efe-44bb-b494-44817fb3767f" class="r-1lu14dh alchemy-rte"><span style="width:100%">Sacred Serum<br></span></div><div data-rid="fe8e270d-bc74-4a5d-9087-27b8abca665a" class="r-1ytc0ey alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="8255c4fa-806a-4c72-984b-a1dcd0f577ed" class="r-1k1qs2k"><div data-rid="0c4eff1d-5daa-4450-b540-9bafd02b0515" class="r-pdwu00"><div data-rid="608dffd9-8082-43e6-b3ca-86b271118be6" class="r-vs9j0c alchemy-rte"><span style="width:100%"><p>$27</p></span></div></div><div data-rid="1c52eb8d-b3bc-4bed-8c14-afb308819c5f" class="r-tlwlqs"><div data-rid="020e5056-5a96-49ad-b5b9-624a338463ce" class="r-10ceaqz alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div><div data-rid="b5854337-523e-4925-8276-e729ce964aaf" class="r-13vnqth"><picture data-rid="a3dba373-132c-4209-820b-c3728ea1cfb2" class="r-132l8l5"><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(max-width: 640px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2?width=60" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://assets.replocdn.com/projects/4971311b-fd14-4a3a-8441-be8be1013247/eefdb177-a137-4ed1-86e2-b0ec78be12f2" class="r-yui0fz" loading="eager"/></picture><div data-rid="3742d83d-ad02-4919-8522-0fcd05ec7ff8" class="r-536k86"><div data-rid="e50d9b69-000d-46bf-ae1e-248891897dc8" class="r-1vohlsi"><div data-rid="d7ae8c26-8644-4919-97e7-95f1b99d6e10" class="r-42362 alchemy-rte"><span style="width:100%">Rose Mist</span></div><div data-rid="029dec14-3925-4fbd-9a14-9cafbc8d9a93" class="r-8fbo3w alchemy-rte"><span style="width:100%">Travel Size</span></div></div><div data-rid="2d16d708-58b3-468a-b17f-f8ecf4c1d3bd" class="r-1ruzuk1"><div data-rid="6c639d0e-c363-44e9-8678-576edfe08449" class="r-1yjr690"><div data-rid="8563d5e9-9a96-4757-9c57-820df9ff98ca" class="r-12oocon alchemy-rte"><span style="width:100%"><p>$21</p></span></div></div><div data-rid="ba65d446-26bc-4d30-acb2-989b2ce02546" class="r-1is4r4d"><div data-rid="a4767696-beb4-413e-869e-526c5e2e8182" class="r-12dg3fa alchemy-rte"><span style="width:100%">Included</span></div></div></div></div></div></div></div><div data-rid="029591f7-b526-419d-9444-1bda8dd0debe" tabindex="0" role="button" class="r-1u4oryu"><div data-rid="18cf5e73-c91e-4deb-be42-3e0cdd9e644d" class="r-rhjbqe" data-alchemy-prerendered-component-id="18cf5e73-c91e-4deb-be42-3e0cdd9e644d">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['sacred-serum-mist-travel-pack'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign discount_percent = sale.percent.value | default: 0
+  assign use_visual_discount = false
+  if sale.active.value and product.metafields.sale.included and discount_percent > 0
+    assign use_visual_discount = true
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  {%- assign discount_amount = product.price | times: discount_percent | divided_by: 100 -%}
+  {%- assign sale_price = product.price | minus: discount_amount -%}
+  <span class="button-sale-text">
+    On Sale – {{ sale_price | money }} 
+    <span class="button-sale-strikethrough">{{ product.price | money }}</span>
+  </span>
+{%- else -%}
+  <span class="button-regular-text">Shop Now – {{ product.price | money }}</span>
+{%- endif -%}
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div></div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign product = reploOriginalProductRdumr2 %}<!-- -->{% assign reploSelectedVariant = reploOriginalProductVariantRdumr2 %}<!-- -->{% assign reploSortedSellingPlans = reploOriginalSPGRdumr2 %}<!-- -->{% assign reploSelectedSellingPlan = reploOriginalSSPRdumr2 %}<!-- -->{% assign reploSelectedSellingPlanPrice = reploOriginalSSPPriceRdumr2 %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploOriginalComparePricePercentRdumr2 %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign reploOriginalProductRgumr2 = product %}<!-- -->{% capture productHandle %}sacred-serum-roller{% endcapture %}<!-- -->{% assign product = all_products[productHandle] %}<!-- -->{% assign reploOriginalProductVariantRgumr2 = reploSelectedVariant %}<!-- -->{% assign reploSelectedVariant = blank %}<!-- -->{% assign reploOriginalSPGRgumr2 = reploSortedSellingPlans %}<!-- -->{% assign reploSortedSellingPlans = blank %}<!-- -->{% assign reploOriginalSSPRgumr2 = reploSelectedSellingPlan %}<!-- -->{% assign reploSelectedSellingPlan = blank %}<!-- -->{% assign reploOriginalSSPPriceRgumr2 = reploSelectedSellingPlanPrice %}<!-- -->{% assign reploSelectedSellingPlanPrice = blank %}<!-- -->{% assign reploOriginalComparePricePercentRgumr2 = reploCompareAtPriceDifferencePercentage %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = blank %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<!-- -->{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% capture reploVariantIdString %}null{% endcapture %}<!-- -->{% capture reploSellingPlanIdString %}null{% endcapture %}<!-- -->{% capture reploIdKey %}id{% endcapture %}<!-- -->{% capture reploPercentageKey %}percentage{% endcapture %}<!-- -->{% capture reploPriceKey %}price{% endcapture %}<!-- -->{% capture reploFixedAmountKey %}fixed_amount{% endcapture %}<!-- -->{% capture spKey %}selling_plan{% endcapture %}<!-- -->{%- liquid
+              assign reploVariantId = reploVariantIdString | times: 1
+              assign reploSelectedVariant = product.variants | where: reploIdKey, reploVariantId | first
+              if reploSelectedVariant == blank
+                assign reploSelectedVariant = product.selected_or_first_available_variant
+              endif
+              assign reploSelectedSellingPlanPrice = reploSelectedVariant.price
+              if product.selling_plan_groups[0]
+                assign reploAllSellingPlans = reploSelectedVariant.selling_plan_allocations | map: spKey
+                assign reploSortedSellingPlans = reploAllSellingPlans | sort: reploIdKey
+                if true
+                  assign reploSellingPlanId = reploSellingPlanIdString | times: 1
+                  assign reploSelectedSellingPlan = reploSortedSellingPlans | where: reploIdKey, reploSellingPlanId | first
+                  if reploSelectedSellingPlan.price_adjustments[0]
+                    assign adjustment = reploSelectedSellingPlan.price_adjustments[0]
+                    case adjustment.value_type
+                      when reploPercentageKey
+                        assign amountOff = 100 | minus: adjustment.value
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | times: amountOff | divided_by: 100
+                      when reploFixedAmountKey
+                        assign reploSelectedSellingPlanPrice = reploSelectedSellingPlanPrice | minus: adjustment.value
+                      when reploPriceKey
+                        assign reploSelectedSellingPlanPrice = adjustment.value
+                    endcase
+                  endif
+                endif
+              endif
+            -%}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = 0 %}<!-- -->{% if reploSelectedVariant.compare_at_price != blank %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploSelectedVariant.compare_at_price | minus: reploSelectedVariant.price | at_least: 0 | times: 100.0 | divided_by: reploSelectedVariant.compare_at_price | round %}<!-- -->{% endif %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}<div data-rid="8b47f9f7-55a3-4c1a-bf1d-bd4624edd91f" class="r-1nxpb61" data-replo-product-container="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" data-replo-product-handle="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.handle}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"><product-form style="display:none"><form id="product-form-{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" method="post" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" encType="multipart/form-data" action="/cart/add" data-type="add-to-cart-form"><input type="hidden" name="id" data-productid="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{product.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{reploSelectedVariant.id}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/><input type="hidden" name="quantity" value="1"/><input type="hidden" name="selling_plan" value="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{%- if reploSelectedSellingPlan != blank -%}{{reploSelectedSellingPlan.id}}{%- endif -%}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}"/></form></product-form><div data-rid="970c9a66-df18-4e84-88e4-460961339245" tabindex="0" role="button" class="r-1wzjcve"><picture data-rid="faa2b93a-faeb-492b-8cc2-603985a315cb" style="--replo-attributes-product-featured-image:{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" class="r-95vf27"><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 820  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(max-width: 640px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1024  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url: width: 1800  }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{{ product.featured_image | image_url }}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}" alt="Black bottle of Sacred Body Oil with golden label and oil droplets." class="r-865ri3" loading="eager"/></picture><div data-rid="a1c57eec-c10d-4968-8c02-a8866e1cfb51" class="r-an8jfj"><div data-rid="e91263eb-d25c-414f-8ef3-578cfa6b50cc" class="r-vsrm8a"><div data-rid="2d6ff6e7-07a6-49c4-bb02-58ceb77de6e3" class="r-ei8y45 alchemy-rte"><span style="width:100%"><p>Sacred Serum Roller</p></span></div><div data-rid="45dd3fa7-386b-499a-a54f-8a043ff73237" class="r-kfb6qw alchemy-rte"><span style="width:100%"><p>The serum you love, in a handy portable roller.</p></span></div></div><div data-rid="6ca33f37-f61d-470e-8ca5-814a04fc7972" class="r-1nzfenm"><div data-rid="424f3c47-378e-4f74-8a90-09a40156e88f" tabindex="0" role="button" class="r-xskltg"><div data-rid="1a1b0a50-8fbc-4c71-919c-a793fa60f2d8" class="r-63kcmt" data-alchemy-prerendered-component-id="1a1b0a50-8fbc-4c71-919c-a793fa60f2d8">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['sacred-serum-roller'] %} {%- liquid
+  assign sale = shop.metaobjects.global_sale.current_sale
+  assign discount_percent = sale.percent.value | default: 0
+  assign use_visual_discount = false
+  if sale.active.value and product.metafields.sale.included and discount_percent > 0
+    assign use_visual_discount = true
+  endif
+-%}
+
+{%- if use_visual_discount -%}
+  {%- assign discount_amount = product.price | times: discount_percent | divided_by: 100 -%}
+  {%- assign sale_price = product.price | minus: discount_amount -%}
+  <span class="button-sale-text">
+    On Sale – {{ sale_price | money }} 
+    <span class="button-sale-strikethrough">{{ product.price | money }}</span>
+  </span>
+{%- else -%}
+  <span class="button-regular-text">Shop Now – {{ product.price | money }}</span>
+{%- endif -%}
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div></div></div>{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<!-- -->{% assign product = reploOriginalProductRgumr2 %}<!-- -->{% assign reploSelectedVariant = reploOriginalProductVariantRgumr2 %}<!-- -->{% assign reploSortedSellingPlans = reploOriginalSPGRgumr2 %}<!-- -->{% assign reploSelectedSellingPlan = reploOriginalSSPRgumr2 %}<!-- -->{% assign reploSelectedSellingPlanPrice = reploOriginalSSPPriceRgumr2 %}<!-- -->{% assign reploCompareAtPriceDifferencePercentage = reploOriginalComparePricePercentRgumr2 %}<!-- -->{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div><div data-rid="4505470b-1f88-40c3-a4bd-3d52e1f6b1f6" tabindex="0" role="link" class="r-1531tno"><picture data-rid="075a8eeb-edb7-40b4-9094-0f1a2d001b13" class="r-dgkfgh"><source srcSet="https://cdn.shopify.com/s/files/1/0171/2347/5510/files/64-BLUE9178-2.jpg?v=1748643456&amp;width=820" media="(max-width: 640px)"/><source srcSet="https://cdn.shopify.com/s/files/1/0171/2347/5510/files/64-BLUE9178-2.jpg?v=1748643456&amp;width=1024" media="(min-width: 641px) and (max-width: 1024px)"/><source srcSet="https://cdn.shopify.com/s/files/1/0171/2347/5510/files/64-BLUE9178-2.jpg?v=1748643456&amp;width=1800" media="(min-width: 1025px) and (max-width: 2400px)"/><img src="https://cdn.shopify.com/s/files/1/0171/2347/5510/files/64-BLUE9178-2.jpg?v=1748643456" class="r-yqz839" loading="eager"/></picture><div data-rid="09624a73-ec25-4513-ac4c-9561f10aa052" class="r-wgpbhs"><div data-rid="36074479-39b9-4d69-8af7-029967edd74e" class="r-19j9o13"><div data-rid="6702aaa7-a4c7-4aa3-8bae-cb3936e40672" class="r-4iuv3e alchemy-rte"><span style="width:100%"><p>Remarkable, Without Effort</p></span></div><div data-rid="5369746e-15de-4518-a1b5-c72716f2924e" class="r-138boge alchemy-rte"><span style="width:100%"><p>Because your skin deserves a ritual that actually works...</p></span></div></div><div data-rid="fce9d35b-c70f-432f-a5ad-993f4d6c2a78" class="r-ekgkvj"><div data-rid="77d936ff-9410-43c9-8826-1190ffa12fee" class="r-1knneqd alchemy-rte"><span style="width:100%"><p>Reveal My Ritual</p></span></div></div></div></div></div></div></div></div></div></div><div data-rid="a6afb258-8549-405f-92f2-ae80a2062f45" data-alchemy-url-hashmark="Reviews" tabindex="-1" id="Reviews" data-alchemy-url-hashmark-ignore="true" class="r-1nhbp1w"><div data-rid="180ffa08-aa99-4852-b880-88c1820090f1" class="r-13htyh" data-alchemy-prerendered-component-id="180ffa08-aa99-4852-b880-88c1820090f1">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true">
+    {% if product %}
+      {% assign reploExistingProduct = product %}
+    {% endif %}
+
+    {% assign product = all_products['face-oil'] %} 
+    <div
+      data-oke-widget data-oke-reviews-widget
+      data-oke-reviews-product-id="shopify-{{ product.id }}">
+        {{ product.metafields.okendo.ReviewsWidgetSnippet }}
+    </div>
+
+    {% if reploExistingProduct %}
+      {% assign product = reploExistingProduct %} 
+    {% endif %}
+  </div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div><div data-rid="21d047c3-2611-4fbb-8986-096f3c814148" class="r-t012ye" data-alchemy-prerendered-component-id="21d047c3-2611-4fbb-8986-096f3c814148">{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<div style="width:100%;height:100%" data-alchemy-prerendered-placeholder="true"><script src="{{ 'tab-hash-activate.js' | asset_url }}" defer="defer"></script></div>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}</div></div></div><style>@import url(https://fonts.googleapis.com/css2?family=Archivo:wght@100;200;300;400;500;600;700;800;900;950&family=Tenor+Sans:wght@100;200;300;400;500;600;700;800;900;950&family=Work+Sans:wght@100;200;300;400;500;600;700;800;900;950)</style></div>
+{%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}
+  <script type="application/json" id="replo-deps-products">
+    [{"id":"2239969230902","handle": "face-oil","data":{{ all_products['face-oil'] | json }}},{"id":"8976312041775","handle": "organic-face-oil","data":{{ all_products['organic-face-oil'] | json }}},{"id":"4357136023606","handle": "sacred-rituel-rose-mist","data":{{ all_products['sacred-rituel-rose-mist'] | json }}},{"id":"8701276946735","handle": "body-oil","data":{{ all_products['body-oil'] | json }}},{"id":"10531567763759","handle": "spring-renewal-trio","data":{{ all_products['spring-renewal-trio'] | json }}},{"id":"10611613794607","handle": "day-night-glow-bundle","data":{{ all_products['day-night-glow-bundle'] | json }}},{"id":"10733242024239","handle": "day-night-skincare-routine-30-day-trial-guarantee","data":{{ all_products['day-night-skincare-routine-30-day-trial-guarantee'] | json }}},{"id":"4362016882742","handle": "sacred-beauty-serum-rose-mist-set","data":{{ all_products['sacred-beauty-serum-rose-mist-set'] | json }}},{"id":"9514171531567","handle": "sacred-serum-rose-toner-body-oil","data":{{ all_products['sacred-serum-rose-toner-body-oil'] | json }}},{"id":"8245095432495","handle": "sacred-serum-travel-set","data":{{ all_products['sacred-serum-travel-set'] | json }}},{"id":"10551113908527","handle": "organic-face-oil-hydrosol-travel-size","data":{{ all_products['organic-face-oil-hydrosol-travel-size'] | json }}},{"id":"4350326931510","handle": "sacred-serum-mist-travel-pack","data":{{ all_products['sacred-serum-mist-travel-pack'] | json }}},{"id":"6867020939318","handle": "best-herbal-medicine-book","data":{{ all_products['best-herbal-medicine-book'] | json }}},{"id":"10431183356207","handle": "sacred-rituel-gift-cards","data":{{ all_products['sacred-rituel-gift-cards'] | json }}},{"id":"4826179371062","handle": "sacred-serum-roller","data":{{ all_products['sacred-serum-roller'] | json }}},{"id":"9338597277999","handle": "trucker-hat","data":{{ all_products['trucker-hat'] | json }}}]
+  </script>
+  {%- comment -%}replo-liquid-chunk-end{%- endcomment -%}
+    <script type="application/json" id="replo-deps-products-metafields">
+      {%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}{%- capture replo_double_tick -%}"{%- endcapture -%}{"2239969230902":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['face-oil'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"8976312041775":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['organic-face-oil'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"4357136023606":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['sacred-rituel-rose-mist'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"8701276946735":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['body-oil'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"10531567763759":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['spring-renewal-trio'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"10611613794607":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['day-night-glow-bundle'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"10733242024239":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['day-night-skincare-routine-30-day-trial-guarantee'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"4362016882742":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['sacred-beauty-serum-rose-mist-set'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"9514171531567":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['sacred-serum-rose-toner-body-oil'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"8245095432495":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['sacred-serum-travel-set'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"10551113908527":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['organic-face-oil-hydrosol-travel-size'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"4350326931510":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['sacred-serum-mist-travel-pack'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"6867020939318":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['best-herbal-medicine-book'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"10431183356207":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['sacred-rituel-gift-cards'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"4826179371062":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['sacred-serum-roller'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}},"9338597277999":{"reviews":{"rating_count":{"type":"number_integer","value":"{{- all_products['trucker-hat'].metafields['reviews']['rating_count'].value | default: null | json | replace_first: replo_double_tick, '' | replace_last: replo_double_tick, '' -}}"}}}}{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}
+    </script>
+  
+    <script type="application/json" id="replo-deps-variant-metafields">
+    {%- capture replo_double_tick -%}"{%- endcapture -%}{}
+    </script>
+  {%- comment -%}replo-liquid-chunk-begin{%- endcomment -%}<script type="application/json" id="replo-deps-shopify-store">{ "shop": { "moneyFormat": {{ shop.money_format | json }}, "moneyWithCurrencyFormat": {{ shop.money_with_currency_format | json }} } }</script>{%- comment -%}replo-liquid-chunk-end{%- endcomment -%}

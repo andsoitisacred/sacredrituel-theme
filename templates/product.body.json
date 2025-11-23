@@ -1,0 +1,227 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "show_vendor": false,
+            "show_reviews": true,
+            "show_tax_info": false,
+            "show_sku": false,
+            "show_barcode": false,
+            "stick_product_header_on_mobile": false
+          }
+        },
+        "custom_liquid_tVxygR": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% if product.metafields.custom.product_value_tagline %}<p class=\"text-size--larger\">{{product.metafields.custom.product_value_tagline}}</p>{% endif %}",
+            "position": "right"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "variants_style": "radio",
+            "show_color_swatches": true,
+            "show_quantities": "no"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_preorder_label": false,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "pickup_avaiability": {
+          "type": "pickup_avaiability",
+          "disabled": true,
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "b55c1a64-c8e6-44ea-827d-dee6e2917e82": {
+          "type": "toggles-with-icons",
+          "settings": {
+            "title": "Frequently Asked Questions",
+            "feature1_title": "{{ product.metafields.custom.primary_feature_title.value }}",
+            "feature1_text": "<p>{{ product.metafields.custom.primary_feature_description | metafield_tag }}</p>",
+            "feature2_title": "{{ product.metafields.custom.secondary_feature_title.value }}",
+            "feature2_text": "<p>{{ product.metafields.custom.secondary_feature_description | metafield_tag }}</p>",
+            "feature3_title": "{{ product.metafields.custom.tertiary_feature_title.value }}",
+            "feature3_text": "<p>{{ product.metafields.custom.tertiary_feature_description | metafield_tag }}</p>",
+            "feature4_title": "{{ product.metafields.custom.fourth_feature_title.value }}",
+            "feature4_text": "<p>{{ product.metafields.custom.fourth_feature_description | metafield_tag }}</p>",
+            "feature5_title": "{{ product.metafields.custom.fifth_feature_title.value }}",
+            "feature5_text": "<p>{{ product.metafields.custom.fifth_feature_description | metafield_tag }}</p>",
+            "feature6_title": "{{ product.metafields.custom.sixth_feature_title.value }}",
+            "feature6_text": "<p>{{ product.metafields.custom.sixth_feature_description | metafield_tag }}</p>",
+            "seo_h_tag": "h2"
+          }
+        },
+        "6f85182a-f9a4-4657-ac3a-86b59e7241e8": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "{{ product.metafields.custom.product_overview_title.value }}",
+            "content": "<p>{{ product.metafields.custom.product_overview_details | metafield_tag }}</p>",
+            "page": "",
+            "hide_block_if": false
+          }
+        },
+        "8bc3a0a0-ced3-488a-994d-bdeb17bd3196": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "{{ product.metafields.custom.source_ingredients_title.value }}",
+            "content": "<p>{{ product.metafields.custom.source_ingredients_details | metafield_tag }}</p>",
+            "page": "",
+            "hide_block_if": false
+          }
+        },
+        "tolstoy_shoppable_video_ugc_carousel_block_X6DjAX": {
+          "type": "shopify://apps/tolstoy-shoppable-video-quiz/blocks/carousel-block/06fa8282-42ff-403e-b67c-1936776aed11",
+          "settings": {
+            "publishId": "yjed1wf7eu2b2"
+          }
+        }
+      },
+      "block_order": [
+        "header",
+        "custom_liquid_tVxygR",
+        "variant_picker",
+        "buy_buttons",
+        "pickup_avaiability",
+        "share",
+        "description",
+        "b55c1a64-c8e6-44ea-827d-dee6e2917e82",
+        "6f85182a-f9a4-4657-ac3a-86b59e7241e8",
+        "8bc3a0a0-ced3-488a-994d-bdeb17bd3196",
+        "tolstoy_shoppable_video_ugc_carousel_block_X6DjAX"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 1023px) {.product__title {margin-bottom: 0.4em; } .set-mobile-position {margin-top: calc(var(--grid-width) / 12 * 0.1); } .product-variant__name {margin-bottom: 0.5em; } .product-variants-block {margin-top: 0.2em; } product-form:not(:first-child) {margin-top: 1em; }}",
+        "product-variants:not(:first-child),product-form:not(:first-child) {margin-top: 1em;}",
+        "section-header__title {font-size: 28px;}"
+      ],
+      "settings": {
+        "media_aspect": "natural",
+        "enable_zoom": true,
+        "enable_video_looping": true
+      }
+    },
+    "17070822448ab6804c": {
+      "type": "apps",
+      "blocks": {
+        "okendo_reviews_widget_ME49LC": {
+          "type": "shopify://apps/okendo/blocks/reviews-widget/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {
+            "product": "{{product}}",
+            "widget_type": "reviews_widget"
+          }
+        }
+      },
+      "block_order": [
+        "okendo_reviews_widget_ME49LC"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "d54180d6-dd7a-49de-8783-7b91c9a28ca0": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--16972859834671__d54180d6-dd7a-49de-8783-7b91c9a28ca0-1668832227e8398569-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "30% OFF all Orders over $75",
+            "heading_size": "h1"
+          }
+        },
+        "template--16972859834671__d54180d6-dd7a-49de-8783-7b91c9a28ca0-1668832227e8398569-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>With gratitude we THANK YOU for supporting our shared mission of potent organic skincare that delivers a radiant GLOW!</p><p>30% discount applied at checkout to all orders over $75.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--16972859834671__d54180d6-dd7a-49de-8783-7b91c9a28ca0-1668832227e8398569-0",
+        "template--16972859834671__d54180d6-dd7a-49de-8783-7b91c9a28ca0-1668832227e8398569-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/ezgif.com-gif-maker_8.gif",
+        "layout": "right-alignment"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "products_number": 3
+      }
+    },
+    "2b8297f5-c2ef-43d6-a0eb-3b24e9670133": {
+      "type": "rich-text",
+      "blocks": {
+        "template--18783081595183__2b8297f5-c2ef-43d6-a0eb-3b24e9670133-16832195372d8dabd5-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ product.metafields.custom.product_seo_qa.value }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--18783081595183__2b8297f5-c2ef-43d6-a0eb-3b24e9670133-16832195372d8dabd5-1"
+      ],
+      "settings": {
+        "text_alignment": "left"
+      }
+    },
+    "17188357472810bab3": {
+      "type": "apps",
+      "blocks": {
+        "tolstoy_shoppable_video_ugc_hero_video_block_mWeFXR": {
+          "type": "shopify://apps/tolstoy-shoppable-video-quiz/blocks/hero-video-block/06fa8282-42ff-403e-b67c-1936776aed11",
+          "settings": {
+            "publishId": "publishId"
+          }
+        }
+      },
+      "block_order": [
+        "tolstoy_shoppable_video_ugc_hero_video_block_mWeFXR"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "17070822448ab6804c",
+    "d54180d6-dd7a-49de-8783-7b91c9a28ca0",
+    "product-recommendations",
+    "2b8297f5-c2ef-43d6-a0eb-3b24e9670133",
+    "17188357472810bab3"
+  ]
+}

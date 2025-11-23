@@ -1,0 +1,784 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "color_accent": "{{ shop.brand.colors.secondary[0].foreground }}",
+    "color_text": "{{ shop.brand.colors.primary[0].background }}",
+    "color_background": "{{ shop.brand.colors.primary[0].foreground }}",
+    "headings_font": "tenor_sans_n4",
+    "headings_size": 30,
+    "body_font": "work_sans_n4",
+    "body_size": 18,
+    "quote_font": "archivo_n4",
+    "layout_top_space": 20,
+    "layout_section_space": 12,
+    "grid_aspect": "natural",
+    "product_show_secondary": true,
+    "color_swatches_labels": "50 ml dropper,30 ml pump",
+    "show_variant_image": false,
+    "color_sale_price": "#d1759c",
+    "show_reviews_badge": true,
+    "reviews_app": "junip",
+    "favicon": "shopify://shop_images/sacred-logo-ivoryblack_favicon-shopify.png",
+    "cart_action": "overlay",
+    "cart_notes_enable": false,
+    "cart_additional_buttons": true,
+    "cart_quantity_selector": true,
+    "cart_image_ratio": "1",
+    "image_reveal": "opacity",
+    "show_breadcrumb": true,
+    "show_gotop": false,
+    "within_filter_enabled": false,
+    "social_facebook": "",
+    "social_instagram": "https://instagram.com/sacredrituel",
+    "social_twitter": "",
+    "social_youtube": "https://youtube.com/@sacredrituel",
+    "social_vimeo": "",
+    "social_pinterest": "",
+    "social_tiktok": "",
+    "social_tumblr": "",
+    "social_linkedin": "",
+    "social_reddit": "",
+    "social_flickr": "",
+    "social_email": "mailto:customer@sacredrituel.com",
+    "social_phone": "tel:3233815494",
+    "checkout_header_image": "",
+    "checkout_logo_image": "shopify://shop_images/srb-shadow-logo-512_brand-logo-shopify-512_copy.png",
+    "checkout_logo_position": "center",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#f7f3ed",
+    "checkout_input_background_color_mode": "transparent",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    "checkout_accent_color": "#141f22",
+    "checkout_button_color": "#7a6652",
+    "checkout_error_color": "#d1759c",
+    "predictive_search_enabled": true,
+    "predictive_search_show_vendor": false,
+    "predictive_search_show_price": true,
+    "predictive_search_include_articles": true,
+    "predictive_search_include_pages": true,
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_src": "shopify://shop_images/srb-shadow-logo-512_brand-logo-shopify-512_copy.png",
+          "logo_height": 100,
+          "show_search": false,
+          "show_icon_labels": true,
+          "menu_primary": "main-menu",
+          "menu_secondary": "",
+          "show_social_icons": true,
+          "show_locale_selector": true,
+          "show_country_selector": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "83a51fca-3419-4673-9613-9505c11e0d29": {
+            "type": "text",
+            "settings": {
+              "title": "SACRED RITUEL is",
+              "content": "<p>High potency all organic skincare</p>"
+            }
+          },
+          "657d0481-8a40-4d4d-a64c-1a3264f6de2a": {
+            "type": "menus",
+            "settings": {
+              "title_1": "LINKS",
+              "menu_1": "footer",
+              "title_2": "Menu",
+              "menu_2": ""
+            }
+          },
+          "cb26e229-0f34-44da-a191-022d03cc56e4": {
+            "type": "newsletter",
+            "settings": {
+              "title": "Newsletter",
+              "text": "<p>Stay connected on wellness tips, exclusive sales and events! </p>"
+            }
+          },
+          "94b57aa7-9455-4710-ab77-77dde8049d5c": {
+            "type": "social",
+            "settings": {
+              "title": ""
+            }
+          }
+        },
+        "block_order": [
+          "83a51fca-3419-4673-9613-9505c11e0d29",
+          "657d0481-8a40-4d4d-a64c-1a3264f6de2a",
+          "cb26e229-0f34-44da-a191-022d03cc56e4",
+          "94b57aa7-9455-4710-ab77-77dde8049d5c"
+        ],
+        "settings": {
+          "show_payment_icons": true,
+          "show_locale_selector": true,
+          "show_country_selector": true
+        }
+      },
+      "text-columns-with-icons": {
+        "type": "text-columns-with-icons",
+        "blocks": {
+          "913a05c0-114a-4fb7-ba39-047df22f46cf": {
+            "type": "text-icon",
+            "settings": {
+              "title": "No Hassle 30-day Returns",
+              "body": "<p>Try SACRED RITUEL for 30 days and send it back for a full refund if it doesn't completely meet your expectations. </p><p>Details in our <a href=\"/policies/refund-policy\" title=\"Refund Policy\">return policy</a>.</p>",
+              "select_icon": "time-limit"
+            }
+          },
+          "dc0e2351-9175-4503-9568-f4f102cbc798": {
+            "type": "text-icon",
+            "settings": {
+              "title": "Free Express Shipping on orders over $100",
+              "body": "<p>Spend $100 and get FREE Express Shipping.  Spend $50 and get FREE Standard Shipping. $5 Economy Shipping on all other orders.</p><p>Details in our <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">shipping policy</a>.</p>",
+              "select_icon": "shipping-box"
+            }
+          },
+          "00665f2b-5814-4213-853b-3b6c73955a4a": {
+            "type": "text-icon",
+            "settings": {
+              "title": "Auto Delivery w/ a Subscription",
+              "body": "<p>Ensure you ALWAYS have a steady stream of SACRED RITUEL on hand!</p><p>Details in our <a href=\"/pages/subscription-auto-delivery\" title=\"SACRED RITUEL Subscriptions\">subscriptions page</a>. </p>",
+              "select_icon": "delivery"
+            }
+          }
+        },
+        "block_order": [
+          "913a05c0-114a-4fb7-ba39-047df22f46cf",
+          "dc0e2351-9175-4503-9568-f4f102cbc798",
+          "00665f2b-5814-4213-853b-3b6c73955a4a"
+        ],
+        "settings": {}
+      },
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "bar_bgcolor": "{{ shop.brand.colors.primary[0].background }}",
+          "bar_txtcolor": "{{ shop.brand.colors.primary[0].foreground }}"
+        }
+      },
+      "gift-card": {
+        "type": "gift-card",
+        "settings": {
+          "logo_src": "shopify://shop_images/upcart_header_logo_1742143789484.webp",
+          "logo_height": 62
+        }
+      },
+      "blog-posts": {
+        "type": "blog-posts",
+        "blocks": {
+          "fab7e611-b600-49f4-9981-1cdddca92271": {
+            "type": "title",
+            "settings": {}
+          }
+        },
+        "block_order": [
+          "fab7e611-b600-49f4-9981-1cdddca92271"
+        ],
+        "custom_css": [
+          "h2 {font-size: 32;}"
+        ],
+        "settings": {
+          "title": "Tips for Glowing Skin & Plant based Wellness",
+          "blog": "glowing-skin",
+          "post_limit": 6,
+          "blog_show_image": true,
+          "show_view_all": true,
+          "seo_h_tag": "h2"
+        }
+      },
+      "popups": {
+        "type": "popups",
+        "blocks": {
+          "image_gPXYJP": {
+            "type": "image",
+            "settings": {
+              "enable": false,
+              "visibility": "no-homepage",
+              "show_after": 45,
+              "show_repeat": "week",
+              "image": "shopify://shop_images/C54_17_Img_2025-09-05_DayNightRenewalSet_SimpleBeautyWoman_MiniBottlesMassiveResults_1x1_81963738-c939-4382-ba43-3a5bef7391a0.jpg",
+              "link": "https://www.sacredrituel.com/pages/serumglow-simplebeauty-u35",
+              "link_type": "_blank",
+              "popup_txtcolor": "#f7f3ed",
+              "popup_box_border": false
+            }
+          },
+          "popups-0": {
+            "type": "cookies",
+            "settings": {
+              "enable": false,
+              "show_after": 1,
+              "popup_bgcolor": "#111111",
+              "popup_txtcolor": "#ffffff",
+              "popup_box_border": false
+            }
+          },
+          "popups-1": {
+            "type": "newsletter",
+            "settings": {
+              "enable": false,
+              "visibility": "all",
+              "show_after": 5,
+              "show_repeat": "week",
+              "title": "Newsletter",
+              "content": "<p>Subscribe and receive exclusive information and offers!</p>",
+              "popup_bgcolor": "#111111",
+              "popup_txtcolor": "#ffffff",
+              "popup_box_border": false
+            }
+          },
+          "99384ef7-f84b-4360-8771-b227695dc0f3": {
+            "type": "custom",
+            "settings": {
+              "enable": false,
+              "visibility": "all",
+              "show_after": 5,
+              "show_repeat": "day",
+              "title": "use code FOREVRGLOW",
+              "content": "<h3>30% OFF SUMMER SALE! </h3><p>With eternal gratitude & appreciation of our mission to heal with sacred and magical plants, we share this code <a href=\"/discount/FOREVRGLOW?redirect=%2Fcollections%2Fmost-popular-picks\" title=\"/discount/FOREVRGLOW?redirect=%2Fcollections%2Fmost-popular-picks\">FOREVRGLOW</a> for 30% off site-wide!</p><p>Limited inventory available. Once items sell out, they're unavailable until the next production run. </p>",
+              "popup_bgcolor": "#141f22",
+              "popup_txtcolor": "#f7f3ed",
+              "popup_box_border": false
+            }
+          },
+          "77acfcb1-207a-48cb-9e47-08f296b7355f": {
+            "type": "product",
+            "settings": {
+              "enable": false,
+              "visibility": "no-homepage",
+              "show_after": 20,
+              "show_repeat": "day",
+              "title": "Special 26% OFF Head to Toe Glow - Limited Time Gift Box",
+              "popup_product": "sacred-serum-rose-toner-body-oil",
+              "popup_bgcolor": "#141f22",
+              "popup_txtcolor": "#f7f3ed",
+              "popup_box_border": false
+            }
+          },
+          "custom_CtccQy": {
+            "type": "custom",
+            "settings": {
+              "enable": false,
+              "visibility": "all",
+              "show_after": 5,
+              "show_repeat": "day",
+              "title": "30% OFF SUMMER SALE",
+              "content": "<p>LAST DAY to Save 30% OFF when you spend $100.</p><p><a href=\"/collections/live-love-glow-summer-sale\" title=\"LIVE LO🖤E GLOW! Summer Sale\">SHOP SITEWIDE</a></p>",
+              "popup_bgcolor": "#111111",
+              "popup_txtcolor": "#ffffff",
+              "popup_box_border": false
+            }
+          }
+        },
+        "block_order": [
+          "image_gPXYJP",
+          "popups-0",
+          "popups-1",
+          "99384ef7-f84b-4360-8771-b227695dc0f3",
+          "77acfcb1-207a-48cb-9e47-08f296b7355f",
+          "custom_CtccQy"
+        ],
+        "settings": {}
+      },
+      "tolstoy-hero-video": {
+        "type": "tolstoy-hero-video",
+        "settings": {
+          "publishId": "znijt6pa303db"
+        }
+      },
+      "tolstoy-carousel": {
+        "type": "tolstoy-carousel",
+        "settings": {
+          "publishId": "4cc6hq9qsluic"
+        }
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "855628211100114053": {
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
+        "disabled": false,
+        "settings": {}
+      },
+      "4705145147225299685": {
+        "type": "shopify://apps/tolstoy-shoppable-video-quiz/blocks/widget-block/06fa8282-42ff-403e-b67c-1936776aed11",
+        "disabled": false,
+        "settings": {}
+      },
+      "6987625696575125306": {
+        "type": "shopify://apps/weglot-translate-your-store/blocks/weglot/3097482a-fafe-42ff-bc33-ea19e35c4a20",
+        "disabled": true,
+        "settings": {}
+      },
+      "17428600031447253342": {
+        "type": "shopify://apps/attentive/blocks/attn-tag/8df62c72-8fe4-407e-a5b3-72132be30a0d",
+        "disabled": false,
+        "settings": {}
+      },
+      "733389323033596483": {
+        "type": "shopify://apps/okendo/blocks/theme-settings/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+        "disabled": false,
+        "settings": {
+          "show_preview_data": true
+        }
+      },
+      "234697707474025726": {
+        "type": "shopify://apps/analyzify-ga4-ads-tracking/blocks/app-embed-v4/69637cfd-dd6f-4511-aa97-7037cfb5515c",
+        "disabled": false,
+        "settings": {}
+      },
+      "12512365888938011351": {
+        "type": "shopify://apps/analyzify-ga4-ads-tracking/blocks/app-embed/69637cfd-dd6f-4511-aa97-7037cfb5515c",
+        "disabled": true,
+        "settings": {}
+      },
+      "1877152918344802950": {
+        "type": "shopify://apps/intelligems-a-b-testing/blocks/intelligems-script/fa83b64c-0c77-4c0c-b4b2-b94b42f5ef19",
+        "disabled": false,
+        "settings": {}
+      },
+      "14952540001915115444": {
+        "type": "shopify://apps/upcart-cart-drawer/blocks/app-embed/af3da5fb-f5f7-40ec-8273-41bf50059d4b",
+        "disabled": false,
+        "settings": {}
+      }
+    }
+  },
+  "presets": {
+    "Modern": {
+      "color_accent": "#3f14e1",
+      "color_text": "#000000",
+      "color_background": "#ffffff",
+      "headings_font": "roboto_n4",
+      "body_font": "roboto_n4",
+      "body_size": 18,
+      "headings_size": 36,
+      "grid_aspect": "natural",
+      "show_variant_image": true,
+      "color_sale_price": "#ea0000",
+      "favicon": "",
+      "cart_action": "overlay",
+      "cart_notes_enable": true,
+      "cart_additional_buttons": true,
+      "predictive_search_enabled": true,
+      "predictive_search_show_vendor": false,
+      "predictive_search_show_price": true,
+      "predictive_search_include_articles": true,
+      "predictive_search_include_pages": true,
+      "social_facebook": "",
+      "social_instagram": "",
+      "social_twitter": "",
+      "social_youtube": "",
+      "social_vimeo": "",
+      "social_pinterest": "",
+      "social_tumblr": "",
+      "social_linkedin": "",
+      "social_reddit": "",
+      "social_flickr": "",
+      "social_email": "",
+      "checkout_header_image": "",
+      "checkout_logo_image": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "medium",
+      "checkout_body_background_image": "",
+      "checkout_body_background_color": "#fff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_image": "",
+      "checkout_sidebar_background_color": "#fafafa",
+      "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+      "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+      "checkout_accent_color": "#197bbd",
+      "checkout_button_color": "#197bbd",
+      "checkout_error_color": "#e32c2b",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "logo_src": "",
+            "logo_height": 50,
+            "show_search": true,
+            "menu_primary": "main-menu",
+            "menu_secondary": "",
+            "show_social_icons": true,
+            "show_locale_selector": true,
+            "show_country_selector": true
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "83a51fca-3419-4673-9613-9505c11e0d29": {
+              "type": "text",
+              "settings": {
+                "title": "About",
+                "content": "<p>Write a short statement about your brand.</p>"
+              }
+            },
+            "657d0481-8a40-4d4d-a64c-1a3264f6de2a": {
+              "type": "menus",
+              "settings": {
+                "title_1": "LINKS",
+                "menu_1": "footer"
+              }
+            },
+            "cb26e229-0f34-44da-a191-022d03cc56e4": {
+              "type": "newsletter",
+              "settings": {
+                "title": "Newsletter"
+              }
+            }
+          },
+          "block_order": [
+            "83a51fca-3419-4673-9613-9505c11e0d29",
+            "657d0481-8a40-4d4d-a64c-1a3264f6de2a",
+            "cb26e229-0f34-44da-a191-022d03cc56e4"
+          ],
+          "settings": {
+            "show_payment_icons": true,
+            "show_locale_selector": true,
+            "show_country_selector": true,
+            "bgcolor": "rgba(0,0,0,0)",
+            "txtcolor": "rgba(0,0,0,0)"
+          }
+        },
+        "text-columns-with-icons": {
+          "type": "text-columns-with-icons",
+          "blocks": {
+            "dc0e2351-9175-4503-9568-f4f102cbc798": {
+              "type": "text-icon",
+              "settings": {
+                "title": "Shipping",
+                "body": "<p>Write some useful information about your shipping details</p><p>Link to your <a href='#'>shipping policy</a>.</p>",
+                "select_icon": "shipping-box"
+              }
+            },
+            "00665f2b-5814-4213-853b-3b6c73955a4a": {
+              "type": "text-icon",
+              "settings": {
+                "title": "Delivery",
+                "body": "<p>Let your customers know if you offer free delivery for certain types of orders</p><p>Link to your <a href='#'>offers page</a>.</p>",
+                "select_icon": "delivery"
+              }
+            },
+            "913a05c0-114a-4fb7-ba39-047df22f46cf": {
+              "type": "text-icon",
+              "settings": {
+                "title": "Returns",
+                "body": "<p>Show customers how much time they have for testing your products</p><p>Link to your <a href='#'>returns policy</a>.</p>",
+                "select_icon": "time-limit"
+              }
+            }
+          },
+          "block_order": [
+            "dc0e2351-9175-4503-9568-f4f102cbc798",
+            "00665f2b-5814-4213-853b-3b6c73955a4a",
+            "913a05c0-114a-4fb7-ba39-047df22f46cf"
+          ],
+          "settings": {}
+        },
+        "announcement-bar": {
+          "type": "announcement-bar",
+          "settings": {
+            "bar_bgcolor": "#000000",
+            "bar_txtcolor": "#ffffff",
+            "border_color": "rgba(0,0,0,0)"
+          }
+        },
+        "gift-card": {
+          "type": "gift-card",
+          "settings": {
+            "logo_src": "",
+            "logo_height": 40
+          }
+        }
+      }
+    },
+    "Single": {
+      "color_accent": "#ffffff",
+      "color_text": "#d3d6c7",
+      "color_background": "#34362b",
+      "headings_font": "roboto_n4",
+      "headings_size": 36,
+      "body_font": "roboto_mono_n4",
+      "body_size": 16,
+      "quote_font": "swiss_721_n1",
+      "grid_aspect": "natural",
+      "show_variant_image": true,
+      "color_sale_price": "#c1cf89",
+      "favicon": "",
+      "cart_action": "overlay",
+      "cart_notes_enable": true,
+      "cart_additional_buttons": true,
+      "predictive_search_enabled": true,
+      "predictive_search_show_vendor": false,
+      "predictive_search_show_price": true,
+      "predictive_search_include_articles": true,
+      "predictive_search_include_pages": true,
+      "social_facebook": "",
+      "social_instagram": "",
+      "social_twitter": "",
+      "social_youtube": "",
+      "social_vimeo": "",
+      "social_pinterest": "",
+      "social_tumblr": "",
+      "social_linkedin": "",
+      "social_reddit": "",
+      "social_flickr": "",
+      "social_email": "",
+      "checkout_header_image": "",
+      "checkout_logo_image": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "medium",
+      "checkout_body_background_image": "",
+      "checkout_body_background_color": "#fff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_image": "",
+      "checkout_sidebar_background_color": "#fafafa",
+      "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+      "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+      "checkout_accent_color": "#197bbd",
+      "checkout_button_color": "#197bbd",
+      "checkout_error_color": "#e32c2b",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "logo_src": "",
+            "logo_height": 50,
+            "menu_primary": "main-menu",
+            "menu_secondary": "",
+            "show_social_icons": true,
+            "show_locale_selector": true,
+            "show_country_selector": true
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "83a51fca-3419-4673-9613-9505c11e0d29": {
+              "type": "text",
+              "settings": {
+                "title": "About",
+                "content": "<p>Write a short statement about your brand.</p>"
+              }
+            },
+            "657d0481-8a40-4d4d-a64c-1a3264f6de2a": {
+              "type": "menus",
+              "settings": {
+                "title_1": "LINKS",
+                "menu_1": "footer",
+                "title_2": "",
+                "menu_2": ""
+              }
+            },
+            "cb26e229-0f34-44da-a191-022d03cc56e4": {
+              "type": "newsletter",
+              "settings": {
+                "title": "Newsletter",
+                "text": "<p>Invite customers to join your newsletter.<br/>Link to your <a href='#'>privacy policy</a>.</p>"
+              }
+            }
+          },
+          "block_order": [
+            "83a51fca-3419-4673-9613-9505c11e0d29",
+            "657d0481-8a40-4d4d-a64c-1a3264f6de2a",
+            "cb26e229-0f34-44da-a191-022d03cc56e4"
+          ],
+          "settings": {
+            "show_payment_icons": true,
+            "show_locale_selector": true,
+            "show_country_selector": true,
+            "bgcolor": "rgba(0,0,0,0)",
+            "txtcolor": "rgba(0,0,0,0)"
+          }
+        },
+        "text-columns-with-icons": {
+          "type": "text-columns-with-icons",
+          "blocks": {
+            "dc0e2351-9175-4503-9568-f4f102cbc798": {
+              "type": "text-icon",
+              "settings": {
+                "title": "Shipping",
+                "body": "<p>Write some useful information about your shipping details</p><p>Link to your <a href='#'>shipping policy</a>.</p>",
+                "select_icon": "shipping-box"
+              }
+            },
+            "00665f2b-5814-4213-853b-3b6c73955a4a": {
+              "type": "text-icon",
+              "settings": {
+                "title": "Delivery",
+                "body": "<p>Let your customers know if you offer free delivery for certain types of orders</p><p>Link to your <a href='#'>offers page</a>.</p>",
+                "select_icon": "delivery"
+              }
+            },
+            "913a05c0-114a-4fb7-ba39-047df22f46cf": {
+              "type": "text-icon",
+              "settings": {
+                "title": "Returns",
+                "body": "<p>Show customers how much time they have for testing your products</p><p>Link to your <a href='#'>returns policy</a>.</p>",
+                "select_icon": "time-limit"
+              }
+            }
+          },
+          "block_order": [
+            "dc0e2351-9175-4503-9568-f4f102cbc798",
+            "00665f2b-5814-4213-853b-3b6c73955a4a",
+            "913a05c0-114a-4fb7-ba39-047df22f46cf"
+          ],
+          "settings": {}
+        },
+        "announcement-bar": {
+          "type": "announcement-bar",
+          "settings": {
+            "bar_bgcolor": "#25261d",
+            "bar_txtcolor": "#ffffff",
+            "border_color": "rgba(0,0,0,0)"
+          }
+        }
+      }
+    },
+    "Art": {
+      "color_accent": "#147d3b",
+      "color_text": "#000000",
+      "color_background": "#efefef",
+      "headings_font": "cardo_n4",
+      "headings_size": 36,
+      "body_font": "roboto_n4",
+      "body_size": 18,
+      "grid_aspect": "natural",
+      "product_animation": "product-item--move",
+      "product_show_secondary": false,
+      "show_variant_image": true,
+      "color_sale_price": "#dc0000",
+      "image_reveal": "opacity",
+      "favicon": "",
+      "cart_action": "overlay",
+      "cart_notes_enable": true,
+      "cart_additional_buttons": true,
+      "cart_quantity_selector": false,
+      "predictive_search_enabled": false,
+      "predictive_search_show_vendor": false,
+      "predictive_search_show_price": true,
+      "predictive_search_include_articles": false,
+      "predictive_search_include_pages": false,
+      "social_facebook": "",
+      "social_instagram": "",
+      "social_twitter": "",
+      "social_youtube": "",
+      "social_vimeo": "",
+      "social_pinterest": "",
+      "social_tumblr": "",
+      "social_linkedin": "",
+      "social_reddit": "",
+      "social_flickr": "",
+      "social_email": "",
+      "checkout_header_image": "",
+      "checkout_logo_image": "",
+      "checkout_logo_position": "left",
+      "checkout_logo_size": "medium",
+      "checkout_body_background_image": "",
+      "checkout_body_background_color": "#fff",
+      "checkout_input_background_color_mode": "white",
+      "checkout_sidebar_background_image": "",
+      "checkout_sidebar_background_color": "#fafafa",
+      "checkout_heading_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+      "checkout_body_font": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+      "checkout_accent_color": "#197bbd",
+      "checkout_button_color": "#197bbd",
+      "checkout_error_color": "#e32c2b",
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "logo_src": "",
+            "logo_height": 50,
+            "show_icon_labels": false,
+            "menu_primary": "main-menu",
+            "menu_secondary": "",
+            "show_social_icons": true,
+            "show_locale_selector": true,
+            "show_country_selector": true
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "cdb6f407-a5da-4d24-9e44-6fbc2156dae9": {
+              "type": "text",
+              "settings": {
+                "title": "About",
+                "content": "<p>Write a short statement about your brand.</p>"
+              }
+            },
+            "c931c7a9-fe5b-41dd-8e23-da04cb966b98": {
+              "type": "social",
+              "settings": {
+                "title": "Follow me"
+              }
+            }
+          },
+          "block_order": [
+            "cdb6f407-a5da-4d24-9e44-6fbc2156dae9",
+            "c931c7a9-fe5b-41dd-8e23-da04cb966b98"
+          ],
+          "settings": {
+            "show_payment_icons": false,
+            "show_locale_selector": false,
+            "show_country_selector": false,
+            "bgcolor": "rgba(0,0,0,0)",
+            "txtcolor": "rgba(0,0,0,0)"
+          }
+        },
+        "announcement-bar": {
+          "type": "announcement-bar",
+          "settings": {
+            "bar_bgcolor": "#000000",
+            "bar_txtcolor": "#ffffff",
+            "border_color": "rgba(0,0,0,0)"
+          }
+        },
+        "gift-card": {
+          "type": "gift-card",
+          "settings": {
+            "logo_src": "",
+            "logo_height": 40
+          }
+        }
+      }
+    }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      "@media screen and (max-width: 1023px) {.template-product .breadcrumb {margin-bottom: 1em; }}",
+      "body[class*=\"template-page-replo\"] .breadcrumb {display: none !important;}",
+      "body[class*=\"template-page-quiz\"] .breadcrumb,body[class*=\"template-product-sacred-serum\"] .breadcrumb,body[class*=\"template-cart\"] .breadcrumb {display: none !important;}",
+      ".product__price {align-items: baseline;}",
+      ".sidebar--accounts {display: none !important;}",
+      ".weglot-container {display: none !important;}",
+      "@media screen and (max-width: 599px) {.product-gallery__navigation, .skio-details, .product-variant__name {display: none; }}",
+      ".sale-badge {background-color: #e0f2e4; color: #29913e; font-weight: bold; font-size: 0.875rem; /* 14px */ padding: 0.25rem 0.5rem; border-radius: 2px; display: inline-block; margin-left: 0.5rem;}",
+      " /* Sitewide Sale Sale Price */.sale-price {color: #f04f4f; font-weight: bold;}",
+      " /* Original Price (Strikethrough) */.original-price {color: #999; text-decoration: line-through; margin-left: 0.5rem;}",
+      ".regular-price {font-weight: normal; color: #333;}",
+      ".button-sale-text {color: #ccffcc; font-size: 18px;}",
+      ".button-sale-strikethrough {text-decoration: line-through; font-size: 80%; color: #ccffcc;}",
+      ".button-regular-text {font-size: 18px; color: var(--color-background);}",
+      ".card-regular-text,.card-sale-text {font-size: 20px; font-weight: 600; flex-basis: auto; text-align: center; flex-shrink: 1; line-height: 28px;}",
+      ".card-sale-strikethrough {text-decoration: line-through; font-size: 16px;}",
+      ".card-sale-percent {background-color: #06a135; border-radius: 9999px; padding: 2px 6px; font-size: 16px; color: #ffffff;}"
+    ]
+  }
+}

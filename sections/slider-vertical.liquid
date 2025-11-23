@@ -1,0 +1,486 @@
+{%- liquid
+  if section.settings.blending_modes
+    assign text_brightness = settings.color_text | color_brightness 
+    assign bg_brightness = settings.color_background | color_brightness
+    if text_brightness < 20 and bg_brightness > 230
+      assign blending_class = "has-black-text"
+    endif
+  else
+    assign blending_class = "no-blending"
+  endif
+-%}
+
+{{ "section-slider-vertical.css" | asset_url | stylesheet_tag }}
+
+<vertical-slider class="vertical-slider {{ blending_class }} vertical-slider--{{ section.settings.text_size }}-text" style="display:block">
+
+  {%- for block in section.blocks -%}
+
+    {%- liquid
+      assign index = forloop.index0 | modulo: 3
+      if index == 0
+        assign primary_class = 'push-right-one-tenth lap--push-right-padding'
+        assign secondary_class_p = 'pull-right-half-tenth'
+        assign secondary_class_l = 'pull-right-one-tenth'
+        assign third_class = 'push-right-one-plus-tenth'
+      elsif index == 1
+        assign primary_class = 'push-right-two-tenths'
+        assign secondary_class_p = 'pull-right-half-tenth'
+        assign secondary_class_l = 'pull-right-one-plus-tenth'
+        assign third_class = 'push-right-one-tenth'
+      elsif index == 2
+        assign primary_class_p = 'push-left-four-tenths'
+        assign primary_class_l = 'push-left-three-tenths'
+        assign secondary_class_p = 'pull-left-half-tenth'
+        assign secondary_class_l = 'pull-left-one-tenth'
+        assign third_class_p = 'push-left-three-tenths'
+        assign third_class_l = 'push-left-two-tenths'
+      endif 
+      assign cycle = forloop.index | modulo: 2
+      
+      if section.index == 1 and forloop.index == 1
+        assign preload = true
+      else
+        assign preload = false
+      endif
+
+    -%}
+
+    <div class="slide" id="slide-{{ block.id }}" 
+      data-position="{{ index }}" 
+      data-index="{{ forloop.index0 }}"
+      {% if block.settings.image2 != blank and block.settings.image3 != blank %} data-images="3" {% endif %} 
+      {% if forloop.last %} data-last="true" {% endif %}
+      {% if forloop.first %} data-first="true" {% endif %}
+      {% unless block.settings.button_label == blank %} data-link {% endunless %}
+      {{ block.shopify_attributes }}
+    >
+
+      <!-- headings -->
+      <div class="slide-heading slide-heading--align-left
+        ten-tenths palm--full-width push-left-one-tenth lap--push-left-padding palm--push-left-none" 
+        {% if forloop.first %} data-first="true" {% endif %}
+      >
+
+        {%- unless block.settings.heading == blank -%}
+          <{{ block.settings.seo_h_tag }} class="slide-title seven-tenths palm--full-width"><span>{{ block.settings.heading | escape }}</span></{{ block.settings.seo_h_tag }}>
+        {%- endunless -%}
+
+        {%- unless block.settings.caption == blank -%}
+          <span class="slide-caption seven-tenths palm--full-width h4">{{ block.settings.caption | escape }}</span>
+        {%- endunless -%}
+
+        {%- unless block.settings.button_label == blank -%}
+          <a class="slide-button button button--underline palm--hide" href="{{ block.settings.button_link }}" title="{{ block.settings.button_label | escape }}">{{ block.settings.button_label | escape }}<span class="svg svg__arrow" aria-hidden="true">{% render 'theme-symbols', icon: 'arrow-right' %}</span></a>
+        {%- endunless -%}
+
+      </div>
+
+      <!-- primary image -->
+      <div class="slide-image slide-image--primary 
+        {% if block.settings.image1.aspect_ratio > 1 %} 
+          six-tenths lap--seven-tenths 
+          {%- assign sizes = 'sizes="(max-width: 599px) calc(100vw - 60px), (max-width: 1023px) 59vw, 50vw"' -%}
+        {% else %} 
+          five-tenths lap--six-tenths 
+          {%- assign sizes = 'sizes="(max-width: 599px) calc(100vw - 60px), (max-width: 1023px) 50vw, 42vw"' -%}
+        {% endif %} 
+        {% if index == 2 %}
+          {% if block.settings.image2.aspect_ratio < 1 %} 
+            {{ primary_class_p }} 
+          {% else %} 
+            {{ primary_class_l }} 
+          {% endif %}
+        {% else %}
+          {{ primary_class }}
+        {% endif %}
+        palm--full-width palm--push-right-none palm--push-left-none"
+        data-scroll-speed="-.2" data-scroll-parent="slide-{{ block.id }}" data-scroll-mirror 
+        {% if block.settings.image2 != blank or block.settings.image3 != blank %}
+          data-scroll-mobile
+        {% endif %}
+        {% unless block.settings.image1_caption == blank %} data-caption {% endunless %}
+      >
+
+        {%- if block.settings.image1_link != blank -%}
+          <a href="{{ block.settings.image1_link }}" class="slide-image__link">
+        {%- endif -%}
+
+          {%- if block.settings.video1_object != blank -%}
+            <div class="slide-image__video" style="padding-top:{{ 100 | divided_by: block.settings.image1.aspect_ratio }}%">
+              <video-background-element data-id="{{ block.id }}" style="display:block">
+                <video autoplay muted loop playsinline>
+                  {%- for source in block.settings.video1_object.sources -%}
+                    <source data-src="{{ source.url }}" type="{{ source.mime_type }}">
+                  {%- endfor -%}
+                </video>
+              </video-background>
+            </div>
+          {%- endif -%}
+
+          {%- if block.settings.image1 != blank -%}
+            {%- render 'lazy-image', image: block.settings.image1, alt: block.settings.image1_caption, sizes: sizes, preload: preload -%}
+          {%- else -%}
+            <span class="onboarding-svg">
+              {{ 'image' | placeholder_svg_tag }}
+            </span>
+          {%- endif -%}
+
+        {%- if block.settings.image1_link != blank -%}
+          </a>
+        {%- endif -%}
+
+
+        {%- unless block.settings.image1_caption == blank -%}
+          <div class="slide-image__caption slide-image__caption--right palm--hide">
+            <div class="rte">
+              {{ block.settings.image1_caption }}
+            </div>
+          </div>
+        {%- endunless -%}
+
+      </div>
+
+      <!-- secondary image -->
+      {% if block.settings.image2 != blank %}
+        <div class="slide-image slide-image--secondary push-top-one-tenth
+          {% if block.settings.image2.aspect_ratio < 1 %} 
+            two-tenths lap--two-plus-tenths {{ secondary_class_p }} 
+            {%- assign sizes = 'sizes="(max-width: 599px) 59vw, (max-width: 1023px) 30vw, 17vw"' -%}
+          {% else %} 
+            two-plus-tenths lap--three-tenths {{ secondary_class_l }} 
+            {%- assign sizes = 'sizes="(max-width: 599px) 59vw, (max-width: 1023px) 25vw, 21vw"' -%}
+          {% endif %}
+          palm--seven-tenths 
+          {% if block.settings.image3 != blank %} 
+            palm--pull-top-two-tenths 
+          {% else %}
+            palm--pull-top-none palm--push-top-one-tenth
+          {% endif %}
+          {% if cycle == 0 %}
+            palm--push-right-one-tenth
+          {% else %}
+            palm--push-left-one-tenth palm--pull-right-none
+          {% endif %}
+          " 
+          data-scroll-speed="1" data-scroll-parent="slide-{{ block.id }}" data-scroll-mobile
+          {% unless block.settings.image2_caption == blank %} data-caption {% endunless %}
+        >
+
+          {%- if block.settings.image2_link != blank -%}
+            <a href="{{ block.settings.image2_link }}" class="slide-image__link">
+          {%- endif -%}
+           
+            {%- if block.settings.video2_object != blank -%}
+              <div class="slide-image__video" style="padding-top:{{ 100 | divided_by: block.settings.image2.aspect_ratio }}%">
+                <video-background-element data-id="{{ block.id }}" style="display:block">
+                  <video autoplay muted loop playsinline>
+                    {%- for source in block.settings.video2_object.sources -%}
+                      <source data-src="{{ source.url }}" type="{{ source.mime_type }}">
+                    {%- endfor -%}
+                  </video>
+                </video-background>
+              </div>
+            {%- endif -%}
+            
+            {%- render 'lazy-image', image: block.settings.image2, alt: block.settings.image2_caption, sizes: sizes, preload: preload -%}
+
+          {%- if block.settings.image2_link != blank -%}
+            </a>
+          {%- endif -%}
+
+          {%- unless block.settings.image2_caption == blank -%}
+            <div class="slide-image__caption {% if index == 2 %} slide-image__caption--right {% else %} slide-image__caption--left {% endif %} palm--hide">
+              <div class="rte">
+                {{ block.settings.image2_caption }}
+              </div>
+            </div>
+          {%- endunless -%}
+
+        </div>
+      {%- endif -%}
+
+      <div class="slide-break palm--hide"></div>
+
+      <!-- third image -->
+      {% if block.settings.image3 != blank %}
+        <div class="slide-image slide-image--third push-top-half-tenth
+          {% if block.settings.image3.aspect_ratio < 1 %} 
+            one-plus-tenth lap--two-tenths 
+            {%- assign sizes = 'sizes="(max-width: 599px) 34vw, (max-width: 1023px) 17vw, 13vw"' -%}
+          {% else %} 
+            two-tenths lap--two-plus-tenths
+            {%- assign sizes = 'sizes="(max-width: 599px) 34vw, (max-width: 1023px) 21vw, 17vw"' -%}
+          {% endif %} 
+          {% if index == 2 %}
+            {% if block.settings.image2.aspect_ratio < 1 %} 
+              {{ third_class_p }} 
+            {% else %} 
+              {{ third_class_l }} 
+            {% endif %}
+          {% else %}
+            {{ third_class }}
+          {% endif %}
+          palm--four-tenths palm--pull-right-one-tenth
+          {% if cycle == 0 %}
+            palm--push-left-one-tenth
+          {% else %}
+            palm--pull-left-one-tenth
+          {% endif %}
+          "
+          data-scroll-speed=".3" data-scroll-parent="slide-{{ block.id }}" data-scroll-mobile
+          {% unless block.settings.image3_caption == blank %} data-caption {% endunless %}
+        >
+
+          {%- if block.settings.image3_link != blank -%}
+            <a href="{{ block.settings.image3_link }}" class="slide-image__link">
+          {%- endif -%}
+
+            {%- if block.settings.video3_object != blank -%}
+              <div class="slide-image__video" style="padding-top:{{ 100 | divided_by: block.settings.image3.aspect_ratio }}%">
+                <video-background-element data-id="{{ block.id }}" style="display:block">
+                  <video autoplay muted loop playsinline>
+                    {%- for source in block.settings.video3_object.sources -%}
+                      <source data-src="{{ source.url }}" type="{{ source.mime_type }}">
+                    {%- endfor -%}
+                  </video>
+                </video-background>
+              </div>
+            {%- endif -%}
+
+            {%- render 'lazy-image', image: block.settings.image3, alt: block.settings.image3_caption, sizes: sizes, preload: preload -%}
+
+          {%- if block.settings.image3_link != blank -%}
+            </a>
+          {%- endif -%}
+
+
+          {%- unless block.settings.image3_caption == blank -%}
+            <div class="slide-image__caption slide-image__caption--right palm--hide rte">
+              <div class="rte">
+                {{ block.settings.image3_caption }}
+              </div>
+            </div>
+          {%- endunless -%}
+
+        </div>
+      {%- endif -%}
+
+      {%- unless block.settings.button_label == blank -%}
+        <div class="slide-button__holder hide palm--show-inline" style="width:100%">
+          <a class="slide-button button button--underline" href="{{ block.settings.button_link }}" title="{{ block.settings.button_label | escape }}">{{ block.settings.button_label | escape }}<span class="svg svg__arrow" aria-hidden="true">{%- render 'theme-symbols', icon: 'arrow-right' -%}</span></a>
+        </div>
+      {%- endunless -%}
+
+    </div>
+
+  {%- endfor -%}
+
+  <div class="vertical-slider-headings {{ blending_class }}"></div>
+
+</vertical-slider>
+
+<script src="{{ 'component-slider-vertical.js' | asset_url }}" defer></script>
+<script src="{{ 'component-video-background.js' | asset_url }}" defer></script>
+
+{% schema %}
+  {
+    "name": "t:sections.slider.slider_vertical.name",
+    "class": "mount-vertical-slideshow mount-parallax section-w-margin",
+    "max_blocks": 8,
+    "settings": [
+      {
+        "type": "select",
+        "id": "text_size",
+        "label": "t:sections.footer.blocks.text.settings.text_size.label",
+        "options": [
+          {
+            "value": "regular",
+            "label": "t:sections.rich-text.blocks.heading.settings.heading_size.options__1.label"
+          },
+          {
+            "value": "large",
+            "label": "t:sections.rich-text.blocks.heading.settings.heading_size.options__2.label"
+          }
+        ],
+        "default": "large"
+      },
+      {
+        "type": "checkbox",
+        "id": "blending_modes",
+        "label": "Text blending modes",
+        "info": "When enabled, the text will appear with a different color over the images.",
+        "default": true
+      }
+    ],
+    "blocks": [
+    	{
+	      "type": "image",
+        "name": "t:sections.slider.blocks.image.name",
+	      "settings": [
+          {
+            "type": "text",
+            "id": "heading",
+            "label": "t:sections.slider.blocks.image.settings.heading.label",
+            "default": "Welcome to our store"
+          },
+          {
+            "type": "text",
+            "id": "caption",
+            "label": "t:sections.slider.blocks.image.settings.subheading.label",
+            "default": "Showcase your best products"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "t:sections.rich-text.blocks.button.settings.button_label.label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "t:sections.rich-text.blocks.button.settings.button_link.label"
+          },
+          {
+            "type": "header",
+            "content": "t:sections.highlight-extra-words.vertical-slider.settings.image1.header"
+          },
+          {
+            "type": "image_picker",
+            "id": "image1",
+            "label": "t:sections.highlight-extra-words.vertical-slider.settings.image.label"
+          },
+          {
+            "type": "video",
+            "id": "video1_object",
+            "label": "t:sections.refactor_words.settings.video.label",
+            "info": "t:sections.local-extra-words.sections.media-with-text-overlay.blocks.video.info"
+          },
+	        {
+	          "type": "richtext",
+	          "id": "image1_caption",
+            "label": "t:sections.highlight-extra-words.vertical-slider.settings.caption.label",
+            "info": "t:sections.highlight-extra-words.vertical-slider.settings.caption.info"
+	        },
+          {
+            "type": "url",
+            "id": "image1_link",
+            "label": "t:sections.highlight-extra-words.vertical-slider.settings.image_link.label"
+          },
+          {
+            "type": "header",
+            "content": "t:sections.highlight-extra-words.vertical-slider.settings.image2.header"
+          },
+	        {
+	          "type": "image_picker",
+	          "id": "image2",
+            "label": "t:sections.highlight-extra-words.vertical-slider.settings.image.label"
+	        },
+          {
+            "type": "video",
+            "id": "video2_object",
+            "label": "t:sections.refactor_words.settings.video.label",
+            "info": "t:sections.local-extra-words.sections.media-with-text-overlay.blocks.video.info"
+          },
+	        {
+	          "type": "richtext",
+	          "id": "image2_caption",
+            "label": "t:sections.highlight-extra-words.vertical-slider.settings.caption.label",
+            "info": "t:sections.highlight-extra-words.vertical-slider.settings.caption.info"
+	        },
+          {
+            "type": "url",
+            "id": "image2_link",
+            "label": "t:sections.highlight-extra-words.vertical-slider.settings.image_link.label"
+          },
+          {
+            "type": "header",
+            "content": "t:sections.highlight-extra-words.vertical-slider.settings.image3.header"
+          },
+	        {
+	          "type": "image_picker",
+	          "id": "image3",
+            "label": "t:sections.highlight-extra-words.vertical-slider.settings.image.label"
+	        },
+          {
+            "type": "video",
+            "id": "video3_object",
+            "label": "t:sections.refactor_words.settings.video.label",
+            "info": "t:sections.local-extra-words.sections.media-with-text-overlay.blocks.video.info"
+          },
+          {
+            "type": "richtext",
+            "id": "image3_caption",
+            "label": "t:sections.highlight-extra-words.vertical-slider.settings.caption.label",
+            "info": "t:sections.highlight-extra-words.vertical-slider.settings.caption.info"
+          },
+          {
+            "type": "url",
+            "id": "image3_link",
+            "label": "t:sections.highlight-extra-words.vertical-slider.settings.image_link.label"
+          },
+          {
+            "type": "header",
+            "content": "t:sections.refactor_words.seo.name"
+          },
+          {
+            "type": "select",
+            "id": "seo_h_tag",
+            "label": "t:sections.refactor_words.seo.label",
+            "info": "t:sections.refactor_words.seo.info",
+            "options": [
+              {
+                "value": "h1",
+                "label": "H1"
+              },
+              {
+                "value": "h2",
+                "label": "H2"
+              },
+              {
+                "value": "h3",
+                "label": "H3"
+              },
+              {
+                "value": "h4",
+                "label": "H4"
+              },
+              {
+                "value": "span",
+                "label": "span"
+              }
+            ],
+            "default": "h2"
+          }
+	      ]
+	    }
+	  ],
+    "presets": [{
+      "name": "t:sections.slider.slider_vertical.name",
+      "blocks": [{
+        "type": "image",
+        "settings": {
+          "heading": "Welcome to our store",
+          "caption": "Showcase your best products",
+          "button_label": "Explore all"
+        }
+      },{
+        "type": "image",
+        "settings": {
+          "heading": "Write about yourself",
+          "caption": "Include some awesome images",
+          "button_label": "Learn more"
+        }
+      },{
+        "type": "image",
+        "settings": {
+          "heading": "Promote your products",
+          "caption": "Include various promotions and flash sales",
+          "button_label": "Shop now"
+        }
+      }]
+    }],
+    "disabled_on": {
+      "groups": ["header"]
+    }
+  }
+{% endschema %}

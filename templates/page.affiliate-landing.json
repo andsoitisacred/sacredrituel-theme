@@ -1,0 +1,187 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "no_margins": true,
+        "reduced_margins": true
+      }
+    },
+    "1673381305da8931b2": {
+      "type": "apps",
+      "blocks": {
+        "7daf20f8-1257-43af-8107-24075627261f": {
+          "type": "shopify://apps/snowball-affiliate-marketing/blocks/affiliate-sign-up/6e5feda3-ec24-4171-ae41-64028b660bc7",
+          "settings": {
+            "form_id": "004fa83d-87e9-4a71-a3ec-c66efbde8ee5"
+          }
+        }
+      },
+      "block_order": [
+        "7daf20f8-1257-43af-8107-24075627261f"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "4e977b01-9c62-4dd5-a450-9fe1b3282b63": {
+      "type": "rich-text",
+      "blocks": {
+        "template--17526730555695__4e977b01-9c62-4dd5-a450-9fe1b3282b63-167345861678e0d63e-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "How can I share the GLOW?",
+            "heading_size": "h3"
+          }
+        },
+        "template--17526730555695__4e977b01-9c62-4dd5-a450-9fe1b3282b63-167345861678e0d63e-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p><strong>Step 1.</strong> Sign up for the program and create an account.</p><p><strong>Step 2.</strong> Share your experience and results using your unique discount link. You can email, text or post it on social! </p><p><strong>Step 3. </strong>Save the code<strong> </strong><em>(it's your unique code)</em> and continue to share to earn commissions.</p><p><strong>Step 4. </strong>When your friends purchase you receive a 15% commission  for every purchase made with your link. </p><p><strong>Step 5. </strong>Get a payout by logging into <a href=\"https://socialsnowball.io/login-form\" target=\"_blank\" title=\"Log into your Affiliate account page.\">your commissions page </a>and selecting from Bank Transfer or PayPal. </p>"
+          }
+        },
+        "template--17526730555695__4e977b01-9c62-4dd5-a450-9fe1b3282b63-167345861678e0d63e-2": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--17526730555695__4e977b01-9c62-4dd5-a450-9fe1b3282b63-167345861678e0d63e-0",
+        "template--17526730555695__4e977b01-9c62-4dd5-a450-9fe1b3282b63-167345861678e0d63e-1",
+        "template--17526730555695__4e977b01-9c62-4dd5-a450-9fe1b3282b63-167345861678e0d63e-2"
+      ],
+      "settings": {
+        "text_alignment": "left"
+      }
+    },
+    "5d8b99d4-9bd7-4976-b51c-ed2c7be6db2b": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--18783080907055__5d8b99d4-9bd7-4976-b51c-ed2c7be6db2b-1682982596fc0a0ad9-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Share & Support a Regenerative Beauty Solution",
+            "heading_size": "h1"
+          }
+        },
+        "template--18783080907055__5d8b99d4-9bd7-4976-b51c-ed2c7be6db2b-1682982596fc0a0ad9-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>The earth has all of the nutrients we need to restore our health and beauty. Sharing the effectiveness and safety of organic ingredients is good for our skin and the planet.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--18783080907055__5d8b99d4-9bd7-4976-b51c-ed2c7be6db2b-1682982596fc0a0ad9-0",
+        "template--18783080907055__5d8b99d4-9bd7-4976-b51c-ed2c7be6db2b-1682982596fc0a0ad9-1"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/SacredRituel_SoulPortraits_ThaisAquinoPhotography126600.jpg",
+        "layout": "right-alignment"
+      }
+    },
+    "68ca4a22-759f-4246-b75d-6785ef37d0fe": {
+      "type": "testimonials",
+      "blocks": {
+        "72b68f2a-c49f-4942-b926-c1689d2bfe2a": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"This is my 3rd time ordering and really have noticed a visible difference in my skins overall appearance. The smell is wonderful! So moisturizing for mature <em>dry skin</em>!\"</p>",
+            "quote_author": "Aimee B.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-0": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"My skin is smooth and radiant in a way I’ve never seen before, definitely eliminating dull and <em>dry patches</em> and fine lines.\"</p>",
+            "quote_author": "Leila J.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-1": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"Sacred Serum is seriously the best facial oil for  <em>dry skin</em>, for facial redness and for overall calm.\"</p>",
+            "quote_author": "Kimberly M",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "563132f3-875c-4715-9b21-dee2f1b1d4fd": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"I've tried other serums and none hydrate and smooth my  <em>dry, sensitive skin</em> like Rituel serum. Thanks for making a healthy serum for overly dry skin! I am a believer!\"</p>",
+            "quote_author": "Heather C.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "e93a8ac7-1413-4df2-aac7-86e2040cbd81": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"I tend to have <em>dry skin</em> and the Serum has provided wonderful hydration as well as giving a translucent quality to my face.\"</p>",
+            "quote_author": "Cynthia G",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "82d202db-4762-40fa-ade4-357cf5801832": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"This serum is wonderful. My skin drinks it in. I had such <em>dry skin</em> and nothing was working. It is now, after three weeks of daily use, glowing!!\"</p>",
+            "quote_author": "★★★★★",
+            "quote_caption": "Erin W."
+          }
+        }
+      },
+      "block_order": [
+        "72b68f2a-c49f-4942-b926-c1689d2bfe2a",
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-0",
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-1",
+        "563132f3-875c-4715-9b21-dee2f1b1d4fd",
+        "e93a8ac7-1413-4df2-aac7-86e2040cbd81",
+        "82d202db-4762-40fa-ade4-357cf5801832"
+      ],
+      "settings": {
+        "title": "Deeply nourishes dry skin!",
+        "text_alignment": "center",
+        "seo_h_tag": "h2"
+      }
+    },
+    "81276d3d-052b-4207-a260-215ea6457147": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "",
+        "caption": "",
+        "collection": "all",
+        "show_view_all": true,
+        "layout": "asymmetrical",
+        "products_number": 12,
+        "show_promotional_block": false,
+        "promotional_block_title": "Write a short, captivating paragraph about your products.",
+        "promotional_block_button_label": "",
+        "promotional_block_button_link": "",
+        "seo_h_tag": "h2"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1673381305da8931b2",
+    "4e977b01-9c62-4dd5-a450-9fe1b3282b63",
+    "5d8b99d4-9bd7-4976-b51c-ed2c7be6db2b",
+    "68ca4a22-759f-4246-b75d-6785ef37d0fe",
+    "81276d3d-052b-4207-a260-215ea6457147"
+  ]
+}

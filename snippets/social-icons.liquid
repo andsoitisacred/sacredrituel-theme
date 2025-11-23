@@ -1,0 +1,65 @@
+<div class="social-icons">
+
+  {%- if settings.social_facebook != '' -%}
+    <a href="{{ settings.social_facebook | escape }}" target="_blank"><span class="visually-hidden">Facebook</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_facebook' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_instagram != '' -%}
+    <a href="{{ settings.social_instagram | escape }}" target="_blank"><span class="visually-hidden">Instagram</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_instagram' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_twitter != '' -%}
+    <a href="{{ settings.social_twitter | escape }}" target="_blank"><span class="visually-hidden">Twitter</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_twitter' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_youtube != '' -%}
+    <a href="{{ settings.social_youtube | escape }}" target="_blank"><span class="visually-hidden">YouTube</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_youtube' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_vimeo != '' -%}
+    <a href="{{ settings.social_vimeo | escape }}" target="_blank"><span class="visually-hidden">Vimeo</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_vimeo' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_pinterest != '' -%}
+    <a href="{{ settings.social_pinterest | escape }}" target="_blank"><span class="visually-hidden">Pinterest</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_pinterest' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_tiktok != '' -%}
+    <a href="{{ settings.social_tiktok | escape }}" target="_blank"><span class="visually-hidden">TikTok</span><span class="icon {{ size }}" aria-hidden="true">{% render 'theme-symbols', icon: 'social_tiktok' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_tumblr != '' -%}
+    <a href="{{ settings.social_tumblr | escape }}" target="_blank"><span class="visually-hidden">Tumblr</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_tumblr' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_linkedin != '' -%}
+    <a href="{{ settings.social_linkedin | escape }}" target="_blank"><span class="visually-hidden">LinkedIn</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_linkedin' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_reddit != '' -%}
+    <a href="{{ settings.social_reddit | escape }}" target="_blank"><span class="visually-hidden">Reddit</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_reddit' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_discord != '' -%}
+    <a href="{{ settings.social_discord | escape }}" target="_blank"><span class="visually-hidden">Discord</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_discord' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_flickr != '' -%}
+    <a href="{{ settings.social_flickr | escape }}" target="_blank"><span class="visually-hidden">Flickr</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_flickr' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_email != '' -%}
+    <a href="{{ settings.social_email | escape }}" target="_blank"><span class="visually-hidden">Email</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_email' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_phone != '' -%}
+    <a href="{{ settings.social_phone | escape }}" target="_blank"><span class="visually-hidden">Phone</span><span class="icon" aria-hidden="true">{% render 'theme-symbols', icon: 'social_phone' %}</span></a>
+  {%- endif -%}
+
+  {%- if settings.social_custom != '' -%}
+    <a href="{{ settings.social_custom | escape }}" target="_blank">
+      <span class="icon" aria-hidden="true"><img src="{{ settings.social_custom_icon | image_url: width: 24, height: 24, crop: 'center' }}" srcset="{{ settings.social_custom_icon | image_url: width: 24, height: 24, crop: 'center' }} 24w, {{ settings.social_custom_icon | image_url: width: 48, height: 48, crop: 'center' }} 48w, {{ settings.social_custom_icon | image_url: width: 72, height: 72, crop: 'center' }} 72w" sizes="24px" width="{{ settings.social_custom_icon.width }}" height="{{ settings.social_custom_icon.height }}" style="width:100%;height:100%" alt="{{ settings.social_custom_icon.alt | escape }}"></span>
+    </a>
+  {%- endif -%}
+
+</div>

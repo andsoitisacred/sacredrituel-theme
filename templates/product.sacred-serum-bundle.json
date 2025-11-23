@@ -1,0 +1,644 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "show_vendor": false,
+            "show_reviews": true,
+            "show_tax_info": false,
+            "show_sku": false,
+            "show_barcode": false,
+            "stick_product_header_on_mobile": false
+          }
+        },
+        "custom_liquid_bxEgN3": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% if product.metafields.custom.product_value_tagline %}\n  <p class=\"text-size--largest\">{{product.metafields.custom.product_value_tagline}}</p>\n{% endif %}",
+            "position": "right"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "variants_style": "radio",
+            "show_color_swatches": true,
+            "show_quantities": "below"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_preorder_label": false,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "pickup_avaiability": {
+          "type": "pickup_avaiability",
+          "disabled": true,
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {}
+        },
+        "wrapin_gift_wrap_options_app_block_4RyNGV": {
+          "type": "shopify://apps/wrapin-gift-wrap-options/blocks/app-block/31c9fd89-9221-4847-aeee-86a226a0a620",
+          "settings": {}
+        },
+        "tolstoy_shoppable_video_ugc_carousel_block_pGengr": {
+          "type": "shopify://apps/tolstoy-shoppable-video-quiz/blocks/carousel-block/06fa8282-42ff-403e-b67c-1936776aed11",
+          "settings": {
+            "publishId": "4cc6hq9qsluic"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "b55c1a64-c8e6-44ea-827d-dee6e2917e82": {
+          "type": "toggles-with-icons",
+          "settings": {
+            "title": "",
+            "feature1_title": "{{ product.metafields.custom.primary_feature_title.value }}",
+            "feature1_text": "<p>{{ product.metafields.custom.primary_feature_description | metafield_tag }}</p>",
+            "feature2_title": "{{ product.metafields.custom.secondary_feature_title.value }}",
+            "feature2_text": "<p>{{ product.metafields.custom.secondary_feature_description | metafield_tag }}</p>",
+            "feature3_title": "{{ product.metafields.custom.tertiary_feature_title.value }}",
+            "feature3_text": "<p>{{ product.metafields.custom.tertiary_feature_description | metafield_tag }}</p>",
+            "feature4_title": "{{ product.metafields.custom.fourth_feature_title.value }}",
+            "feature4_text": "<p>{{ product.metafields.custom.fourth_feature_description | metafield_tag }}</p>",
+            "feature5_title": "{{ product.metafields.custom.fifth_feature_title.value }}",
+            "feature5_text": "<p>{{ product.metafields.custom.fifth_feature_description | metafield_tag }}</p>",
+            "feature6_title": "Is it Lab-Tested for Purity & Compliance?",
+            "feature6_text": "<p>At Sacred Rituel, transparency and quality are our top priorities. Our Sacred Serum face oil undergoes rigorous third-party lab testing to ensure it meets the highest purity standards and complies with the <strong>2018 Farm Bill (containing no more than 0.3% THC)</strong>. View our third-party lab test verifying the safety and potency of our hemp-derived ingredients: <a href=\"/pages/certificate-of-analysis-coa\" target=\"_blank\" title=\"Certificate of Analysis (COA)\">Certificate of Analysis</a></p>",
+            "seo_h_tag": "h2"
+          }
+        },
+        "collapsible_tab_H6BHFA": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Free Shipping on orders over $90 (USA)",
+            "content": "<h4><strong>When will I receive my order?</strong></h4><p>We fulfill domestic USA orders same day before noon (PST) and within 24 hours (M-F). International orders are fulfilled within 48 hours. </p><h4><strong>Do you offer free shipping?</strong></h4><ul><li>Orders over $90 get FREE Standard Shipping.</li><li>$7 Flat Rate Economy Shipping on all other orders.</li></ul><h4>Where do you sell your products?</h4><p>We ship to the USA, Canada, Australia, the United Kingdom, Sweden, France, Belgium, Germany and Italy.</p><h4>How will I know when my order has shipped?</h4><p>We want to keep you in the know. As soon as we assign a shipping label to your order, we’ll send you an email with tracking information.</p>",
+            "page": "",
+            "hide_block_if": false
+          }
+        },
+        "6f85182a-f9a4-4657-ac3a-86b59e7241e8": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "{{ product.metafields.custom.product_overview_title.value }}",
+            "content": "<p>{{ product.metafields.custom.product_overview_details | metafield_tag }}</p>",
+            "page": "",
+            "hide_block_if": false
+          }
+        },
+        "8bc3a0a0-ced3-488a-994d-bdeb17bd3196": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "{{ product.metafields.custom.source_ingredients_title.value }}",
+            "content": "<p>{{ product.metafields.custom.source_ingredients_details | metafield_tag }}</p>",
+            "page": "",
+            "hide_block_if": false
+          }
+        },
+        "complementary_CVEnJB": {
+          "type": "complementary",
+          "settings": {
+            "heading": "Pairs well with",
+            "products_number": 2
+          }
+        }
+      },
+      "block_order": [
+        "header",
+        "custom_liquid_bxEgN3",
+        "variant_picker",
+        "buy_buttons",
+        "pickup_avaiability",
+        "share",
+        "wrapin_gift_wrap_options_app_block_4RyNGV",
+        "tolstoy_shoppable_video_ugc_carousel_block_pGengr",
+        "description",
+        "b55c1a64-c8e6-44ea-827d-dee6e2917e82",
+        "collapsible_tab_H6BHFA",
+        "6f85182a-f9a4-4657-ac3a-86b59e7241e8",
+        "8bc3a0a0-ced3-488a-994d-bdeb17bd3196",
+        "complementary_CVEnJB"
+      ],
+      "custom_css": [
+        "@media screen and (max-width: 1023px) {.product__title {margin-bottom: 0.4em; } .set-mobile-position {margin-top: calc(var(--grid-width) / 12 * 0.1); } .product-variant__name {margin-bottom: 0.5em; } .product-variants-block {margin-top: 0.2em; } product-form:not(:first-child) {margin-top: 1em; }}",
+        "product-variants:not(:first-child),product-form:not(:first-child) {margin-top: 1em;}",
+        ".skio-details,.product-variant__name {display: none;}"
+      ],
+      "settings": {
+        "media_aspect": "natural",
+        "enable_zoom": true,
+        "enable_video_looping": true
+      }
+    },
+    "replo_headline_icons_guarantee_w6Mpcd": {
+      "type": "replo-headline-icons_guarantee",
+      "settings": {}
+    },
+    "scrolling_images_G9KB3Q": {
+      "type": "scrolling-images",
+      "blocks": {
+        "image_qnwKP7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/VOGUE_LOGO.svg",
+            "image_caption": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "image_9Xbpec": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/New_York_Magazine_Logo.svg",
+            "image_caption": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "image_qRf6tA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ELLE_Magazine_Logo.svg",
+            "image_caption": "",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "image_qnwKP7",
+        "image_9Xbpec",
+        "image_qRf6tA"
+      ],
+      "settings": {
+        "title": "As Seen In",
+        "scroll_direction": "ltr",
+        "speed": 100,
+        "pause_on_hover": true,
+        "image_alignment": "center",
+        "caption_alignment": "left",
+        "columns": "3",
+        "seo_h_tag": "h2"
+      }
+    },
+    "1698006103a8bdefb2": {
+      "type": "apps",
+      "blocks": {
+        "okendo_reviews_widget_jLFjHp": {
+          "type": "shopify://apps/okendo/blocks/reviews-widget/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {
+            "product": "{{product}}",
+            "widget_type": "reviews_widget"
+          }
+        }
+      },
+      "block_order": [
+        "okendo_reviews_widget_jLFjHp"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "replo_brand_sacredserum_expla_VDUmjF": {
+      "type": "replo-brand-sacredserum_expla",
+      "settings": {}
+    },
+    "17280709892804e91f": {
+      "type": "apps",
+      "blocks": {
+        "tolstoy_shoppable_video_ugc_tile_block_kMj8r9": {
+          "type": "shopify://apps/tolstoy-shoppable-video-quiz/blocks/tile-block/06fa8282-42ff-403e-b67c-1936776aed11",
+          "settings": {
+            "publishId": "o7jjvxyni1n1d"
+          }
+        }
+      },
+      "block_order": [
+        "tolstoy_shoppable_video_ugc_tile_block_kMj8r9"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "image_with_text_ic47tX": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_ahfQHr": {
+          "type": "heading",
+          "settings": {
+            "heading": "Healing + Hydration",
+            "heading_size": "h2"
+          }
+        },
+        "text_aWQdHD": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Don't miss out on the healing hydration of our Rose Toner to seal in lasting moisture deep into your pores.  Use code BONUSTONER to get <a href=\"https://www.sacredrituel.com/cart/46576730046767:1,46675287900463:1?discount=BONUSTONER&storefront=true\" title=\"https://www.sacredrituel.com/cart/46576730046767:1,46675287900463:1?discount=BONUSTONER&storefront=true\">a Complimentary Travel Rose Toner</a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ahfQHr",
+        "text_aWQdHD"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/sacredrituel-retargeting-bogo-toner-greece-2.jpg",
+        "layout": "right-alignment"
+      }
+    },
+    "90f9488d-b6ac-4fd4-a16f-b530ec3c676e": {
+      "type": "testimonials",
+      "blocks": {
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-0": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"My skin is smooth and radiant in a way I’ve never seen before, definitely eliminating <em>dull</em> and <em>dry patches</em> and <em>fine lines</em>.\"</p>",
+            "quote_author": "Leila J.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-1": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"Sacred Serum is seriously the best facial oil for  <em>dry skin</em>, for facial redness and for overall calm.\"</p>",
+            "quote_author": "Kimberly M",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "563132f3-875c-4715-9b21-dee2f1b1d4fd": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"I've tried other serums and none hydrate and smooth my  <em>dry, sensitive skin</em> like Rituel serum. Thanks for making a healthy serum for <em>overly dry skin</em>! I am a believer!\"</p>",
+            "quote_author": "Heather C.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "e93a8ac7-1413-4df2-aac7-86e2040cbd81": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"I tend to have <em>dry skin</em> and the Serum has provided wonderful hydration as well as giving a translucent quality to my face.\"</p>",
+            "quote_author": "Cynthia G",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "72b68f2a-c49f-4942-b926-c1689d2bfe2a": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"This is my 3rd time ordering and really have <em>noticed a visible difference</em> in my skins overall appearance. The smell is wonderful! So moisturizing for mature <em>dry skin</em>!\"</p>",
+            "quote_author": "Aimee B.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "82d202db-4762-40fa-ade4-357cf5801832": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"This serum is wonderful. My skin drinks it in. I had such <em>dry skin</em> and nothing was working. It is now, after three weeks of daily use, glowing!!\"</p>",
+            "quote_author": "★★★★★",
+            "quote_caption": "Erin W."
+          }
+        }
+      },
+      "block_order": [
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-0",
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-1",
+        "563132f3-875c-4715-9b21-dee2f1b1d4fd",
+        "e93a8ac7-1413-4df2-aac7-86e2040cbd81",
+        "72b68f2a-c49f-4942-b926-c1689d2bfe2a",
+        "82d202db-4762-40fa-ade4-357cf5801832"
+      ],
+      "custom_css": [
+        "em {color: #7a6652;}"
+      ],
+      "settings": {
+        "title": "Deeply nourishes dry skin!",
+        "text_alignment": "center",
+        "seo_h_tag": "h2"
+      }
+    },
+    "image_with_text_PdzEeg": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_arMwpJ": {
+          "type": "heading",
+          "settings": {
+            "heading": "Surfing accident 30 Days later",
+            "heading_size": "h2"
+          }
+        },
+        "text_YJHd8F": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Our customer Hilary suffered a bad surfing accident during an extended stay in Mexico where she had only access to her dermatologist by Zoom.  They decided her best course of action was to use the Sacred Serum every day to moisten, heal and protect the wound.  After 30 days of regular use her wound had healed with minimal scaring and three months later it completely disappeared.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_arMwpJ",
+        "text_YJHd8F"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/hilary-morse-portrait-IMG_8074_e0cc035a-6553-4535-bb2c-bfd563e7e987.jpg",
+        "layout": "right-alignment"
+      }
+    },
+    "before_after_mdtyha": {
+      "type": "before-after",
+      "blocks": {
+        "image_jWK7eY": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/6surfing-accident-before-4x5-websize.jpg",
+            "label": "Before"
+          }
+        },
+        "image_A8midi": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/6surfing-accident-after-1month-4x5-websize.jpg",
+            "label": "After 30 days"
+          }
+        }
+      },
+      "block_order": [
+        "image_jWK7eY",
+        "image_A8midi"
+      ],
+      "settings": {
+        "title": "",
+        "layout": "horizontal",
+        "invert_layout": false,
+        "desktop_height": "before-after--desktop-medium",
+        "mobile_height": "before-after--mobile-medium",
+        "color_style": "dark",
+        "seo_h_tag": "h2"
+      }
+    },
+    "video_popup_NRr7gy": {
+      "type": "video-popup",
+      "settings": {
+        "title": "Hear her recovery story",
+        "video": "https://www.youtube.com/watch?v=Gj28PB1HqrA",
+        "image": "shopify://shop_images/Hilary.heic",
+        "seo_h_tag": "h2"
+      }
+    },
+    "8ff85cba-a964-4c09-b015-1be40cb26d1d": {
+      "type": "testimonials",
+      "blocks": {
+        "0a821151-a315-49ec-8004-67b8d654b381": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"It’s been three days. My <em>rosacea</em> has diminished, and my <em>hyper-sensitive</em> dermis has had no reaction whatsoever, whereas it’s been over thirty years of reactions and discomfort from products marketed to <em>sensitive skinned</em> folks.\"</p>",
+            "quote_author": "karen P.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "template--14835198820406__8ff85cba-a964-4c09-b015-1be40cb26d1d-16675155341ba33cb1-0": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"My skin is <em>very sensitive</em> and I easily get allergic reactions. I can not only tolerate your serum but my skin craves it. It feels so nourishing to put on!\"</p>",
+            "quote_author": "Veronique T.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "template--14835198820406__8ff85cba-a964-4c09-b015-1be40cb26d1d-16675155341ba33cb1-1": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"This oil is literally healing my skin. I have been searching for a product that works for my <em>sensitive, aging skin</em> with <em>hormonal acne</em> for literally 7 years. I finally found it. Thank you Sacred Rituel.\"</p>",
+            "quote_author": "April M.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "175bc811-7b34-45db-b59b-245c61cb927d": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"I love these products, so <em>soothing</em> for my very  <em>sensitive skin</em>. I always order 2 of the Rose Mist Toner for one bottle of oil because I use it so frequently.\"</p>",
+            "quote_author": "Sara G.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "3b0746d3-a6ff-41c5-902c-bd4afd3b0920": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"At 46, my <em>skin</em> had become <em>so</em> <em>sensitive.</em> My skin’s microbiome has repaired itself to the point where I no longer cover up my skin with foundations or even tinted moisturizer. My skin is even toned, bright, and glowing.\"</p>",
+            "quote_author": "Georgia H.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "356e50e7-ffad-402b-a072-4fe7ff2845ea": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\" I have incredibly <em>sensitive</em> <em>skin</em>, prone to <em>hives and rashes</em>. My face feels nourished, hydrated and soft. It looks radiant and healthy. So grateful I found this! \"</p>",
+            "quote_author": "Shannon T.",
+            "quote_caption": "★★★★★"
+          }
+        }
+      },
+      "block_order": [
+        "0a821151-a315-49ec-8004-67b8d654b381",
+        "template--14835198820406__8ff85cba-a964-4c09-b015-1be40cb26d1d-16675155341ba33cb1-0",
+        "template--14835198820406__8ff85cba-a964-4c09-b015-1be40cb26d1d-16675155341ba33cb1-1",
+        "175bc811-7b34-45db-b59b-245c61cb927d",
+        "3b0746d3-a6ff-41c5-902c-bd4afd3b0920",
+        "356e50e7-ffad-402b-a072-4fe7ff2845ea"
+      ],
+      "custom_css": [
+        "em {color: #7a6652;}"
+      ],
+      "settings": {
+        "title": "Gentle healing to sensitive skin",
+        "text_alignment": "center",
+        "seo_h_tag": "h2"
+      }
+    },
+    "85bb7a87-2593-464c-9ced-f001de178bad": {
+      "type": "images-with-text-slider",
+      "blocks": {
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/howtoapply-129193.jpg",
+            "heading": "1. Spray Rose Toner",
+            "description": "<p>Starting with a clean, dry face, generously spray our Sacred Rose Mist to your face and neck.</p>"
+          }
+        },
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/howtoapply-129321.jpg",
+            "heading": "2. Apply the Serum",
+            "description": "<p>Using the dropper vial, apply Sacred Serum to your open palm or directly to your skin.</p>"
+          }
+        },
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/howtoapply-129132.jpg",
+            "heading": "3. Massage into Skin",
+            "description": "<p>Massage and distribute by patting and lightly spreading the serum gently onto your face being sure to apply evenly to allow maximum absorption. </p>"
+          }
+        },
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/howtoapply-1-129146.jpg",
+            "heading": "4. Radiate your Love",
+            "description": "<p>Let the LOVE you feel INSIDE radiate OUT!  Spreading kindness and love is what makes life special... Enjoy it!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-0",
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-1",
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-2",
+        "template--14835198820406__85bb7a87-2593-464c-9ced-f001de178bad-1667422543a71f72fd-3"
+      ],
+      "settings": {
+        "title": "How to Apply",
+        "gallery_aspect": "1",
+        "seo_h_tag": "h2"
+      }
+    },
+    "0c7f01aa-1f9c-4381-b345-f1e2fa387553": {
+      "type": "testimonials",
+      "blocks": {
+        "template--14835198820406__0c7f01aa-1f9c-4381-b345-f1e2fa387553-166751409666391d0d-0": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"It's just such a luxurious oil with the pure scent of the ingredients. And it would not be an exaggeration to say that <em>my skin</em> has been <em>transformed</em>. The <em>redness</em> is out and the glow is back! I only wish I had found it sooner....\"</p>",
+            "quote_author": "Stephanie M.",
+            "quote_caption": "Stephanie M"
+          }
+        },
+        "template--14835198820406__0c7f01aa-1f9c-4381-b345-f1e2fa387553-166751409666391d0d-1": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"I have purchased and re-purchased Rituel sacred serum and I am not disappointed. Initially my skin looked good, glowy, and <em>redness</em> <em>significantly reduced</em>. Over time I have been able to dispense with medicated creams prescribed by my dermatologist for scaly, dry skin...\"</p>",
+            "quote_author": "Dorinda B.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "c6beb557-a795-47a8-a63c-9f0113edd03c": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"I get itchy red lupus flares on my face from time to time, this serum quickly makes <em>the itchiness</em> and <em>redness</em> go away. It feels so soothing!\"</p>",
+            "quote_author": "Michelle A.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "fe394290-0167-4405-934f-625faef4142c": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"My skin is <em>dry, sensitive</em>, and prone to <em>inflammation</em>. A friend of mine suggested this serum and my skin is forever grateful! I use nightly after washing and toning. The texture and <em>redness</em> of my skin has drastically gone down and my skin has never felt more moisturized.\"</p>",
+            "quote_author": "Kristen B.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "6f5eb533-79e4-44cc-acc8-3dd183dae990": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"My skin loves this serum so much, it is the only skincare I use for day and night for over a year now... It has helped reduced <em>redness</em> and <em>skin irritation</em> and I can't say enough good things about this product!!!\"</p>",
+            "quote_author": "Emily TS.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "9d372ed9-8922-437c-b5d7-708ed631e73d": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"I love the serum! I have <em>rosacea </em>and it had cleared up 98% of the blemishes and the <em>redness</em> on my face has lessened.\"</p>",
+            "quote_author": "Tara T.",
+            "quote_caption": "★★★★★"
+          }
+        }
+      },
+      "block_order": [
+        "template--14835198820406__0c7f01aa-1f9c-4381-b345-f1e2fa387553-166751409666391d0d-0",
+        "template--14835198820406__0c7f01aa-1f9c-4381-b345-f1e2fa387553-166751409666391d0d-1",
+        "c6beb557-a795-47a8-a63c-9f0113edd03c",
+        "fe394290-0167-4405-934f-625faef4142c",
+        "6f5eb533-79e4-44cc-acc8-3dd183dae990",
+        "9d372ed9-8922-437c-b5d7-708ed631e73d"
+      ],
+      "custom_css": [
+        "em {color: #7a6652;}"
+      ],
+      "settings": {
+        "title": "Soothes Redness & Inflammation",
+        "text_alignment": "center",
+        "seo_h_tag": "h2"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "products_number": 3
+      }
+    },
+    "replo_product_table_sacredserum_ee3REz": {
+      "type": "replo-product-table_sacredserum",
+      "custom_css": [
+        ":not(#\\20):not(#\\20).r-10jz9ue {display: none;}"
+      ],
+      "settings": {}
+    },
+    "2b8297f5-c2ef-43d6-a0eb-3b24e9670133": {
+      "type": "rich-text",
+      "blocks": {
+        "template--18783081595183__2b8297f5-c2ef-43d6-a0eb-3b24e9670133-16832195372d8dabd5-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ product.metafields.custom.product_seo_qa.value }}</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--18783081595183__2b8297f5-c2ef-43d6-a0eb-3b24e9670133-16832195372d8dabd5-1"
+      ],
+      "settings": {
+        "text_alignment": "left"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "replo_headline_icons_guarantee_w6Mpcd",
+    "scrolling_images_G9KB3Q",
+    "1698006103a8bdefb2",
+    "replo_brand_sacredserum_expla_VDUmjF",
+    "17280709892804e91f",
+    "image_with_text_ic47tX",
+    "90f9488d-b6ac-4fd4-a16f-b530ec3c676e",
+    "image_with_text_PdzEeg",
+    "before_after_mdtyha",
+    "video_popup_NRr7gy",
+    "8ff85cba-a964-4c09-b015-1be40cb26d1d",
+    "85bb7a87-2593-464c-9ced-f001de178bad",
+    "0c7f01aa-1f9c-4381-b345-f1e2fa387553",
+    "product-recommendations",
+    "replo_product_table_sacredserum_ee3REz",
+    "2b8297f5-c2ef-43d6-a0eb-3b24e9670133"
+  ]
+}

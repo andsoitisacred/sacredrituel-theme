@@ -1,0 +1,188 @@
+{%- if section.settings.title != blank -%}
+  <div class="section-header grid-item push-left-one-tenth lap--push-left-padding"
+    {% if section.settings.text_alignment == 'center' %} style="text-align:center;margin-inline-start:0;width:100%" {% endif %}
+  >
+    <{{ section.settings.seo_h_tag }} class="section-header__title h4">{{ section.settings.title | escape }}</{{ section.settings.seo_h_tag }}>
+  </div>
+{%- endif -%}
+
+{%- if section.blocks.size > 0 -%}
+  
+  {{ "section-testimonials.css" | asset_url | stylesheet_tag }}
+
+  {%- if section.blocks.size > 1 -%} <div class="css-slider-viewport"> {%- endif -%}
+
+  <css-slider class="quotes-slider quotes-slider--{{ section.settings.text_alignment }}-align
+    {% if section.blocks.size > 1 %} css-slider css-slider--snapping css-slider--auto-height {% endif %}" 
+    id="css-slider-{{ section.id }}"
+    data-navigation-class="push-left-one-tenth lap--push-left-padding align-{{ section.settings.text_alignment }}"
+  >
+
+    {%- for block in section.blocks -%}
+
+      <div id="block-{{ block.id }}" class="css-slide quote 
+        eight-tenths lap--ten-tenths palm--twelve-tenths
+        {% if forloop.first %}
+          push-left-one-tenth lap--push-left-padding
+        {% else %}
+          push-left-three-tenths palm--push-left-padding
+        {% endif %}
+      " {{ block.shopify_attributes }}
+        data-index="{{ forloop.index0 }}"
+      >
+
+        <span class="h2 quote__content rte">{{ block.settings.quote_content }}</span>
+
+        <div class="quote__meta">
+
+          {%- unless block.settings.quote_avatar == blank -%}
+            <div class="quote__avatar">
+              <img 
+                class="img lazy"
+                src="{{ block.settings.quote_avatar | image_url: width: 76, height: 76, crop: 'center' }}" alt="{{ block.settings.quote_avatar.alt | escape }}"
+                srcset="{{ block.settings.quote_avatar | image_url: width: 76, height: 76, crop: 'center' }} 76w, {{ block.settings.quote_avatar | image_url: width: 152, height: 152, crop: 'center' }} 152w"
+                sizes="76px"
+                loading="lazy"
+                width="76" height="76"
+                onload="this.classList.add('lazyloaded')"
+              />
+            </div>
+          {%- endunless -%}
+
+          {%- unless block.settings.quote_author == blank -%}
+            <strong class="quote__author text-size--larger">{{ block.settings.quote_author | escape }}</strong>
+          {%- endunless -%}
+
+          {%- unless block.settings.quote_caption == blank -%}
+            <div class="quote__caption text-size--small">{{ block.settings.quote_caption | escape }}</div>
+          {%- endunless -%}
+
+        </div>
+
+      </div>
+
+    {%- endfor -%}
+
+  </css-slider>
+
+  {%- if section.blocks.size > 1 -%} </div> {%- endif -%}
+
+{%- endif -%}
+
+{%- assign quote_font = settings.quote_font -%}
+<style>
+  {{ quote_font | font_face: font_display: 'swap' }}
+  .quote__content {
+    font-family: {{ quote_font.family }}, {{ quote_font.fallback_families }};
+    font-weight: {{ quote_font.weight }};
+    font-style: {{ quote_font.style }};
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "t:sections.testimonials.name",
+    "class": "mount-testimonials mount-css-slider section-w-margin no-overflow",
+    "max_blocks": 6,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "t:sections.highlight-extra-words.heading.label",
+        "default": "Testimonials"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "t:sections.rich-text.settings.text_alignment.label",
+        "options": [
+          {
+            "value": "left",
+            "label": "t:sections.rich-text.settings.text_alignment.options__1.label"
+          },
+          {
+            "value": "center",
+            "label": "t:sections.rich-text.settings.text_alignment.options__2.label"
+          }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.refactor_words.seo.name"
+      },
+      {
+        "type": "select",
+        "id": "seo_h_tag",
+        "label": "t:sections.refactor_words.seo.label",
+        "info": "t:sections.refactor_words.seo.info",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          }
+        ],
+        "default": "h2"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "t:sections.testimonials.blocks.testimonial.name",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "quote_content",
+            "label": "t:sections.testimonials.blocks.testimonial.settings.quote.label",
+            "default": "<p>Add customer reviews and testimonials to showcase your store's happy customers.</p>"
+          },
+          {
+            "type": "text",
+            "id": "quote_author",
+            "label": "t:sections.testimonials.blocks.testimonial.settings.author_name.label",
+            "default": "Author"
+          },
+          {
+            "type": "text",
+            "id": "quote_caption",
+            "label": "t:sections.testimonials.blocks.testimonial.settings.author_title.label",
+            "default": "Customer"
+          },
+          {
+            "type": "image_picker",
+            "id": "quote_avatar",
+            "label": "t:sections.testimonials.blocks.testimonial.settings.author_avatar.label",
+            "info": "t:sections.highlight-extra-words.custom-avatar.info"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "t:sections.testimonials.name",
+      "blocks": [{
+        "type": "text"
+      }, {
+        "type": "text"
+      }]
+    }],
+    "disabled_on": {
+      "groups": ["header"]
+    }
+  }
+{% endschema %}

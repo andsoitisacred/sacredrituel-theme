@@ -1,0 +1,239 @@
+{%- if section.blocks.size > 0 -%}
+	
+	{{ "section-text-columns-with-icons.css" | asset_url | stylesheet_tag }}
+	
+	<div class="text-columns-with-icons section-w-mobile-padding grid">
+
+		{%- for block in section.blocks -%}
+
+			<div class="text-w-icon__container 
+				three-tenths lap--three-plus-half-tenths smaller-lap--full-width
+				{% if forloop.first %} 
+          push-left-one-tenth lap--push-left-none
+        {% else %} 
+          push-left-half-tenth lap--push-left-one-tenth
+        {% endif %}
+    		smaller-lap--push-left-none" {{ block.shopify_attributes }}
+    	>
+
+				<div class="text-w-icon__icon" aria-hidden="true" role="img">
+					{%- if block.settings.custom_icon != blank -%}
+		        <img src="{{ block.settings.custom_icon | image_url: width: 128, height: 128, crop: 'center' }}" alt="{{ block.settings.custom_icon.alt }}" width="128" height="128" style="width:64px;height:64px;" loading="lazy" />
+			    {%- else -%}
+						{%- render 'icons-pack', icon: block.settings.select_icon -%}
+					{%- endif -%}
+				</div>
+
+				<div class="text-w-icon__content">
+
+					<h4 class="text-w-icon__title text-size--larger">{{ block.settings.title | escape }}</h4>
+					<div class="text-w-icon__rte rte text-size--smaller">{{ block.settings.body }}</div>
+
+				</div>
+
+			</div>
+
+		{%- endfor -%}
+
+	</div>
+
+{%- endif -%}
+
+{% schema %}
+  {
+		"name": "t:sections.text-columns-with-icons.name",
+		"class": "no-overflow section-w-margin",
+    "max_blocks": 3,
+    "blocks": [
+      {
+        "type": "text-icon",
+        "name": "t:sections.text-columns-with-icons.blocks.icon.name",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "t:sections.text-columns-with-icons.blocks.icon.settings.title.label",
+            "default": "Text with icon"
+          },
+          {
+            "type": "richtext",
+            "id": "body",
+            "label": "t:sections.text-columns-with-icons.blocks.icon.settings.text.label",
+            "default": "<p>Share some useful information about shipping, returns or discounts.</p>"
+          },
+          {
+						"type": "select",
+						"id": "select_icon",
+						"label": "t:sections.text-columns-with-icons.blocks.icon.settings.icon.label",
+						"options": [
+							{
+								"value": "earth-globe",
+								"label": "Earth globe",
+								"group": "Business"
+							},
+							{
+								"value": "flag",
+								"label": "Flag",
+								"group": "Business"
+							},
+							{
+								"value": "helpline",
+								"label": "Helpline",
+								"group": "Business"
+							},
+							{
+								"value": "like-hand",
+								"label": "Like hand",
+								"group": "Business"
+							},
+							{
+								"value": "map-marker",
+								"label": "Map marker",
+								"group": "Business"
+							},
+							{
+								"value": "security-shield",
+								"label": "Security shield",
+								"group": "Business"
+							},
+							{
+								"value": "star",
+								"label": "Star",
+								"group": "Business"
+							},
+							{
+								"value": "appointment",
+								"label": "Appointment",
+								"group": "Commerce"
+							},
+							{
+								"value": "archive-box",
+								"label": "Archive box",
+								"group": "Commerce"
+							},
+							{
+								"value": "box",
+								"label": "Box",
+								"group": "Commerce"
+							},
+							{
+								"value": "checkout-cart",
+								"label": "Checkout cart",
+								"group": "Commerce"
+							},
+							{
+								"value": "currency",
+								"label": "Currency",
+								"group": "Commerce"
+							},
+							{
+								"value": "delivery",
+								"label": "Delivery",
+								"group": "Commerce"
+							},
+							{
+								"value": "delivery-time",
+								"label": "Delivery time",
+								"group": "Commerce"
+							},
+							{
+								"value": "giftbox",
+								"label": "Giftbox",
+								"group": "Commerce"
+							},
+							{
+								"value": "label",
+								"label": "Label",
+								"group": "Commerce"
+							},
+							{
+								"value": "open-24-hours",
+								"label": "Open 24 hurs",
+								"group": "Commerce"
+							},
+							{
+								"value": "open-box",
+								"label": "Open box",
+								"group": "Commerce"
+							},
+							{
+								"value": "paper-bag",
+								"label": "Paper bag",
+								"group": "Commerce"
+							},
+							{
+								"value": "shipping-truck",
+								"label": "Shipping truck",
+								"group": "Commerce"
+							},
+							{
+								"value": "store",
+								"label": "Store",
+								"group": "Commerce"
+							},
+							{
+								"value": "time",
+								"label": "Time",
+								"group": "Commerce"
+							},
+							{
+								"value": "time-limit",
+								"label": "Time limit",
+								"group": "Commerce"
+							},
+							{
+								"value": "wallet",
+								"label": "Wallet",
+								"group": "Commerce"
+							}
+						]
+          },
+          {
+            "type": "image_picker",
+            "id": "custom_icon",
+						"label": "t:sections.local-extra-words.sections.text-columns-with-icons.blocks.icon.name",
+						"info": "t:sections.local-extra-words.sections.text-columns-with-icons.blocks.icon.info"
+          },
+					{
+						"type": "paragraph",
+						"content": "t:sections.refactor_words.text.icons_info"
+					}
+        ]
+      }
+    ],
+		"presets": [
+			{
+				"name": "t:sections.text-columns-with-icons.name",
+				"blocks": [
+					{
+						"type": "text-icon",
+						"settings": {
+							"title": "Shipping",
+							"body": "<p>Useful information about your shipping details<\/p>",
+							"select_icon": "open-box"
+						}
+					},
+					{
+						"type": "text-icon",
+						"settings": {
+							"title": "Returns",
+							"body": "<p>Show how much time customers have for testing your products<\/p>",
+							"select_icon": "time-limit"
+						}
+					},
+					{
+						"type": "text-icon",
+						"settings": {
+							"title": "Pickup",
+							"body": "<p>Let your customers know about local pickup<\/p>",
+							"select_icon": "store"
+						}
+					}
+				]
+			}
+		],
+    "disabled_on": {
+      "groups": ["header"]
+    }
+  }
+{% endschema %}

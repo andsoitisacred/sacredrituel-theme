@@ -1,0 +1,129 @@
+<div class="wrapper">
+
+  {%- if section.settings.title != blank -%}
+    <div class="section-header">
+      <{{ section.settings.seo_h_tag }} class="section-header__title h4">{{ section.settings.title | escape }}</{{ section.settings.seo_h_tag }}>
+    </div>
+  {%- endif -%}
+
+  {%- unless section.settings.video == blank -%}
+
+    {{ "section-video-popup.css" | asset_url | stylesheet_tag }}
+    
+    <video-popup id="video-popup--{{ section.id }}" style="display:block"
+      data-video data-product-media-type="{{ section.settings.video.type }}"
+    >
+
+      <template>
+        {%- if section.settings.video.type == 'youtube' -%}
+          <iframe src="https://www.youtube.com/embed/{{ section.settings.video.id }}?enablejsapi=1&autoplay=1" class="js-youtube video-popup__iframe" allow="autoplay; encrypted-media" allowfullscreen title="{{ section.settings.title | escape }}"></iframe>
+        {%- else -%}
+          <iframe src="https://player.vimeo.com/video/{{ section.settings.video.id }}?autoplay=1" class="js-vimeo video-popup__iframe" allow="autoplay; encrypted-media" allowfullscreen title="{{ section.settings.title | escape }}"></iframe>
+        {%- endif -%}
+      </template>
+
+      <div class="video-popup__container" data-js-video-popup-container>
+
+        <a class="video-popup__link" href="{{ section.settings.video }}" data-js-video-popup-link>
+
+          {%- unless section.settings.video == blank -%}
+            <span class="video-popup__play" aria-hidden="true">
+              {%- render 'theme-symbols', icon: 'play' -%}
+            </span>
+          {%- endunless -%}
+
+          {%- unless section.settings.image == blank -%}
+            <span class="video-popup__background" aria-hidden="true">
+              {%- liquid
+                assign sizes = 'sizes="(max-width: 1023px) calc(100vw - 60px), 84vw"'
+                if section.index == 1
+                  assign preload = true
+                else  
+                  assign preload = false
+                endif
+                render 'lazy-image', image: section.settings.image, type: 'background', alt: section.settings.title, sizes: sizes, alignment: true, preload: preload
+              -%}
+            </span>
+          {%- else -%}
+            <span class="video-popup__background onboarding-svg onboarding-background">
+              <span style="opacity: .5;">{{ 'lifestyle-1' | placeholder_svg_tag }}</span>
+            </span>
+          {%- endunless -%}
+
+        </a>
+
+      </div>
+
+    </video-popup>
+
+    <script src="{{ 'component-video.js' | asset_url }}" defer></script>
+
+  {%- endunless -%}
+
+</div>
+
+{% schema %}
+  {
+    "name": "t:sections.video-popup.name",
+    "class": "mount-video-popup section-w-margin no-overflow",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "t:sections.highlight-extra-words.heading.label",
+        "default": "Video popup"
+      },
+      {
+        "id": "video",
+        "type": "video_url",
+        "label": "t:sections.video-popup.settings.video.label",
+        "accept": ["youtube", "vimeo"],
+        "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "t:sections.video-popup.settings.image.label"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.refactor_words.seo.name"
+      },
+      {
+        "type": "select",
+        "id": "seo_h_tag",
+        "label": "t:sections.refactor_words.seo.label",
+        "info": "t:sections.refactor_words.seo.info",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          }
+        ],
+        "default": "h2"
+      }
+    ],
+    "presets": [{
+      "name": "t:sections.video-popup.name"
+    }],
+    "disabled_on": {
+      "groups": ["header"]
+    }
+  }
+{% endschema %}

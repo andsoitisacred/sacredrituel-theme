@@ -1,0 +1,82 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "no_margins": true,
+        "reduced_margins": true
+      }
+    },
+    "1632400517c25aba67": {
+      "type": "image-gallery",
+      "blocks": {
+        "1632400517c25aba67-0": {
+          "type": "image",
+          "settings": {
+            "title": "Image",
+            "caption": "<p>Write some details about this image.</p>"
+          }
+        },
+        "1632400517c25aba67-1": {
+          "type": "image",
+          "settings": {
+            "title": "Image",
+            "caption": "<p>Write some details about this image.</p>"
+          }
+        },
+        "1632400517c25aba67-2": {
+          "type": "image",
+          "settings": {
+            "title": "Image",
+            "caption": "<p>Write some details about this image.</p>"
+          }
+        },
+        "1632400517c25aba67-3": {
+          "type": "image",
+          "settings": {
+            "title": "Image",
+            "caption": "<p>Write some details about this image.</p>"
+          }
+        },
+        "ea51a503-88d1-46d6-a3d7-be7e9fce5b84": {
+          "type": "image",
+          "settings": {
+            "title": "Image",
+            "caption": "<p>Write some details about this image.</p>"
+          }
+        },
+        "ae5fad5f-9bfd-42a5-ae8c-837aa637d955": {
+          "type": "image",
+          "settings": {
+            "title": "Image",
+            "caption": "<p>Write some details about this image.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "1632400517c25aba67-0",
+        "1632400517c25aba67-1",
+        "1632400517c25aba67-2",
+        "1632400517c25aba67-3",
+        "ea51a503-88d1-46d6-a3d7-be7e9fce5b84",
+        "ae5fad5f-9bfd-42a5-ae8c-837aa637d955"
+      ],
+      "settings": {
+        "title": "Image gallery"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1632400517c25aba67"
+  ]
+}

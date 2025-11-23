@@ -1,0 +1,146 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_collection_description": false,
+        "show_collection_image": false,
+        "layout": "asymmetrical",
+        "products_number": 24,
+        "enable_filtering": false,
+        "enable_sorting": false,
+        "show_promotional_block": false,
+        "promotional_block_title": "Write a short, captivating paragraph about your products.",
+        "promotional_block_button_label": "",
+        "promotional_block_button_link": ""
+      }
+    },
+    "68ca4a22-759f-4246-b75d-6785ef37d0fe": {
+      "type": "testimonials",
+      "blocks": {
+        "72b68f2a-c49f-4942-b926-c1689d2bfe2a": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"This is my 3rd time ordering and really have noticed a visible difference in my skins overall appearance. The smell is wonderful! So moisturizing for mature <em>dry skin</em>!\"</p>",
+            "quote_author": "Aimee B.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-0": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"My skin is smooth and radiant in a way I’ve never seen before, definitely eliminating dull and <em>dry patches</em> and fine lines.\"</p>",
+            "quote_author": "Leila J.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-1": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"Sacred Serum is seriously the best facial oil for  <em>dry skin</em>, for facial redness and for overall calm.\"</p>",
+            "quote_author": "Kimberly M",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "563132f3-875c-4715-9b21-dee2f1b1d4fd": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"I've tried other serums and none hydrate and smooth my  <em>dry, sensitive skin</em> like Rituel serum. Thanks for making a healthy serum for overly dry skin! I am a believer!\"</p>",
+            "quote_author": "Heather C.",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "e93a8ac7-1413-4df2-aac7-86e2040cbd81": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"I tend to have <em>dry skin</em> and the Serum has provided wonderful hydration as well as giving a translucent quality to my face.\"</p>",
+            "quote_author": "Cynthia G",
+            "quote_caption": "★★★★★"
+          }
+        },
+        "82d202db-4762-40fa-ade4-357cf5801832": {
+          "type": "text",
+          "settings": {
+            "quote_content": "<p>\"This serum is wonderful. My skin drinks it in. I had such <em>dry skin</em> and nothing was working. It is now, after three weeks of daily use, glowing!!\"</p>",
+            "quote_author": "★★★★★",
+            "quote_caption": "Erin W."
+          }
+        }
+      },
+      "block_order": [
+        "72b68f2a-c49f-4942-b926-c1689d2bfe2a",
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-0",
+        "template--14835198820406__90f9488d-b6ac-4fd4-a16f-b530ec3c676e-1667510392f6f73582-1",
+        "563132f3-875c-4715-9b21-dee2f1b1d4fd",
+        "e93a8ac7-1413-4df2-aac7-86e2040cbd81",
+        "82d202db-4762-40fa-ade4-357cf5801832"
+      ],
+      "settings": {
+        "title": "Deeply nourishes dry skin!",
+        "text_alignment": "center"
+      }
+    },
+    "2595c540-b63c-4582-875a-8fec6691413b": {
+      "type": "featured-product",
+      "blocks": {
+        "template--17144363680047__2595c540-b63c-4582-875a-8fec6691413b-16703539597c3445e2-0": {
+          "type": "header",
+          "settings": {
+            "show_vendor": false,
+            "show_reviews": true,
+            "show_tax_info": false,
+            "show_sku": false,
+            "show_barcode": false,
+            "stick_product_header_on_mobile": true
+          }
+        },
+        "template--17144363680047__2595c540-b63c-4582-875a-8fec6691413b-16703539597c3445e2-1": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "variants_style": "radio",
+            "show_color_swatches": true,
+            "show_quantities": "no"
+          }
+        },
+        "template--17144363680047__2595c540-b63c-4582-875a-8fec6691413b-16703539597c3445e2-2": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_dynamic_checkout": true
+          }
+        },
+        "template--17144363680047__2595c540-b63c-4582-875a-8fec6691413b-16703539597c3445e2-3": {
+          "type": "product_link",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "template--17144363680047__2595c540-b63c-4582-875a-8fec6691413b-16703539597c3445e2-0",
+        "template--17144363680047__2595c540-b63c-4582-875a-8fec6691413b-16703539597c3445e2-1",
+        "template--17144363680047__2595c540-b63c-4582-875a-8fec6691413b-16703539597c3445e2-2",
+        "template--17144363680047__2595c540-b63c-4582-875a-8fec6691413b-16703539597c3445e2-3"
+      ],
+      "settings": {
+        "product": "sacred-beauty-serum-rose-mist-set",
+        "media_aspect": "natural",
+        "enable_zoom": true,
+        "enable_video_looping": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "68ca4a22-759f-4246-b75d-6785ef37d0fe",
+    "2595c540-b63c-4582-875a-8fec6691413b"
+  ]
+}

@@ -1,0 +1,175 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": true,
+        "layout": "asymmetrical",
+        "products_number": 20,
+        "enable_filtering": false,
+        "enable_sorting": false,
+        "show_promotional_block": false,
+        "promotional_block_title": "Everyday essentials to sooth, protect and nourish your skin.",
+        "promotional_block_button_label": "",
+        "promotional_block_button_link": ""
+      }
+    },
+    "7a33cb79-309f-4321-a4cd-65789b5147a7": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Ultimate Glow Bundles",
+        "caption": "Collection",
+        "collection": "glowing-skin-bundles",
+        "show_view_all": true,
+        "layout": "regular",
+        "products_number": 6,
+        "show_promotional_block": false,
+        "promotional_block_title": "",
+        "promotional_block_button_label": "",
+        "promotional_block_button_link": "",
+        "seo_h_tag": "h2"
+      }
+    },
+    "b8e6de7f-5943-4270-9d6a-9c0087e29623": {
+      "type": "heading",
+      "settings": {
+        "title": "Give the Gift of Glow!",
+        "content": "<p>From Noes to Toes... whole body antioxidant-rich oils for lasting moisture, radiance and bliss.</p>",
+        "button_label": "",
+        "button_link": "",
+        "text_alignment": "left",
+        "text_size": "large",
+        "seo_h_tag": "span"
+      }
+    },
+    "0a27d160-a29e-41dd-b793-8547e83dde0b": {
+      "type": "featured-product",
+      "blocks": {
+        "template--21638262587695__0a27d160-a29e-41dd-b793-8547e83dde0b-header-1": {
+          "type": "header",
+          "settings": {
+            "show_vendor": false,
+            "show_reviews": true,
+            "show_tax_info": false,
+            "show_sku": false,
+            "show_barcode": false,
+            "stick_product_header_on_mobile": false
+          }
+        },
+        "template--21638262587695__0a27d160-a29e-41dd-b793-8547e83dde0b-variant_picker-1": {
+          "type": "variant_picker",
+          "settings": {
+            "variants_style": "radio",
+            "show_color_swatches": true,
+            "show_quantities": "no"
+          }
+        },
+        "template--21638262587695__0a27d160-a29e-41dd-b793-8547e83dde0b-buy_buttons-1": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_preorder_label": false,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "template--21638262587695__0a27d160-a29e-41dd-b793-8547e83dde0b-product_link-1": {
+          "type": "product_link",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "template--21638262587695__0a27d160-a29e-41dd-b793-8547e83dde0b-header-1",
+        "template--21638262587695__0a27d160-a29e-41dd-b793-8547e83dde0b-variant_picker-1",
+        "template--21638262587695__0a27d160-a29e-41dd-b793-8547e83dde0b-buy_buttons-1",
+        "template--21638262587695__0a27d160-a29e-41dd-b793-8547e83dde0b-product_link-1"
+      ],
+      "settings": {
+        "product": "sacred-serum-rose-toner-body-oil",
+        "media_aspect": "natural",
+        "enable_zoom": true,
+        "enable_video_looping": false
+      }
+    },
+    "284b52ff-22a8-45df-be58-e40c3b9b2d51": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "heading": "Face & Body Sets",
+        "caption": "",
+        "collection": "glowing-skin-bundles",
+        "show_view_all": true,
+        "layout": "asymmetrical",
+        "products_number": 12,
+        "show_promotional_block": false,
+        "promotional_block_title": "Write a short, captivating paragraph about your products.",
+        "promotional_block_button_label": "",
+        "promotional_block_button_link": "",
+        "seo_h_tag": "h2"
+      }
+    },
+    "9a979734-622b-4faa-ace0-6d7e2ed02ae5": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Books & Apparel",
+        "caption": "",
+        "collection": "books-apparel",
+        "show_view_all": true,
+        "layout": "asymmetrical",
+        "products_number": 12,
+        "show_promotional_block": false,
+        "promotional_block_title": "Write a short, captivating paragraph about your products.",
+        "promotional_block_button_label": "",
+        "promotional_block_button_link": "",
+        "seo_h_tag": "h2"
+      }
+    },
+    "0ad1a0d9-28c7-470b-92b1-5209eede0954": {
+      "type": "blog-posts",
+      "blocks": {
+        "template--21638262587695__0ad1a0d9-28c7-470b-92b1-5209eede0954-info-1": {
+          "type": "info",
+          "settings": {
+            "show_date": true,
+            "show_author": false
+          }
+        },
+        "template--21638262587695__0ad1a0d9-28c7-470b-92b1-5209eede0954-title-1": {
+          "type": "title",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "template--21638262587695__0ad1a0d9-28c7-470b-92b1-5209eede0954-info-1",
+        "template--21638262587695__0ad1a0d9-28c7-470b-92b1-5209eede0954-title-1"
+      ],
+      "settings": {
+        "title": "Regenerative Skincare Explained",
+        "blog": "glowing-skin",
+        "post_limit": 4,
+        "blog_show_image": true,
+        "show_view_all": true,
+        "seo_h_tag": "h2"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "7a33cb79-309f-4321-a4cd-65789b5147a7",
+    "b8e6de7f-5943-4270-9d6a-9c0087e29623",
+    "0a27d160-a29e-41dd-b793-8547e83dde0b",
+    "284b52ff-22a8-45df-be58-e40c3b9b2d51",
+    "9a979734-622b-4faa-ace0-6d7e2ed02ae5",
+    "0ad1a0d9-28c7-470b-92b1-5209eede0954"
+  ]
+}

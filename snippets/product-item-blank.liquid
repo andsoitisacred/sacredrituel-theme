@@ -1,0 +1,20 @@
+{{ "component-product-item.css" | asset_url | stylesheet_tag }}
+
+<div class="product-item {{ css_class }}" 
+  {% if scroll_speed != '0' %} data-scroll-speed="{{ scroll_speed }}" data-scroll-disable-on-lap {% endif %}
+  {% if index %} data-index="{{ index }}" {% endif %}
+>
+  <a>
+    <div class="product-item__image">
+      <span class="onboarding-svg">
+        {{ 'product-X' | replace: 'X', image_index | placeholder_svg_tag }}
+      </span>
+    </div>
+    <div class="product-item__caption">
+      <span class="product-item__title">
+        <span>{{ 'general.onboarding.product_title' | t }}</span>
+      </span>
+      <span class="product-item__price"><span>{{ '1999' | money }}</span><del>{{ '2999' | money }}</del></span>
+    </div>
+  </a>
+</div>

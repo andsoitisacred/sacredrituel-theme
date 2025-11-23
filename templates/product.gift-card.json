@@ -1,0 +1,130 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "show_vendor": false,
+            "show_reviews": true,
+            "show_tax_info": false,
+            "show_sku": false,
+            "show_barcode": false,
+            "stick_product_header_on_mobile": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "variants_style": "radio",
+            "show_color_swatches": true,
+            "show_quantities": "below"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": false,
+            "show_preorder_label": false,
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "pickup_avaiability": {
+          "type": "pickup_avaiability",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "f3aaa751-b5b4-490a-b35a-9062fdf75571": {
+          "type": "toggles-with-icons",
+          "settings": {
+            "title": "Frequently Asked Questions",
+            "feature1_title": "{{ product.metafields.custom.product_overview_title.value }}",
+            "feature1_text": "<p>{{ product.metafields.custom.product_overview_details | metafield_tag }}</p>",
+            "feature2_title": "{{ product.metafields.custom.source_ingredients_title.value }}",
+            "feature2_text": "<p>{{ product.metafields.custom.source_ingredients_details | metafield_tag }}</p>",
+            "feature3_title": "",
+            "feature3_text": "",
+            "feature4_title": "",
+            "feature4_text": "",
+            "feature5_title": "",
+            "feature5_text": "",
+            "feature6_title": "",
+            "feature6_text": "",
+            "seo_h_tag": "h2"
+          }
+        },
+        "custom_liquid_TEQaVM": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<!-- Countdown Timer Container --><div id=\"countdown-timer\" ></div><script>function startCountdown(t){const e=document.getElementById(\"countdown-timer\");function n(){const n=new Date,r=t-n;if(r<0)return e.innerHTML=\"Countdown Ended!\",void clearInterval(o);const a=Math.floor(r/864e5),d=Math.floor(r%864e5/36e5),i=Math.floor(r%36e5/6e4);e.innerHTML=`Order within ${a} days ${d} hr ${i} min for delivery 12/25`}n();const o=setInterval(n,1e3)}const targetDate=new Date(\"December 18, 2024 14:00:00 GMT-0800 (Pacific Standard Time)\");startCountdown(targetDate); </script>",
+            "position": "left"
+          }
+        }
+      },
+      "block_order": [
+        "header",
+        "variant_picker",
+        "buy_buttons",
+        "pickup_avaiability",
+        "share",
+        "description",
+        "f3aaa751-b5b4-490a-b35a-9062fdf75571",
+        "custom_liquid_TEQaVM"
+      ],
+      "settings": {
+        "media_aspect": "natural",
+        "enable_zoom": true,
+        "enable_video_looping": false
+      }
+    },
+    "169800662139651732": {
+      "type": "apps",
+      "blocks": {
+        "okendo_reviews_widget_Fmrcyx": {
+          "type": "shopify://apps/okendo/blocks/reviews-widget/bb689e69-ea70-4661-8fb7-ad24a2e23c29",
+          "settings": {
+            "product": "{{product}}",
+            "widget_type": "reviews_widget"
+          }
+        }
+      },
+      "block_order": [
+        "okendo_reviews_widget_Fmrcyx"
+      ],
+      "settings": {
+        "full_width": false
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "heading": "You may also like",
+        "products_number": 3
+      }
+    }
+  },
+  "order": [
+    "main",
+    "169800662139651732",
+    "product-recommendations"
+  ]
+}

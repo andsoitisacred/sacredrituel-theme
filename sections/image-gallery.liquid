@@ -1,0 +1,213 @@
+{%- if section.settings.title != blank -%}
+  <div class="section-header grid-item push-left-one-tenth lap--push-left-none">
+    <{{ section.settings.seo_h_tag }} class="section-header__title h4">{{ section.settings.title | escape }}</{{ section.settings.seo_h_tag }}>
+  </div>
+{%- endif -%}
+
+{%- if section.blocks.size > 0 -%}
+  {{ "section-image-gallery.css" | asset_url | stylesheet_tag }}
+  <div class="image-gallery grid eleven-tenths push-left-one-tenth lap--push-left-none">
+
+    {%- assign switch = false -%}
+
+    {%- for block in section.blocks -%}
+
+      {%- liquid
+
+        assign index = forloop.index0 | modulo: 5
+        assign remaining = forloop.length | minus: forloop.index
+
+        if index == 0
+          if remaining == 0
+            assign grid_size = 'ten-tenths'
+            assign sizes = 'sizes="(max-width: 1023px) calc(100vw - 60px), 84vw"'
+          else 
+            unless switch
+              assign grid_size = 'three-tenths'
+              assign sizes = 'sizes="(max-width: 599px) calc(50vw - 40px), (max-width: 1023px) calc(34vw - 40px), 25vw"'
+            else 
+              assign grid_size = 'six-tenths'
+              assign sizes = 'sizes="(max-width: 599px) calc(50vw - 40px), (max-width: 1023px) calc(67vw - 40px), 50vw"'
+            endunless
+          endif
+        elsif index == 1
+          unless switch
+            assign grid_size = 'six-tenths'
+            assign sizes = 'sizes="(max-width: 599px) calc(50vw - 40px), (max-width: 1023px) calc(67vw - 40px), 50vw"'
+          else
+            assign grid_size = 'three-tenths'
+            assign sizes = 'sizes="(max-width: 599px) calc(50vw - 40px), (max-width: 1023px) calc(34vw - 40px), 25vw"'
+          endunless
+        elsif index == 2
+          if remaining == 0
+            assign grid_size = 'ten-tenths'
+            assign sizes = 'sizes="(max-width: 1023px) calc(100vw - 60px), 84vw"'
+          elsif remaining == 1
+            unless switch
+              assign grid_size = 'six-tenths'
+              assign sizes = 'sizes="(max-width: 599px) calc(100vw - 40px), (max-width: 1023px) calc(67vw - 40px), 50vw"'
+            else
+              assign grid_size = 'three-tenths'
+              assign sizes = 'sizes="(max-width: 599px) calc(50vw - 40px), (max-width: 1023px) calc(34vw - 40px), 25vw"'
+            endunless
+          elsif remaining > 1 
+            assign grid_size = 'three-tenths lap--full-width'
+            assign sizes = 'sizes="(max-width: 599px) calc(50vw - 40px), (max-width: 1023px) calc(100vw - 60px), 25vw"'
+          endif
+        elsif index == 3
+          assign grid_size = 'three-tenths'
+          assign sizes = 'sizes="(max-width: 599px) calc(50vw - 40px), (max-width: 1023px) calc(34vw - 40px), 25vw"'
+          if switch and remaining == 0 
+            assign grid_size = 'six-tenths'
+            assign sizes = 'sizes="(max-width: 599px) calc(50vw - 40px), (max-width: 1023px) calc(67vw - 40px), 50vw"'
+          else 
+            assign grid_size = 'three-tenths'
+            assign sizes = 'sizes="(max-width: 599px) calc(50vw - 40px), (max-width: 1023px) calc(34vw - 40px), 25vw"'
+          endif
+        elsif index == 4
+          assign grid_size = 'two-tenths'
+          assign sizes = 'sizes="(max-width: 1023px) calc(50vw - 40px), 17vw"'
+          unless switch
+            assign switch = true
+          else 
+            assign switch = false
+          endunless
+        endif
+
+        if section.index == 1 and forloop.index <= 4
+          assign preload = true
+        else
+          assign preload = false
+        endif
+
+      -%}
+
+      <div class="gallery-item {{ grid_size }} push-right-one-tenth lap--push-right-padding" {{ block.shopify_attributes }}>
+
+        {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" title="{{ block.settings.title | escape }}">{%- endif -%}
+
+          <div class="gallery-item__caption">
+            {%- unless block.settings.image == blank -%}
+              {%- render 'lazy-image', image: block.settings.image, alt: block.settings.title, sizes: sizes, preload: preload -%}
+            {%- else -%}
+              <span class="onboarding-svg onboarding-background">
+                {{ 'image' | placeholder_svg_tag }}
+              </span>
+            {%- endunless -%}
+          </div>
+
+          {%- unless block.settings.title == blank -%}
+            <strong class="gallery-item__title">{{ block.settings.title | escape }}</strong>
+          {%- endunless -%}
+
+          {%- unless block.settings.caption == blank -%}
+            <div class="gallery-item__caption text-size--smaller rte">{{ block.settings.caption }}</div>
+          {%- endunless -%}
+
+        {%- if block.settings.link != blank -%}</a>{%- endif -%}
+
+      </div>
+
+    {%- endfor -%}
+
+  </div>
+
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "t:sections.gallery.name",
+    "class": "no-overflow section-w-margin section-w-mobile-padding",
+  	"settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "t:sections.featured-collection.settings.title.label",
+        "default": "Image gallery"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.refactor_words.seo.name"
+      },
+      {
+        "type": "select",
+        "id": "seo_h_tag",
+        "label": "t:sections.refactor_words.seo.label",
+        "info": "t:sections.refactor_words.seo.info",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "span",
+            "label": "span"
+          }
+        ],
+        "default": "h2"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "t:sections.gallery.blocks.image.settings.image.label"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "t:sections.featured-collection.settings.title.label",
+            "default": "Image"
+          },
+          {
+            "type": "richtext",
+            "id": "caption",
+            "label": "t:sections.gallery.blocks.image.settings.caption.label",
+            "default": "<p>Write some details about this image.</p>"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "t:sections.image-with-text.blocks.image.settings.url.label"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "t:sections.gallery.name",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }],
+    "disabled_on": {
+      "groups": ["header"]
+    }
+  }
+{% endschema %}

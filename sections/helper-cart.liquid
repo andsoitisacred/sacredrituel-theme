@@ -1,0 +1,8 @@
+{%- liquid
+  if template contains 'cart'
+    render 'cart-form'
+  else 
+    render 'cart-form', type: 'sidebar'
+  endif
+  render 'cart-subtotal'
+-%}
