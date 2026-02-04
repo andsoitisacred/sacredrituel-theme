@@ -330,12 +330,6 @@
                 <span skio-subscription-price>{{ price | money }}</span>
               </div>
             </div>
-            {% comment %} BEGIN: Visible Auto‑Ship perks (not dropdown/hover) {% endcomment %}
-            {% if group.name == 'Subscription' %}
-              {% render 'skio-autoship-perks' %}
-            {% endif %}
-            {% comment %} END: Visible Auto‑Ship perks {% endcomment %}
-
             <div class="skio-group-content">
               <select skio-selling-plans="{{ group.id }}" class="skio-frequency{% if group.selling_plans.size == 1 %} skio-frequency--one{% endif %}">
                 {% for plan in group.selling_plans %}
@@ -359,6 +353,11 @@
                 {% endfor %}
               </select>
             </div>
+            {% comment %} BEGIN: Visible Auto‑Ship perks (not dropdown/hover) {% endcomment %}
+            {% if group.name == 'Subscription' %}
+              {% render 'skio-autoship-perks' %}
+            {% endif %}
+            {% comment %} END: Visible Auto‑Ship perks {% endcomment %}
           </label>
         </div>
       {% endfor %}
